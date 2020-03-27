@@ -3,7 +3,7 @@
 #include <inttypes.h>
 
 #include "Shader.h"
-#include "Camera.h"
+#include "OrthoCamera.h"
 #include "VertexArray.h"
 #include "RendererAPI.h"
 
@@ -29,7 +29,7 @@ namespace XYZ {
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
-		static void BeginScene(Camera& camera);
+		static void BeginScene(OrthoCamera& camera);
 		static void EndScene();
 
 		static void Submit(RendererSubmitData& data);

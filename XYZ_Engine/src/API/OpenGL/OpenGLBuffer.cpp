@@ -5,7 +5,7 @@
 
 
 namespace XYZ {
-	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, unsigned int size, BufferUsage usage)
+	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size, BufferUsage usage)
 		: m_Size(size), m_Usage(usage)
 	{
 		glCreateBuffers(1, &m_VBO);
@@ -32,14 +32,14 @@ namespace XYZ {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	void OpenGLVertexBuffer::Update(float* vertices, unsigned int size, int offset)
+	void OpenGLVertexBuffer::Update(float* vertices, uint32_t size, uint32_t offset)
 	{
 		XYZ_ASSERT(m_Usage == BufferUsage::Dynamic, "Buffer does not have dynamic usage");
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 		glBufferSubData(GL_ARRAY_BUFFER, offset, size, vertices);
 	}
 
-	void OpenGLVertexBuffer::Resize(float* vertices, unsigned int size)
+	void OpenGLVertexBuffer::Resize(float* vertices, uint32_t size)
 	{
 		m_Size = size;
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -50,7 +50,7 @@ namespace XYZ {
 		}
 	}
 
-	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, unsigned int count)
+	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
 		: m_Count(count)
 	{
 		glCreateBuffers(1, &m_IBO);
@@ -75,7 +75,7 @@ namespace XYZ {
 
 
 
-	OpenGLShaderStorageBuffer::OpenGLShaderStorageBuffer(float* data, unsigned int size, BufferUsage usage)
+	OpenGLShaderStorageBuffer::OpenGLShaderStorageBuffer(float* data, uint32_t size, BufferUsage usage)
 		:m_Size(size), m_Usage(usage)
 	{
 		glGenBuffers(1, &m_SSBO);
@@ -93,7 +93,7 @@ namespace XYZ {
 		glDeleteBuffers(1, &m_SSBO);
 	}
 
-	void OpenGLShaderStorageBuffer::BindRange(int offset, int size, unsigned int index)
+	void OpenGLShaderStorageBuffer::BindRange(uint32_t offset, uint32_t size, uint32_t index)
 	{
 		glBindBufferRange(GL_SHADER_STORAGE_BUFFER, index, m_SSBO, offset, size);
 	}
@@ -103,13 +103,13 @@ namespace XYZ {
 		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
 	}
 
-	void OpenGLShaderStorageBuffer::Update(const void* data, unsigned int size, int offset)
+	void OpenGLShaderStorageBuffer::Update(const void* data, uint32_t size, uint32_t offset)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
 		glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
 	}
 
-	void OpenGLShaderStorageBuffer::Resize(const void* data, unsigned int size)
+	void OpenGLShaderStorageBuffer::Resize(const void* data, uint32_t size)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
 		switch (m_Usage)
@@ -119,4 +119,3 @@ namespace XYZ {
 		}
 	}
 }
-

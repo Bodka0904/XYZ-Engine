@@ -76,13 +76,14 @@ public:
 	void AddEntity(XYZ::Entity entity) { m_Entities.push_back(entity); };
 	virtual void OnAttach() override; 
 	virtual void OnDetach() override;
-	virtual void OnUpdate(float ts) override;
+	virtual void OnUpdate(float dt) override;
 	virtual void OnEvent(XYZ::Event& event) override;
 
 private:
 	std::vector<XYZ::Entity> m_Entities;
 
-	std::shared_ptr<XYZ::Camera> m_Camera;
+	//std::shared_ptr<XYZ::OrthoCamera> m_Camera;
+	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 	std::shared_ptr<XYZ::VertexArray> m_VAO;
 
 	std::shared_ptr<XYZ::Material> m_Material;
@@ -92,17 +93,22 @@ private:
 
 
 	XYZ::Entity m_ParticleEntity;
+
+	XYZ::ParticleSubEffect2D* m_SubEffect;
+	XYZ::ParticleSubEffect2D* m_SubEffect2;
+
 	std::shared_ptr<XYZ::VertexArray> m_ParticleVAO;
-	std::shared_ptr<XYZ::ParticleSystem> m_ParticleSystem;
+	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
 	ParticleQuad* m_ParQuad;
 
 	XYZ::RigidBody2D* m_Body;
 	XYZ::Transform2D* m_Transform;
-	XYZ::ParticleEffect* m_Effect;
+	XYZ::ParticleEffect2D* m_Effect;
+	
 	Quad* m_Quad;
-	float m_Speed = 1.5f;
-	float m_JumpSpeed = 500.0f;
+	float m_Speed = 1.0f;
+	float m_JumpSpeed = 5.0f;
 	float m_Color = 0.0f;
 
 

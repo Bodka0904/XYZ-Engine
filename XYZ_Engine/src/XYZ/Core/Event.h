@@ -135,15 +135,17 @@ namespace XYZ {
 	class MouseScrollEvent :public Event
 	{
 	public:
-		MouseScrollEvent(double offset)
-			:m_offset(offset)
+		MouseScrollEvent(float xOffset,float yOffset)
+			:m_XOffset(xOffset),m_YOffset(yOffset)
 		{};
 
 		virtual EventType GetEventType() const override { return type; }
-		inline double GetValue() const { return m_offset; }
+		inline double GetOffsetX() const { return m_XOffset; }
+		inline double GetOffsetY() const { return m_YOffset; }
 	private:
 		EventType type = EventType::MouseScroll;
-		double m_offset;
+		float m_XOffset;
+		float m_YOffset;
 	};
 
 }

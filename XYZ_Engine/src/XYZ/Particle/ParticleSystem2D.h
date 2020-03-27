@@ -1,28 +1,31 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
-#include "Components.h"
+#include "ParticleEffect2D.h"
 
+#include "XYZ/Renderer/Shader.h"
+#include "XYZ/Renderer/Material.h"
 
+#include <set>
+#include <unordered_set>
 
 namespace XYZ {
-	class PhysicsSystem : public System
+	class ParticleSystem2D : public System
 	{
 	public:
-		PhysicsSystem();
+		ParticleSystem2D();
 		virtual void Update(float dt);
 		virtual void Add(Entity entity) override;
 		virtual void Remove(Entity entity) override;
-		virtual bool Contains(Entity entity) override;
+		virtual bool Contains(Entity entity)override;
 
 	private:
 		struct Component : public System::Component
 		{
-			Transform2D* transform;
-			RigidBody2D* rigidbody;
+			ParticleEffect2D* effect;
 		};
 
-		float m_Gravity = 10.0f;
 		std::vector<Component> m_Components;
+		bool m_KeySorted = false;
 	};
 
 }

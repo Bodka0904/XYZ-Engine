@@ -18,38 +18,41 @@ namespace XYZ {
 	void SpriteSystem::Add(Entity entity)
 	{
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");
-		SpriteComponent component;
+		Component component;
 		component.animation = &ECSManager::Get()->GetComponent<SpriteAnimation>(entity);
 		component.sprite = &ECSManager::Get()->GetComponent<Sprite>(entity);
 		component.entity = entity;
 		m_Components.push_back(component);
+
+		m_EntitySorted = false;
 	}
 	void SpriteSystem::Remove(Entity entity)
 	{
-		std::sort(m_Components.begin(), m_Components.end(), Compare());
-
-		int position = binarySearch(0, (int)m_Components.size() - 1, entity);
+		if (!m_EntitySorted)
+		{
+			std::sort(m_Components.begin(), m_Components.end(), Component());
+			m_EntitySorted = true;
+		}
+		int position = binarySearch(0, (int)m_Components.size() - 1, entity,m_Components);
 		if (position != -1 && !m_Components.empty())
 		{
 			XYZ_LOG_INFO("Entity with ID ", entity, " removed");
 			m_Components[position] = m_Components[m_Components.size() - 1];
 			m_Components.erase(m_Components.end() - 1);
+			m_EntitySorted = false;
 		}
 	}
-	int SpriteSystem::binarySearch(int start, int end, Entity entity)
+	bool SpriteSystem::Contains(Entity entity)
 	{
-		if (end >= start)
+		if (!m_EntitySorted)
 		{
-			int mid = start + (end - start) / 2;
-			if (m_Components[mid].entity == entity)
-				return mid;
-
-			if (m_Components[mid].entity > entity)
-				return binarySearch(start, mid - 1, entity);
-
-
-			return binarySearch(mid + 1, end, entity);
+			std::sort(m_Components.begin(), m_Components.end(), Component());
+			m_EntitySorted = true;
 		}
-		return -1;
+		int position = binarySearch(0, (int)m_Components.size() - 1, entity,m_Components);
+		if (position == -1 || m_Components.empty())
+			return false;
+		
+		return true;
 	}
 }

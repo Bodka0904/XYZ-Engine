@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Camera.h"
+#include "OrthoCamera.h"
 #include "XYZ/Renderer/Texture.h"
 
 
@@ -12,7 +12,7 @@ namespace XYZ {
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const Camera& camera);
+		static void BeginScene(const OrthoCamera& camera);
 		static void EndScene();
 
 		// Draws here:

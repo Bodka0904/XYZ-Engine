@@ -9,9 +9,6 @@ namespace XYZ {
 	class ECSManager
 	{
 	public:
-		ECSManager()
-			: m_EntityEditing(false)
-		{}
 		void Init()
 		{
 			m_ComponentManager = std::make_unique<ComponentManager>();
@@ -37,20 +34,17 @@ namespace XYZ {
 			signature.set(m_ComponentManager->GetComponentType<T>(), 1);
 
 			m_EntityManager->SetSignature(entity, signature);
-
+			m_SystemManager->EntitySignatureChanged(entity, signature);
 		}
 		template<typename T>
 		void RemoveComponent(Entity entity)
 		{
 			m_ComponentManager->RemoveComponent<T>(entity);
-			// Get signature of entity and update it after removing component
-			auto signature = m_EntityManager->GetSignature(entity);
-			// Set signature to zero 
-			signature.set(m_ComponentManager->GetComponentType<T>(), 0);
-			// Set updated signature for entity
-			m_EntityManager->SetSignature(entity, signature);
 
-			// Notify systems that entity was changed
+			auto signature = m_EntityManager->GetSignature(entity);
+			signature.set(m_ComponentManager->GetComponentType<T>(), 0);
+
+			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
 		}
 
@@ -75,12 +69,6 @@ namespace XYZ {
 		{
 			return std::static_pointer_cast<T>(m_SystemManager->GetSystem<T>());
 		}
-		void SaveEntity(Entity entity)
-		{
-			m_EntityEditing = false;
-			auto signature = m_EntityManager->GetSignature(entity);
-			m_SystemManager->AddEntity(entity, signature);
-		}
 		void DestroyEntity(Entity entity)
 		{
 			auto signature = GetEntitySignature(entity);
@@ -94,8 +82,6 @@ namespace XYZ {
 		}
 		Entity CreateEntity()
 		{
-			XYZ_ASSERT(!m_EntityEditing, "Can not create new entity if there is unsaved one");
-			m_EntityEditing = true;
 			return m_EntityManager->CreateEntity();
 		}
 
@@ -104,7 +90,7 @@ namespace XYZ {
 		std::unique_ptr<ComponentManager> m_ComponentManager;
 		std::unique_ptr<EntityManager>	  m_EntityManager;
 		std::unique_ptr<SystemManager>	  m_SystemManager;
-		bool							  m_EntityEditing;
+		//bool							  m_EntityEditing;
 		static std::unique_ptr<ECSManager> m_Instance;
 	};
 

@@ -29,24 +29,26 @@ namespace XYZ {
 
 		virtual unsigned int GetUniformSize() { return m_UniformsSize; };
 	private:
-		std::string ReadFile(const std::string& filepath);
-		std::unordered_map<unsigned int, std::string> PreProcess(const std::string& source);
-		void Compile(const std::unordered_map<unsigned int, std::string>& shaderSources);
-		void ParseUniforms();
-		void ParseSubRoutines();
+		std::string readFile(const std::string& filepath);
+		std::unordered_map<unsigned int, std::string> preProcess(const std::string& source);
+		void compile(const std::unordered_map<unsigned int, std::string>& shaderSources);
+		void parseUniforms();
+		void parseSubRoutines();
+		void parsePredefVariables(const std::string& filepath, std::string& source);
+		void addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name);
 
-		void AddUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name);
 
-
-		void UploadInt(uint32_t loc, int value);
-		void UploadFloat(uint32_t loc, float value);
-		void UploadFloat2(uint32_t loc, const glm::vec2& value);
-		void UploadFloat3(uint32_t loc, const glm::vec3& value);
-		void UploadFloat4(uint32_t loc, const glm::vec4& value);
-		void UploadMat3(uint32_t loc, const glm::mat3& matrix);
-		void UploadMat4(uint32_t loc, const glm::mat4& matrix);
+		void uploadInt(uint32_t loc, int value);
+		void uploadFloat(uint32_t loc, float value);
+		void uploadFloat2(uint32_t loc, const glm::vec2& value);
+		void uploadFloat3(uint32_t loc, const glm::vec3& value);
+		void uploadFloat4(uint32_t loc, const glm::vec4& value);
+		void uploadMat3(uint32_t loc, const glm::mat3& matrix);
+		void uploadMat4(uint32_t loc, const glm::mat4& matrix);
 	private:
 		uint32_t m_RendererID;
+		ShaderProgramType m_Type;
+
 		std::string m_Name;
 		std::string m_Path;
 

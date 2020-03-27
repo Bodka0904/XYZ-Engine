@@ -1,4 +1,6 @@
 #pragma once
+#include "Material.h"
+
 #include <glm/glm.hpp>
 
 namespace XYZ {
@@ -21,11 +23,18 @@ namespace XYZ {
 		void SetTexCoord(const glm::vec4& texCoords);
 		void SetVisible(bool visible) { m_IsVisible = visible; }
 		
+		bool IsVisible() { return m_IsVisible; }
 		const Vertex* GetVertices() { return &m_Vertices[0]; }
 	protected:
 		Vertex m_Vertices[4];
 		glm::vec2 m_Size;
 		float  m_Rotation;
 		bool   m_IsVisible;
+	};
+
+	struct RenderComponent2D
+	{
+		std::shared_ptr<Renderable2D> renderable;
+		std::shared_ptr<Material> material;
 	};
 }

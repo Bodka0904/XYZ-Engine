@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "Material.h"
 
+#include "MaterialManager.h"
 namespace XYZ {
+	
 	Material::Material(const std::shared_ptr<Shader>& shader)
 	{
 		m_Shader = shader;
@@ -11,6 +13,8 @@ namespace XYZ {
 
 	Material::~Material()
 	{
+		int16_t key = (int16_t)m_Key;
+		MaterialManager::Get().destroyMaterial(key);
 		delete[] m_Buffer;
 	}
 
@@ -21,16 +25,19 @@ namespace XYZ {
 		{
 			auto& texture = m_Textures[i];
 			if (texture)
-				texture->Bind(0);
+				texture->Bind(i);
 
 		}
 		m_Shader->SetUniforms(m_Buffer);
 		m_Shader->UploadRoutines();
 	}
 
+
 	std::shared_ptr<Material> Material::Create(const std::shared_ptr<Shader>& shader)
 	{
-		return std::make_shared<Material>(shader);
+		auto material = std::make_shared<Material>(shader);
+		material->m_Key = (int64_t)MaterialManager::Get().registerMaterial(material);
+		return material;
 	}
 
 	void Material::OnShaderReload()
@@ -47,6 +54,7 @@ namespace XYZ {
 	{
 		m_Buffer = new unsigned char[m_Material->m_Shader->GetUniformSize()];
 		material->m_MaterialInstances.insert(this);
+		memcpy(m_Buffer, material->m_Buffer, m_Material->m_Shader->GetUniformSize());
 	}
 
 	MaterialInstance::~MaterialInstance()
@@ -73,7 +81,7 @@ namespace XYZ {
 
 	void MaterialInstance::UpdateMaterialValue(const Uniform* uni)
 	{
-		if (m_UpdatedValues.find(uni->name) != m_UpdatedValues.end())
+		if (m_UpdatedValues.find(uni->name) == m_UpdatedValues.end())
 		{
 			memcpy(m_Buffer + uni->offset, m_Material->m_Buffer + uni->offset, uni->size);
 		}

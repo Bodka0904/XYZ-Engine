@@ -11,25 +11,16 @@ namespace XYZ {
 		virtual void Update(float dt);
 		virtual void Add(Entity entity) override;
 		virtual void Remove(Entity entity) override;
+		virtual bool Contains(Entity entity) override;
+
 	private:
-		int binarySearch(int start, int end, Entity entity);
-	private:
-		struct SpriteComponent
+		struct Component : public System::Component
 		{
 			SpriteAnimation* animation;
 			Sprite* sprite;
-			Entity entity;
 		};
 
-		struct Compare
-		{
-			bool operator()(const SpriteComponent& a, const SpriteComponent& b)
-			{
-				return a.entity < b.entity;
-			}
-		};
-
-		std::vector<SpriteComponent> m_Components;
+		std::vector<Component> m_Components;
 
 	};
 }

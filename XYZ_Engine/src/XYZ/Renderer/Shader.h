@@ -20,7 +20,6 @@ namespace XYZ {
 		STRUCT
 	};
 
-
 	struct Uniform
 	{
 		UniformDataType type;
@@ -29,12 +28,19 @@ namespace XYZ {
 		unsigned int size;
 		std::string name;
 	};
+
+	struct UniformBuffer
+	{
+
+	};
+
 	struct TextureUniform
 	{
 		std::string name;
 		uint32_t location;
 		unsigned int slot;
 	};
+
 	struct SubRoutine
 	{
 		unsigned int shaderType;
@@ -71,6 +77,13 @@ namespace XYZ {
 
 		static std::shared_ptr<Shader> Create(const std::string& path);
 		static std::shared_ptr<Shader> Create(const std::string& name, const std::string& path);
+
+	protected:
+		enum class ShaderProgramType
+		{
+			RENDER,
+			COMPUTE
+		};
 	};
 
 

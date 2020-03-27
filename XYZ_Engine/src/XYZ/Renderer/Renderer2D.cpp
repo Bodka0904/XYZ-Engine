@@ -64,7 +64,7 @@ namespace XYZ {
 		s_Data.reset();
 	}
 
-	void Renderer2D::BeginScene(const Camera& camera)
+	void Renderer2D::BeginScene(const OrthoCamera& camera)
 	{
 		s_Data->m_TextureShader->Bind();
 		//s_Data->m_TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());

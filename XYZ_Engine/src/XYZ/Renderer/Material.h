@@ -1,6 +1,9 @@
 #pragma once
 #include "Shader.h"
 #include "Texture.h"
+
+#include <queue>
+#include <bitset>
 #include <unordered_set>
 
 namespace XYZ {
@@ -36,19 +39,25 @@ namespace XYZ {
 		{
 			m_Shader->SetSubRoutine(name);
 		}
-		void Set(int32_t renderFlags)
-		{
-			m_RenderFlags = renderFlags;
+		void SetFlags(int32_t renderFlags)
+		{		
+			m_Key |= (int64_t)renderFlags << 16;
+		}
+		void SetFlag(int32_t renderFlag)
+		{		
+			m_Key |= (int64_t)renderFlag << 16;
 		}
 
 		void Bind();
+	
+
+		int64_t GetSortKey() { return m_Key; }
 
 		const std::shared_ptr<Shader>& GetShader() { return m_Shader; }
-		const int32_t GetRenderFlag() { return m_RenderFlags; }
+
 		static std::shared_ptr<Material> Create(const std::shared_ptr<Shader>& shader);
 
-
-		// TEMPORARY
+		//TODO TEMPORARY
 		void ReloadShader() { m_Shader->Reload(); };
 	private:
 		void OnShaderReload();
@@ -59,9 +68,7 @@ namespace XYZ {
 		std::vector<std::shared_ptr<Texture>> m_Textures;
 
 		unsigned char* m_Buffer;
-
-
-		int32_t m_RenderFlags = 0;
+		int64_t m_Key = 0;
 	};
 
 
@@ -77,9 +84,9 @@ namespace XYZ {
 		{
 			auto uni = m_Material->m_Shader->FindUniform(name);
 			XYZ_ASSERT(uni, "Material uniform does not exist");
-			XYZ_ASSERT(uni->offset + uni->size <= m_Shader->GetUniformSize(), "Material uniform buffer out of range");
+			XYZ_ASSERT(uni->offset + uni->size <= m_Material->m_Shader->GetUniformSize(), "Material uniform buffer out of range");
 			memcpy(m_Buffer + uni->offset, (unsigned char*)& val, uni->size);
-			m_UpdatedValues.push_back(name);
+			m_UpdatedValues.insert(name);
 		}
 
 		void Bind();

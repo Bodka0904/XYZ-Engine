@@ -8,7 +8,8 @@
 #include "XYZ/Core/MouseCodes.h" 
 
 //-----Renderer-----//
-#include "XYZ/Renderer/Camera.h"
+#include "XYZ/Renderer/OrthoCamera.h"
+#include "XYZ/Renderer/OrthoCameraController.h"
 #include "XYZ/Renderer/Renderer2D.h"
 #include "XYZ/Renderer/Renderer.h"
 #include "XYZ/Renderer/RenderCommand.h"
@@ -17,10 +18,11 @@
 #include "XYZ/Renderer/SpriteAnimation.h"
 #include "XYZ/Renderer/SpriteAnimationController.h"
 #include "XYZ/Renderer/SpriteSystem.h"
+#include "XYZ/Renderer/MaterialManager.h"
 
 //------ECS-----//
 #include "XYZ/ECS/ECSManager.h"
 
 //-----Systems-----//
 #include "XYZ/Physics/PhysicsSystem.h"
-#include "XYZ/Particle/ParticleSystem.h"
+#include "XYZ/Particle/ParticleSystem2D.h"

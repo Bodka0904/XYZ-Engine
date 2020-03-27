@@ -10,7 +10,7 @@ namespace XYZ {
 
 		virtual void OnAttach() {} //Init
 		virtual void OnDetach() {} //Destroy
-		virtual void OnUpdate(float ts) {} //Update
+		virtual void OnUpdate(float dt) {} //Update
 		virtual void OnEvent(Event& event) {}
 
 	};

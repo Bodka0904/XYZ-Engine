@@ -5,7 +5,18 @@
 #include "Renderer.h"
 
 namespace XYZ {
-	std::shared_ptr<VertexBuffer> VertexBuffer::Create(float* vertices, unsigned int size, BufferUsage usage)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:    XYZ_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLVertexBuffer>((float*)NULL, size, BufferUsage::Dynamic);
+		}
+
+		XYZ_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size, BufferUsage usage)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -17,7 +28,7 @@ namespace XYZ {
 		return nullptr;
 	}
 
-	std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t* indices, unsigned int count)
+	std::shared_ptr<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -29,7 +40,19 @@ namespace XYZ {
 		return nullptr;
 	}
 
-	std::shared_ptr<ShaderStorageBuffer> ShaderStorageBuffer::Create(float* vertices, unsigned int size, BufferUsage usage)
+	std::shared_ptr<ShaderStorageBuffer> ShaderStorageBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:    XYZ_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShaderStorageBuffer>((float*)NULL, size, BufferUsage::Dynamic);
+		}
+
+		XYZ_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
+	std::shared_ptr<ShaderStorageBuffer> ShaderStorageBuffer::Create(float* vertices, uint32_t size, BufferUsage usage)
 	{
 		switch (Renderer::GetAPI())
 		{

@@ -35,10 +35,12 @@ namespace XYZ {
 		glm::vec4 texCoords;
 		float frameWidth = m_Width / m_Columns;
 		float frameHeight = m_Height / m_Rows;
-	
+
+
 		int row = m_Animation.currentFrame / m_Columns;
-		int column = m_Animation.currentFrame / m_Rows;
+		int column = m_Animation.currentFrame - (row * m_Columns);
 	
+
 		texCoords.x = (frameWidth * column) / m_Width;
 		texCoords.y = (frameHeight * row) / m_Height;
 		texCoords.z = (frameWidth * (column + 1)) / m_Width;

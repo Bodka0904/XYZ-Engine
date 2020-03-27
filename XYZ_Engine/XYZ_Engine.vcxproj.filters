@@ -141,13 +141,7 @@
     <ClInclude Include="src\XYZ\ECS\Types.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Particle\ParticleEffect.h">
-      <Filter>src\XYZ\Particle</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Particle\ParticleFactory.h">
-      <Filter>src\XYZ\Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XYZ\Particle\ParticleSystem.h">
       <Filter>src\XYZ\Particle</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Physics\Components.h">
@@ -160,9 +154,6 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Buffer.h">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\Camera.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h">
@@ -181,9 +172,6 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\RendererSystem.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Shader.h">
@@ -1349,6 +1337,12 @@
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderable2D.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
+    <ClInclude Include="src\XYZ\Renderer\RendererSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
+    <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
+    <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
+    <ClInclude Include="src\XYZ\Renderer\OrthoCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1402,13 +1396,7 @@
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Particle\ParticleEffect.cpp">
-      <Filter>src\XYZ\Particle</Filter>
-    </ClCompile>
     <ClCompile Include="src\XYZ\Particle\ParticleFactory.cpp">
-      <Filter>src\XYZ\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XYZ\Particle\ParticleSystem.cpp">
       <Filter>src\XYZ\Particle</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Physics\PhysicsSystem.cpp">
@@ -1418,9 +1406,6 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Buffer.cpp">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\Camera.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp">
@@ -1456,11 +1441,19 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\RendererSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Sprite.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\RendererSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
+    <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
+    <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\OrthoCameraController.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #type compute
 #version 430
-//Size of compute shader local work group - x=32, y=32, z=1(default)
-layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
+
+
 
 const int c_MaxParticles = 10000;
 
@@ -23,6 +23,7 @@ struct ParticleData
 	vec4 colorEnd;
 	vec2 startVelocity;
 	vec2 endVelocity;
+	vec2 defaultPosition;
 	float sizeBegin;
 	float sizeEnd;
 	float rotation;
@@ -30,8 +31,6 @@ struct ParticleData
 	float timeAlive;
 
 	float alignment;
-	float alignment2;
-	float alignment3;
 };
 
 layout(std430, binding = 0) buffer
@@ -62,7 +61,7 @@ float rand(vec2 co)
 
 
 subroutine vec4 colorRedBlue();
-subroutine(colorRedBlue) vec4 redColor() 
+subroutine(colorRedBlue) vec4 redColor()
 {
 	return vec4(1.0, 0.0, 0.0, 1.0);
 }
@@ -84,6 +83,8 @@ vec2 ChangeSizeOverLife(ParticleData data)
 
 subroutine uniform colorRedBlue sub_BlueSelection;
 
+
+layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 void main(void)
 {
 	uint id = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * gl_NumWorkGroups.x * gl_WorkGroupSize.x;
@@ -95,7 +96,7 @@ void main(void)
 
 	pVertex.position.x += (pData.startVelocity.x * u_Speed) * u_Time;
 	pVertex.position.y += (pData.startVelocity.y * u_Speed) * u_Time;
-	
+
 
 	pVertex.angle += u_Time * pData.rotation;
 	pVertex.size = ChangeSizeOverLife(pData);
@@ -113,14 +114,14 @@ void main(void)
 	int index = int(floor(stageProgress));
 	int column = int(mod(index, u_NumberColumns));
 	int row = int(index / u_NumberRows);
-	
+
 	pVertex.texCoordOffset = vec2(float(column) / u_NumberColumns, float(row) / u_NumberRows);
-	
+
 	if (pData.timeAlive > pData.lifeTime)
 	{
 		pData.startVelocity = pData.endVelocity;
 		pData.timeAlive = 0;
-		pVertex.position.xy = u_Emitter;
+		pVertex.position.xy = u_Emitter + pData.defaultPosition;
 	}
 
 	InVertex[id] = pVertex;

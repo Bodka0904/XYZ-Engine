@@ -11,11 +11,56 @@ namespace XYZ {
 		friend class SystemManager;
 	public:
 		System() {};
-		virtual void Add(Entity entity) = 0;
-		virtual void Remove(Entity entity) = 0;
+		virtual void Add(Entity entity) {};
+		virtual void Remove(Entity entity) {};
 		virtual void EntityUpdated(Entity entity) {};
+		virtual bool Contains(Entity entity) = 0;
+
 	protected:
+		template <typename T>
+		int binarySearch(int start, int end, Entity entity, const std::vector<T>& container)
+		{
+			if (end >= start)
+			{
+				int mid = start + (end - start) / 2;
+				if (container[mid] == entity)
+					return mid;
+
+				if (container[mid] > entity)
+					return binarySearch(start, mid - 1, entity, container);
+
+
+				return binarySearch(mid + 1, end, entity, container);
+			}
+			return -1;
+		}
+	protected:
+		bool m_EntitySorted = false;
 		Signature m_Signature;
+
+		struct Component
+		{
+			Entity entity;
+
+			bool operator()(const Component& a, const Component& b)
+			{
+				return (a.entity < b.entity);
+			}
+			bool operator ==(const Entity other) const
+			{
+				return entity == other;	
+			}
+			bool operator <(const Entity other)const
+			{
+				return entity < other;
+			}
+			bool operator >(const Entity other) const
+			{
+				return entity > other;
+			}
+		};
+
+	
 	};
 
 
@@ -65,22 +110,6 @@ namespace XYZ {
 			}
 		}
 
-		void AddEntity(Entity entity, Signature entitySignature)
-		{
-			for (auto const& pair : m_Systems)
-			{
-				auto const& type = pair.first;
-				auto const& system = pair.second;
-				auto const& systemSignature = m_Systems[type]->m_Signature;
-
-				// Entity signature matches system signature - insert into set
-				if ((entitySignature & systemSignature) == systemSignature)
-				{
-					system->Add(entity);
-				}
-			}
-		}
-
 		void EntitySignatureChanged(Entity entity, Signature entitySignature)
 		{
 			for (auto const& pair : m_Systems)
@@ -89,16 +118,14 @@ namespace XYZ {
 				auto const& system = pair.second;
 				auto const& systemSignature = m_Systems[type]->m_Signature;
 
-				// Entity signature matches system signature - insert into set
 				if ((entitySignature & systemSignature) == systemSignature)
 				{
-					system->Add(entity);
+					if (!system->Contains(entity))
+						system->Add(entity);
 				}
-				// Entity signature does not match system signature - erase from set
 				else
-				{
 					system->Remove(entity);
-				}
+				
 			}
 		}
 

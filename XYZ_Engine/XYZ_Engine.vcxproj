@@ -124,22 +124,24 @@
     <ClInclude Include="src\XYZ\ECS\EntityManager.h" />
     <ClInclude Include="src\XYZ\ECS\SystemManager.h" />
     <ClInclude Include="src\XYZ\ECS\Types.h" />
-    <ClInclude Include="src\XYZ\Particle\ParticleEffect.h" />
+    <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleFactory.h" />
-    <ClInclude Include="src\XYZ\Particle\ParticleSystem.h" />
+    <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
     <ClInclude Include="src\XYZ\Physics\Components.h" />
     <ClInclude Include="src\XYZ\Physics\PhysicsSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\APIContext.h" />
     <ClInclude Include="src\XYZ\Renderer\Buffer.h" />
-    <ClInclude Include="src\XYZ\Renderer\Camera.h" />
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h" />
     <ClInclude Include="src\XYZ\Renderer\Material.h" />
+    <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
+    <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
+    <ClInclude Include="src\XYZ\Renderer\OrthoCameraController.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderable2D.h" />
     <ClInclude Include="src\XYZ\Renderer\RenderCommand.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderer.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\XYZ\Renderer\RendererSystem.h" />
+    <ClInclude Include="src\XYZ\Renderer\RendererSystem2D.h" />
     <ClInclude Include="src\XYZ\Renderer\Shader.h" />
     <ClInclude Include="src\XYZ\Renderer\Sprite.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
@@ -549,21 +551,23 @@
     <ClCompile Include="src\XYZ\ECS\ECSManager.cpp" />
     <ClCompile Include="src\XYZ\ECS\EntityManager.cpp" />
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp" />
-    <ClCompile Include="src\XYZ\Particle\ParticleEffect.cpp" />
+    <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleFactory.cpp" />
-    <ClCompile Include="src\XYZ\Particle\ParticleSystem.cpp" />
+    <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\APIContext.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\Camera.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Material.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\OrthoCameraController.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\RendererSystem.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\RendererSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Sprite.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
@@ -586,6 +590,9 @@
     <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
