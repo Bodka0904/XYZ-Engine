@@ -4,6 +4,7 @@
 
 #include "XYZ/Timer.h"
 #include "XYZ/Renderer/Renderer.h"
+#include "ThreadPool.h"
 
 #include <GLFW/glfw3.h>
 
@@ -13,12 +14,15 @@ namespace XYZ {
 
 	Application::Application()
 	{
+		//Logger::Get().SetLogLevel(LogLevel::NOLOG);
 		s_Application = this;
 
 		m_Window = Window::Create();
 		m_Window->SetVSync(false);
 		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 
+
+		ThreadPool pool;
 		// Push default layers
 	}
 

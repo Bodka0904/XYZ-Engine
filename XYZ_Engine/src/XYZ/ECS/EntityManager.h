@@ -1,5 +1,6 @@
 #pragma once
 #include "Types.h"
+#include "XYZ/Utils/DataStructures/FreeList.h"
 
 #include <queue>
 #include <array>
@@ -18,10 +19,8 @@ namespace XYZ {
 	private:
 		unsigned int m_EntitiesInUse;
 
-		std::queue<Entity> m_AvailableEntities{};
-
 		// Every entity has Signature representing components that it contains
 		// System with same signatures will use entity
-		std::array<Signature, MAX_ENTITIES> m_Signatures{};
+		FreeList<Signature> m_Signatures;
 	};
 }

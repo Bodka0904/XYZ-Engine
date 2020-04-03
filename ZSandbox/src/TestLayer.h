@@ -82,7 +82,6 @@ public:
 private:
 	std::vector<XYZ::Entity> m_Entities;
 
-	//std::shared_ptr<XYZ::OrthoCamera> m_Camera;
 	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 	std::shared_ptr<XYZ::VertexArray> m_VAO;
 
@@ -94,30 +93,31 @@ private:
 
 	XYZ::Entity m_ParticleEntity;
 
-	XYZ::ParticleSubEffect2D* m_SubEffect;
-	XYZ::ParticleSubEffect2D* m_SubEffect2;
+	XYZ::ParticleSubEffect2D* m_SubEffect = nullptr;
+	XYZ::ParticleSubEffect2D* m_SubEffect2 = nullptr;
 
 	std::shared_ptr<XYZ::VertexArray> m_ParticleVAO;
 	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
-	ParticleQuad* m_ParQuad;
+	ParticleQuad* m_ParQuad = nullptr;
 
-	XYZ::RigidBody2D* m_Body;
-	XYZ::Transform2D* m_Transform;
-	XYZ::ParticleEffect2D* m_Effect;
+	XYZ::RigidBody2D* m_Body = nullptr;
+	XYZ::Transform2D* m_Transform = nullptr;
+	XYZ::ParticleEffect2D* m_Effect = nullptr;
 	
-	Quad* m_Quad;
 	float m_Speed = 1.0f;
 	float m_JumpSpeed = 5.0f;
 	float m_Color = 0.0f;
 
 
-	std::shared_ptr<XYZ::VertexArray> m_SpriteVAO;
 	XYZ::Entity m_SpriteEntity;
-	XYZ::Sprite* m_Sprite;
-	XYZ::RigidBody2D* m_SpriteBody;
-	XYZ::Transform2D* m_SpriteTransform;
-	XYZ::SpriteAnimation* m_SpriteAnimation;
+	XYZ::Renderable2D* m_Sprite = nullptr;
+	XYZ::RigidBody2D* m_SpriteBody = nullptr;
+	XYZ::Transform2D* m_SpriteTransform = nullptr;
+	XYZ::SpriteAnimation* m_SpriteAnimation = nullptr;
 	XYZ::SpriteAnimationController m_AnimController;
 	std::shared_ptr<XYZ::SpriteSystem> m_SpriteSystem;
+	std::shared_ptr<XYZ::RendererSystem2D> m_RendererSystem2D;
+
+
 };

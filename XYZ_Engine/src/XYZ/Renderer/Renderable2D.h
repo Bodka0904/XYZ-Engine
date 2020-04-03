@@ -5,36 +5,15 @@
 
 namespace XYZ {
 
-	struct Vertex
+	struct Renderable2D
 	{
-		glm::vec4 color;
-		glm::vec3 position;
-		glm::vec2 texCoord;
-		float	  textureID;
-	};
-
-	class Renderable2D
-	{
-	public:
-		Renderable2D(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-
-		void SetPosition(const glm::vec3& position);
-		void SetTextureID(int id);
-		void SetTexCoord(const glm::vec4& texCoords);
-		void SetVisible(bool visible) { m_IsVisible = visible; }
-		
-		bool IsVisible() { return m_IsVisible; }
-		const Vertex* GetVertices() { return &m_Vertices[0]; }
-	protected:
-		Vertex m_Vertices[4];
-		glm::vec2 m_Size;
-		float  m_Rotation;
-		bool   m_IsVisible;
-	};
-
-	struct RenderComponent2D
-	{
-		std::shared_ptr<Renderable2D> renderable;
 		std::shared_ptr<Material> material;
+		glm::vec4 color = glm::vec4(0);
+		glm::vec4 texCoord = glm::vec4(0); // (x = left, y = bottom, z = right, w = top)
+		glm::vec3 position = glm::vec3(0);
+		glm::vec2 size = glm::vec2(0);
+		float rotation = 0.0f;
+		bool visible = true;
+		int textureID = 0;
 	};
 }

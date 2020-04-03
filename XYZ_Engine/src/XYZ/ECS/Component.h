@@ -1,5 +1,6 @@
 #pragma once
 #include "Types.h"
+#include "XYZ/Utils/DataStructures/FreeList.h"
 
 #include <unordered_map>
 #include <array>
@@ -24,8 +25,8 @@ namespace XYZ {
 	public:
 		virtual ~Component()
 		{
-			for (size_t i = 0; i < m_Component.size(); i++)
-				delete m_Component[i];
+			for (size_t i = 0; i < m_Components.Range(); i++)
+				delete m_Components[i];
 		}
 		bool Contains(Entity entity)
 		{
@@ -35,30 +36,21 @@ namespace XYZ {
 		void AddComponent(Entity entity, T* component)
 		{
 			XYZ_ASSERT(m_Lookup.find(entity) == m_Lookup.end(), "Entity already contains component");
-			m_Lookup[entity] = m_Num;
-			m_Component[m_Num] = component;
-
-			m_Num++;
+			m_Lookup[entity] = m_Components.Insert(component);
 		}
 		void RemoveComponent(Entity entity)
-		{
-			if (m_Num > 0)
-			{
-				XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Removing non-existent component");
-				size_t indexRemovedEnity = m_Lookup[entity];
-				delete m_Component[indexRemovedEnity];
-
-				m_Component[indexRemovedEnity] = m_Component[m_Num - 1];
-				m_Lookup[m_Num - 1] = indexRemovedEnity;
-
-				m_Lookup.erase(entity);
-				m_Num--;
-			}
+		{		
+			XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Removing non-existent component");
+			
+			int removeIndex = m_Lookup[entity];
+			delete m_Components[removeIndex];
+			m_Components.Erase(removeIndex);
+			m_Lookup.erase(entity);			
 		}
 		T* GetComponent(Entity entity)
 		{
 			XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Retrieving non-existent component.");
-			return m_Component[m_Lookup[entity]];
+			return m_Components[m_Lookup[entity]];
 		}
 
 		virtual void EntityDestroyed(Entity entity) override
@@ -67,10 +59,8 @@ namespace XYZ {
 		}
 
 	private:
-		std::array<T*, MAX_ENTITIES> m_Component;
-		std::unordered_map<Entity, size_t> m_Lookup;
-
-		unsigned int m_Num = 0;
+		FreeList<T*> m_Components;
+		std::unordered_map<Entity, int> m_Lookup;
 	};
 
 }

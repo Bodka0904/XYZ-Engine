@@ -6,12 +6,15 @@
 #include <iostream>
 
 namespace XYZ {
+
 	enum LogLevel
 	{
-		INFO,
-		WARNING,
-		ERR,
-		TRACE
+		NOLOG =		1 << 0,
+		INFO =		1 << 1,
+		WARNING =	1 << 2,
+		ERR =		1 << 3,
+		API =		1 << 4,
+		TRACE =		API | ERR | WARNING | INFO
 	};
 
 	class Logger
@@ -35,7 +38,7 @@ namespace XYZ {
 		template <typename... Args>
 		void Info(Args... args)
 		{
-			if (s_LogLevel == LogLevel::INFO || LogLevel::TRACE)
+			if ((s_LogLevel & LogLevel::INFO) == LogLevel::INFO)
 			{
 				Colorize color(AnsiCode::COLOR_GREEN_F);
 				std::cout << currentDateTime() << " ";
@@ -47,7 +50,7 @@ namespace XYZ {
 		template <typename... Args>
 		void Warn(Args... args)
 		{
-			if (s_LogLevel == LogLevel::WARNING || LogLevel::TRACE)
+			if ((s_LogLevel & LogLevel::WARNING) == LogLevel::WARNING)
 			{
 				Colorize color(AnsiCode::COLOR_YELLOW_F);
 				std::cout << currentDateTime() << " ";
@@ -59,9 +62,21 @@ namespace XYZ {
 		template <typename... Args>
 		void Error(Args... args)
 		{
-			if (s_LogLevel == LogLevel::ERR || LogLevel::TRACE)
+			if ((s_LogLevel & LogLevel::ERR) == LogLevel::ERR)
 			{
 				Colorize color(AnsiCode::COLOR_RED_F);
+				std::cout << currentDateTime() << " ";
+				(std::cout << ... << args) << std::endl;
+				(s_LogFile << ... << args) << std::endl;
+			}
+		}
+
+		template <typename... Args>
+		void API(Args... args)
+		{
+			if ((s_LogLevel & LogLevel::API) == LogLevel::API)
+			{
+				Colorize color(AnsiCode::COLOR_MAGENTA_F);
 				std::cout << currentDateTime() << " ";
 				(std::cout << ... << args) << std::endl;
 				(s_LogFile << ... << args) << std::endl;
@@ -87,5 +102,5 @@ namespace XYZ {
 #define XYZ_LOG_INFO(...)  Logger::Get().Info(__FUNCTION__,": ", __VA_ARGS__)
 #define XYZ_LOG_WARN(...) Logger::Get().Warn(__FUNCTION__,": ",__VA_ARGS__)
 #define XYZ_LOG_ERR(...)  Logger::Get().Error(__FUNCTION__,": ",__VA_ARGS__)
-
+#define XYZ_LOG_API(...)  Logger::Get().API(__FUNCTION__,": ",__VA_ARGS__)
 }

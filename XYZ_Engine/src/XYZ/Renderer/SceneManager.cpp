@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "Renderable2D.h"
+#include "SceneManager.h"
 
 
 namespace XYZ {
-	
+
 }

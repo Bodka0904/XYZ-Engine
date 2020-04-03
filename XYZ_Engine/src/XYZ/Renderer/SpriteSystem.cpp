@@ -6,7 +6,7 @@ namespace XYZ {
 	SpriteSystem::SpriteSystem()
 	{	
 		m_Signature.set(ECSManager::Get()->GetComponentType<SpriteAnimation>());
-		m_Signature.set(ECSManager::Get()->GetComponentType<Sprite>());
+		m_Signature.set(ECSManager::Get()->GetComponentType<Renderable2D>());
 	}
 	void SpriteSystem::Update(float dt)
 	{
@@ -20,7 +20,7 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");
 		Component component;
 		component.animation = &ECSManager::Get()->GetComponent<SpriteAnimation>(entity);
-		component.sprite = &ECSManager::Get()->GetComponent<Sprite>(entity);
+		component.sprite = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
 		component.entity = entity;
 		m_Components.push_back(component);
 

@@ -5,20 +5,15 @@ namespace XYZ {
 	EntityManager::EntityManager()
 		: m_EntitiesInUse(0)
 	{
-		for (Entity entity = 0; entity < MAX_ENTITIES; ++entity)
-		{
-			m_AvailableEntities.push(entity);
-		}
+		
 	}
 	Entity EntityManager::CreateEntity()
 	{
 		XYZ_ASSERT(m_EntitiesInUse < MAX_ENTITIES, "Too many entities in existence.");
 
 		// Take an ID from the front of the queue
-		Entity id = m_AvailableEntities.front();
-		m_AvailableEntities.pop();
 		m_EntitiesInUse++;
-		return id;
+		return m_Signatures.Insert(Signature());
 	}
 	Signature EntityManager::GetSignature(Entity entity)
 	{
@@ -32,7 +27,7 @@ namespace XYZ {
 		// Put the destroyed ID at the back of the queue
 		//Restart bitset to zero;
 		m_Signatures[entity].reset();
-		m_AvailableEntities.push(entity);
+		m_Signatures.Erase(entity);
 		m_EntitiesInUse--;
 	}
 	void EntityManager::SetSignature(Entity entity, Signature signature)

@@ -21,13 +21,13 @@ namespace XYZ {
 		m_Animation.frameLen = timeFrame;
 		m_AnimationLen = ((m_Animation.frameInterval.second - m_Animation.frameInterval.first) + 1) * m_Animation.frameLen;
 	}
-	void SpriteAnimation::Update(float dt, Sprite* sprite)
+	void SpriteAnimation::Update(float dt, Renderable2D* sprite)
 	{
 		if (m_CurrentTime > m_AnimationLen)
 			m_CurrentTime = 0.0f;
 
 		m_Animation.currentFrame = (int)floor(m_CurrentTime / m_Animation.frameLen) + m_Animation.frameInterval.first;
-		sprite->SetTexCoord(calcTexCoords());
+		sprite->texCoord = calcTexCoords();
 		m_CurrentTime += dt;
 	}
 	const glm::vec4 SpriteAnimation::calcTexCoords()

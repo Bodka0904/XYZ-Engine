@@ -1332,7 +1332,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\Sprite.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderable2D.h" />
@@ -1343,6 +1342,11 @@
     <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
     <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
     <ClInclude Include="src\XYZ\Renderer\OrthoCameraController.h" />
+    <ClInclude Include="src\XYZ\Renderer\Scene.h" />
+    <ClInclude Include="src\XYZ\Renderer\SceneManager.h" />
+    <ClInclude Include="src\XYZ\Renderer\Scene2D.h" />
+    <ClInclude Include="src\XYZ\Core\ThreadPool.h" />
+    <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1441,7 +1445,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\Sprite.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp" />
@@ -1452,6 +1455,11 @@
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
     <ClCompile Include="src\XYZ\Renderer\OrthoCameraController.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\Scene.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\Scene2D.cpp" />
+    <ClCompile Include="src\XYZ\Core\ThreadPool.cpp" />
+    <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />

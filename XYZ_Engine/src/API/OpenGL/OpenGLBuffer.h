@@ -7,11 +7,12 @@ namespace XYZ {
 	{
 	public:
 		OpenGLVertexBuffer(float* vertices, uint32_t size, BufferUsage usage);
+		OpenGLVertexBuffer(uint32_t size);
 		~OpenGLVertexBuffer();
 
 		virtual void Bind() const override;
 		virtual void UnBind() const override;
-		virtual void Update(float* vertices, uint32_t size, uint32_t offset = 0) override;
+		virtual void Update(void* vertices, uint32_t size, uint32_t offset = 0) override;
 		virtual void Resize(float* vertices, uint32_t size) override;
 
 		virtual void SetLayout(const BufferLayout& layout) override { m_Layout = layout; };

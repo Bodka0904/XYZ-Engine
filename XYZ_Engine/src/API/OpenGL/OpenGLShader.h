@@ -1,7 +1,5 @@
 #pragma once
-
 #include "XYZ/Renderer/Shader.h"
-
 
 namespace XYZ {
 	class OpenGLShader : public Shader
@@ -14,6 +12,7 @@ namespace XYZ {
 		virtual void Compute(unsigned int groupX, unsigned int groupY = 1, unsigned int groupZ = 1) const override;
 		virtual void Unbind() const override;
 		virtual void SetUniforms(unsigned char* data) override;
+		virtual void SetUniformArrays(unsigned char* data) override;
 		virtual void SetSubRoutine(const std::string& name) override;
 		virtual void UploadRoutines() override;
 
@@ -22,12 +21,14 @@ namespace XYZ {
 
 
 		virtual const Uniform* FindUniform(const std::string& name) override;
+		virtual const UniformArray* FindUniformArr(const std::string& name) override;
 		virtual const TextureUniform* FindTexture(const std::string& name) override;
 
 		inline virtual std::string GetPath() const override { return m_Path; };
 		inline virtual std::string GetName() const override { return m_Name; }
 
 		virtual unsigned int GetUniformSize() { return m_UniformsSize; };
+		virtual unsigned int GetUniformArraysSize() { return m_UnifomArraysSize; }
 	private:
 		std::string readFile(const std::string& filepath);
 		std::unordered_map<unsigned int, std::string> preProcess(const std::string& source);
@@ -36,7 +37,7 @@ namespace XYZ {
 		void parseSubRoutines();
 		void parsePredefVariables(const std::string& filepath, std::string& source);
 		void addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name);
-
+		void addUniformArr(UniformDataType type, unsigned int size, unsigned int offset,int count, const std::string& name);
 
 		void uploadInt(uint32_t loc, int value);
 		void uploadFloat(uint32_t loc, float value);
@@ -45,8 +46,16 @@ namespace XYZ {
 		void uploadFloat4(uint32_t loc, const glm::vec4& value);
 		void uploadMat3(uint32_t loc, const glm::mat3& matrix);
 		void uploadMat4(uint32_t loc, const glm::mat4& matrix);
+
+		void uploadIntArr(uint32_t loc, int* values,uint32_t count);
+		void uploadFloatArr(uint32_t loc, float* values, uint32_t count);
+		void uploadFloat2Arr(uint32_t loc, const glm::vec2& value, uint32_t count);
+		void uploadFloat3Arr(uint32_t loc, const glm::vec3& value, uint32_t count);
+		void uploadFloat4Arr(uint32_t loc, const glm::vec4& value, uint32_t count);
+		void uploadMat3Arr(uint32_t loc, const glm::mat3& matrix, uint32_t count);
+		void uploadMat4Arr(uint32_t loc, const glm::mat4& matrix, uint32_t count);
 	private:
-		uint32_t m_RendererID;
+		uint32_t m_RendererID = 0;
 		ShaderProgramType m_Type;
 
 		std::string m_Name;
@@ -54,12 +63,17 @@ namespace XYZ {
 
 		unsigned int m_NumTextures;
 		unsigned int m_UniformsSize;
+		unsigned int m_UnifomArraysSize;
 
 		std::vector<Uniform> m_Uniforms;
+		std::vector<UniformArray> m_UniformArrays;
 		std::vector<TextureUniform> m_Textures;
 		std::vector<Routine> m_Routines;
 
 		std::vector<std::function<void()>> m_ShaderReloadCallbacks;
+
+		// Temporary, in future we will get that information from the GPU
+		static constexpr int sc_MaxTextureSlots = 32;
 	};
 
 }

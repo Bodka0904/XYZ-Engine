@@ -3,12 +3,6 @@
 
 
 namespace XYZ {
-
-
-	ParticleEffect2D::ParticleEffect2D()
-	{
-	}
-
 	ParticleEffect2D::ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material)
 		: m_Material(material)
 	{

@@ -6,7 +6,20 @@
 #include <array>
 #include <GL/glew.h>
 
+
 namespace XYZ {
+
+	static std::string CutArrayIndexing(const std::string& name)
+	{
+		std::string str;
+		int count = 0;
+		while (name[count] != '[')
+			count++;
+
+		str = name.substr(0, count);
+		return str;
+	}
+
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
 		if (type == "vertex")
@@ -70,6 +83,16 @@ namespace XYZ {
 		return nullptr;
 	}
 
+	const UniformArray* OpenGLShader::FindUniformArr(const std::string& name)
+	{
+		for (size_t i = 0; i < m_UniformArrays.size(); ++i)
+		{
+			if (m_UniformArrays[i].name == name)
+				return &m_UniformArrays[i];
+		}
+		return nullptr;
+	}
+
 	const TextureUniform* OpenGLShader::FindTexture(const std::string& name)
 	{
 		for (size_t i = 0; i < m_Textures.size(); ++i)
@@ -86,9 +109,11 @@ namespace XYZ {
 		if (type == UniformDataType::SAMPLER2D)
 		{
 			TextureUniform texture;
+			texture.count = 0; // Not array
 			texture.location = id;
 			texture.name = name;
 			texture.slot = (int)m_Textures.size();
+			XYZ_ASSERT(texture.slot < sc_MaxTextureSlots, "It is possible to have only %d textures per shader", sc_MaxTextureSlots);
 			glUseProgram(m_RendererID);
 			glUniform1i(id, (int)m_Textures.size());
 			m_Textures.push_back(texture);
@@ -105,15 +130,47 @@ namespace XYZ {
 		}
 	}
 
+	void OpenGLShader::addUniformArr(UniformDataType type, unsigned int size, unsigned int offset,int count, const std::string& name)
+	{
+		uint32_t id = glGetUniformLocation(m_RendererID, name.c_str());
+		if (type == UniformDataType::SAMPLER2D)
+		{	
+			TextureUniform texture;
+			texture.location = id;
+			texture.name = name;
+			texture.slot = (int)m_Textures.size();
+			texture.count = count;
+			m_Textures.push_back(texture);
+			XYZ_ASSERT(texture.slot + (count-1) < sc_MaxTextureSlots, "It is possible to have only ",sc_MaxTextureSlots," textures per shader");
+
+			std::vector<int32_t>textureIDs(count);	
+			for (int i = 0; i < count; ++i)
+				textureIDs[i] = i;
+
+			glUseProgram(m_RendererID);
+			uploadIntArr(id, &textureIDs[texture.slot], count);
+		}
+		if (id != -1)
+		{
+			UniformArray uniform;
+			uniform.size = size;
+			uniform.offset = offset;
+			uniform.type = type;
+			uniform.location = id;
+			uniform.name = name;
+			uniform.count = count;
+			m_UniformArrays.push_back(uniform);
+		}
+	}
+
 	void OpenGLShader::SetUniforms(unsigned char* data)
 	{
-		for (size_t i = 0; i < m_Uniforms.size(); i++)
+		for (auto uniform : m_Uniforms)
 		{
-			Uniform uniform = m_Uniforms[i];
 			switch (uniform.type)
 			{
-			case UniformDataType::FLOAT:
-				uploadFloat(uniform.location, *(float*)& data[uniform.offset]);
+			case UniformDataType::FLOAT:	
+				uploadFloat(uniform.location, *(float*)& data[uniform.offset]);	
 				break;
 			case UniformDataType::FLOAT_VEC2:
 				uploadFloat2(uniform.location, *(glm::vec2*) & data[uniform.offset]);
@@ -129,6 +186,34 @@ namespace XYZ {
 				break;
 			case UniformDataType::FLOAT_MAT4:
 				uploadMat4(uniform.location, *(glm::mat4*) & data[uniform.offset]);
+				break;
+			};
+		}
+	}
+
+	void OpenGLShader::SetUniformArrays(unsigned char* data)
+	{
+		for (auto uniform : m_UniformArrays)
+		{
+			switch (uniform.type)
+			{
+			case UniformDataType::FLOAT:
+				uploadFloatArr(uniform.location, (float*)& data[uniform.offset],uniform.count);
+				break;
+			case UniformDataType::FLOAT_VEC2:
+				uploadFloat2Arr(uniform.location, *(glm::vec2*) & data[uniform.offset], uniform.count);
+				break;
+			case UniformDataType::FLOAT_VEC3:
+				uploadFloat3Arr(uniform.location, *(glm::vec3*) & data[uniform.offset], uniform.count);
+				break;
+			case UniformDataType::FLOAT_VEC4:
+				uploadFloat4Arr(uniform.location, *(glm::vec4*) & data[uniform.offset], uniform.count);
+				break;
+			case UniformDataType::INT:
+				uploadIntArr(uniform.location, (int*)& data[uniform.offset], uniform.count);
+				break;
+			case UniformDataType::FLOAT_MAT4:
+				uploadMat4Arr(uniform.location, *(glm::mat4*) & data[uniform.offset], uniform.count);
 				break;
 			};
 		}
@@ -164,7 +249,7 @@ namespace XYZ {
 
 	void OpenGLShader::Reload()
 	{
-		XYZ_LOG_WARN("Reloading shader %s", m_Name.c_str());
+		XYZ_LOG_WARN("Reloading shader ", m_Name.c_str());
 		m_Uniforms.clear();
 		m_Textures.clear();
 		m_Routines.clear();
@@ -214,6 +299,34 @@ namespace XYZ {
 	{
 		glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
+	void OpenGLShader::uploadIntArr(uint32_t loc, int* values, uint32_t count)
+	{
+		glUniform1iv(loc, count, values);
+	}
+	void OpenGLShader::uploadFloatArr(uint32_t loc, float* values, uint32_t count)
+	{
+		glUniform1fv(loc, count, values);
+	}
+	void OpenGLShader::uploadFloat2Arr(uint32_t loc, const glm::vec2& value, uint32_t count)
+	{
+		glUniform2fv(loc, count, (float*)& value);
+	}
+	void OpenGLShader::uploadFloat3Arr(uint32_t loc, const glm::vec3& value, uint32_t count)
+	{
+		glUniform3fv(loc, count, (float*)& value);
+	}
+	void OpenGLShader::uploadFloat4Arr(uint32_t loc, const glm::vec4& value, uint32_t count)
+	{
+		glUniform4fv(loc, count, (float*)& value);
+	}
+	void OpenGLShader::uploadMat3Arr(uint32_t loc, const glm::mat3& matrix, uint32_t count)
+	{
+		glUniformMatrix3fv(loc, count, GL_FALSE, glm::value_ptr(matrix));
+	}
+	void OpenGLShader::uploadMat4Arr(uint32_t loc, const glm::mat4& matrix, uint32_t count)
+	{
+		glUniformMatrix4fv(loc, count, GL_FALSE, glm::value_ptr(matrix));
+	}
 	std::string OpenGLShader::readFile(const std::string& filepath)
 	{
 		std::string result;
@@ -260,6 +373,7 @@ namespace XYZ {
 	void OpenGLShader::compile(const std::unordered_map<unsigned int, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
+
 		XYZ_ASSERT(shaderSources.size() <= 3, "We only support 3 shaders for now");
 		std::array<GLenum, 3> glShaderIDs;
 
@@ -278,6 +392,7 @@ namespace XYZ {
 
 			GLint isCompiled = 0;
 			glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+
 			if (isCompiled == GL_FALSE)
 			{
 				GLint maxLength = 0;
@@ -296,38 +411,42 @@ namespace XYZ {
 			glAttachShader(program, shader);
 			glShaderIDs[glShaderIDIndex++] = shader;
 		}
-
-		glDeleteProgram(m_RendererID);
-		m_RendererID = program;
+		if (m_RendererID)
+			glDeleteProgram(m_RendererID);
 
 		// Link our program
-		glLinkProgram(program);
+		m_RendererID = program;
+		glLinkProgram(m_RendererID);
 
-		// Note the different functions here: glGetProgram* instead of glGetShader*.
 		GLint isLinked = 0;
-		glGetProgramiv(program, GL_LINK_STATUS, (int*)& isLinked);
+		glGetProgramiv(m_RendererID, GL_LINK_STATUS, (int*)& isLinked);
+
 		if (isLinked == GL_FALSE)
 		{
 			GLint maxLength = 0;
-			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+			glGetProgramiv(m_RendererID, GL_INFO_LOG_LENGTH, &maxLength);
 
 			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
-			glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+			glGetProgramInfoLog(m_RendererID, maxLength, &maxLength, &infoLog[0]);
 
 			// We don't need the program anymore.
-			glDeleteProgram(program);
+			glDeleteProgram(m_RendererID);
 
-			for (auto id : glShaderIDs)
-				glDeleteShader(id);
+			for (size_t i = 0; i < glShaderIDIndex; ++i)
+				glDeleteShader(glShaderIDs[i]);
+
 
 			XYZ_LOG_ERR(infoLog.data());
 			XYZ_ASSERT(false, "Shader link failure!");
 			return;
 		}
 
-		for (auto id : glShaderIDs)
-			glDetachShader(program, id);
+		for (size_t i = 0; i < glShaderIDIndex; ++i)
+		{
+			glDetachShader(m_RendererID, glShaderIDs[i]);
+			glDeleteShader(glShaderIDs[i]);
+		}
 	}
 	void OpenGLShader::parseUniforms()
 	{
@@ -340,8 +459,9 @@ namespace XYZ {
 
 		// Parse uniforms
 		glGetProgramiv(m_RendererID, GL_ACTIVE_UNIFORMS, &count);
+		
 		int offset = 0;
-
+		int arrOffset = 0;
 		for (int i = 0; i < count; i++)
 		{
 			int sizeUni = 0;
@@ -389,24 +509,17 @@ namespace XYZ {
 
 			if (size > 1)
 			{
-				for (size_t i = 0; i < size; i++)
-				{
-					std::string nameStr(name);
-					std::size_t pos = nameStr.find("[");
-					std::string subStr = nameStr.substr(0, pos + 1);
-					std::string uniformName = subStr + std::to_string(i) + std::string("]");
-
-					addUniform(uniType, sizeUni, offset, uniformName);
-					offset += sizeUni;
-					m_UniformsSize += sizeUni;
-				}
+				sizeUni *= size;
+				addUniformArr(uniType, sizeUni, arrOffset, size, CutArrayIndexing(name));
+				arrOffset += sizeUni;
+				m_UnifomArraysSize += sizeUni;
 			}
 			else
 			{
 				addUniform(uniType, sizeUni, offset, name);
 				offset += sizeUni;
+				m_UniformsSize += sizeUni;
 			}
-			m_UniformsSize += sizeUni;
 		}
 
 	}
@@ -440,7 +553,7 @@ namespace XYZ {
 	void OpenGLShader::parsePredefVariables(const std::string& filepath, std::string& source)
 	{
 		std::string preDefSource = readFile(filepath);
-		
+
 		std::vector<std::string> vertexVariables;
 		std::vector<std::string> fragmentVariables;
 		std::vector<std::string> computeVariables;
@@ -458,11 +571,11 @@ namespace XYZ {
 			size_t begin = pos + typeTokenLength + 1;
 			std::string type = preDefSource.substr(begin, eol - begin);
 			XYZ_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
-			
+
 			size_t nextLinePos = preDefSource.find_first_not_of("\r\n", eol);
 			pos = preDefSource.find(typeToken, nextLinePos);
 			std::string var = preDefSource.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? preDefSource.size() - 1 : nextLinePos));
-		
+
 			if (type == "vertex")
 				vertexVariables.push_back(var);
 			if (type == "fragment" || type == "pixel")
@@ -470,13 +583,13 @@ namespace XYZ {
 			if (type == "geometry")
 				geometryVariables.push_back(var);
 			if (type == "compute")
-				computeVariables.push_back(var);	
+				computeVariables.push_back(var);
 		}
 
 
 		const char* versionToken = "#version";
 		size_t versionTokenLength = strlen(versionToken);
-		
+
 		size_t verPos = source.find(versionToken, 0);
 		pos = source.find(typeToken, 0);
 		while (pos != std::string::npos && verPos != std::string::npos)
@@ -486,7 +599,7 @@ namespace XYZ {
 			size_t begin = pos + typeTokenLength + 1;
 			std::string type = source.substr(begin, eol - begin);
 			XYZ_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
-		
+
 			size_t eolVer = source.find_first_of("\r\n", verPos);
 			XYZ_ASSERT(eolVer != std::string::npos, "Syntax error");
 			size_t beginVer = verPos + versionTokenLength + 1;

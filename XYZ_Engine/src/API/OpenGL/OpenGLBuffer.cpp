@@ -13,8 +13,16 @@ namespace XYZ {
 		switch (usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW); break;
-		case BufferUsage::Dynamic:   glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_DYNAMIC_DRAW); break;
+		case BufferUsage::Dynamic:   glBufferData(GL_ARRAY_BUFFER, size,vertices, GL_DYNAMIC_DRAW); break;
 		}
+	}
+
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
+		: m_Size(size),m_Usage(BufferUsage::Dynamic)
+	{
+		glCreateBuffers(1, &m_VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 	}
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
@@ -32,7 +40,7 @@ namespace XYZ {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	void OpenGLVertexBuffer::Update(float* vertices, uint32_t size, uint32_t offset)
+	void OpenGLVertexBuffer::Update(void* vertices, uint32_t size, uint32_t offset)
 	{
 		XYZ_ASSERT(m_Usage == BufferUsage::Dynamic, "Buffer does not have dynamic usage");
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

@@ -1,7 +1,6 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
 #include "SpriteAnimation.h"
-#include "Sprite.h"
 
 namespace XYZ {
 	class SpriteSystem : public System
@@ -17,7 +16,7 @@ namespace XYZ {
 		struct Component : public System::Component
 		{
 			SpriteAnimation* animation;
-			Sprite* sprite;
+			Renderable2D* sprite;
 		};
 
 		std::vector<Component> m_Components;

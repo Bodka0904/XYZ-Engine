@@ -1,5 +1,5 @@
 #pragma once
-#include "Sprite.h"
+#include "Renderable2D.h"
 
 namespace XYZ {
 	struct Animation
@@ -15,7 +15,7 @@ namespace XYZ {
 		SpriteAnimation(int numRows, int numCols,uint32_t width, uint32_t height);
 		void SetFrameInterval(int first, int last, float timeFrame);
 
-		void Update(float dt,Sprite* sprite);
+		void Update(float dt,Renderable2D* sprite);
 	private:
 		const glm::vec4 calcTexCoords();
 	private:
