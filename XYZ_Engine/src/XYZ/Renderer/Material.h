@@ -25,24 +25,27 @@ namespace XYZ {
 			for (auto& it : m_MaterialInstances)
 				it->UpdateMaterialValue(uni);
 		}
+
 		template<typename T>
-		void Set(const std::string& name, const T& val, uint32_t count)
+		void Set(const std::string& name, const T& val,int size, int offset)
 		{
-			auto uni = m_Shader->FindUniformArr(name);
-			XYZ_ASSERT(uni, "Material uniform array does not exist ", name.c_str());
-			XYZ_ASSERT(uni->offset + uni->size <= m_Shader->GetUniformSize(), "Material uniform buffer array out of range");
-			memcpy(m_BufferArrays + uni->offset, (unsigned char*)& val, uni->size);
+			auto uni = m_Shader->FindUniform(name);
+			XYZ_ASSERT(uni, "Material uniform does not exist ", name.c_str());
+			XYZ_ASSERT(uni->offset + uni->size <= m_Shader->GetUniformSize(), "Material uniform buffer out of range");
+			XYZ_ASSERT(size + offset < uni->size, "Material uniform out of range");
+			memcpy(m_Buffer + uni->offset + offset, (unsigned char*)& val, size);
 
 			for (auto& it : m_MaterialInstances)
-				it->UpdateMaterialValueArray(uni);
+				it->UpdateMaterialValue(uni);
 		}
 		void Set(const std::string& name, std::shared_ptr<Texture2D> texture, uint32_t index = 0)
 		{
 			auto tex = m_Shader->FindTexture(name);
 			XYZ_ASSERT(tex, "Material texture does not exist ", name.c_str());
-			
+		
 			if ((int)m_Textures.size() <= tex->slot + index)
 				m_Textures.resize((size_t)tex->slot + 1 + index);
+
 			
 			m_Textures[size_t(tex->slot) + size_t(index)] = texture;
 		}
@@ -50,18 +53,14 @@ namespace XYZ {
 		{
 			m_Shader->SetSubRoutine(name);
 		}
-		void SetFlags(int32_t renderFlags)
+		void SetFlags(int64_t renderFlags)
 		{		
-			m_Key |= (int64_t)renderFlags << 16;
+			m_Key |= renderFlags;
 		}
-		void SetFlag(int32_t renderFlag)
-		{		
-			m_Key |= (int64_t)renderFlag << 16;
-		}
+		
 
 		void Bind();
 	
-
 		int64_t GetSortKey() { return m_Key; }
 
 		const std::shared_ptr<Shader>& GetShader() { return m_Shader; }
@@ -79,7 +78,6 @@ namespace XYZ {
 		std::vector<std::shared_ptr<Texture>> m_Textures;
 
 		unsigned char* m_Buffer;
-		unsigned char* m_BufferArrays;
 		int64_t m_Key = 0;
 	};
 
@@ -100,13 +98,15 @@ namespace XYZ {
 			memcpy(m_Buffer + uni->offset, (unsigned char*)& val, uni->size);
 			m_UpdatedValues.insert(name);
 		}
+
 		template<typename T>
-		void Set(const std::string& name, const T& val, uint32_t count)
+		void Set(const std::string& name, const T& val, int size, int offset)
 		{
-			auto uni = m_Material->m_Shader->FindUniformArr(name);
-			XYZ_ASSERT(uni, "Material uniform array does not exist ", name.c_str());
-			XYZ_ASSERT(uni->offset + uni->size <= m_Material->m_Shader->GetUniformSize(), "Material uniform buffer array out of range");
-			memcpy(m_BufferArrays + uni->offset, (unsigned char*)& val, uni->size);
+			auto uni = m_Material->m_Shader->FindUniform(name);
+			XYZ_ASSERT(uni, "Material uniform does not exist ", name.c_str());
+			XYZ_ASSERT(uni->offset + uni->size <= m_Material->m_Shader->GetUniformSize(), "Material uniform buffer out of range");
+			XYZ_ASSERT(size + offset < uni->size, "Material uniform out of range");
+			memcpy(m_Buffer + uni->offset + offset, (unsigned char*)& val, size);
 			m_UpdatedValues.insert(name);
 		}
 		void Bind();
@@ -116,13 +116,11 @@ namespace XYZ {
 	private:
 		void OnShaderReload();
 		void UpdateMaterialValue(const Uniform* uni);
-		void UpdateMaterialValueArray(const UniformArray* uni);
 
 	private:
 		std::shared_ptr<Material> m_Material;
 
 		unsigned char* m_Buffer;
-		unsigned char* m_BufferArrays;
 		std::unordered_set<std::string> m_UpdatedValues;
 	};
 

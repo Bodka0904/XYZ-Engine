@@ -102,9 +102,6 @@
     <ClInclude Include="src\XYZ\Core\EntryPoint.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Core\Event.h">
-      <Filter>src\XYZ\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Input.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
@@ -1347,6 +1344,9 @@
     <ClInclude Include="src\XYZ\Renderer\Scene2D.h" />
     <ClInclude Include="src\XYZ\Core\ThreadPool.h" />
     <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h" />
+    <ClInclude Include="src\XYZ\Renderer\RenderCommandQueue.h" />
+    <ClInclude Include="src\XYZ\Core\Event\Event.h" />
+    <ClInclude Include="src\XYZ\Core\Event\EventManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1460,6 +1460,8 @@
     <ClCompile Include="src\XYZ\Renderer\Scene2D.cpp" />
     <ClCompile Include="src\XYZ\Core\ThreadPool.cpp" />
     <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\RenderCommandQueue.cpp" />
+    <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />

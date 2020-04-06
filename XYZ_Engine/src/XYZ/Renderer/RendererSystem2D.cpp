@@ -64,7 +64,7 @@ namespace XYZ {
 	{
 	}
 	void RendererSystem2D::BeginScene(const OrthoCamera& camera)
-	{
+	{	
 		for (size_t i = 0; i < m_Batches.size(); ++i)
 		{
 			m_Batches[i].material->Set("u_ViewProjection", camera.GetViewProjectionMatrix());

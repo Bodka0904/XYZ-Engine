@@ -57,31 +57,31 @@ namespace XYZ {
 		m_CameraTranslationSpeed = m_ZoomLevel;
 	}
 
-	void OrthoCameraController::OnEvent(Event& event)
+	void OrthoCameraController::OnEvent(event_ptr event)
 	{
-		if (event.GetEventType() == XYZ::EventType::MouseScroll)
+		if (event->GetEventType() == XYZ::EventType::MouseScroll)
 		{
-			XYZ::MouseScrollEvent& e = (XYZ::MouseScrollEvent&)event;
+			std::shared_ptr<MouseScrollEvent> e = std::dynamic_pointer_cast<MouseScrollEvent>(event);
 			OrthoCameraController::OnMouseScrolled(e);
 		}
-		else if (event.GetEventType() == XYZ::EventType::WindowResized)
+		else if (event->GetEventType() == XYZ::EventType::WindowResized)
 		{
-			XYZ::WindowResizeEvent& e = (XYZ::WindowResizeEvent&) event;
+			std::shared_ptr<WindowResizeEvent> e = std::dynamic_pointer_cast<WindowResizeEvent>(event);
 			OrthoCameraController::OnWindowResized(e);
 		}
 	}
 
-	bool OrthoCameraController::OnMouseScrolled(MouseScrollEvent& e)
+	bool OrthoCameraController::OnMouseScrolled(std::shared_ptr<MouseScrollEvent> e)
 	{
-		m_ZoomLevel -= e.GetOffsetY() * 0.25f;
+		m_ZoomLevel -= e->GetOffsetY() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
 	}
 
-	bool OrthoCameraController::OnWindowResized(WindowResizeEvent& e)
+	bool OrthoCameraController::OnWindowResized(std::shared_ptr<WindowResizeEvent> e)
 	{
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
+		m_AspectRatio = (float)e->GetWidth() / (float)e->GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
 	}

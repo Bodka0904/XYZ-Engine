@@ -51,7 +51,6 @@ void TestLayer::OnAttach()
 	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader","../XYZ_Engine/Assets/Shaders/Particle/ParticleShader.glsl"));
 	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/bubbles.png"));
 
-
 	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, new XYZ::ParticleEffect2D(10000,XYZ::Material::Create(XYZ::Shader::Create("../XYZ_Engine/Assets/Shaders/Particle/ParticleComputeShader.glsl"))));
 	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, new XYZ::Transform2D{});
 	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, new XYZ::RigidBody2D{});
@@ -256,21 +255,20 @@ void TestLayer::OnUpdate(float dt)
 	
 }
 
-void TestLayer::OnEvent(XYZ::Event& event)
+void TestLayer::OnEvent(XYZ::event_ptr event)
 {
 	m_CameraController->OnEvent(event);
-	if (event.GetEventType() == XYZ::EventType::MouseButtonPressed)
+	if (event->GetEventType() == XYZ::EventType::MouseButtonPressed)
 	{
-		XYZ::MouseButtonPressEvent& e = (XYZ::MouseButtonPressEvent&)event;
-
-		if (e.GetButton() == XYZ::MouseCode::XYZ_MOUSE_BUTTON_RIGHT)
+		std::shared_ptr<XYZ::MouseButtonPressEvent> e = std::dynamic_pointer_cast<XYZ::MouseButtonPressEvent>(event);
+		if (e->GetButton() == XYZ::MouseCode::XYZ_MOUSE_BUTTON_RIGHT)
 		{
 			// Temporary
 			m_Material->ReloadShader();	
 		}
 	}
-	else if (event.GetEventType() == XYZ::EventType::WindowResized)
+	else if (event->GetEventType() == XYZ::EventType::WindowResized)
 	{	
-		XYZ::WindowResizeEvent& e = (XYZ::WindowResizeEvent&) event;
+		
 	}
 }

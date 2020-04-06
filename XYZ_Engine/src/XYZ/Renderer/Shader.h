@@ -27,16 +27,8 @@ namespace XYZ {
 		uint32_t location;
 		unsigned int offset;
 		unsigned int size;
-	
-	};
-	struct UniformArray
-	{
-		std::string name;
-		UniformDataType type;
-		uint32_t location;
-		unsigned int offset;
-		unsigned int size;
 		unsigned int count;
+		bool isArray;
 	};
 
 	struct UniformBuffer
@@ -74,7 +66,6 @@ namespace XYZ {
 		virtual void Compute(unsigned int groupX, unsigned int groupY = 1, unsigned int groupZ = 1) const = 0;
 		virtual void Unbind() const = 0;
 		virtual void SetUniforms(unsigned char* buffer) = 0;
-		virtual void SetUniformArrays(unsigned char* buffer) = 0;
 		virtual void SetSubRoutine(const std::string& name) = 0;
 		virtual void UploadRoutines() = 0;
 		virtual void Reload() = 0;
@@ -83,11 +74,9 @@ namespace XYZ {
 		virtual std::string GetPath() const = 0;
 		virtual std::string GetName() const = 0;
 		virtual const Uniform* FindUniform(const std::string& name) = 0;
-		virtual const UniformArray* FindUniformArr(const std::string& name) = 0;
 		virtual const TextureUniform* FindTexture(const std::string& name) = 0;
 
 		virtual unsigned int GetUniformSize() = 0;
-		virtual unsigned int GetUniformArraysSize() = 0;
 
 		static std::shared_ptr<Shader> Create(const std::string& path);
 		static std::shared_ptr<Shader> Create(const std::string& name, const std::string& path);

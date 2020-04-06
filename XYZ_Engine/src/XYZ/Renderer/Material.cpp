@@ -8,7 +8,6 @@ namespace XYZ {
 	{
 		m_Shader = shader;
 		m_Buffer = new unsigned char[shader->GetUniformSize()];
-		m_BufferArrays = new unsigned char[shader->GetUniformArraysSize()];
 		m_Shader->AddReloadCallback(std::bind(&Material::OnShaderReload, this));
 	}
 
@@ -17,12 +16,11 @@ namespace XYZ {
 		int16_t key = (int16_t)m_Key;
 		MaterialManager::Get().destroyMaterial(key);
 		delete[] m_Buffer;
-		delete[]m_BufferArrays;
 	}
 
 	void Material::Bind()
 	{
-		m_Shader->Bind();
+		m_Shader->Bind();	
 		for (size_t i = 0; i < m_Textures.size(); i++)
 		{
 			auto& texture = m_Textures[i];
@@ -30,8 +28,8 @@ namespace XYZ {
 				texture->Bind(i);
 			
 		}
+	
 		m_Shader->SetUniforms(m_Buffer);
-		m_Shader->SetUniformArrays(m_BufferArrays);
 		m_Shader->UploadRoutines();
 	}
 
@@ -46,9 +44,7 @@ namespace XYZ {
 	void Material::OnShaderReload()
 	{
 		delete[] m_Buffer;
-		delete[] m_BufferArrays;
 		m_Buffer = new unsigned char[m_Shader->GetUniformSize()];
-		m_BufferArrays = new unsigned char[m_Shader->GetUniformArraysSize()];
 
 		for (auto& it : m_MaterialInstances)
 			it->OnShaderReload();
@@ -58,23 +54,19 @@ namespace XYZ {
 		: m_Material(material)
 	{
 		m_Buffer = new unsigned char[m_Material->m_Shader->GetUniformSize()];
-		m_BufferArrays = new unsigned char[m_Material->m_Shader->GetUniformArraysSize()];
 		material->m_MaterialInstances.insert(this);
 		memcpy(m_Buffer, material->m_Buffer, m_Material->m_Shader->GetUniformSize());
-		memcpy(m_BufferArrays, material->m_BufferArrays, m_Material->m_Shader->GetUniformArraysSize());
 	}
 
 	MaterialInstance::~MaterialInstance()
 	{
 		m_Material->m_MaterialInstances.erase(this);
 		delete[] m_Buffer;
-		delete[] m_BufferArrays;
 	}
 
 	void MaterialInstance::Bind()
 	{
 		m_Material->m_Shader->SetUniforms(m_Buffer);
-		m_Material->m_Shader->SetUniformArrays(m_Buffer);
 	}
 
 	std::shared_ptr<MaterialInstance> MaterialInstance::Create(const std::shared_ptr<Material>& material)
@@ -85,9 +77,7 @@ namespace XYZ {
 	void MaterialInstance::OnShaderReload()
 	{
 		delete[] m_Buffer;
-		delete[]m_BufferArrays;
 		m_Buffer = new unsigned char[m_Material->m_Shader->GetUniformSize()];
-		m_BufferArrays = new unsigned char[m_Material->m_Shader->GetUniformArraysSize()];
 	}
 
 	void MaterialInstance::UpdateMaterialValue(const Uniform* uni)
@@ -97,11 +87,5 @@ namespace XYZ {
 			memcpy(m_Buffer + uni->offset, m_Material->m_Buffer + uni->offset, uni->size);
 		}
 	}
-	void MaterialInstance::UpdateMaterialValueArray(const UniformArray* uni)
-	{
-		if (m_UpdatedValues.find(uni->name) == m_UpdatedValues.end())
-		{
-			memcpy(m_BufferArrays + uni->offset, m_Material->m_BufferArrays + uni->offset, uni->size);
-		}
-	}
+
 }

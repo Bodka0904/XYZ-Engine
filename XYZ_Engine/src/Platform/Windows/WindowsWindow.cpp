@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "WindowsWindow.h"
-#include "XYZ/Core/Event.h"
+#include "XYZ/Core/Event/Event.h"
+
+
+#include "XYZ/Core/Event/EventManager.h"
 
 namespace XYZ {
 	static bool GLFWInitialized = false;
@@ -52,10 +55,12 @@ namespace XYZ {
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
-			data.Height = height;
+			data.Height = height;		
 
-			WindowResizeEvent e(width, height);
-			data.EventCallback(e);
+			EventManager::Get().FireEvent(std::make_shared<WindowResizeEvent>(width, height));
+
+
+			data.EventCallback(std::make_shared<WindowResizeEvent>(width, height));
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -66,16 +71,15 @@ namespace XYZ {
 			{
 			case GLFW_PRESS:
 			{
-				KeyPressedEvent ev(key, mods);
-				data.EventCallback(ev);
+				data.EventCallback(std::make_shared<KeyPressedEvent>(key, mods));
 				break;
 			}
 			case GLFW_RELEASE:
 			{
-				KeyReleasedEvent ev(key);
-				data.EventCallback(ev);
+				data.EventCallback(std::make_shared<KeyReleasedEvent>(key));
 				break;
 			}
+
 			}
 		});
 
@@ -86,25 +90,22 @@ namespace XYZ {
 			{
 			case GLFW_PRESS:
 			{
-				MouseButtonPressEvent e(button);
-				data.EventCallback(e);
+				data.EventCallback(std::make_shared<MouseButtonPressEvent>(button));
 				break;
 			}
 			case GLFW_RELEASE:
 			{
-				MouseButtonReleaseEvent e(button);
-				data.EventCallback(e);
+				data.EventCallback(std::make_shared<MouseButtonReleaseEvent>(button));
 				break;
 			}
-			}
 
+			}
 		});
 
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
 		{
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			MouseScrollEvent e((float)xOffset, (float)yOffset);
-			data.EventCallback(e);
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);		
+			data.EventCallback(std::make_shared<MouseScrollEvent>((float)xOffset, (float)yOffset));
 		});
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
 		{

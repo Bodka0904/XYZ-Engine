@@ -35,7 +35,7 @@ namespace XYZ {
 		return 0;
 	}
 	OpenGLShader::OpenGLShader(const std::string& path)
-		: m_UniformsSize(0), m_Textures(0), m_Path(path)
+		: m_NumTakenTexSlots(0),m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(path);
 		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
@@ -45,7 +45,7 @@ namespace XYZ {
 		parseSubRoutines();
 	}
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& path)
-		: m_Name(name), m_UniformsSize(0), m_Textures(0), m_Path(path)
+		: m_Name(name), m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(m_Path);
 		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
@@ -83,15 +83,6 @@ namespace XYZ {
 		return nullptr;
 	}
 
-	const UniformArray* OpenGLShader::FindUniformArr(const std::string& name)
-	{
-		for (size_t i = 0; i < m_UniformArrays.size(); ++i)
-		{
-			if (m_UniformArrays[i].name == name)
-				return &m_UniformArrays[i];
-		}
-		return nullptr;
-	}
 
 	const TextureUniform* OpenGLShader::FindTexture(const std::string& name)
 	{
@@ -103,119 +94,110 @@ namespace XYZ {
 		return nullptr;
 	}
 
-	void OpenGLShader::addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name)
+	void OpenGLShader::addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name, unsigned int count)
 	{
-		uint32_t id = glGetUniformLocation(m_RendererID, name.c_str());
-		if (type == UniformDataType::SAMPLER2D)
-		{
-			TextureUniform texture;
-			texture.count = 0; // Not array
-			texture.location = id;
-			texture.name = name;
-			texture.slot = (int)m_Textures.size();
-			XYZ_ASSERT(texture.slot < sc_MaxTextureSlots, "It is possible to have only %d textures per shader", sc_MaxTextureSlots);
-			glUseProgram(m_RendererID);
-			glUniform1i(id, (int)m_Textures.size());
-			m_Textures.push_back(texture);
-		}
+		int32_t id = glGetUniformLocation(m_RendererID, name.c_str());
 		if (id != -1)
 		{
-			Uniform uniform;
-			uniform.size = size;
-			uniform.offset = offset;
-			uniform.type = type;
-			uniform.location = id;
-			uniform.name = name;
-			m_Uniforms.push_back(uniform);
+			if (type == UniformDataType::SAMPLER2D)
+			{
+				TextureUniform texture;
+				texture.count = count;
+				texture.location = id;
+				texture.name = name;
+				texture.slot = m_NumTakenTexSlots;
+
+				XYZ_ASSERT(texture.slot + (count-1) < sc_MaxTextureSlots, "It is possible to have only ", sc_MaxTextureSlots, " textures per shader");
+				glUseProgram(m_RendererID);
+				if (count > 1)
+				{
+					texture.name = CutArrayIndexing(texture.name);
+					int32_t slots[32];
+					for (int32_t i = (int32_t)texture.slot; i < (int32_t)count + (int32_t)texture.slot; ++i)
+						slots[i] = i;
+					glUniform1iv(texture.location, texture.count, &slots[texture.slot]);
+				}
+				else	
+					glUniform1i(id, texture.slot);
+					
+		
+				m_NumTakenTexSlots += count;
+				m_Textures.push_back(texture);
+			}
+			else
+			{
+				Uniform uniform;
+				uniform.size = size;
+				uniform.offset = offset;
+				uniform.type = type;
+				uniform.location = id;
+				uniform.name = name;
+				uniform.count = count;
+				if (uniform.count > 0)
+					uniform.isArray = true;
+				m_Uniforms.push_back(uniform);
+			}
 		}
 	}
 
-	void OpenGLShader::addUniformArr(UniformDataType type, unsigned int size, unsigned int offset,int count, const std::string& name)
+	void OpenGLShader::setUniform(Uniform* uniform, unsigned char* data)
 	{
-		uint32_t id = glGetUniformLocation(m_RendererID, name.c_str());
-		if (type == UniformDataType::SAMPLER2D)
-		{	
-			TextureUniform texture;
-			texture.location = id;
-			texture.name = name;
-			texture.slot = (int)m_Textures.size();
-			texture.count = count;
-			m_Textures.push_back(texture);
-			XYZ_ASSERT(texture.slot + (count-1) < sc_MaxTextureSlots, "It is possible to have only ",sc_MaxTextureSlots," textures per shader");
-
-			std::vector<int32_t>textureIDs(count);	
-			for (int i = 0; i < count; ++i)
-				textureIDs[i] = i;
-
-			glUseProgram(m_RendererID);
-			uploadIntArr(id, &textureIDs[texture.slot], count);
-		}
-		if (id != -1)
+		switch (uniform->type)
 		{
-			UniformArray uniform;
-			uniform.size = size;
-			uniform.offset = offset;
-			uniform.type = type;
-			uniform.location = id;
-			uniform.name = name;
-			uniform.count = count;
-			m_UniformArrays.push_back(uniform);
-		}
+		case UniformDataType::FLOAT:
+			uploadFloat(uniform->location, *(float*)& data[uniform->offset]);
+			break;
+		case UniformDataType::FLOAT_VEC2:
+			uploadFloat2(uniform->location, *(glm::vec2*) & data[uniform->offset]);
+			break;
+		case UniformDataType::FLOAT_VEC3:
+			uploadFloat3(uniform->location, *(glm::vec3*) & data[uniform->offset]);
+			break;
+		case UniformDataType::FLOAT_VEC4:
+			uploadFloat4(uniform->location, *(glm::vec4*) & data[uniform->offset]);
+			break;
+		case UniformDataType::INT:
+			uploadInt(uniform->location, *(int*)& data[uniform->offset]);
+			break;
+		case UniformDataType::FLOAT_MAT4:
+			uploadMat4(uniform->location, *(glm::mat4*) & data[uniform->offset]);
+			break;
+		};
+	}
+
+	void OpenGLShader::setUniformArr(Uniform* uniform, unsigned char* data)
+	{
+		switch (uniform->type)
+		{
+		case UniformDataType::FLOAT:
+			uploadFloatArr(uniform->location, (float*)& data[uniform->offset],uniform->count);
+			break;
+		case UniformDataType::FLOAT_VEC2:
+			uploadFloat2Arr(uniform->location, *(glm::vec2*) & data[uniform->offset], uniform->count);
+			break;
+		case UniformDataType::FLOAT_VEC3:
+			uploadFloat3Arr(uniform->location, *(glm::vec3*) & data[uniform->offset], uniform->count);
+			break;
+		case UniformDataType::FLOAT_VEC4:
+			uploadFloat4Arr(uniform->location, *(glm::vec4*) & data[uniform->offset], uniform->count);
+			break;
+		case UniformDataType::INT:
+			uploadIntArr(uniform->location, (int*)& data[uniform->offset], uniform->count);
+			break;
+		case UniformDataType::FLOAT_MAT4:
+			uploadMat4Arr(uniform->location, *(glm::mat4*) & data[uniform->offset], uniform->count);
+			break;
+		};
 	}
 
 	void OpenGLShader::SetUniforms(unsigned char* data)
 	{
 		for (auto uniform : m_Uniforms)
 		{
-			switch (uniform.type)
-			{
-			case UniformDataType::FLOAT:	
-				uploadFloat(uniform.location, *(float*)& data[uniform.offset]);	
-				break;
-			case UniformDataType::FLOAT_VEC2:
-				uploadFloat2(uniform.location, *(glm::vec2*) & data[uniform.offset]);
-				break;
-			case UniformDataType::FLOAT_VEC3:
-				uploadFloat3(uniform.location, *(glm::vec3*) & data[uniform.offset]);
-				break;
-			case UniformDataType::FLOAT_VEC4:
-				uploadFloat4(uniform.location, *(glm::vec4*) & data[uniform.offset]);
-				break;
-			case UniformDataType::INT:
-				uploadInt(uniform.location, *(int*)& data[uniform.offset]);
-				break;
-			case UniformDataType::FLOAT_MAT4:
-				uploadMat4(uniform.location, *(glm::mat4*) & data[uniform.offset]);
-				break;
-			};
-		}
-	}
-
-	void OpenGLShader::SetUniformArrays(unsigned char* data)
-	{
-		for (auto uniform : m_UniformArrays)
-		{
-			switch (uniform.type)
-			{
-			case UniformDataType::FLOAT:
-				uploadFloatArr(uniform.location, (float*)& data[uniform.offset],uniform.count);
-				break;
-			case UniformDataType::FLOAT_VEC2:
-				uploadFloat2Arr(uniform.location, *(glm::vec2*) & data[uniform.offset], uniform.count);
-				break;
-			case UniformDataType::FLOAT_VEC3:
-				uploadFloat3Arr(uniform.location, *(glm::vec3*) & data[uniform.offset], uniform.count);
-				break;
-			case UniformDataType::FLOAT_VEC4:
-				uploadFloat4Arr(uniform.location, *(glm::vec4*) & data[uniform.offset], uniform.count);
-				break;
-			case UniformDataType::INT:
-				uploadIntArr(uniform.location, (int*)& data[uniform.offset], uniform.count);
-				break;
-			case UniformDataType::FLOAT_MAT4:
-				uploadMat4Arr(uniform.location, *(glm::mat4*) & data[uniform.offset], uniform.count);
-				break;
-			};
+			if (uniform.isArray)
+				setUniformArr(&uniform, data);
+			else
+				setUniform(&uniform, data);
 		}
 	}
 
@@ -253,6 +235,8 @@ namespace XYZ {
 		m_Uniforms.clear();
 		m_Textures.clear();
 		m_Routines.clear();
+		m_UniformsSize = 0;
+		m_NumTakenTexSlots = 0;
 
 		std::string source = readFile(m_Path);
 		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
@@ -461,7 +445,6 @@ namespace XYZ {
 		glGetProgramiv(m_RendererID, GL_ACTIVE_UNIFORMS, &count);
 		
 		int offset = 0;
-		int arrOffset = 0;
 		for (int i = 0; i < count; i++)
 		{
 			int sizeUni = 0;
@@ -508,18 +491,11 @@ namespace XYZ {
 			}
 
 			if (size > 1)
-			{
 				sizeUni *= size;
-				addUniformArr(uniType, sizeUni, arrOffset, size, CutArrayIndexing(name));
-				arrOffset += sizeUni;
-				m_UnifomArraysSize += sizeUni;
-			}
-			else
-			{
-				addUniform(uniType, sizeUni, offset, name);
-				offset += sizeUni;
-				m_UniformsSize += sizeUni;
-			}
+			
+			addUniform(uniType, sizeUni, offset, name, size);
+			offset += sizeUni;
+			m_UniformsSize += sizeUni;
 		}
 
 	}

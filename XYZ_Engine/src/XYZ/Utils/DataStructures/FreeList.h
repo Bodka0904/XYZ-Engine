@@ -69,6 +69,8 @@ namespace XYZ {
 			FreeElement()
 				: element(T()),next(0)
 			{}
+			
+
 			T element;
 			int next;
 		};

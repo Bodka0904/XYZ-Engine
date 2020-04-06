@@ -1,7 +1,7 @@
 #pragma once
 
 #include "XYZ/Renderer/OrthoCamera.h"
-#include "XYZ/Core/Event.h"
+#include "XYZ/Core/Event/Event.h"
 
 
 namespace XYZ {
@@ -19,7 +19,7 @@ namespace XYZ {
 		OrthoCameraController(float aspectRatio, bool rotation = false);
 
 		void OnUpdate(float dt);
-		void OnEvent(Event& event);
+		void OnEvent(event_ptr event);
 
 		OrthoCamera& GetCamera() { return m_Camera; }
 		const OrthoCamera& GetCamera() const { return m_Camera; }
@@ -29,8 +29,8 @@ namespace XYZ {
 
 		const OrthoCameraBounds& GetBounds() const { return m_Bounds; }
 	private:
-		bool OnMouseScrolled(MouseScrollEvent& e);
-		bool OnWindowResized(WindowResizeEvent& e);
+		bool OnMouseScrolled(std::shared_ptr<MouseScrollEvent> e);
+		bool OnWindowResized(std::shared_ptr<WindowResizeEvent> e);
 	private:
 		float m_AspectRatio;
 		float m_ZoomLevel = 1.0f;

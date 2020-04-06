@@ -9,6 +9,12 @@
 
 
 namespace XYZ {
+
+	enum RenderFlags
+	{
+		Opaque   = 1 << 17
+	};
+
 	struct RendererSubmitData
 	{
 		const std::shared_ptr<Shader> m_Shader;

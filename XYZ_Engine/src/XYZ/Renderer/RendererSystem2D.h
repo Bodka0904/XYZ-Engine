@@ -5,6 +5,8 @@
 #include "XYZ/Renderer/Renderable2D.h"
 #include "XYZ/Renderer/OrthoCamera.h"
 
+
+#include "XYZ/Renderer/RenderCommandQueue.h"
 namespace XYZ {
 	class RendererSystem2D : public System
 	{
@@ -42,6 +44,7 @@ namespace XYZ {
 
 			void Submit(const Renderable2D& renderable);
 		};
+
 		struct Component : public System::Component
 		{
 			Renderable2D* renderComponent;
@@ -56,3 +59,4 @@ namespace XYZ {
 		const uint32_t c_MaxIndices = c_MaxQuads * 6;
 	};
 }
+
