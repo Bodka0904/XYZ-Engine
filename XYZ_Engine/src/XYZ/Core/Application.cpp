@@ -4,7 +4,7 @@
 
 #include "XYZ/Timer.h"
 #include "XYZ/Renderer/Renderer.h"
-#include "Event/EventManager.h"
+
 
 #include <GLFW/glfw3.h>
 
@@ -14,17 +14,14 @@ namespace XYZ {
 	
 	Application::Application()
 	{
-		Logger::Get().SetLogLevel(LogLevel::NOLOG);
+		Logger::Get().SetLogLevel(LogLevel::INFO | LogLevel::WARNING | LogLevel::ERR);
 		s_Application = this;
 
 		m_Window = Window::Create();
 		m_Window->SetVSync(false);
-		m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
-
 		
-	
-		EventManager::Get().AddHandler(EventType::WindowResized, std::bind(&Application::OnWindowResize, this, std::placeholders::_1));
-		EventManager::Get().AddHandler(EventType::WindowResized, std::bind(&Application::OnWindowResize2, this, std::placeholders::_1));
+
+		m_WindowResize = EventManager::Get().AddHandler(EventType::WindowResized, std::bind(&Application::OnWindowResize, this, std::placeholders::_1));
 		// Push default layers
 	}
 
@@ -81,34 +78,13 @@ namespace XYZ {
 		}
 	}
 
-
-	void Application::OnEvent(event_ptr event)
-	{
-		if (event->GetEventType() == EventType::WindowResized)
-		{
-			std::shared_ptr<WindowResizeEvent> resize = std::dynamic_pointer_cast<WindowResizeEvent>(event);
-			Renderer::OnWindowResize(resize->GetWidth(), resize->GetHeight());
-		}
-		for (auto it = m_Layers.rbegin(); it != m_Layers.rend(); ++it)
-		{
-			(*it)->OnEvent(event);
-			if (event->IsHandled())
-				break;
-		}
-	}
-
-	void Application::OnWindowClose(event_ptr e)
+	void Application::OnWindowClose(event_ptr event)
 	{
 	}
 
-	void Application::OnWindowResize(event_ptr e)
+	void Application::OnWindowResize(event_ptr event)
 	{
-		std::cout << "Resizing" << std::endl;
+		std::shared_ptr<WindowResizeEvent> resize = std::dynamic_pointer_cast<WindowResizeEvent>(event);
+		Renderer::OnWindowResize(resize->GetWidth(), resize->GetHeight());
 	}
-
-	void Application::OnWindowResize2(event_ptr e)
-	{
-		std::cout << "Resizing 2" << std::endl;
-	}
-
 }

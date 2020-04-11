@@ -1,5 +1,5 @@
 #pragma once
-#include "Event/Event.h"
+#include "Event/EventManager.h"
 #include <functional>
 
 namespace XYZ {
@@ -36,7 +36,6 @@ namespace XYZ {
 		virtual unsigned int GetHeight() const = 0;
 
 		// Window attributes
-		virtual void SetEventCallback(const std::function<void(event_ptr)>& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsClosed() = 0;
 		virtual void* GetNativeWindow() const = 0;

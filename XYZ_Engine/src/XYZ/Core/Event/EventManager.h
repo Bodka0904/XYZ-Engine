@@ -1,39 +1,38 @@
 #pragma once
 #include "Event.h"
+#include <map>
+#include <functional>
 
 namespace XYZ {
-
+	using HandlerID = unsigned int;
 	typedef std::function<void(event_ptr)> handlerPtr;
-	typedef std::map<EventType, std::vector<handlerPtr>> handler_map;
+	typedef std::map<EventType, std::vector<std::pair<unsigned int, handlerPtr>>> handler_map;
 
 	class EventManager
 	{
-	public:
-		EventManager() : m_Handlers(std::map<EventType, std::vector<handlerPtr>>())
-		{ }
+	public:	
+		EventManager(EventManager& other) = delete;
 
 		~EventManager()
 		{}
 
 		bool FireEvent(event_ptr event);
-		bool AddHandler(EventType type, handlerPtr eventHandler);
-		bool RemoveHandler(EventType type, handlerPtr eventHandler);
+		HandlerID AddHandler(EventType type, handlerPtr eventHandler);
+		bool RemoveHandler(EventType type, HandlerID handlerId);
 		void RemoveAllHandlers(EventType type);
 
+		static EventManager& Get() { return s_Instance; };
+	private:
+		EventManager() : m_Handlers(handler_map()), m_NextId(0)
+		{}
 
-		static EventManager& Get() { return s_Instance; }
 	private:
-		template<typename T, typename... U>
-		size_t getAddress(std::function<T(U...)> f) 
-		{
-			typedef T(fnType)(U...);
-			fnType** fnPointer = f.template target<fnType*>();
-			return (size_t)* fnPointer;
-		}
-	
-	private:
+
 		handler_map m_Handlers;
+		unsigned int m_NextId;
+
 		static EventManager s_Instance;
+
 	};
 
 }

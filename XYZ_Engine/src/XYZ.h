@@ -25,5 +25,4 @@
 //-----Systems-----//
 #include "XYZ/Physics/PhysicsSystem.h"
 #include "XYZ/Particle/ParticleSystem2D.h"
-#include "XYZ/Renderer/RendererSystem2D.h"
 

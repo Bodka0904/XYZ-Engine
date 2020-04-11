@@ -13,7 +13,7 @@ namespace XYZ {
 	{
 	public:
 		ParticleSystem2D();
-		virtual void Update(float dt);
+		void Update(float dt);
 		virtual void Add(Entity entity) override;
 		virtual void Remove(Entity entity) override;
 		virtual bool Contains(Entity entity)override;
@@ -25,7 +25,6 @@ namespace XYZ {
 		};
 
 		std::vector<Component> m_Components;
-		bool m_KeySorted = false;
 	};
 
 }

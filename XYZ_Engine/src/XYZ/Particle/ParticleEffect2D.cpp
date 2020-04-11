@@ -1,10 +1,20 @@
 #include "stdafx.h"
 #include "ParticleEffect2D.h"
-
+#include "XYZ/Renderer/Renderer2D.h"
+#include "XYZ/Renderer/RenderCommand.h"
 
 namespace XYZ {
-	ParticleEffect2D::ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material)
-		: m_Material(material)
+
+	void RenderInstanced(std::shared_ptr<Material> material, std::shared_ptr<VertexArray> vao, uint32_t count)
+	{
+		material->Bind();
+		vao->Bind();
+		RenderCommand::DrawInstanced(vao, count);
+	}
+
+
+	ParticleEffect2D::ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial)
+		: m_Material(material),m_RenderMaterial(renderMaterial)
 	{
 		m_Material->Set("u_Speed", 1.0f);
 		m_Material->Set("u_Gravity", -9.8f);
@@ -33,16 +43,35 @@ namespace XYZ {
 		m_VertexStorage->SetLayout(buflayout);
 
 		m_PropsStorage = ShaderStorageBuffer::Create((uint32_t)m_MaxParticles * (uint32_t) sizeof(ParticleData));
-	}
+
+		
+		
+		// Rendering setup , TODO add particle renderable
+		m_VAO = VertexArray::Create();
+		m_VAO->AddShaderStorageBuffer(m_VertexStorage);
 
 
-	void ParticleEffect2D::ConnectToVertexArray(std::shared_ptr<VertexArray>& vao)
-	{
-		vao->AddShaderStorageBuffer(m_VertexStorage);
+		ParticleQuad m_ParQuad = ParticleQuad(glm::vec2(0), glm::vec2(1.0f));
+		std::shared_ptr<XYZ::VertexBuffer> squareVBpar;
+		squareVBpar = XYZ::VertexBuffer::Create(m_ParQuad.squareVert, sizeof(m_ParQuad.squareVert));
+		squareVBpar->SetLayout({
+			{  0, XYZ::ShaderDataType::Float3, "a_Position" },
+			{  1, XYZ::ShaderDataType::Float2, "a_TexCoord" }
+			});
+		m_VAO->AddVertexBuffer(squareVBpar);
+
+		uint32_t squareIndpar[] = { 0, 1, 2, 2, 3, 0 };
+		std::shared_ptr<XYZ::IndexBuffer> squareIBpar;
+		squareIBpar = XYZ::IndexBuffer::Create(squareIndpar, sizeof(squareIndpar) / sizeof(uint32_t));
+		m_VAO->SetIndexBuffer(squareIBpar);
 	}
+
 
 	void ParticleEffect2D::Bind()
 	{
+		Command< std::shared_ptr<Material>, std::shared_ptr<VertexArray>, uint32_t>cmd(RenderInstanced, m_RenderMaterial, m_VAO, m_ParticlesInExistence);
+		Renderer2D::Submit(cmd, sizeof(cmd));
+
 		for (auto subEffect : m_SubEffects)
 		{
 			subEffect->m_MaterialI->Set("u_Emitter", subEffect->emitter);

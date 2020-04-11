@@ -52377,3 +52377,1885 @@ XYZ::openglCallbackFunction: Buffer detailed info: Buffer object 7 (bound to GL_
 XYZ::openglCallbackFunction: ID: 131185
 XYZ::openglCallbackFunction: Buffer detailed info: Buffer object 7 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations.
 XYZ::openglCallbackFunction: ID: 131185
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLShader::Reload: Reloading shader TextureShader
+XYZ::OpenGLShader::Reload: Reloading shader TextureShader
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLShader::Reload: Reloading shader TextureShader
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1920 height: 1017
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1280 height: 1024
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1920 height: 1017
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1280 height: 1024
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 1 added
+XYZ::RendererSortSystem::Add: Entity with id 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 1 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererSystem2D::Add: Entity with id 2 added
+XYZ::RendererSortSystem::Add: Entity with id 2 added
+XYZ::RendererSystem2D::Add: Entity with id 3 added
+XYZ::RendererSortSystem::Add: Entity with id 3 added
+XYZ::RendererSystem2D::Add: Entity with id 4 added
+XYZ::RendererSortSystem::Add: Entity with id 4 added
+XYZ::RendererSystem2D::Add: Entity with id 5 added
+XYZ::RendererSortSystem::Add: Entity with id 5 added
+XYZ::RendererSystem2D::Add: Entity with id 6 added
+XYZ::RendererSortSystem::Add: Entity with id 6 added
+XYZ::RendererSystem2D::Add: Entity with id 7 added
+XYZ::RendererSortSystem::Add: Entity with id 7 added
+XYZ::RendererSystem2D::Add: Entity with id 8 added
+XYZ::RendererSortSystem::Add: Entity with id 8 added
+XYZ::RendererSystem2D::Add: Entity with id 9 added
+XYZ::RendererSortSystem::Add: Entity with id 9 added
+XYZ::RendererSystem2D::Add: Entity with id 10 added
+XYZ::RendererSortSystem::Add: Entity with id 10 added
+XYZ::RendererSystem2D::Add: Entity with id 11 added
+XYZ::RendererSortSystem::Add: Entity with id 11 added
+XYZ::RendererSystem2D::Add: Entity with id 12 added
+XYZ::RendererSortSystem::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::PhysicsSystem::Add: Entity with ID 0 added
+XYZ::ParticleSystem2D::Add: Entity with id 1 added
+XYZ::PhysicsSystem::Add: Entity with ID 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added

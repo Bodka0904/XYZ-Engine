@@ -41,31 +41,6 @@ struct Quad
 };
 
 
-struct ParticleQuad
-{
-	ParticleQuad(glm::vec2 pos, glm::vec2 size)
-		: Size(size)
-	{
-		squareVert[0] += pos.x - size.x;
-		squareVert[5] += pos.x + size.x;
-		squareVert[10] += pos.x + size.x;
-		squareVert[15] += pos.x - size.x;
-
-		squareVert[1] += pos.y - size.y;
-		squareVert[6] += pos.y - size.y;
-		squareVert[11] += pos.y + size.y;
-		squareVert[16] += pos.y + size.y;
-	}
-		
-	float squareVert[20] = {
-		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-	};
-	glm::vec2 Size;
-};
-
 
 class TestLayer : public XYZ::Layer
 {
@@ -77,8 +52,11 @@ public:
 	virtual void OnAttach() override; 
 	virtual void OnDetach() override;
 	virtual void OnUpdate(float dt) override;
-	virtual void OnEvent(XYZ::event_ptr event) override;
 
+private:
+	void OnMouseButtonPress(XYZ::event_ptr event);
+
+	XYZ::HandlerID m_MouseButtonPress;
 private:
 	std::vector<XYZ::Entity> m_Entities;
 
@@ -96,10 +74,8 @@ private:
 	XYZ::ParticleSubEffect2D* m_SubEffect = nullptr;
 	XYZ::ParticleSubEffect2D* m_SubEffect2 = nullptr;
 
-	std::shared_ptr<XYZ::VertexArray> m_ParticleVAO;
 	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
-	ParticleQuad* m_ParQuad = nullptr;
 
 	XYZ::RigidBody2D* m_Body = nullptr;
 	XYZ::Transform2D* m_Transform = nullptr;
@@ -117,7 +93,6 @@ private:
 	XYZ::SpriteAnimation* m_SpriteAnimation = nullptr;
 	XYZ::SpriteAnimationController m_AnimController;
 	std::shared_ptr<XYZ::SpriteSystem> m_SpriteSystem;
-	std::shared_ptr<XYZ::RendererSystem2D> m_RendererSystem2D;
 
 
 };

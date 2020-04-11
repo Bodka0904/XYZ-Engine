@@ -35,7 +35,6 @@ namespace XYZ {
 			return -1;
 		}
 	protected:
-		bool m_EntitySorted = false;
 		Signature m_Signature;
 
 		struct Component

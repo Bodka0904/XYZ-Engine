@@ -9,6 +9,22 @@ namespace XYZ {
 		memset(m_CommandBuffer, 0, 10 * 1024 * 1024);
 	}
 
+	RenderCommandQueue::~RenderCommandQueue()
+	{
+		delete[] m_CommandBuffer;
+	}
+
+	void RenderCommandQueue::Allocate(CommandI* cmd, unsigned int size)
+	{
+		*(int*)m_CommandBufferPtr = size;
+		m_CommandBufferPtr += sizeof(unsigned int);
+
+		//  copy command
+		memcpy(m_CommandBufferPtr, cmd, size);
+		m_CommandBufferPtr += size;
+
+		m_CommandCount++;
+	}
 	void RenderCommandQueue::Execute()
 	{
 		unsigned char* buffer = m_CommandBuffer;
@@ -24,6 +40,14 @@ namespace XYZ {
 
 		m_CommandBufferPtr = m_CommandBuffer;
 		m_CommandCount = 0;
+	}
+
+	void RenderCommandQueue::Clear()
+	{
+		delete[] m_CommandBuffer;
+		m_CommandBuffer = new unsigned char[10 * 1024 * 1024]; // 10mb buffer
+		m_CommandBufferPtr = m_CommandBuffer;
+		memset(m_CommandBuffer, 0, 10 * 1024 * 1024);
 	}
 	
 

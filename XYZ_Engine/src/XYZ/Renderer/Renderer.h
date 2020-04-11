@@ -6,14 +6,10 @@
 #include "OrthoCamera.h"
 #include "VertexArray.h"
 #include "RendererAPI.h"
+#include "RenderCommandQueue.h"
 
 
 namespace XYZ {
-
-	enum RenderFlags
-	{
-		Opaque   = 1 << 17
-	};
 
 	struct RendererSubmitData
 	{
@@ -38,9 +34,13 @@ namespace XYZ {
 		static void BeginScene(OrthoCamera& camera);
 		static void EndScene();
 
-		static void Submit(RendererSubmitData& data);
+		static void Submit(CommandI& command,unsigned int size);
+		static void Render();
 	private:
-		static SceneData* m_SceneData;
+		static Renderer* s_Instance;
+
+		static SceneData* s_SceneData;
+		RenderCommandQueue m_CommandQueue;
 	};
 
 }

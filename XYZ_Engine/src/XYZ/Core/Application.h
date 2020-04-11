@@ -1,7 +1,7 @@
 #pragma once
 #include "Layer.h"
 #include "Window.h"
-#include "Event/Event.h"
+#include "Event/EventManager.h"
 
 #include <vector>
 
@@ -17,23 +17,22 @@ namespace XYZ {
 		void PushBackLayer(Layer* backlayer);
 		void PopLayer(Layer* layer);
 
-		void OnEvent(event_ptr e);
-
 		Window& GetWin() { return *m_Window; }
-
 		inline static Application& Get() { return *s_Application; }
 
 		static Application* CreateApplication();
 	private:
-		void OnWindowClose(event_ptr e);
-		void OnWindowResize(event_ptr e);
-		void OnWindowResize2(event_ptr e);
+		void OnWindowClose(event_ptr event);
+		void OnWindowResize(event_ptr event);
 	private:
+		HandlerID m_WindowResize;
+
 		std::unique_ptr<Window> m_Window;
+		std::vector<Layer*> m_Layers;
+
 		unsigned int m_LayoutInsertIndex = 0;
 		float m_LastFrameTime = 0.0f;
-
-		std::vector<Layer*> m_Layers;
+		
 		static Application* s_Application;
 	};
 

@@ -4,7 +4,8 @@
 #include "Renderer2D.h"
 
 namespace XYZ {
-	Renderer::SceneData* Renderer::m_SceneData = new SceneData;
+	Renderer* Renderer::s_Instance = new Renderer;
+	Renderer::SceneData* Renderer::s_SceneData = new SceneData;
 
 	void Renderer::Init()
 	{
@@ -19,20 +20,18 @@ namespace XYZ {
 
 	void Renderer::BeginScene(OrthoCamera& camera)
 	{
-		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
+		s_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 	void Renderer::EndScene()
 	{
 
 	}
-	void Renderer::Submit(RendererSubmitData& data)
+	void Renderer::Submit(CommandI& command,unsigned int size)
 	{
-		data.m_Shader->Bind();
-
-		//Set uniforms here:
-
-
-		data.m_VertexArray->Bind();
-		RenderCommand::DrawIndexed(data.m_VertexArray);
+		s_Instance->m_CommandQueue.Allocate(&command,size);
+	}
+	void Renderer::Render()
+	{
+		s_Instance->m_CommandQueue.Execute();
 	}
 }

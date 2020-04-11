@@ -11,6 +11,14 @@ namespace XYZ {
 		m_Bounds({ -m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel }),
 		m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio* m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_Rotation(rotation)
 	{
+		m_MouseScroll = EventManager::Get().AddHandler(EventType::MouseScroll, std::bind(&OrthoCameraController::OnMouseScrolled, this, std::placeholders::_1));
+		m_WindowResize = EventManager::Get().AddHandler(EventType::WindowResized, std::bind(&OrthoCameraController::OnWindowResized, this, std::placeholders::_1));
+	}
+
+	OrthoCameraController::~OrthoCameraController()
+	{
+		EventManager::Get().RemoveHandler(EventType::MouseScroll, m_MouseScroll);
+		EventManager::Get().RemoveHandler(EventType::WindowResized, m_WindowResize);
 	}
 
 	void OrthoCameraController::OnUpdate(float dt)
@@ -57,32 +65,18 @@ namespace XYZ {
 		m_CameraTranslationSpeed = m_ZoomLevel;
 	}
 
-	void OrthoCameraController::OnEvent(event_ptr event)
+	void OrthoCameraController::OnMouseScrolled(event_ptr event)
 	{
-		if (event->GetEventType() == XYZ::EventType::MouseScroll)
-		{
-			std::shared_ptr<MouseScrollEvent> e = std::dynamic_pointer_cast<MouseScrollEvent>(event);
-			OrthoCameraController::OnMouseScrolled(e);
-		}
-		else if (event->GetEventType() == XYZ::EventType::WindowResized)
-		{
-			std::shared_ptr<WindowResizeEvent> e = std::dynamic_pointer_cast<WindowResizeEvent>(event);
-			OrthoCameraController::OnWindowResized(e);
-		}
-	}
-
-	bool OrthoCameraController::OnMouseScrolled(std::shared_ptr<MouseScrollEvent> e)
-	{
+		std::shared_ptr<MouseScrollEvent> e = std::dynamic_pointer_cast<MouseScrollEvent>(event);
 		m_ZoomLevel -= e->GetOffsetY() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		return false;
 	}
 
-	bool OrthoCameraController::OnWindowResized(std::shared_ptr<WindowResizeEvent> e)
+	void OrthoCameraController::OnWindowResized(event_ptr event)
 	{
+		std::shared_ptr<WindowResizeEvent> e = std::dynamic_pointer_cast<WindowResizeEvent>(event);
 		m_AspectRatio = (float)e->GetWidth() / (float)e->GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-		return false;
 	}
 }

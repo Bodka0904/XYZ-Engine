@@ -7,6 +7,14 @@
 #include <unordered_set>
 
 namespace XYZ {
+	enum RenderFlags
+	{
+		MaterialFlag    = 1 << 0,  //2^16 different materials;
+		TransparentFlag = 1 << 16,
+		InstancedFlag   = 1 << 17,
+		LayerFlag       = 1 << 34  //2^16 layers
+	};
+
 	class Material
 	{
 		friend class MaterialInstance;
@@ -57,7 +65,11 @@ namespace XYZ {
 		{		
 			m_Key |= renderFlags;
 		}
-		
+		void SetLayer(int64_t layer)
+		{
+			XYZ_ASSERT(layer < RenderFlags::LayerFlag, "Maximal number o layers is ", RenderFlags::LayerFlag);
+			m_Key |= (layer << RenderFlags::LayerFlag);
+		}
 
 		void Bind();
 	
@@ -111,6 +123,15 @@ namespace XYZ {
 		}
 		void Bind();
 
+		void SetLayer(int64_t layer)
+		{
+			XYZ_ASSERT(layer < RenderFlags::LayerFlag, "Maximal number o layers is ", RenderFlags::LayerFlag);
+			m_Key |= (layer << RenderFlags::LayerFlag);
+		}
+
+		int64_t GetSortKey() { return m_Key; }
+		const std::shared_ptr<Material> GetParentMaterial() { return m_Material; }
+
 		static std::shared_ptr<MaterialInstance> Create(const std::shared_ptr<Material>& material);
 
 	private:
@@ -119,6 +140,7 @@ namespace XYZ {
 
 	private:
 		std::shared_ptr<Material> m_Material;
+		int64_t m_Key;
 
 		unsigned char* m_Buffer;
 		std::unordered_set<std::string> m_UpdatedValues;

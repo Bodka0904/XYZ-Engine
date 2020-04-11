@@ -23,36 +23,22 @@ namespace XYZ {
 		component.sprite = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
 		component.entity = entity;
 		m_Components.push_back(component);
-
-		m_EntitySorted = false;
 	}
 	void SpriteSystem::Remove(Entity entity)
-	{
-		if (!m_EntitySorted)
+	{		
+		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
+		if (it != m_Components.end())
 		{
-			std::sort(m_Components.begin(), m_Components.end(), Component());
-			m_EntitySorted = true;
-		}
-		int position = binarySearch(0, (int)m_Components.size() - 1, entity,m_Components);
-		if (position != -1 && !m_Components.empty())
-		{
-			XYZ_LOG_INFO("Entity with ID ", entity, " removed");
-			m_Components[position] = m_Components[m_Components.size() - 1];
+			XYZ_LOG_INFO("Entity with id ", entity, " removed");
+			it = m_Components.end() - 1;
 			m_Components.erase(m_Components.end() - 1);
-			m_EntitySorted = false;
 		}
 	}
 	bool SpriteSystem::Contains(Entity entity)
-	{
-		if (!m_EntitySorted)
-		{
-			std::sort(m_Components.begin(), m_Components.end(), Component());
-			m_EntitySorted = true;
-		}
-		int position = binarySearch(0, (int)m_Components.size() - 1, entity,m_Components);
-		if (position == -1 || m_Components.empty())
-			return false;
-		
-		return true;
+	{	
+		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
+		if (it != m_Components.end())
+			return true;
+		return false;
 	}
 }

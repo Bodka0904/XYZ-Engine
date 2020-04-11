@@ -83,7 +83,7 @@ namespace XYZ {
 			}
 		}
 
-		inline void SetLogLevel(LogLevel level) { s_LogLevel = level; };
+		inline void SetLogLevel(int level) { s_LogLevel = level; };
 
 		static void SetLogFile(const std::string& logfile) { s_FileName = logfile; };
 		static Logger& Get() { return s_Instance; };

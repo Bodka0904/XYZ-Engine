@@ -1,5 +1,6 @@
 #pragma once
 #include "XYZ/Renderer/VertexArray.h"
+#include "XYZ/Renderer/Renderable2D.h"
 #include "XYZ/Renderer/Material.h"
 
 #include <glm/glm.hpp>
@@ -7,6 +8,32 @@
 #include <vector>
 
 namespace XYZ {
+
+	struct ParticleQuad
+	{
+		ParticleQuad(glm::vec2 pos, glm::vec2 size)
+			: Size(size)
+		{
+			squareVert[0] += pos.x - size.x;
+			squareVert[5] += pos.x + size.x;
+			squareVert[10] += pos.x + size.x;
+			squareVert[15] += pos.x - size.x;
+
+			squareVert[1] += pos.y - size.y;
+			squareVert[6] += pos.y - size.y;
+			squareVert[11] += pos.y + size.y;
+			squareVert[16] += pos.y + size.y;
+		}
+
+		float squareVert[20] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+		};
+		glm::vec2 Size;
+	};
+
 	struct ParticleProps2D
 	{
 		glm::vec4 colorBegin;
@@ -22,9 +49,8 @@ namespace XYZ {
 	{
 		friend class ParticleSubEffect2D;
 	public:
-		ParticleEffect2D(size_t maxParticles,std::shared_ptr<Material> material);
+		ParticleEffect2D(size_t maxParticles,std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
 
-		void ConnectToVertexArray(std::shared_ptr<VertexArray>& vao);
 		void Bind();
 
 		std::shared_ptr<Material> GetMaterial() { return m_Material; }
@@ -59,7 +85,10 @@ namespace XYZ {
 		};
 
 	private:
+		std::shared_ptr<VertexArray> m_VAO;
 		std::shared_ptr<Material> m_Material;
+		std::shared_ptr<Material> m_RenderMaterial;
+
 		std::set<ParticleSubEffect2D*> m_SubEffects;
 		size_t m_ParticlesInExistence = 0;
 		size_t m_MaxParticles = 0;

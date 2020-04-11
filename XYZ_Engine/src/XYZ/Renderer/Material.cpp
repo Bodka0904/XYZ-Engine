@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Material.h"
 
+#include "Renderer.h"
 #include "MaterialManager.h"
 namespace XYZ {
 	
@@ -9,6 +10,7 @@ namespace XYZ {
 		m_Shader = shader;
 		m_Buffer = new unsigned char[shader->GetUniformSize()];
 		m_Shader->AddReloadCallback(std::bind(&Material::OnShaderReload, this));
+
 	}
 
 	Material::~Material()

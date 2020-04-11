@@ -1333,7 +1333,6 @@
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderable2D.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
-    <ClInclude Include="src\XYZ\Renderer\RendererSystem2D.h" />
     <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
@@ -1347,6 +1346,8 @@
     <ClInclude Include="src\XYZ\Renderer\RenderCommandQueue.h" />
     <ClInclude Include="src\XYZ\Core\Event\Event.h" />
     <ClInclude Include="src\XYZ\Core\Event\EventManager.h" />
+    <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1449,7 +1450,6 @@
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\RendererSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
@@ -1462,6 +1462,8 @@
     <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RenderCommandQueue.cpp" />
     <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />

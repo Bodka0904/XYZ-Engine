@@ -144,11 +144,12 @@
     <ClInclude Include="src\XYZ\Renderer\Renderer.h" />
     <ClInclude Include="src\XYZ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\XYZ\Renderer\RendererSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h" />
     <ClInclude Include="src\XYZ\Renderer\Scene.h" />
     <ClInclude Include="src\XYZ\Renderer\Scene2D.h" />
     <ClInclude Include="src\XYZ\Renderer\SceneManager.h" />
     <ClInclude Include="src\XYZ\Renderer\Shader.h" />
+    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
@@ -576,11 +577,12 @@
     <ClCompile Include="src\XYZ\Renderer\Renderer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\RendererSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Scene.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Scene2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />

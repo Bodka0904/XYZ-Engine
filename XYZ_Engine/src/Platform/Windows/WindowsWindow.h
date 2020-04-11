@@ -3,6 +3,8 @@
 #include "XYZ/Core/Window.h"
 
 #include <GLFW/glfw3.h>
+
+
 namespace XYZ {
 	class WindowsWindow : public Window
 	{
@@ -14,7 +16,6 @@ namespace XYZ {
 		virtual void SetVSync(bool enabled) override;
 		virtual bool IsClosed() override;
 
-		inline void SetEventCallback(const std::function<void(event_ptr)>& callback) override { m_Data.EventCallback = callback; }
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }
@@ -31,8 +32,6 @@ namespace XYZ {
 			unsigned int Width = 0;
 			unsigned int Height = 0;
 			bool VSync = false;
-
-			std::function<void(event_ptr)> EventCallback;
 		};
 
 		WindowData m_Data;

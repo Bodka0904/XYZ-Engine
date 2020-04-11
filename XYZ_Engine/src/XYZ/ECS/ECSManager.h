@@ -9,11 +9,15 @@ namespace XYZ {
 	class ECSManager
 	{
 	public:
-		void Init()
+		static void Init()
 		{
-			m_ComponentManager = std::make_unique<ComponentManager>();
-			m_EntityManager = std::make_unique<EntityManager>();
-			m_SystemManager = std::make_unique<SystemManager>();
+			if (!s_Instance.get())
+			{
+				s_Instance = std::make_unique<ECSManager>();
+				s_Instance->m_ComponentManager = std::make_unique<ComponentManager>();
+				s_Instance->m_EntityManager = std::make_unique<EntityManager>();
+				s_Instance->m_SystemManager = std::make_unique<SystemManager>();
+			}
 		}
 		template<typename T>
 		std::shared_ptr<T> RegisterSystem()
@@ -85,13 +89,13 @@ namespace XYZ {
 			return m_EntityManager->CreateEntity();
 		}
 
-		static std::unique_ptr<ECSManager>& Get() { return m_Instance; }
+		static std::unique_ptr<ECSManager>& Get() { return s_Instance; }
 	private:
 		std::unique_ptr<ComponentManager> m_ComponentManager;
 		std::unique_ptr<EntityManager>	  m_EntityManager;
 		std::unique_ptr<SystemManager>	  m_SystemManager;
 		//bool							  m_EntityEditing;
-		static std::unique_ptr<ECSManager> m_Instance;
+		static std::unique_ptr<ECSManager> s_Instance;
 	};
 
 }
