@@ -19,8 +19,8 @@ namespace XYZ {
 		void RemoveRenderable(const Renderable2D* renderable)
 		{
 			auto material = renderable->material;
-			auto it = std::lower_bound(m_Renderables[material].begin(), m_Renderables[material].end(), renderable, T());
-			if (it == m_Renderables[material].end() || renderable != *it)
+			auto it = std::find(m_Renderables[material].begin(), m_Renderables[material].end(), renderable);
+			if (it == m_Renderables[material].end())
 				XYZ_ASSERT(false, "Attempting to remove not existing renderable");
 
 			m_Renderables[material].erase(it);

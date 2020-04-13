@@ -94,5 +94,5 @@ private:
 	XYZ::SpriteAnimationController m_AnimController;
 	std::shared_ptr<XYZ::SpriteSystem> m_SpriteSystem;
 
-
+	std::vector<XYZ::Entity> m_TestEntities;
 };

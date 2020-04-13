@@ -97,11 +97,12 @@ void TestLayer::OnAttach()
 		particles2[i].rotation = dist(rng) * 50;
 	}
 	m_SubEffect2 = new XYZ::ParticleSubEffect2D(m_Effect, particles2);	
-	for (int i = 0; i < 10; ++i)
+	m_TestEntities.resize(5000);
+	for (int i = 0; i < m_TestEntities.size(); ++i)
 	{
 		float posZ = i / 10.0f;
-		XYZ::Entity entity = XYZ::ECSManager::Get()->CreateEntity();
-		XYZ::ECSManager::Get()->AddComponent(entity, new XYZ::Renderable2D{
+		m_TestEntities[i] = XYZ::ECSManager::Get()->CreateEntity();
+		XYZ::ECSManager::Get()->AddComponent(m_TestEntities[i], new XYZ::Renderable2D{
 		m_Material,
 		glm::vec4(1),
 		glm::vec4(0.0f, 0.0f, 1.0f / 6.0f, 1.0f),
@@ -175,9 +176,8 @@ void TestLayer::OnUpdate(float dt)
 	XYZ::RenderCommand::Clear();
 	XYZ::RenderCommand::SetClearColor(glm::vec4(0.2, 0.2, 0.5, 1));	
 	// Must be here, for correct ordering, it is not part of sorting system yet
-	m_ParticleSystem->Update(dt);
+	m_ParticleSystem->Update(dt);	
 	XYZ::Renderer2D::BeginScene(m_CameraController->GetCamera());
-	
 
 	XYZ::Renderer2D::Flush();
 	XYZ::Renderer2D::EndScene();
@@ -250,6 +250,29 @@ void TestLayer::OnMouseButtonPress(XYZ::event_ptr event)
 	if (e->GetButton() == XYZ::MouseCode::XYZ_MOUSE_BUTTON_RIGHT)
 	{
 		// Temporary
-		m_Material->ReloadShader();
+
+		{
+			XYZ::Stopwatch timer;
+			for (int i = 0; i < 4000; ++i)
+				XYZ::ECSManager::Get()->DestroyEntity(m_TestEntities[i]);
+
+			for (int i = 0; i < 4000; ++i)
+			{
+				float posZ = i / 10.0f;
+				m_TestEntities[i] = XYZ::ECSManager::Get()->CreateEntity();
+				XYZ::ECSManager::Get()->AddComponent(m_TestEntities[i], new XYZ::Renderable2D{
+				m_Material,
+				glm::vec4(1),
+				glm::vec4(0.0f, 0.0f, 1.0f / 6.0f, 1.0f),
+				glm::vec3(i,0,0.7),
+				glm::vec2(1),
+				0.0f,
+				true,
+				1
+					});
+			}
+		}
+
+		//m_Material->ReloadShader();
 	}
 }

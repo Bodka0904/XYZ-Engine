@@ -68,20 +68,22 @@ namespace XYZ {
 		if (renderable->visible)
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " added");
-			m_Entities.push_back(entity);
+			Component component;
+			component.entity = entity;
+			component.key = renderable->material->GetSortKey();
+			m_Components.push_back(component);
 
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
 				m_TransparentGroup.AddRenderable(renderable);			
 			else
 				m_OpaqueGroup.AddRenderable(renderable);
-			
 		}
 	}
 
 	void RendererBatchSystem2D::Remove(Entity entity)
 	{
-		auto it = std::find(m_Entities.begin(), m_Entities.end(), entity);
-		if (it != m_Entities.end())
+		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
+		if (it != m_Components.end())
 		{
 			auto renderable = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
@@ -89,18 +91,37 @@ namespace XYZ {
 			else
 				m_OpaqueGroup.RemoveRenderable(renderable);
 
-
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			m_Entities.erase(it);
+			m_Components.erase(it);
 		}
 	}
 	bool RendererBatchSystem2D::Contains(Entity entity)
 	{
-		auto it = std::find(m_Entities.begin(), m_Entities.end(), entity);
-		if (it != m_Entities.end())
+		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
+		if (it != m_Components.end())
 			return true;
 
 		return false;
+	}
+
+	// If renderable is updated and keys do not match, reinsert it and update key
+	void RendererBatchSystem2D::EntityUpdated(Entity entity)
+	{
+		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
+		if (it != m_Components.end())
+		{
+			auto renderable = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
+			if ((*it).key != renderable->material->GetSortKey())
+			{
+				if ((*it).key & RenderFlags::TransparentFlag)
+					m_TransparentGroup.RemoveRenderable(renderable);
+				else
+					m_OpaqueGroup.RemoveRenderable(renderable);
+
+				(*it).key = renderable->material->GetSortKey();
+				Add(entity);
+			}
+		}
 	}
 
 	void RendererBatchSystem2D::SubmitToRenderer()
@@ -120,6 +141,7 @@ namespace XYZ {
 
 		for (auto it : m_TransparentGroup.GetRenderables())
 		{
+
 			s_Data.Material = it.first;
 			for (auto renderable : it.second)
 			{

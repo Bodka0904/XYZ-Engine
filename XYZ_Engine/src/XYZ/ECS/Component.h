@@ -25,8 +25,8 @@ namespace XYZ {
 	public:
 		virtual ~Component()
 		{
-			for (size_t i = 0; i < m_Components.Range(); i++)
-				delete m_Components[i];
+			for (auto it : m_Lookup)
+				delete m_Components[it.second];
 		}
 		bool Contains(Entity entity)
 		{
@@ -55,7 +55,8 @@ namespace XYZ {
 
 		virtual void EntityDestroyed(Entity entity) override
 		{
-			RemoveComponent(entity);
+			if (Contains(entity))
+				RemoveComponent(entity);
 		}
 
 	private:

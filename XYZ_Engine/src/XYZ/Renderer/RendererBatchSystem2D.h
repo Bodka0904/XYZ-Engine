@@ -11,9 +11,10 @@ namespace XYZ {
 	public:
 		RendererBatchSystem2D();
 
-		virtual void Add(Entity entity);
-		virtual void Remove(Entity entity);
-		virtual bool Contains(Entity entity);
+		virtual void Add(Entity entity) override;
+		virtual void Remove(Entity entity) override;
+		virtual bool Contains(Entity entity) override;
+		virtual void EntityUpdated(Entity entity) override;
 
 		void SubmitToRenderer();
 	private:
@@ -32,9 +33,12 @@ namespace XYZ {
 			}
 		};
 	private:
+		struct Component : public System::Component
+		{
+			int64_t key;
+		};
+		std::vector<Component> m_Components;
 
-		std::vector<Entity> m_Entities;
-	
 		SortingGroup<ZAscend> m_TransparentGroup;
 		SortingGroup<ZDescend> m_OpaqueGroup;
 	};
