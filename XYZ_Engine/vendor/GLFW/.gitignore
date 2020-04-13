@@ -12,7 +12,7 @@ Win32
 x64
 Debug
 Release
-[Bb]in-int/
+bin-int
 MinSizeRel
 RelWithDebInfo
 *.xcodeproj
