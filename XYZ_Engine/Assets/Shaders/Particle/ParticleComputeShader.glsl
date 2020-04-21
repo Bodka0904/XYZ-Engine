@@ -121,7 +121,9 @@ void main(void)
 	{
 		pData.startVelocity = pData.endVelocity;
 		pData.timeAlive = 0;
-		pVertex.position.xy = u_Emitter + pData.defaultPosition;
+
+		pVertex.position.x = u_Emitter.x + pData.defaultPosition.x;
+		pVertex.position.y = u_Emitter.y + pData.defaultPosition.y;
 	}
 
 	InVertex[id] = pVertex;

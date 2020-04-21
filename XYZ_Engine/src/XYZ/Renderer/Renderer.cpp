@@ -26,11 +26,11 @@ namespace XYZ {
 	{
 
 	}
-	void Renderer::Submit(CommandI& command,unsigned int size)
+	void Renderer::Submit(CommandI& command, unsigned int size)
 	{
-		s_Instance->m_CommandQueue.Allocate(&command,size);
+		s_Instance->m_CommandQueue.Allocate(&command, size);
 	}
-	void Renderer::Render()
+	void Renderer::Flush()
 	{
 		s_Instance->m_CommandQueue.Execute();
 	}

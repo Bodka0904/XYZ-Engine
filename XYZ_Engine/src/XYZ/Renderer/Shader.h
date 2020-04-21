@@ -9,6 +9,9 @@
 
 namespace XYZ {
 
+	/**
+	* enum class represents uniform data types
+	*/
 	enum class UniformDataType
 	{
 		NONE,
@@ -20,6 +23,11 @@ namespace XYZ {
 		STRUCT,
 	};
 
+
+	/**
+	* @struct Uniform
+	* @brief represents uniform of the shader
+	*/
 	struct Uniform
 	{
 		std::string name;
@@ -36,6 +44,10 @@ namespace XYZ {
 
 	};
 
+	/**
+	* @struct TextureUniform
+	* @brief represents texture uniform of the shader
+	*/
 	struct TextureUniform
 	{
 		std::string name;
@@ -44,6 +56,10 @@ namespace XYZ {
 		unsigned int count;
 	};
 
+	/**
+	* @struct SubRoutine
+	* @brief represents sub routine of the shader
+	*/
 	struct SubRoutine
 	{
 		unsigned int shaderType;
@@ -51,12 +67,23 @@ namespace XYZ {
 		std::string name;
 	};
 
+	/**
+	* @struct Routine
+	* @brief represents routine of the shader
+	*/
 	struct Routine
 	{
 		std::vector<SubRoutine> subRoutines;
 		SubRoutine activeSubRoutine;
 	};
 
+
+
+	/**
+	* @class Shader
+	* @brief Shader encapsulates graphics API shader program.
+	* Creates abstraction above shader programs
+	*/
 	class Shader
 	{
 	public:
@@ -78,7 +105,20 @@ namespace XYZ {
 
 		virtual unsigned int GetUniformSize() = 0;
 
+
+		/**
+		* Create Shader
+		* @param[in] path	File path to the glsl code
+		* @return shared_ptr to Shader
+		*/
 		static std::shared_ptr<Shader> Create(const std::string& path);
+
+		/**
+		* Create Shader
+		* @param[in] name	Name of the shader
+		* @param[in] path	File path to the glsl code
+		* @return shared_ptr to Shader
+		*/
 		static std::shared_ptr<Shader> Create(const std::string& name, const std::string& path);
 
 	protected:

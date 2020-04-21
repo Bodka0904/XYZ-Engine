@@ -2,6 +2,7 @@
 #include "ParticleEffect2D.h"
 #include "XYZ/Renderer/Renderer2D.h"
 #include "XYZ/Renderer/RenderCommand.h"
+#include "XYZ/Renderer/MaterialManager.h"
 
 namespace XYZ {
 
@@ -14,7 +15,7 @@ namespace XYZ {
 
 
 	ParticleEffect2D::ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial)
-		: m_Material(material),m_RenderMaterial(renderMaterial)
+		: m_Material(material), m_RenderMaterial(renderMaterial)
 	{
 		m_Material->Set("u_Speed", 1.0f);
 		m_Material->Set("u_Gravity", -9.8f);
@@ -44,8 +45,8 @@ namespace XYZ {
 
 		m_PropsStorage = ShaderStorageBuffer::Create((uint32_t)m_MaxParticles * (uint32_t) sizeof(ParticleData));
 
-		
-		
+
+
 		// Rendering setup , TODO add particle renderable
 		m_VAO = VertexArray::Create();
 		m_VAO->AddShaderStorageBuffer(m_VertexStorage);
@@ -64,6 +65,10 @@ namespace XYZ {
 		std::shared_ptr<XYZ::IndexBuffer> squareIBpar;
 		squareIBpar = XYZ::IndexBuffer::Create(squareIndpar, sizeof(squareIndpar) / sizeof(uint32_t));
 		m_VAO->SetIndexBuffer(squareIBpar);
+	}
+
+	ParticleEffect2D::~ParticleEffect2D()
+	{
 	}
 
 
@@ -114,8 +119,8 @@ namespace XYZ {
 			m_Vertices[i].angle = 0.0f;
 			m_Vertices[i].texCoordOffset = glm::vec2(0);
 
-			m_Data[i].defaultPosition.y = particles[i].position.x;
-			m_Data[i].defaultPosition.x = particles[i].position.y;
+			m_Data[i].defaultPosition.x = particles[i].position.x;
+			m_Data[i].defaultPosition.y = particles[i].position.y;
 			m_Data[i].colorBegin = particles[i].colorBegin;
 			m_Data[i].colorEnd = particles[i].colorEnd;
 			m_Data[i].sizeBegin = particles[i].sizeBegin;

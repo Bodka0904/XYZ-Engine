@@ -33,7 +33,7 @@ namespace XYZ {
 		void parseUniforms();
 		void parseSubRoutines();
 		void parsePredefVariables(const std::string& filepath, std::string& source);
-		void addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name,unsigned int count = 0);
+		void addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name, unsigned int count = 0);
 
 		void setUniform(Uniform* uniform, unsigned char* data);
 		void setUniformArr(Uniform* uniform, unsigned char* data);
@@ -46,7 +46,7 @@ namespace XYZ {
 		void uploadMat3(uint32_t loc, const glm::mat3& matrix);
 		void uploadMat4(uint32_t loc, const glm::mat4& matrix);
 
-		void uploadIntArr(uint32_t loc, int* values,uint32_t count);
+		void uploadIntArr(uint32_t loc, int* values, uint32_t count);
 		void uploadFloatArr(uint32_t loc, float* values, uint32_t count);
 		void uploadFloat2Arr(uint32_t loc, const glm::vec2& value, uint32_t count);
 		void uploadFloat3Arr(uint32_t loc, const glm::vec3& value, uint32_t count);

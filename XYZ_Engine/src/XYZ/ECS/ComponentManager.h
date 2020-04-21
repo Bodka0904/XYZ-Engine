@@ -1,6 +1,7 @@
 #pragma once
 #include "Types.h"
 #include "Component.h"
+#include "ComponentStorage.h"
 #include "XYZ/Core/Core.h"
 
 #include <unordered_map>
@@ -13,43 +14,57 @@ namespace XYZ {
 		template<typename T>
 		void RegisterComponent()
 		{
-			const char* typeName = typeid(T).name();
-			XYZ_ASSERT(m_Components.find(typeName) == m_Components.end(), "Registering component type more than once.");
+			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(m_Components.find(id) == m_Components.end(), "Registering component type more than once.");
 
-			std::shared_ptr<Component<T>> comp = std::make_shared< Component<T> >();
-			m_Components.insert({ typeName,comp });
-			m_Components[typeName]->m_Type = m_NextComponentType;
-
-			m_NextComponentType++;
+			std::shared_ptr<IComponentStorage> componentStorage = std::make_shared<ComponentStorage<T> >();
+			m_Components.insert({ id,componentStorage });
 		}
 		template<typename T>
-		void AddComponent(Entity entity, T* component)
+		void AddComponent(Entity entity,const T& component)
 		{
-			const char* typeName = typeid(T).name();
-			XYZ_ASSERT(m_Components.find(typeName) != m_Components.end(), "Accessing not registered component.");
-			GetComponentArray<T>()->AddComponent(entity, component);
+			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
+			GetComponentStorage<T>()->AddComponent(entity, component);
 		}
 
 		template<typename T>
 		ComponentType GetComponentType()
 		{
-			const char* typeName = typeid(T).name();
+			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Component not registered before use.");
+			return id;
+		}
 
-			XYZ_ASSERT(m_Components.find(typeName) != m_Components.end(), "Component not registered before use.");
-
-			return m_Components[typeName]->m_Type;
+		template<typename T>
+		std::shared_ptr<ComponentStorage<T>> GetComponentStorage()
+		{
+			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Component not registered before use.");
+			return std::static_pointer_cast<ComponentStorage<T>>(m_Components[id]);
 		}
 
 		template<typename T>
 		T* GetComponent(Entity entity)
 		{
-			return GetComponentArray<T>()->GetComponent(entity);
+			return GetComponentStorage<T>()->GetComponent(entity);
 		}
 
+		template <typename T>
+		int GetComponentIndex(Entity entity)
+		{
+			return GetComponentStorage<T>()->GetComponentIndex(entity);
+		}
 		template<typename T>
 		void RemoveComponent(Entity entity)
 		{
-			GetComponentArray<T>()->RemoveComponent(entity);
+			GetComponentStorage<T>()->RemoveComponent(entity);
+		}
+
+		template <typename T>
+		bool Contains(Entity entity)
+		{
+			return GetComponentStorage<T>()->Contains(entity);
 		}
 
 		void EntityDestroyed(Entity entity)
@@ -61,19 +76,9 @@ namespace XYZ {
 		}
 
 	private:
-		std::unordered_map<std::string, std::shared_ptr<IComponent> > m_Components;
-		ComponentType m_NextComponentType = 0;
+		std::unordered_map<uint16_t, std::shared_ptr<IComponentStorage> > m_Components;
 
-	private:
-		template<typename T>
-		std::shared_ptr<Component<T>> GetComponentArray()
-		{
-			const char* typeName = typeid(T).name();
-
-			XYZ_ASSERT(m_Components.find(typeName) != m_Components.end(), "Component not registered before use.");
-
-			return std::static_pointer_cast<Component<T>>(m_Components[typeName]);
-		}
+		
 	};
 
 }

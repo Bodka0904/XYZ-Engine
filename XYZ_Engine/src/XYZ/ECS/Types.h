@@ -7,5 +7,5 @@ namespace XYZ {
 
 	using Entity = unsigned int;
 	using Signature = std::bitset<MAX_COMPONENTS>;
-	using ComponentType = std::uint8_t;
+	using ComponentType = uint16_t;
 }

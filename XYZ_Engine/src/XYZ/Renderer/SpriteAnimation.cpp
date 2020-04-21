@@ -4,18 +4,18 @@
 
 namespace XYZ {
 	SpriteAnimation::SpriteAnimation(int numRows, int numCols, uint32_t width, uint32_t height)
-		:m_Rows(numRows),m_Columns(numCols), 
-		m_Width(width),m_Height(height), m_AnimationLen(0.0f),m_CurrentTime(0.0f)
+		:m_Rows(numRows), m_Columns(numCols),
+		m_Width(width), m_Height(height), m_AnimationLen(0.0f), m_CurrentTime(0.0f)
 	{
 		m_NumFrames = numRows * numCols;
 	}
-	
+
 	void SpriteAnimation::SetFrameInterval(int first, int last, float timeFrame)
 	{
 		XYZ_ASSERT(timeFrame > 0.0f, "Frame length can not be zero");
 		XYZ_ASSERT(first < last, "First frame must be smaller than last");
 		XYZ_ASSERT(last <= m_NumFrames, "Last frame bigger than maximal number of frames");
-		
+
 		m_Animation.frameInterval.first = first;
 		m_Animation.frameInterval.second = last;
 		m_Animation.frameLen = timeFrame;
@@ -39,7 +39,7 @@ namespace XYZ {
 
 		int row = m_Animation.currentFrame / m_Columns;
 		int column = m_Animation.currentFrame - (row * m_Columns);
-	
+
 
 		texCoords.x = (frameWidth * column) / m_Width;
 		texCoords.y = (frameHeight * row) / m_Height;

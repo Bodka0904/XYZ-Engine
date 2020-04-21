@@ -133,6 +133,7 @@ namespace XYZ {
 			auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_Start).time_since_epoch().count();
 			auto end = std::chrono::time_point_cast<std::chrono::microseconds>(m_End).time_since_epoch().count();
 			float ms = (end - start) * 0.001f;
+
 			if (m_Function) (m_Function.value())(m_Name, ms);
 
 			size_t processID = GetProcessID();
@@ -141,7 +142,6 @@ namespace XYZ {
 
 			std::cout << "Performance: " << m_Name << std::endl;
 			std::cout << "Time: " << ms << "ms" << std::endl;
-			std::cout << "FPS: " << 1000.0f / ms << std::endl;
 		}
 	};
 

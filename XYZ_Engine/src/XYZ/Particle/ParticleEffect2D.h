@@ -2,6 +2,7 @@
 #include "XYZ/Renderer/VertexArray.h"
 #include "XYZ/Renderer/Renderable2D.h"
 #include "XYZ/Renderer/Material.h"
+#include "XYZ/ECS/Component.h"
 
 #include <glm/glm.hpp>
 #include <set>
@@ -34,6 +35,11 @@ namespace XYZ {
 		glm::vec2 Size;
 	};
 
+
+	/**
+	* @struct ParticleProps2D
+	* @brief properties of single particle
+	*/
 	struct ParticleProps2D
 	{
 		glm::vec4 colorBegin;
@@ -45,12 +51,16 @@ namespace XYZ {
 		float lifeTime;
 		float rotation;
 	};
-	class ParticleEffect2D
+
+	/**
+	* 
+	*/
+	class ParticleEffect2D : public Type<ParticleEffect2D>
 	{
 		friend class ParticleSubEffect2D;
 	public:
-		ParticleEffect2D(size_t maxParticles,std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
-
+		ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
+		~ParticleEffect2D();
 		void Bind();
 
 		std::shared_ptr<Material> GetMaterial() { return m_Material; }

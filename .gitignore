@@ -24,7 +24,6 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
-[Bb]in-int/
 [Oo]bj/
 [Ll]og/
 
@@ -250,6 +249,7 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
+*.idb
 
 # Business Intelligence projects
 *.rdl.data
@@ -347,3 +347,8 @@ healthchecksdb
 /Sandbox/Sandbox.vcxproj
 /Sandbox/results.json
 /Sandbox/Log.txt
+/ZSandbox/results.json
+/ZSandbox/Log.txt
+*.sln
+*.vcxproj
+/XYZ_Engine/XYZ_Engine.vcxproj.filters

@@ -1,10 +1,4 @@
 #pragma once
-#include "Types.h"
-#include "XYZ/Utils/DataStructures/FreeList.h"
-
-#include <unordered_map>
-#include <array>
-#include <assert.h>
 
 namespace XYZ {
 	class ComponentManager;
@@ -12,56 +6,30 @@ namespace XYZ {
 	{
 		friend class ComponentManager;
 	public:
-		virtual ~IComponent() = default;
-		virtual void EntityDestroyed(Entity entity) = 0;
+		virtual uint16_t GetComponentID() const = 0;
 
+	protected:
+		template <typename T>
+		static uint16_t GetID()
+		{
+			static uint16_t compType = getNextID();
+			return compType;
+		}
 	private:
-		ComponentType m_Type = 0;
+		static uint16_t getNextID()
+		{
+			static uint16_t nextType = 0;
+			return ++nextType;
+		}
 	};
 
-	template<typename T>
-	class Component : public IComponent
+	template <typename Derived, typename DeriveFrom = IComponent>
+	class Type : public IComponent
 	{
 	public:
-		virtual ~Component()
+		uint16_t GetComponentID() const override
 		{
-			for (auto it : m_Lookup)
-				delete m_Components[it.second];
+			return IComponent::GetID<Derived>();
 		}
-		bool Contains(Entity entity)
-		{
-			return m_Lookup.find(entity) != m_Lookup.end();
-		}
-
-		void AddComponent(Entity entity, T* component)
-		{
-			XYZ_ASSERT(m_Lookup.find(entity) == m_Lookup.end(), "Entity already contains component");
-			m_Lookup[entity] = m_Components.Insert(component);
-		}
-		void RemoveComponent(Entity entity)
-		{		
-			XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Removing non-existent component");
-			
-			int removeIndex = m_Lookup[entity];
-			delete m_Components[removeIndex];
-			m_Components.Erase(removeIndex);
-			m_Lookup.erase(entity);			
-		}
-		T* GetComponent(Entity entity)
-		{
-			XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Retrieving non-existent component.");
-			return m_Components[m_Lookup[entity]];
-		}
-
-		virtual void EntityDestroyed(Entity entity) override
-		{
-			if (Contains(entity))
-				RemoveComponent(entity);
-		}
-
-	private:
-		FreeList<T*> m_Components;
-		std::unordered_map<Entity, int> m_Lookup;
 	};
-
 }

@@ -16,7 +16,7 @@ namespace XYZ {
 		GLenum severity,
 		GLsizei length,
 		const GLchar* message,
-		const void* userParam ) 
+		const void* userParam)
 	{
 
 		std::string severityMessage;
@@ -39,7 +39,7 @@ namespace XYZ {
 			XYZ_LOG_API("ERROR ", message);
 			XYZ_LOG_API("ID: ", id);
 			XYZ_LOG_API("Severity: ", severityMessage);
-			XYZ_ASSERT("",false);
+			XYZ_ASSERT("", false);
 			break;
 		case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
 			XYZ_LOG_API("DEPRECATED_BEHAVIOR: ", message);
@@ -99,17 +99,17 @@ namespace XYZ {
 		glLoadIdentity();
 
 
-	#ifdef XYZ_DEBUG
-		if (glDebugMessageCallback) 
+#ifdef XYZ_DEBUG
+		if (glDebugMessageCallback)
 		{
 			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 			glEnable(GL_DEBUG_OUTPUT);
 
 			glDebugMessageCallback(openglCallbackFunction, nullptr);
 			GLuint unusedIds = 0;
-			glDebugMessageControl(GL_DONT_CARE,GL_DONT_CARE,GL_DONT_CARE,0,&unusedIds,true);
+			glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, &unusedIds, true);
 		}
-	#endif
+#endif
 	}
 
 	void OpenGLAPIContext::SwapBuffers()

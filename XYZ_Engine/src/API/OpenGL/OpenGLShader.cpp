@@ -35,7 +35,7 @@ namespace XYZ {
 		return 0;
 	}
 	OpenGLShader::OpenGLShader(const std::string& path)
-		: m_NumTakenTexSlots(0),m_UniformsSize(0), m_Textures(0), m_Path(path)
+		: m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(path);
 		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
@@ -107,7 +107,7 @@ namespace XYZ {
 				texture.name = name;
 				texture.slot = m_NumTakenTexSlots;
 
-				XYZ_ASSERT(texture.slot + (count-1) < sc_MaxTextureSlots, "It is possible to have only ", sc_MaxTextureSlots, " textures per shader");
+				XYZ_ASSERT(texture.slot + (count - 1) < sc_MaxTextureSlots, "It is possible to have only ", sc_MaxTextureSlots, " textures per shader");
 				glUseProgram(m_RendererID);
 				if (count > 1)
 				{
@@ -117,10 +117,10 @@ namespace XYZ {
 						slots[i] = i;
 					glUniform1iv(texture.location, texture.count, &slots[texture.slot]);
 				}
-				else	
+				else
 					glUniform1i(id, texture.slot);
-					
-		
+
+
 				m_NumTakenTexSlots += count;
 				m_Textures.push_back(texture);
 			}
@@ -170,7 +170,7 @@ namespace XYZ {
 		switch (uniform->type)
 		{
 		case UniformDataType::FLOAT:
-			uploadFloatArr(uniform->location, (float*)& data[uniform->offset],uniform->count);
+			uploadFloatArr(uniform->location, (float*)& data[uniform->offset], uniform->count);
 			break;
 		case UniformDataType::FLOAT_VEC2:
 			uploadFloat2Arr(uniform->location, *(glm::vec2*) & data[uniform->offset], uniform->count);
@@ -443,7 +443,7 @@ namespace XYZ {
 
 		// Parse uniforms
 		glGetProgramiv(m_RendererID, GL_ACTIVE_UNIFORMS, &count);
-		
+
 		int offset = 0;
 		for (int i = 0; i < count; i++)
 		{
@@ -492,7 +492,7 @@ namespace XYZ {
 
 			if (size > 1)
 				sizeUni *= size;
-			
+
 			addUniform(uniType, sizeUni, offset, name, size);
 			offset += sizeUni;
 			m_UniformsSize += sizeUni;

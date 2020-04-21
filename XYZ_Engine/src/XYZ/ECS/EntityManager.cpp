@@ -5,7 +5,7 @@ namespace XYZ {
 	EntityManager::EntityManager()
 		: m_EntitiesInUse(0)
 	{
-		
+
 	}
 	Entity EntityManager::CreateEntity()
 	{

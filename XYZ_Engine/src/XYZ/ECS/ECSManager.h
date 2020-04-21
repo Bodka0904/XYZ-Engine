@@ -21,7 +21,7 @@ namespace XYZ {
 		}
 		template<typename T>
 		std::shared_ptr<T> RegisterSystem()
-		{
+		{	
 			return m_SystemManager->RegisterSystem<T>();
 		}
 		template<typename T>
@@ -30,8 +30,9 @@ namespace XYZ {
 			m_ComponentManager->RegisterComponent<T>();
 		}
 		template<typename T>
-		void AddComponent(Entity entity, T* component)
+		void AddComponent(Entity entity,const T& component)
 		{
+			// checks validity of T data type, if T* is not derived type of IComponent shows error
 			m_ComponentManager->AddComponent<T>(entity, component);
 
 			auto signature = m_EntityManager->GetSignature(entity);
@@ -62,10 +63,23 @@ namespace XYZ {
 		{
 			return m_ComponentManager->GetComponentType<T>();
 		}
-		template<typename T>
-		T& GetComponent(Entity entity)
+
+		template<typename T> 
+		std::shared_ptr<ComponentStorage<T>> GetComponentStorage()
 		{
-			return *m_ComponentManager->GetComponent<T>(entity);
+			return m_ComponentManager->GetComponentStorage<T>();
+		}
+
+		template<typename T>
+		T* GetComponent(Entity entity)
+		{
+			return m_ComponentManager->GetComponent<T>(entity);
+		}
+
+		template <typename T>
+		int GetComponentIndex(Entity entity)
+		{
+			return m_ComponentManager->GetComponentIndex<T>(entity);
 		}
 
 		template<typename T>
@@ -73,6 +87,14 @@ namespace XYZ {
 		{
 			return std::static_pointer_cast<T>(m_SystemManager->GetSystem<T>());
 		}
+
+
+		template <typename T>
+		bool Contains(Entity entity)
+		{
+			return m_ComponentManager->Contains<T>(entity);
+		}
+
 		void DestroyEntity(Entity entity)
 		{
 			auto signature = GetEntitySignature(entity);

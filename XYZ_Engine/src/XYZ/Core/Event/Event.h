@@ -31,16 +31,15 @@ namespace XYZ {
 	class Event
 	{
 	public:
-		virtual EventType GetEventType() const = 0;
+		virtual EventType GetEventType() const { return m_Type; };
 		bool& IsHandled() { return m_Handled; }
 		void SetHandled() { m_Handled = true; }
 
-	private:
+	protected:
 		bool m_Handled = false;
 		EventType m_Type = EventType::None;
 	};
 
-	//typedef std::shared_ptr<Event> event_ptr;
 
 	using event_ptr = std::shared_ptr<Event>;
 
@@ -52,10 +51,9 @@ namespace XYZ {
 			:m_Width(width), m_Height(height)
 		{
 			XYZ_LOG_INFO("Window: Resized window width: ", width, " height: ", height);
+			m_Type = EventType::WindowResized;
 		}
 
-
-		virtual EventType GetEventType() const override { return m_Type; }
 		virtual std::pair<int, int> GetWinSize() const { return { (int)m_Width, (int)m_Height }; }
 		inline int GetWidth() const { return m_Width; }
 		inline int GetHeight() const { return m_Height; }
@@ -63,24 +61,32 @@ namespace XYZ {
 	private:
 		int m_Width;
 		int m_Height;
-		EventType m_Type = EventType::WindowResized;
 
 	};
 
+	class WindowCloseEvent : public Event
+	{
+	public:
+		WindowCloseEvent()
+		{
+			XYZ_LOG_INFO("Window: Window closed");
+			m_Type = EventType::WindowClosed;
+		}
+	};
 
 	class KeyPressedEvent : public Event
 	{
 	public:
 		KeyPressedEvent(int key, int mod)
 			:m_Key(key), m_Mod(mod)
-		{}
-		virtual EventType GetEventType() const override { return m_Type; }
+		{
+			m_Type = EventType::KeyPressed;
+		}
 		virtual int GetKey() const { return m_Key; }
 		virtual int GetMod() const { return m_Mod; }
 	private:
 		int m_Key;
 		int m_Mod;
-		EventType m_Type = EventType::KeyPressed;
 	};
 
 
@@ -90,13 +96,13 @@ namespace XYZ {
 	public:
 		KeyReleasedEvent(int key)
 			:m_Key(key)
-		{}
-		virtual EventType GetEventType() const override { return m_Type; }
+		{
+			m_Type = EventType::KeyReleased;
+		}
 		virtual int GetKey() const { return m_Key; }
 
 	private:
 		int m_Key;
-		EventType m_Type = EventType::KeyReleased;
 	};
 
 
@@ -108,15 +114,13 @@ namespace XYZ {
 		MouseButtonPressEvent(int button)
 			:m_Button(button)
 		{
+			m_Type = EventType::MouseButtonPressed;
 		};
 
-
-		virtual EventType GetEventType() const override { return m_Type; }
 		inline int GetButton() const { return m_Button; }
 
 	private:
 		int m_Button;
-		EventType m_Type = EventType::MouseButtonPressed;
 	};
 
 
@@ -126,14 +130,13 @@ namespace XYZ {
 		MouseButtonReleaseEvent(int button)
 			:m_Button(button)
 		{
+			m_Type = EventType::MouseButtonReleased;
 		};
 
-		virtual EventType GetEventType() const override { return m_Type; }
 		inline int GetButton() const { return m_Button; }
 
 	private:
 		int m_Button;
-		EventType m_Type = EventType::MouseButtonReleased;
 	};
 
 	class MouseScrollEvent :public Event
@@ -141,13 +144,13 @@ namespace XYZ {
 	public:
 		MouseScrollEvent(float xOffset, float yOffset)
 			:m_XOffset(xOffset), m_YOffset(yOffset)
-		{};
+		{
+			m_Type = EventType::MouseScroll;
+		};
 
-		virtual EventType GetEventType() const override { return type; }
 		inline double GetOffsetX() const { return m_XOffset; }
 		inline double GetOffsetY() const { return m_YOffset; }
 	private:
-		EventType type = EventType::MouseScroll;
 		float m_XOffset;
 		float m_YOffset;
 	};

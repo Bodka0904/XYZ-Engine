@@ -10,7 +10,7 @@ namespace XYZ {
 		if (!s_Instance)
 		{
 			s_Instance = new Renderer2D;
-			s_Instance->m_SortSystem = ECSManager::Get()->RegisterSystem<RendererBatchSystem2D>();
+			s_Instance->m_BatchSystem = ECSManager::Get()->RegisterSystem<RendererBatchSystem2D>();
 		}
 	}
 
@@ -22,7 +22,7 @@ namespace XYZ {
 
 	void Renderer2D::BeginScene(const OrthoCamera& camera)
 	{
-		s_Instance->m_SortSystem->SubmitToRenderer();
+		s_Instance->m_BatchSystem->SubmitToRenderer();
 	}
 
 	void Renderer2D::Submit(CommandI& command, unsigned int size)
@@ -37,8 +37,6 @@ namespace XYZ {
 
 	void Renderer2D::EndScene()
 	{
-	
-		s_Instance->m_CommandQueue.Clear();
 	}
 
 }

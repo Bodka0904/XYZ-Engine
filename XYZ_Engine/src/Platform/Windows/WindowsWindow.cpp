@@ -55,8 +55,14 @@ namespace XYZ {
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			data.Width = width;
-			data.Height = height;		
+			data.Height = height;
 			EventManager::Get().FireEvent(std::make_shared<WindowResizeEvent>(width, height));
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			EventManager::Get().FireEvent(std::make_shared<WindowCloseEvent>());
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -100,7 +106,7 @@ namespace XYZ {
 
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
 		{
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);		
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			EventManager::Get().FireEvent(std::make_shared<MouseScrollEvent>((float)xOffset, (float)yOffset));
 		});
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
@@ -129,6 +135,7 @@ namespace XYZ {
 	{
 		return glfwWindowShouldClose(m_Window);
 	}
+
 
 	void WindowsWindow::Destroy()
 	{

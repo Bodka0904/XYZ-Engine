@@ -17,6 +17,7 @@ namespace XYZ {
 		//Invoke handlers starting at the end of the handler vector, stop once the event becomes handled
 		for (auto i = evHandlers.rbegin(); !event->IsHandled() && i != evHandlers.rend(); ++i)
 			(*i).second(event);
+
 	}
 
 	//Attach handler to an event
@@ -25,10 +26,11 @@ namespace XYZ {
 		//Initialize a new map of handlers for the given event name
 		if (m_Handlers.find(type) == m_Handlers.end())
 			m_Handlers[type] = std::vector<std::pair<unsigned int, handlerPtr>>();
-		
+
 		//Increment next event ID and push back handler
 		auto assignedId = m_NextId++;
 		m_Handlers[type].push_back(std::make_pair(assignedId, eventHandler));
+
 
 		return assignedId;
 	}

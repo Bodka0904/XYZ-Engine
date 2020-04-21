@@ -19,8 +19,14 @@
     <Filter Include="src\XYZ">
       <UniqueIdentifier>{A7C12FA9-13A1-AE44-1CB9-391B881715A6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\XYZ\AssetManager">
+      <UniqueIdentifier>{913DFCBD-7DCC-8587-26EB-99821259962D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\XYZ\Core">
       <UniqueIdentifier>{5F06377B-4B69-C61F-F4EE-FED5E03092A2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\XYZ\Core\Event">
+      <UniqueIdentifier>{F09285A9-DC76-46FF-45D7-405231DA3081}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\XYZ\ECS">
       <UniqueIdentifier>{71311159-DDE6-894E-66DB-8325D28F8052}</UniqueIdentifier>
@@ -33,6 +39,12 @@
     </Filter>
     <Filter Include="src\XYZ\Renderer">
       <UniqueIdentifier>{2DD1E87E-19CA-07D1-42FC-EC552E54E7DC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\XYZ\Utils">
+      <UniqueIdentifier>{472460E3-B3E4-DB19-7C1F-2597E89E20F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\XYZ\Utils\DataStructures">
+      <UniqueIdentifier>{14F0E97E-00AB-D92A-A962-527595FC23BB}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -90,6 +102,9 @@
     <ClInclude Include="src\XYZ.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\AssetManager\AssetManager.h">
+      <Filter>src\XYZ\AssetManager</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Application.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
@@ -102,6 +117,15 @@
     <ClInclude Include="src\XYZ\Core\EntryPoint.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Core\Event\Event.h">
+      <Filter>src\XYZ\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Core\Event\EventManager.h">
+      <Filter>src\XYZ\Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Core\GuiLayer.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Input.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
@@ -109,6 +133,9 @@
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\Layer.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Core\LayerStack.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\Log.h">
@@ -126,10 +153,16 @@
     <ClInclude Include="src\XYZ\ECS\ComponentManager.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\ECS\ComponentStorage.h">
+      <Filter>src\XYZ\ECS</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\ECS\ECSManager.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\ECS\EntityManager.h">
+      <Filter>src\XYZ\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\ECS\System.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\ECS\SystemManager.h">
@@ -138,10 +171,16 @@
     <ClInclude Include="src\XYZ\ECS\Types.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Particle\ParticleFactory.h">
+    <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h">
+      <Filter>src\XYZ\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h">
       <Filter>src\XYZ\Particle</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Physics\Components.h">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Physics\Grid2D.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Physics\PhysicsSystem.h">
@@ -159,7 +198,25 @@
     <ClInclude Include="src\XYZ\Renderer\Material.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\MaterialManager.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\OrthoCameraController.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\RenderCommand.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\RenderCommandQueue.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\RenderFlags.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\Renderable2D.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Renderer.h">
@@ -171,7 +228,22 @@
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Shader.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Texture.h">
@@ -182,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="src\XYZ\Timer.h">
       <Filter>src\XYZ</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h">
+      <Filter>src\XYZ\Utils\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="src\stdafx.h">
       <Filter>src</Filter>
@@ -1329,25 +1404,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
-    <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
-    <ClInclude Include="src\XYZ\Renderer\Renderable2D.h" />
-    <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
-    <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
-    <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
-    <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
-    <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
-    <ClInclude Include="src\XYZ\Renderer\OrthoCameraController.h" />
-    <ClInclude Include="src\XYZ\Renderer\Scene.h" />
-    <ClInclude Include="src\XYZ\Renderer\SceneManager.h" />
-    <ClInclude Include="src\XYZ\Renderer\Scene2D.h" />
-    <ClInclude Include="src\XYZ\Core\ThreadPool.h" />
-    <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h" />
-    <ClInclude Include="src\XYZ\Renderer\RenderCommandQueue.h" />
-    <ClInclude Include="src\XYZ\Core\Event\Event.h" />
-    <ClInclude Include="src\XYZ\Core\Event\EventManager.h" />
-    <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h" />
-    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1377,10 +1433,22 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\AssetManager\AssetManager.cpp">
+      <Filter>src\XYZ\AssetManager</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Core\Application.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp">
+      <Filter>src\XYZ\Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Core\GuiLayer.cpp">
+      <Filter>src\XYZ\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Core\Layer.cpp">
+      <Filter>src\XYZ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Core\LayerStack.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Core\Log.cpp">
@@ -1392,17 +1460,29 @@
     <ClCompile Include="src\XYZ\ECS\ComponentManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\ECS\ComponentStorage.cpp">
+      <Filter>src\XYZ\ECS</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\ECS\ECSManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\ECS\EntityManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\ECS\System.cpp">
+      <Filter>src\XYZ\ECS</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Particle\ParticleFactory.cpp">
+    <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp">
       <Filter>src\XYZ\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp">
+      <Filter>src\XYZ\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Physics\Grid2D.cpp">
+      <Filter>src\XYZ\Physics</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Physics\PhysicsSystem.cpp">
       <Filter>src\XYZ\Physics</Filter>
@@ -1419,7 +1499,25 @@
     <ClCompile Include="src\XYZ\Renderer\Material.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\OrthoCameraController.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\RenderCommand.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\RenderCommandQueue.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\RenderFlags.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Renderer.cpp">
@@ -1431,7 +1529,22 @@
     <ClCompile Include="src\XYZ\Renderer\RendererAPI.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Texture.cpp">
@@ -1440,32 +1553,14 @@
     <ClCompile Include="src\XYZ\Renderer\VertexArray.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp">
+      <Filter>src\XYZ\Utils\DataStructures</Filter>
+    </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\Renderable2D.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
-    <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
-    <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\OrthoCameraController.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\Scene.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\Scene2D.cpp" />
-    <ClCompile Include="src\XYZ\Core\ThreadPool.cpp" />
-    <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\RenderCommandQueue.cpp" />
-    <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Shaders\Variables\PredefinedVariables.glsl" />
   </ItemGroup>
 </Project>

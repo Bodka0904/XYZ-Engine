@@ -2,7 +2,7 @@
 
 //-----Core-----//
 #include "XYZ/Core/Application.h"
-#include "XYZ/Core/Layer.h"
+//#include "XYZ/Core/Layer.h"
 #include "XYZ/Core/Input.h"
 #include "XYZ/Core/KeyCodes.h"
 #include "XYZ/Core/MouseCodes.h" 
@@ -26,4 +26,5 @@
 //-----Systems-----//
 #include "XYZ/Physics/PhysicsSystem.h"
 #include "XYZ/Particle/ParticleSystem2D.h"
+
 

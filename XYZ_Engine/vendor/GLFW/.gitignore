@@ -7,12 +7,10 @@ _ReSharper*
 *.dir
 *.vcxproj*
 *.sln
-
 Win32
 x64
 Debug
 Release
-bin-int
 MinSizeRel
 RelWithDebInfo
 *.xcodeproj

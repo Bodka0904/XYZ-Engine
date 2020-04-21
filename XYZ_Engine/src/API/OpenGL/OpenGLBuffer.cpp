@@ -13,12 +13,12 @@ namespace XYZ {
 		switch (usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW); break;
-		case BufferUsage::Dynamic:   glBufferData(GL_ARRAY_BUFFER, size,vertices, GL_DYNAMIC_DRAW); break;
+		case BufferUsage::Dynamic:   glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_DYNAMIC_DRAW); break;
 		}
 	}
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
-		: m_Size(size),m_Usage(BufferUsage::Dynamic)
+		: m_Size(size), m_Usage(BufferUsage::Dynamic)
 	{
 		glCreateBuffers(1, &m_VBO);
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

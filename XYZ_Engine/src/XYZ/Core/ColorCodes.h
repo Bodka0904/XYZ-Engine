@@ -2,6 +2,10 @@
 
 
 namespace XYZ {
+	/**
+	* Enum
+	* Numeric ansi code representation
+	*/
 	enum AnsiCode
 	{
 		COLOR_BLACK_F = 30,

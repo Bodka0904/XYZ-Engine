@@ -1,5 +1,9 @@
 #pragma once
-/* Copied from 
+
+#include <algorithm>
+#include <utility>
+
+/* Copied from
 https://stackoverflow.com/questions/41946007/efficient-and-well-explained-implementation-of-a-quadtree-for-2d-collision-det
 */
 namespace XYZ {
@@ -16,6 +20,7 @@ namespace XYZ {
 			m_FirstFree = other.m_FirstFree;
 			m_Data = other.m_Data;
 		}
+	
 		FreeList<T>& operator=(const FreeList<T>& other)
 		{
 			m_FirstFree = other.m_FirstFree;
@@ -33,9 +38,7 @@ namespace XYZ {
 			}
 			else
 			{
-				FreeElement el;
-				el.element = elem;
-				m_Data.push_back(el);
+				m_Data.emplace_back(elem);
 				return static_cast<int>(m_Data.size() - 1);
 			}
 		}
@@ -44,6 +47,7 @@ namespace XYZ {
 			m_Data[index].next = m_FirstFree;
 			m_FirstFree = index;
 		}
+		
 		void Clear()
 		{
 			m_Data.clear();
@@ -67,9 +71,17 @@ namespace XYZ {
 		union FreeElement
 		{
 			FreeElement()
-				: element(T()),next(0)
+			{
+				memset(this, 0, sizeof(FreeElement));
+			}
+			FreeElement(const T& el)
+				: element(el)
 			{}
-			
+			FreeElement(const FreeElement& other)
+				: element(other.element)
+			{}
+			~FreeElement()
+			{}
 
 			T element;
 			int next;

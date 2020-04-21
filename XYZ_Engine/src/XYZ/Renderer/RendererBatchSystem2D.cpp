@@ -31,7 +31,7 @@ namespace XYZ {
 		Vertex2D* BufferPtr = nullptr;
 
 	};
-	
+
 	static void Render(std::shared_ptr<Material> material, std::shared_ptr<VertexArray> vao, uint32_t count)
 	{
 		material->Bind();
@@ -45,8 +45,13 @@ namespace XYZ {
 		if (dataSize != 0)
 		{
 			data.QuadVertexBuffer->Update(data.BufferBase, dataSize);
-			Command<std::shared_ptr<Material>, std::shared_ptr<VertexArray>, uint32_t> cmd(Render, data.Material, data.QuadVertexArray, data.IndexCount);
-			Renderer2D::Submit(cmd, sizeof(cmd));
+			
+			//Command<std::shared_ptr<Material>, std::shared_ptr<VertexArray>, uint32_t> cmd(Render, data.Material, data.QuadVertexArray, data.IndexCount);
+			//Renderer2D::Submit(cmd, sizeof(cmd));
+			
+			data.Material->Bind();
+			data.QuadVertexArray->Bind();
+			RenderCommand::DrawIndexed(data.QuadVertexArray, data.IndexCount);
 			data.Reset();
 		}
 	}
@@ -56,13 +61,16 @@ namespace XYZ {
 	RendererBatchSystem2D::RendererBatchSystem2D()
 	{
 		m_Signature.set(ECSManager::Get()->GetComponentType<Renderable2D>());
+
+		m_Storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
 		s_Data.Reset();
 	}
 
 
 	void RendererBatchSystem2D::Add(Entity entity)
 	{
-		auto renderable = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
+		auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
+		auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
 		auto key = renderable->material->GetSortKey();
 
 		if (renderable->visible)
@@ -74,9 +82,9 @@ namespace XYZ {
 			m_Components.push_back(component);
 
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.AddRenderable(renderable);			
+				m_TransparentGroup.AddRenderable(index);
 			else
-				m_OpaqueGroup.AddRenderable(renderable);
+				m_OpaqueGroup.AddRenderable(index);
 		}
 	}
 
@@ -85,14 +93,16 @@ namespace XYZ {
 		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
 		if (it != m_Components.end())
 		{
-			auto renderable = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
+			auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
+			auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.RemoveRenderable(renderable);
+				m_TransparentGroup.RemoveRenderable(index);
 			else
-				m_OpaqueGroup.RemoveRenderable(renderable);
+				m_OpaqueGroup.RemoveRenderable(index);
 
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			m_Components.erase(it);
+			*it = std::move(m_Components.back());
+			m_Components.pop_back();
 		}
 	}
 	bool RendererBatchSystem2D::Contains(Entity entity)
@@ -110,13 +120,14 @@ namespace XYZ {
 		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
 		if (it != m_Components.end())
 		{
-			auto renderable = &ECSManager::Get()->GetComponent<Renderable2D>(entity);
+			auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
+			auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
 			if ((*it).key != renderable->material->GetSortKey())
 			{
 				if ((*it).key & RenderFlags::TransparentFlag)
-					m_TransparentGroup.RemoveRenderable(renderable);
+					m_TransparentGroup.RemoveRenderable(index);
 				else
-					m_OpaqueGroup.RemoveRenderable(renderable);
+					m_OpaqueGroup.RemoveRenderable(index);
 
 				(*it).key = renderable->material->GetSortKey();
 				Add(entity);
@@ -129,10 +140,10 @@ namespace XYZ {
 		for (auto it : m_OpaqueGroup.GetRenderables())
 		{
 			s_Data.Material = it.first;
-			for (auto renderable : it.second)
-			{
+			for (auto index : it.second)
+			{	
 				if (s_Data.IndexCount < s_Data.MaxIndices)
-					s_Data.Submit(*renderable);
+					s_Data.Submit((*m_Storage)[index]);
 				else
 					SubmitCommand(s_Data);
 			}
@@ -141,12 +152,11 @@ namespace XYZ {
 
 		for (auto it : m_TransparentGroup.GetRenderables())
 		{
-
 			s_Data.Material = it.first;
-			for (auto renderable : it.second)
+			for (auto index : it.second)
 			{
 				if (s_Data.IndexCount < s_Data.MaxIndices)
-					s_Data.Submit(*renderable);
+					s_Data.Submit((*m_Storage)[index]);
 				else
 					SubmitCommand(s_Data);
 			}

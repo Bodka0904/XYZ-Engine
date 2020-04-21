@@ -18,8 +18,8 @@ namespace XYZ {
 		int Flags;
 
 		WindowProperties(const std::string& title = "Engine",
-			unsigned int width = 1280,
-			unsigned int height = 1024,
+			unsigned int width = 1024,
+			unsigned int height = 840,
 			int flags = WindowFlags::NONE)
 			: Title(title), Width(width), Height(height), Flags(flags)
 		{

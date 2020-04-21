@@ -15,7 +15,6 @@ namespace XYZ {
 		virtual void Update() override;
 		virtual void SetVSync(bool enabled) override;
 		virtual bool IsClosed() override;
-
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 		inline unsigned int GetWidth() const override { return m_Data.Width; }

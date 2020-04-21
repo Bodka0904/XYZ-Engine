@@ -3,13 +3,26 @@
 #include <utility>
 #include <memory>
 
+
+/**	@class Input
+ *  Singleton class with virtual implementation, OS dependent.
+ *	To access the instance and it's functionality are used static functions
+ *	Keeps track of user input.
+ *
+ */
 namespace XYZ {
 	class Input
 	{
 	protected:
 		Input() = default;
 	public:
+		/**
+		* Delete copy constructor
+		*/
 		Input(const Input&) = delete;
+		/**
+		* Delete assign operator
+		*/
 		Input& operator=(const Input&) = delete;
 
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }

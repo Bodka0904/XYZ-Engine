@@ -9,12 +9,12 @@ namespace XYZ {
 
 	enum LogLevel
 	{
-		NOLOG =		1 << 0,
-		INFO =		1 << 1,
-		WARNING =	1 << 2,
-		ERR =		1 << 3,
-		API =		1 << 4,
-		TRACE =		API | ERR | WARNING | INFO
+		NOLOG = 1 << 0,
+		INFO = 1 << 1,
+		WARNING = 1 << 2,
+		ERR = 1 << 3,
+		API = 1 << 4,
+		TRACE = API | ERR | WARNING | INFO
 	};
 
 	class Logger

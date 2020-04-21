@@ -1,4 +1,5 @@
 #pragma once
+#include "System.h"
 #include "Component.h"
 #include "Types.h"
 
@@ -6,74 +7,19 @@
 #include <unordered_map>
 
 namespace XYZ {
-	class System
-	{
-		friend class SystemManager;
-	public:
-		System() {};
-		virtual void Add(Entity entity) {};
-		virtual void Remove(Entity entity) {};
-		virtual void EntityUpdated(Entity entity) {};
-		virtual bool Contains(Entity entity) = 0;
-
-	protected:
-		template <typename T>
-		int binarySearch(int start, int end, Entity entity, const std::vector<T>& container)
-		{
-			if (end >= start)
-			{
-				int mid = start + (end - start) / 2;
-				if (container[mid] == entity)
-					return mid;
-
-				if (container[mid] > entity)
-					return binarySearch(start, mid - 1, entity, container);
-
-
-				return binarySearch(mid + 1, end, entity, container);
-			}
-			return -1;
-		}
-	protected:
-		Signature m_Signature;
-
-		struct Component
-		{
-			Entity entity;
-
-			bool operator()(const Component& a, const Component& b)
-			{
-				return (a.entity < b.entity);
-			}
-			bool operator ==(const Entity other) const
-			{
-				return entity == other;	
-			}
-			bool operator <(const Entity other)const
-			{
-				return entity < other;
-			}
-			bool operator >(const Entity other) const
-			{
-				return entity > other;
-			}
-		};
-
 	
-	};
-
-
 	class SystemManager
 	{
 	public:
 		template<typename T>
 		std::shared_ptr<T> RegisterSystem()
 		{
-			const char* typeName = typeid(T).name();
-			XYZ_ASSERT(m_Systems.find(typeName) == m_Systems.end(), "System already registered!");
+			uint16_t id = System::GetID<T>();
+			XYZ_ASSERT(m_Systems.find(id) == m_Systems.end(), "System already registered!");
 
 			auto system = std::make_shared<T>();
-			m_Systems[typeName] = system;
+			auto castedSystem = std::static_pointer_cast<System>(system);
+			m_Systems.insert({ id,castedSystem });
 
 			return system;
 		}
@@ -81,17 +27,17 @@ namespace XYZ {
 		template<typename T>
 		void SetSignature(Signature signature)
 		{
-			const char* typeName = typeid(T).name();
-			XYZ_ASSERT(m_Systems.find(typeName) != m_Systems.end(), "System is not registered!");
+			uint16_t id = System::GetID<T>();
+			XYZ_ASSERT(m_Systems.find(id) != m_Systems.end(), "System is not registered!");
 
-			m_Systems[typeName]->m_Signature = signature;
+			m_Systems[id]->m_Signature = signature;
 		}
 		template<typename T>
-		std::shared_ptr<System> GetSystem()
+		std::shared_ptr<T> GetSystem()
 		{
-			const char* typeName = typeid(T).name();
-			XYZ_ASSERT(m_Systems.find(typeName) != m_Systems.end(), "System is not registered!");
-			return m_Systems[typeName];
+			uint16_t id = System::GetID<T>;
+			XYZ_ASSERT(m_Systems.find(id) != m_Systems.end(), "System is not registered!");
+			return std::static_pointer_cast<std::shared_ptr<T>>(m_Systems[id]);
 		}
 		void EntityDestroyed(Entity entity, Signature entitySignature)
 		{
@@ -101,9 +47,9 @@ namespace XYZ {
 				auto const& type = it.first;
 				auto const& system = it.second;
 				auto const& systemSignature = m_Systems[type]->m_Signature;
-
+				
 				if ((entitySignature & systemSignature) == systemSignature)
-				{
+				{	
 					it.second->Remove(entity);
 				}
 			}
@@ -122,15 +68,14 @@ namespace XYZ {
 					if (!system->Contains(entity))
 						system->Add(entity);
 				}
-				else
+				else 
 					system->Remove(entity);
-				
+
 			}
 		}
 
-
 	private:
-		std::unordered_map<const char*, std::shared_ptr<System>> m_Systems;
+		std::unordered_map<uint16_t, std::shared_ptr<System>> m_Systems;
 	};
 
 }

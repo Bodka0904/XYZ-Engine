@@ -10,7 +10,7 @@ namespace XYZ {
 
 	class EventManager
 	{
-	public:	
+	public:
 		EventManager(EventManager& other) = delete;
 
 		~EventManager()
