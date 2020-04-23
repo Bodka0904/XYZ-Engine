@@ -34,9 +34,25 @@ namespace XYZ {
 		{
 			XYZ_ASSERT(m_Lookup.find(entity) == m_Lookup.end(), "Entity ",entity," already contains component");
 			m_Lookup[entity] = m_Components.Insert(component);
-
-			m_Components.Insert(component);
 		}
+
+		void AddChild(Entity entity,Entity child)
+		{
+			if (m_Lookup.find(entity) == m_Lookup.end())
+			{
+				ChildrenComponent component;
+				component.children.push_back(child);
+				m_Lookup[entity] = m_Components.Insert(component);		
+			}
+			else
+			{
+				auto index = m_Lookup[entity];
+				XYZ_ASSERT(m_Components[index].children.size() < ChildrenComponent::sc_MaxChildren,"Max number of children is ",ChildrenComponent::sc_MaxChildren);
+				m_Components[index].children.push_back(child);
+			}
+		}
+		
+
 		void RemoveComponent(Entity entity)
 		{
 			XYZ_ASSERT(m_Lookup.find(entity) != m_Lookup.end(), "Removing non-existent component");

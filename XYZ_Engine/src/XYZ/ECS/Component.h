@@ -1,4 +1,5 @@
 #pragma once
+#include "Types.h"
 
 namespace XYZ {
 	class ComponentManager;
@@ -31,5 +32,20 @@ namespace XYZ {
 		{
 			return IComponent::GetID<Derived>();
 		}
+	};
+
+
+	struct ParentComponent : public Type<ParentComponent>
+	{
+		ParentComponent(Entity Parent)
+			: parentEntity(Parent)
+		{}
+		Entity parentEntity;
+	};
+
+	struct ChildrenComponent : public Type<ChildrenComponent>
+	{
+		static constexpr int sc_MaxChildren = 10;
+		std::vector<Entity> children;
 	};
 }

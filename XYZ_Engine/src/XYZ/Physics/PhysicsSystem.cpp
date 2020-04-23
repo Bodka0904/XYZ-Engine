@@ -36,19 +36,20 @@ namespace XYZ {
 				if (result == Grid2D::MoveResult::Success)
 				{		
 					(*m_InterpolStorage)[it.interpolIndex].inProgress = true;
-					(*m_InterpolStorage)[it.interpolIndex].velocity = (*m_BodyStorage)[it.bodyIndex].velocity;
+					(*m_InterpolStorage)[it.interpolIndex].velocityX = (*m_BodyStorage)[it.bodyIndex].velocityX;
+					(*m_InterpolStorage)[it.interpolIndex].velocityY = (*m_BodyStorage)[it.bodyIndex].velocityY;
 				}
 				else if (result == Grid2D::MoveResult::Collision)
 				{
-					(*m_BodyStorage)[it.bodyIndex].velocity.x = 0;
-					(*m_BodyStorage)[it.bodyIndex].velocity.y = 0;
+					(*m_BodyStorage)[it.bodyIndex].velocityX = 0;
+					(*m_BodyStorage)[it.bodyIndex].velocityY = 0;
 					(*m_InterpolStorage)[it.interpolIndex].currentTime = 0.0f;
 					(*m_InterpolStorage)[it.interpolIndex].inProgress = false;
 				}
 				else if (result == Grid2D::MoveResult::OutOfGrid)
 				{
-					(*m_BodyStorage)[it.bodyIndex].velocity.x = 0;
-					(*m_BodyStorage)[it.bodyIndex].velocity.y = 0;
+					(*m_BodyStorage)[it.bodyIndex].velocityX = 0;
+					(*m_BodyStorage)[it.bodyIndex].velocityY = 0;
 					(*m_InterpolStorage)[it.interpolIndex].currentTime = 0.0f;
 					(*m_InterpolStorage)[it.interpolIndex].inProgress = false;
 				}
@@ -59,8 +60,9 @@ namespace XYZ {
 	}
 
 	void PhysicsSystem::Add(Entity entity)
-	{
-		
+	{	
+		XYZ_ASSERT(m_Grid, "Grid was not created");
+
 		Component component;
 		component.entity = entity;
 		component.renderIndex = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
@@ -69,24 +71,21 @@ namespace XYZ {
 		component.interpolIndex = ECSManager::Get()->GetComponentIndex<InterpolatedMovement>(entity);
 		component.layerIndex = ECSManager::Get()->GetComponentIndex<LayerMask>(entity);
 
-		if (m_Grid)
-		{
-			auto mask = (*m_LayerStorage)[component.layerIndex].mask;
-			if (m_Grid->Insert((*m_GridPosStorage)[component.gridPosIndex], mask))
-			{
-				(*m_RenderableStorage)[component.renderIndex].position.x = (*m_GridPosStorage)[component.gridPosIndex].col;
-				(*m_RenderableStorage)[component.renderIndex].position.y = (*m_GridPosStorage)[component.gridPosIndex].row;
-				m_Components.push_back(component);
-				XYZ_LOG_INFO("Entity with ID ", entity, " added");
-			}
-			else
-			{
-				(*m_GridPosStorage)[component.gridPosIndex].col = 0;
-				(*m_GridPosStorage)[component.gridPosIndex].row = 0;
-				XYZ_LOG_WARN("Failed to insert entity with ID ", entity, " to grid");
-			}
-		}
 		
+		auto mask = (*m_LayerStorage)[component.layerIndex].mask;
+		if (m_Grid->Insert((*m_GridPosStorage)[component.gridPosIndex], mask))
+		{
+			(*m_RenderableStorage)[component.renderIndex].position.x = (float)(*m_GridPosStorage)[component.gridPosIndex].col;
+			(*m_RenderableStorage)[component.renderIndex].position.y = (float)(*m_GridPosStorage)[component.gridPosIndex].row;
+			m_Components.push_back(component);
+			XYZ_LOG_INFO("Entity with ID ", entity, " added");
+		}
+		else
+		{
+			(*m_GridPosStorage)[component.gridPosIndex].col = 0;
+			(*m_GridPosStorage)[component.gridPosIndex].row = 0;
+			XYZ_LOG_WARN("Failed to insert entity with ID ", entity, " to grid");
+		}	
 	}
 
 	void PhysicsSystem::Remove(Entity entity)
@@ -124,21 +123,23 @@ namespace XYZ {
 	{
 		if ((*m_InterpolStorage)[it.interpolIndex].inProgress)
 		{
-			auto velocity = (*m_InterpolStorage)[it.interpolIndex].velocity;
-			(*m_RenderableStorage)[it.renderIndex].position.x += velocity.x * (dt / (*m_InterpolStorage)[it.interpolIndex].length);
-			(*m_RenderableStorage)[it.renderIndex].position.y += velocity.y * (dt / (*m_InterpolStorage)[it.interpolIndex].length);
+			int x = (*m_InterpolStorage)[it.interpolIndex].velocityX;
+			int y = (*m_InterpolStorage)[it.interpolIndex].velocityY;
+
+			(*m_RenderableStorage)[it.renderIndex].position.x += x * (dt / (*m_InterpolStorage)[it.interpolIndex].length);
+			(*m_RenderableStorage)[it.renderIndex].position.y += y * (dt / (*m_InterpolStorage)[it.interpolIndex].length);
 			(*m_InterpolStorage)[it.interpolIndex].currentTime += dt;
 
 			if ((*m_InterpolStorage)[it.interpolIndex].currentTime >= (*m_InterpolStorage)[it.interpolIndex].length)
 			{
 				(*m_InterpolStorage)[it.interpolIndex].inProgress = false;
 
-				(*m_GridPosStorage)[it.gridPosIndex].col += (*m_InterpolStorage)[it.interpolIndex].velocity.x;
-				(*m_GridPosStorage)[it.gridPosIndex].row += (*m_InterpolStorage)[it.interpolIndex].velocity.y;
+				(*m_GridPosStorage)[it.gridPosIndex].col += (*m_InterpolStorage)[it.interpolIndex].velocityX;
+				(*m_GridPosStorage)[it.gridPosIndex].row += (*m_InterpolStorage)[it.interpolIndex].velocityY;
 
 				(*m_InterpolStorage)[it.interpolIndex].currentTime = 0.0f;
-				(*m_InterpolStorage)[it.interpolIndex].velocity.x = 0;
-				(*m_InterpolStorage)[it.interpolIndex].velocity.y = 0;
+				(*m_InterpolStorage)[it.interpolIndex].velocityX = 0;
+				(*m_InterpolStorage)[it.interpolIndex].velocityY = 0;
 			}
 		}
 	}

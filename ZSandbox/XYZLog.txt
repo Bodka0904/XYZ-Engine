@@ -1,0 +1,1277 @@
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: Intel
+XYZ::OpenGLAPIContext::Init: Renderer: Intel(R) HD Graphics 5500
+XYZ::OpenGLAPIContext::Init: Version: 4.4.0 - Build 20.19.15.5058
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::SpriteSystem::Add: Entity with ID 2 added
+XYZ::PhysicsSystem::Add: Entity with ID 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::SpriteSystem::Add: Entity with ID 3 added
+XYZ::PhysicsSystem::Add: Entity with ID 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::SpriteSystem::Add: Entity with ID 4 added
+XYZ::PhysicsSystem::Add: Entity with ID 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::SpriteSystem::Add: Entity with ID 5 added
+XYZ::PhysicsSystem::Add: Entity with ID 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::SpriteSystem::Add: Entity with ID 6 added
+XYZ::PhysicsSystem::Add: Entity with ID 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::SpriteSystem::Add: Entity with ID 7 added
+XYZ::PhysicsSystem::Add: Entity with ID 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::SpriteSystem::Add: Entity with ID 8 added
+XYZ::PhysicsSystem::Add: Entity with ID 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::SpriteSystem::Add: Entity with ID 9 added
+XYZ::PhysicsSystem::Add: Entity with ID 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::SpriteSystem::Add: Entity with ID 10 added
+XYZ::PhysicsSystem::Add: Entity with ID 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::SpriteSystem::Add: Entity with ID 11 added
+XYZ::PhysicsSystem::Add: Entity with ID 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 13 added
+XYZ::SpriteSystem::Add: Entity with ID 13 added
+XYZ::PhysicsSystem::Add: Entity with ID 13 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 14 added
+XYZ::SpriteSystem::Add: Entity with ID 14 added
+XYZ::PhysicsSystem::Add: Entity with ID 14 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 15 added
+XYZ::SpriteSystem::Add: Entity with ID 15 added
+XYZ::PhysicsSystem::Add: Entity with ID 15 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 16 added
+XYZ::SpriteSystem::Add: Entity with ID 16 added
+XYZ::PhysicsSystem::Add: Entity with ID 16 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 17 added
+XYZ::SpriteSystem::Add: Entity with ID 17 added
+XYZ::PhysicsSystem::Add: Entity with ID 17 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 18 added
+XYZ::SpriteSystem::Add: Entity with ID 18 added
+XYZ::PhysicsSystem::Add: Entity with ID 18 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 19 added
+XYZ::SpriteSystem::Add: Entity with ID 19 added
+XYZ::PhysicsSystem::Add: Entity with ID 19 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 20 added
+XYZ::SpriteSystem::Add: Entity with ID 20 added
+XYZ::PhysicsSystem::Add: Entity with ID 20 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 21 added
+XYZ::SpriteSystem::Add: Entity with ID 21 added
+XYZ::PhysicsSystem::Add: Entity with ID 21 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 22 added
+XYZ::SpriteSystem::Add: Entity with ID 22 added
+XYZ::PhysicsSystem::Add: Entity with ID 22 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 23 added
+XYZ::SpriteSystem::Add: Entity with ID 23 added
+XYZ::PhysicsSystem::Add: Entity with ID 23 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 24 added
+XYZ::SpriteSystem::Add: Entity with ID 24 added
+XYZ::PhysicsSystem::Add: Entity with ID 24 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 25 added
+XYZ::SpriteSystem::Add: Entity with ID 25 added
+XYZ::PhysicsSystem::Add: Entity with ID 25 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 26 added
+XYZ::SpriteSystem::Add: Entity with ID 26 added
+XYZ::PhysicsSystem::Add: Entity with ID 26 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 27 added
+XYZ::SpriteSystem::Add: Entity with ID 27 added
+XYZ::PhysicsSystem::Add: Entity with ID 27 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 28 added
+XYZ::SpriteSystem::Add: Entity with ID 28 added
+XYZ::PhysicsSystem::Add: Entity with ID 28 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 29 added
+XYZ::SpriteSystem::Add: Entity with ID 29 added
+XYZ::PhysicsSystem::Add: Entity with ID 29 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 30 added
+XYZ::SpriteSystem::Add: Entity with ID 30 added
+XYZ::PhysicsSystem::Add: Entity with ID 30 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 31 added
+XYZ::SpriteSystem::Add: Entity with ID 31 added
+XYZ::PhysicsSystem::Add: Entity with ID 31 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 32 added
+XYZ::SpriteSystem::Add: Entity with ID 32 added
+XYZ::PhysicsSystem::Add: Entity with ID 32 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 33 added
+XYZ::SpriteSystem::Add: Entity with ID 33 added
+XYZ::PhysicsSystem::Add: Entity with ID 33 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 34 added
+XYZ::SpriteSystem::Add: Entity with ID 34 added
+XYZ::PhysicsSystem::Add: Entity with ID 34 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 35 added
+XYZ::SpriteSystem::Add: Entity with ID 35 added
+XYZ::PhysicsSystem::Add: Entity with ID 35 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 36 added
+XYZ::SpriteSystem::Add: Entity with ID 36 added
+XYZ::PhysicsSystem::Add: Entity with ID 36 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 37 added
+XYZ::SpriteSystem::Add: Entity with ID 37 added
+XYZ::PhysicsSystem::Add: Entity with ID 37 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 38 added
+XYZ::SpriteSystem::Add: Entity with ID 38 added
+XYZ::PhysicsSystem::Add: Entity with ID 38 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 39 added
+XYZ::SpriteSystem::Add: Entity with ID 39 added
+XYZ::PhysicsSystem::Add: Entity with ID 39 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 40 added
+XYZ::SpriteSystem::Add: Entity with ID 40 added
+XYZ::PhysicsSystem::Add: Entity with ID 40 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 41 added
+XYZ::SpriteSystem::Add: Entity with ID 41 added
+XYZ::PhysicsSystem::Add: Entity with ID 41 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 43 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 44 added
+XYZ::SpriteSystem::Add: Entity with ID 44 added
+XYZ::PhysicsSystem::Add: Entity with ID 44 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 45 added
+XYZ::SpriteSystem::Add: Entity with ID 45 added
+XYZ::PhysicsSystem::Add: Entity with ID 45 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 46 added
+XYZ::SpriteSystem::Add: Entity with ID 46 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 46 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 47 added
+XYZ::SpriteSystem::Add: Entity with ID 47 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 47 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 48 added
+XYZ::SpriteSystem::Add: Entity with ID 48 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 48 to grid
+XYZ::PhysicsSystem::Remove: Entity with id 45 removed
+XYZ::SpriteSystem::Remove: Entity with id 45 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 45 removed
+XYZ::PhysicsSystem::Remove: Entity with id 42 removed
+XYZ::SpriteSystem::Remove: Entity with id 42 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 42 removed
+XYZ::SpriteSystem::Remove: Entity with id 43 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 43 removed
+XYZ::PhysicsSystem::Remove: Entity with id 44 removed
+XYZ::SpriteSystem::Remove: Entity with id 44 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 44 removed
+XYZ::SpriteSystem::Remove: Entity with id 48 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 48 removed
+XYZ::SpriteSystem::Remove: Entity with id 46 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 46 removed
+XYZ::SpriteSystem::Remove: Entity with id 47 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 47 removed
+XYZ::RendererBatchSystem2D::Add: Entity with id 47 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 46 added
+XYZ::SpriteSystem::Add: Entity with ID 46 added
+XYZ::PhysicsSystem::Add: Entity with ID 46 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 48 added
+XYZ::SpriteSystem::Add: Entity with ID 48 added
+XYZ::PhysicsSystem::Add: Entity with ID 48 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 44 added
+XYZ::SpriteSystem::Add: Entity with ID 44 added
+XYZ::PhysicsSystem::Add: Entity with ID 44 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Entity with ID 43 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 45 added
+XYZ::SpriteSystem::Add: Entity with ID 45 added
+XYZ::PhysicsSystem::Add: Entity with ID 45 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 49 added
+XYZ::SpriteSystem::Add: Entity with ID 49 added
+XYZ::PhysicsSystem::Add: Entity with ID 49 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 50 added
+XYZ::SpriteSystem::Add: Entity with ID 50 added
+XYZ::PhysicsSystem::Add: Entity with ID 50 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 51 added
+XYZ::SpriteSystem::Add: Entity with ID 51 added
+XYZ::PhysicsSystem::Add: Entity with ID 51 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 52 added
+XYZ::SpriteSystem::Add: Entity with ID 52 added
+XYZ::PhysicsSystem::Add: Entity with ID 52 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 53 added
+XYZ::SpriteSystem::Add: Entity with ID 53 added
+XYZ::PhysicsSystem::Add: Entity with ID 53 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 54 added
+XYZ::SpriteSystem::Add: Entity with ID 54 added
+XYZ::PhysicsSystem::Add: Entity with ID 54 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 55 added
+XYZ::SpriteSystem::Add: Entity with ID 55 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 55 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 56 added
+XYZ::SpriteSystem::Add: Entity with ID 56 added
+XYZ::PhysicsSystem::Add: Entity with ID 56 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 57 added
+XYZ::SpriteSystem::Add: Entity with ID 57 added
+XYZ::PhysicsSystem::Add: Entity with ID 57 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 58 added
+XYZ::SpriteSystem::Add: Entity with ID 58 added
+XYZ::PhysicsSystem::Add: Entity with ID 58 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 59 added
+XYZ::SpriteSystem::Add: Entity with ID 59 added
+XYZ::PhysicsSystem::Add: Entity with ID 59 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 60 added
+XYZ::SpriteSystem::Add: Entity with ID 60 added
+XYZ::PhysicsSystem::Add: Entity with ID 60 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 61 added
+XYZ::SpriteSystem::Add: Entity with ID 61 added
+XYZ::PhysicsSystem::Add: Entity with ID 61 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 62 added
+XYZ::SpriteSystem::Add: Entity with ID 62 added
+XYZ::PhysicsSystem::Add: Entity with ID 62 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 63 added
+XYZ::SpriteSystem::Add: Entity with ID 63 added
+XYZ::PhysicsSystem::Add: Entity with ID 63 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 64 added
+XYZ::SpriteSystem::Add: Entity with ID 64 added
+XYZ::PhysicsSystem::Add: Entity with ID 64 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 65 added
+XYZ::SpriteSystem::Add: Entity with ID 65 added
+XYZ::PhysicsSystem::Add: Entity with ID 65 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 66 added
+XYZ::SpriteSystem::Add: Entity with ID 66 added
+XYZ::PhysicsSystem::Add: Entity with ID 66 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 67 added
+XYZ::SpriteSystem::Add: Entity with ID 67 added
+XYZ::PhysicsSystem::Add: Entity with ID 67 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 68 added
+XYZ::SpriteSystem::Add: Entity with ID 68 added
+XYZ::PhysicsSystem::Add: Entity with ID 68 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 69 added
+XYZ::SpriteSystem::Add: Entity with ID 69 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 69 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 70 added
+XYZ::SpriteSystem::Add: Entity with ID 70 added
+XYZ::PhysicsSystem::Add: Entity with ID 70 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 71 added
+XYZ::SpriteSystem::Add: Entity with ID 71 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 71 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 72 added
+XYZ::SpriteSystem::Add: Entity with ID 72 added
+XYZ::PhysicsSystem::Add: Entity with ID 72 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 73 added
+XYZ::SpriteSystem::Add: Entity with ID 73 added
+XYZ::PhysicsSystem::Add: Entity with ID 73 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 74 added
+XYZ::SpriteSystem::Add: Entity with ID 74 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 74 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 75 added
+XYZ::SpriteSystem::Add: Entity with ID 75 added
+XYZ::PhysicsSystem::Add: Entity with ID 75 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 76 added
+XYZ::SpriteSystem::Add: Entity with ID 76 added
+XYZ::PhysicsSystem::Add: Entity with ID 76 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 77 added
+XYZ::SpriteSystem::Add: Entity with ID 77 added
+XYZ::PhysicsSystem::Add: Entity with ID 77 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 78 added
+XYZ::SpriteSystem::Add: Entity with ID 78 added
+XYZ::PhysicsSystem::Add: Entity with ID 78 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 79 added
+XYZ::SpriteSystem::Add: Entity with ID 79 added
+XYZ::PhysicsSystem::Add: Entity with ID 79 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 80 added
+XYZ::SpriteSystem::Add: Entity with ID 80 added
+XYZ::PhysicsSystem::Add: Entity with ID 80 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 81 added
+XYZ::SpriteSystem::Add: Entity with ID 81 added
+XYZ::PhysicsSystem::Add: Entity with ID 81 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 82 added
+XYZ::SpriteSystem::Add: Entity with ID 82 added
+XYZ::PhysicsSystem::Add: Entity with ID 82 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 83 added
+XYZ::SpriteSystem::Add: Entity with ID 83 added
+XYZ::PhysicsSystem::Add: Entity with ID 83 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 84 added
+XYZ::SpriteSystem::Add: Entity with ID 84 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 84 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 85 added
+XYZ::SpriteSystem::Add: Entity with ID 85 added
+XYZ::PhysicsSystem::Add: Entity with ID 85 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 86 added
+XYZ::SpriteSystem::Add: Entity with ID 86 added
+XYZ::PhysicsSystem::Add: Entity with ID 86 added
+XYZ::PhysicsSystem::Remove: Entity with id 86 removed
+XYZ::SpriteSystem::Remove: Entity with id 86 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 86 removed
+XYZ::PhysicsSystem::Remove: Entity with id 83 removed
+XYZ::SpriteSystem::Remove: Entity with id 83 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 83 removed
+XYZ::SpriteSystem::Remove: Entity with id 84 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 84 removed
+XYZ::PhysicsSystem::Remove: Entity with id 85 removed
+XYZ::SpriteSystem::Remove: Entity with id 85 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 85 removed
+XYZ::RendererBatchSystem2D::Add: Entity with id 85 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 84 added
+XYZ::SpriteSystem::Add: Entity with ID 84 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 84 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 83 added
+XYZ::SpriteSystem::Add: Entity with ID 83 added
+XYZ::PhysicsSystem::Add: Entity with ID 83 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 86 added
+XYZ::SpriteSystem::Add: Entity with ID 86 added
+XYZ::PhysicsSystem::Add: Entity with ID 86 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 87 added
+XYZ::SpriteSystem::Add: Entity with ID 87 added
+XYZ::PhysicsSystem::Add: Entity with ID 87 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 88 added
+XYZ::SpriteSystem::Add: Entity with ID 88 added
+XYZ::PhysicsSystem::Add: Entity with ID 88 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 89 added
+XYZ::SpriteSystem::Add: Entity with ID 89 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 89 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 90 added
+XYZ::SpriteSystem::Add: Entity with ID 90 added
+XYZ::PhysicsSystem::Add: Entity with ID 90 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 91 added
+XYZ::SpriteSystem::Add: Entity with ID 91 added
+XYZ::PhysicsSystem::Add: Entity with ID 91 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 92 added
+XYZ::SpriteSystem::Add: Entity with ID 92 added
+XYZ::PhysicsSystem::Add: Entity with ID 92 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 93 added
+XYZ::SpriteSystem::Add: Entity with ID 93 added
+XYZ::PhysicsSystem::Add: Entity with ID 93 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 94 added
+XYZ::SpriteSystem::Add: Entity with ID 94 added
+XYZ::PhysicsSystem::Add: Entity with ID 94 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 95 added
+XYZ::SpriteSystem::Add: Entity with ID 95 added
+XYZ::PhysicsSystem::Add: Entity with ID 95 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 96 added
+XYZ::SpriteSystem::Add: Entity with ID 96 added
+XYZ::PhysicsSystem::Add: Entity with ID 96 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 97 added
+XYZ::SpriteSystem::Add: Entity with ID 97 added
+XYZ::PhysicsSystem::Add: Entity with ID 97 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 98 added
+XYZ::SpriteSystem::Add: Entity with ID 98 added
+XYZ::PhysicsSystem::Add: Entity with ID 98 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 99 added
+XYZ::SpriteSystem::Add: Entity with ID 99 added
+XYZ::PhysicsSystem::Add: Entity with ID 99 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 100 added
+XYZ::SpriteSystem::Add: Entity with ID 100 added
+XYZ::PhysicsSystem::Add: Entity with ID 100 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 101 added
+XYZ::SpriteSystem::Add: Entity with ID 101 added
+XYZ::PhysicsSystem::Add: Entity with ID 101 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 102 added
+XYZ::SpriteSystem::Add: Entity with ID 102 added
+XYZ::PhysicsSystem::Add: Entity with ID 102 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 103 added
+XYZ::SpriteSystem::Add: Entity with ID 103 added
+XYZ::PhysicsSystem::Add: Entity with ID 103 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 104 added
+XYZ::SpriteSystem::Add: Entity with ID 104 added
+XYZ::PhysicsSystem::Add: Entity with ID 104 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 105 added
+XYZ::SpriteSystem::Add: Entity with ID 105 added
+XYZ::PhysicsSystem::Add: Entity with ID 105 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 106 added
+XYZ::SpriteSystem::Add: Entity with ID 106 added
+XYZ::PhysicsSystem::Add: Entity with ID 106 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 107 added
+XYZ::SpriteSystem::Add: Entity with ID 107 added
+XYZ::PhysicsSystem::Add: Entity with ID 107 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 108 added
+XYZ::SpriteSystem::Add: Entity with ID 108 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 108 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 109 added
+XYZ::SpriteSystem::Add: Entity with ID 109 added
+XYZ::PhysicsSystem::Add: Entity with ID 109 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 110 added
+XYZ::SpriteSystem::Add: Entity with ID 110 added
+XYZ::PhysicsSystem::Add: Entity with ID 110 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 111 added
+XYZ::SpriteSystem::Add: Entity with ID 111 added
+XYZ::PhysicsSystem::Add: Entity with ID 111 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 112 added
+XYZ::SpriteSystem::Add: Entity with ID 112 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 112 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 113 added
+XYZ::SpriteSystem::Add: Entity with ID 113 added
+XYZ::PhysicsSystem::Add: Entity with ID 113 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 114 added
+XYZ::SpriteSystem::Add: Entity with ID 114 added
+XYZ::PhysicsSystem::Add: Entity with ID 114 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 115 added
+XYZ::SpriteSystem::Add: Entity with ID 115 added
+XYZ::PhysicsSystem::Add: Entity with ID 115 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 116 added
+XYZ::SpriteSystem::Add: Entity with ID 116 added
+XYZ::PhysicsSystem::Add: Entity with ID 116 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 117 added
+XYZ::SpriteSystem::Add: Entity with ID 117 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 117 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 118 added
+XYZ::SpriteSystem::Add: Entity with ID 118 added
+XYZ::PhysicsSystem::Add: Entity with ID 118 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 119 added
+XYZ::SpriteSystem::Add: Entity with ID 119 added
+XYZ::PhysicsSystem::Add: Entity with ID 119 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 120 added
+XYZ::SpriteSystem::Add: Entity with ID 120 added
+XYZ::PhysicsSystem::Add: Entity with ID 120 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 121 added
+XYZ::SpriteSystem::Add: Entity with ID 121 added
+XYZ::PhysicsSystem::Add: Entity with ID 121 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 122 added
+XYZ::SpriteSystem::Add: Entity with ID 122 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 122 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 123 added
+XYZ::SpriteSystem::Add: Entity with ID 123 added
+XYZ::PhysicsSystem::Add: Entity with ID 123 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 124 added
+XYZ::SpriteSystem::Add: Entity with ID 124 added
+XYZ::PhysicsSystem::Add: Entity with ID 124 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 125 added
+XYZ::SpriteSystem::Add: Entity with ID 125 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 125 to grid
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::SpriteSystem::Add: Entity with ID 2 added
+XYZ::PhysicsSystem::Add: Entity with ID 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::SpriteSystem::Add: Entity with ID 3 added
+XYZ::PhysicsSystem::Add: Entity with ID 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::SpriteSystem::Add: Entity with ID 4 added
+XYZ::PhysicsSystem::Add: Entity with ID 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::SpriteSystem::Add: Entity with ID 5 added
+XYZ::PhysicsSystem::Add: Entity with ID 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::SpriteSystem::Add: Entity with ID 6 added
+XYZ::PhysicsSystem::Add: Entity with ID 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::SpriteSystem::Add: Entity with ID 7 added
+XYZ::PhysicsSystem::Add: Entity with ID 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::SpriteSystem::Add: Entity with ID 8 added
+XYZ::PhysicsSystem::Add: Entity with ID 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::SpriteSystem::Add: Entity with ID 9 added
+XYZ::PhysicsSystem::Add: Entity with ID 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::SpriteSystem::Add: Entity with ID 10 added
+XYZ::PhysicsSystem::Add: Entity with ID 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::SpriteSystem::Add: Entity with ID 11 added
+XYZ::PhysicsSystem::Add: Entity with ID 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 13 added
+XYZ::SpriteSystem::Add: Entity with ID 13 added
+XYZ::PhysicsSystem::Add: Entity with ID 13 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 14 added
+XYZ::SpriteSystem::Add: Entity with ID 14 added
+XYZ::PhysicsSystem::Add: Entity with ID 14 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 15 added
+XYZ::SpriteSystem::Add: Entity with ID 15 added
+XYZ::PhysicsSystem::Add: Entity with ID 15 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 16 added
+XYZ::SpriteSystem::Add: Entity with ID 16 added
+XYZ::PhysicsSystem::Add: Entity with ID 16 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 17 added
+XYZ::SpriteSystem::Add: Entity with ID 17 added
+XYZ::PhysicsSystem::Add: Entity with ID 17 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 18 added
+XYZ::SpriteSystem::Add: Entity with ID 18 added
+XYZ::PhysicsSystem::Add: Entity with ID 18 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 19 added
+XYZ::SpriteSystem::Add: Entity with ID 19 added
+XYZ::PhysicsSystem::Add: Entity with ID 19 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 20 added
+XYZ::SpriteSystem::Add: Entity with ID 20 added
+XYZ::PhysicsSystem::Add: Entity with ID 20 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 21 added
+XYZ::SpriteSystem::Add: Entity with ID 21 added
+XYZ::PhysicsSystem::Add: Entity with ID 21 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 22 added
+XYZ::SpriteSystem::Add: Entity with ID 22 added
+XYZ::PhysicsSystem::Add: Entity with ID 22 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 23 added
+XYZ::SpriteSystem::Add: Entity with ID 23 added
+XYZ::PhysicsSystem::Add: Entity with ID 23 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 24 added
+XYZ::SpriteSystem::Add: Entity with ID 24 added
+XYZ::PhysicsSystem::Add: Entity with ID 24 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 25 added
+XYZ::SpriteSystem::Add: Entity with ID 25 added
+XYZ::PhysicsSystem::Add: Entity with ID 25 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 26 added
+XYZ::SpriteSystem::Add: Entity with ID 26 added
+XYZ::PhysicsSystem::Add: Entity with ID 26 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 27 added
+XYZ::SpriteSystem::Add: Entity with ID 27 added
+XYZ::PhysicsSystem::Add: Entity with ID 27 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 28 added
+XYZ::SpriteSystem::Add: Entity with ID 28 added
+XYZ::PhysicsSystem::Add: Entity with ID 28 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 29 added
+XYZ::SpriteSystem::Add: Entity with ID 29 added
+XYZ::PhysicsSystem::Add: Entity with ID 29 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 30 added
+XYZ::SpriteSystem::Add: Entity with ID 30 added
+XYZ::PhysicsSystem::Add: Entity with ID 30 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 31 added
+XYZ::SpriteSystem::Add: Entity with ID 31 added
+XYZ::PhysicsSystem::Add: Entity with ID 31 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 32 added
+XYZ::SpriteSystem::Add: Entity with ID 32 added
+XYZ::PhysicsSystem::Add: Entity with ID 32 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 33 added
+XYZ::SpriteSystem::Add: Entity with ID 33 added
+XYZ::PhysicsSystem::Add: Entity with ID 33 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 34 added
+XYZ::SpriteSystem::Add: Entity with ID 34 added
+XYZ::PhysicsSystem::Add: Entity with ID 34 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 35 added
+XYZ::SpriteSystem::Add: Entity with ID 35 added
+XYZ::PhysicsSystem::Add: Entity with ID 35 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 36 added
+XYZ::SpriteSystem::Add: Entity with ID 36 added
+XYZ::PhysicsSystem::Add: Entity with ID 36 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 37 added
+XYZ::SpriteSystem::Add: Entity with ID 37 added
+XYZ::PhysicsSystem::Add: Entity with ID 37 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 38 added
+XYZ::SpriteSystem::Add: Entity with ID 38 added
+XYZ::PhysicsSystem::Add: Entity with ID 38 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 39 added
+XYZ::SpriteSystem::Add: Entity with ID 39 added
+XYZ::PhysicsSystem::Add: Entity with ID 39 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 40 added
+XYZ::SpriteSystem::Add: Entity with ID 40 added
+XYZ::PhysicsSystem::Add: Entity with ID 40 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 41 added
+XYZ::SpriteSystem::Add: Entity with ID 41 added
+XYZ::PhysicsSystem::Add: Entity with ID 41 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Entity with ID 43 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1920 height: 1017
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1024 height: 840
+XYZ::RendererBatchSystem2D::Add: Entity with id 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::SpriteSystem::Add: Entity with ID 2 added
+XYZ::PhysicsSystem::Add: Entity with ID 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::SpriteSystem::Add: Entity with ID 3 added
+XYZ::PhysicsSystem::Add: Entity with ID 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::SpriteSystem::Add: Entity with ID 4 added
+XYZ::PhysicsSystem::Add: Entity with ID 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::SpriteSystem::Add: Entity with ID 5 added
+XYZ::PhysicsSystem::Add: Entity with ID 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::SpriteSystem::Add: Entity with ID 6 added
+XYZ::PhysicsSystem::Add: Entity with ID 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::SpriteSystem::Add: Entity with ID 7 added
+XYZ::PhysicsSystem::Add: Entity with ID 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::SpriteSystem::Add: Entity with ID 8 added
+XYZ::PhysicsSystem::Add: Entity with ID 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::SpriteSystem::Add: Entity with ID 9 added
+XYZ::PhysicsSystem::Add: Entity with ID 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::SpriteSystem::Add: Entity with ID 10 added
+XYZ::PhysicsSystem::Add: Entity with ID 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::SpriteSystem::Add: Entity with ID 11 added
+XYZ::PhysicsSystem::Add: Entity with ID 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 13 added
+XYZ::SpriteSystem::Add: Entity with ID 13 added
+XYZ::PhysicsSystem::Add: Entity with ID 13 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 14 added
+XYZ::SpriteSystem::Add: Entity with ID 14 added
+XYZ::PhysicsSystem::Add: Entity with ID 14 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 15 added
+XYZ::SpriteSystem::Add: Entity with ID 15 added
+XYZ::PhysicsSystem::Add: Entity with ID 15 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 16 added
+XYZ::SpriteSystem::Add: Entity with ID 16 added
+XYZ::PhysicsSystem::Add: Entity with ID 16 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 17 added
+XYZ::SpriteSystem::Add: Entity with ID 17 added
+XYZ::PhysicsSystem::Add: Entity with ID 17 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 18 added
+XYZ::SpriteSystem::Add: Entity with ID 18 added
+XYZ::PhysicsSystem::Add: Entity with ID 18 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 19 added
+XYZ::SpriteSystem::Add: Entity with ID 19 added
+XYZ::PhysicsSystem::Add: Entity with ID 19 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 20 added
+XYZ::SpriteSystem::Add: Entity with ID 20 added
+XYZ::PhysicsSystem::Add: Entity with ID 20 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 21 added
+XYZ::SpriteSystem::Add: Entity with ID 21 added
+XYZ::PhysicsSystem::Add: Entity with ID 21 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 22 added
+XYZ::SpriteSystem::Add: Entity with ID 22 added
+XYZ::PhysicsSystem::Add: Entity with ID 22 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 23 added
+XYZ::SpriteSystem::Add: Entity with ID 23 added
+XYZ::PhysicsSystem::Add: Entity with ID 23 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 24 added
+XYZ::SpriteSystem::Add: Entity with ID 24 added
+XYZ::PhysicsSystem::Add: Entity with ID 24 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 25 added
+XYZ::SpriteSystem::Add: Entity with ID 25 added
+XYZ::PhysicsSystem::Add: Entity with ID 25 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 26 added
+XYZ::SpriteSystem::Add: Entity with ID 26 added
+XYZ::PhysicsSystem::Add: Entity with ID 26 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 27 added
+XYZ::SpriteSystem::Add: Entity with ID 27 added
+XYZ::PhysicsSystem::Add: Entity with ID 27 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 28 added
+XYZ::SpriteSystem::Add: Entity with ID 28 added
+XYZ::PhysicsSystem::Add: Entity with ID 28 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 29 added
+XYZ::SpriteSystem::Add: Entity with ID 29 added
+XYZ::PhysicsSystem::Add: Entity with ID 29 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 30 added
+XYZ::SpriteSystem::Add: Entity with ID 30 added
+XYZ::PhysicsSystem::Add: Entity with ID 30 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 31 added
+XYZ::SpriteSystem::Add: Entity with ID 31 added
+XYZ::PhysicsSystem::Add: Entity with ID 31 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 32 added
+XYZ::SpriteSystem::Add: Entity with ID 32 added
+XYZ::PhysicsSystem::Add: Entity with ID 32 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 33 added
+XYZ::SpriteSystem::Add: Entity with ID 33 added
+XYZ::PhysicsSystem::Add: Entity with ID 33 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 34 added
+XYZ::SpriteSystem::Add: Entity with ID 34 added
+XYZ::PhysicsSystem::Add: Entity with ID 34 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 35 added
+XYZ::SpriteSystem::Add: Entity with ID 35 added
+XYZ::PhysicsSystem::Add: Entity with ID 35 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 36 added
+XYZ::SpriteSystem::Add: Entity with ID 36 added
+XYZ::PhysicsSystem::Add: Entity with ID 36 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 37 added
+XYZ::SpriteSystem::Add: Entity with ID 37 added
+XYZ::PhysicsSystem::Add: Entity with ID 37 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 38 added
+XYZ::SpriteSystem::Add: Entity with ID 38 added
+XYZ::PhysicsSystem::Add: Entity with ID 38 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 39 added
+XYZ::SpriteSystem::Add: Entity with ID 39 added
+XYZ::PhysicsSystem::Add: Entity with ID 39 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 40 added
+XYZ::SpriteSystem::Add: Entity with ID 40 added
+XYZ::PhysicsSystem::Add: Entity with ID 40 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 41 added
+XYZ::SpriteSystem::Add: Entity with ID 41 added
+XYZ::PhysicsSystem::Add: Entity with ID 41 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Entity with ID 43 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::SpriteSystem::Add: Entity with ID 2 added
+XYZ::PhysicsSystem::Add: Entity with ID 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::SpriteSystem::Add: Entity with ID 3 added
+XYZ::PhysicsSystem::Add: Entity with ID 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::SpriteSystem::Add: Entity with ID 4 added
+XYZ::PhysicsSystem::Add: Entity with ID 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::SpriteSystem::Add: Entity with ID 5 added
+XYZ::PhysicsSystem::Add: Entity with ID 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::SpriteSystem::Add: Entity with ID 6 added
+XYZ::PhysicsSystem::Add: Entity with ID 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::SpriteSystem::Add: Entity with ID 7 added
+XYZ::PhysicsSystem::Add: Entity with ID 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::SpriteSystem::Add: Entity with ID 8 added
+XYZ::PhysicsSystem::Add: Entity with ID 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::SpriteSystem::Add: Entity with ID 9 added
+XYZ::PhysicsSystem::Add: Entity with ID 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::SpriteSystem::Add: Entity with ID 10 added
+XYZ::PhysicsSystem::Add: Entity with ID 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::SpriteSystem::Add: Entity with ID 11 added
+XYZ::PhysicsSystem::Add: Entity with ID 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 13 added
+XYZ::SpriteSystem::Add: Entity with ID 13 added
+XYZ::PhysicsSystem::Add: Entity with ID 13 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 14 added
+XYZ::SpriteSystem::Add: Entity with ID 14 added
+XYZ::PhysicsSystem::Add: Entity with ID 14 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 15 added
+XYZ::SpriteSystem::Add: Entity with ID 15 added
+XYZ::PhysicsSystem::Add: Entity with ID 15 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 16 added
+XYZ::SpriteSystem::Add: Entity with ID 16 added
+XYZ::PhysicsSystem::Add: Entity with ID 16 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 17 added
+XYZ::SpriteSystem::Add: Entity with ID 17 added
+XYZ::PhysicsSystem::Add: Entity with ID 17 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 18 added
+XYZ::SpriteSystem::Add: Entity with ID 18 added
+XYZ::PhysicsSystem::Add: Entity with ID 18 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 19 added
+XYZ::SpriteSystem::Add: Entity with ID 19 added
+XYZ::PhysicsSystem::Add: Entity with ID 19 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 20 added
+XYZ::SpriteSystem::Add: Entity with ID 20 added
+XYZ::PhysicsSystem::Add: Entity with ID 20 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 21 added
+XYZ::SpriteSystem::Add: Entity with ID 21 added
+XYZ::PhysicsSystem::Add: Entity with ID 21 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 22 added
+XYZ::SpriteSystem::Add: Entity with ID 22 added
+XYZ::PhysicsSystem::Add: Entity with ID 22 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 23 added
+XYZ::SpriteSystem::Add: Entity with ID 23 added
+XYZ::PhysicsSystem::Add: Entity with ID 23 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 24 added
+XYZ::SpriteSystem::Add: Entity with ID 24 added
+XYZ::PhysicsSystem::Add: Entity with ID 24 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 25 added
+XYZ::SpriteSystem::Add: Entity with ID 25 added
+XYZ::PhysicsSystem::Add: Entity with ID 25 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 26 added
+XYZ::SpriteSystem::Add: Entity with ID 26 added
+XYZ::PhysicsSystem::Add: Entity with ID 26 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 27 added
+XYZ::SpriteSystem::Add: Entity with ID 27 added
+XYZ::PhysicsSystem::Add: Entity with ID 27 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 28 added
+XYZ::SpriteSystem::Add: Entity with ID 28 added
+XYZ::PhysicsSystem::Add: Entity with ID 28 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 29 added
+XYZ::SpriteSystem::Add: Entity with ID 29 added
+XYZ::PhysicsSystem::Add: Entity with ID 29 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 30 added
+XYZ::SpriteSystem::Add: Entity with ID 30 added
+XYZ::PhysicsSystem::Add: Entity with ID 30 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 31 added
+XYZ::SpriteSystem::Add: Entity with ID 31 added
+XYZ::PhysicsSystem::Add: Entity with ID 31 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 32 added
+XYZ::SpriteSystem::Add: Entity with ID 32 added
+XYZ::PhysicsSystem::Add: Entity with ID 32 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 33 added
+XYZ::SpriteSystem::Add: Entity with ID 33 added
+XYZ::PhysicsSystem::Add: Entity with ID 33 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 34 added
+XYZ::SpriteSystem::Add: Entity with ID 34 added
+XYZ::PhysicsSystem::Add: Entity with ID 34 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 35 added
+XYZ::SpriteSystem::Add: Entity with ID 35 added
+XYZ::PhysicsSystem::Add: Entity with ID 35 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 36 added
+XYZ::SpriteSystem::Add: Entity with ID 36 added
+XYZ::PhysicsSystem::Add: Entity with ID 36 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 37 added
+XYZ::SpriteSystem::Add: Entity with ID 37 added
+XYZ::PhysicsSystem::Add: Entity with ID 37 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 38 added
+XYZ::SpriteSystem::Add: Entity with ID 38 added
+XYZ::PhysicsSystem::Add: Entity with ID 38 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 39 added
+XYZ::SpriteSystem::Add: Entity with ID 39 added
+XYZ::PhysicsSystem::Add: Entity with ID 39 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 40 added
+XYZ::SpriteSystem::Add: Entity with ID 40 added
+XYZ::PhysicsSystem::Add: Entity with ID 40 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 41 added
+XYZ::SpriteSystem::Add: Entity with ID 41 added
+XYZ::PhysicsSystem::Add: Entity with ID 41 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Entity with ID 43 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 1 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 2 added
+XYZ::SpriteSystem::Add: Entity with ID 2 added
+XYZ::PhysicsSystem::Add: Entity with ID 2 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 3 added
+XYZ::SpriteSystem::Add: Entity with ID 3 added
+XYZ::PhysicsSystem::Add: Entity with ID 3 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 4 added
+XYZ::SpriteSystem::Add: Entity with ID 4 added
+XYZ::PhysicsSystem::Add: Entity with ID 4 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 5 added
+XYZ::SpriteSystem::Add: Entity with ID 5 added
+XYZ::PhysicsSystem::Add: Entity with ID 5 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 6 added
+XYZ::SpriteSystem::Add: Entity with ID 6 added
+XYZ::PhysicsSystem::Add: Entity with ID 6 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 7 added
+XYZ::SpriteSystem::Add: Entity with ID 7 added
+XYZ::PhysicsSystem::Add: Entity with ID 7 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 8 added
+XYZ::SpriteSystem::Add: Entity with ID 8 added
+XYZ::PhysicsSystem::Add: Entity with ID 8 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 9 added
+XYZ::SpriteSystem::Add: Entity with ID 9 added
+XYZ::PhysicsSystem::Add: Entity with ID 9 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 10 added
+XYZ::SpriteSystem::Add: Entity with ID 10 added
+XYZ::PhysicsSystem::Add: Entity with ID 10 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 11 added
+XYZ::SpriteSystem::Add: Entity with ID 11 added
+XYZ::PhysicsSystem::Add: Entity with ID 11 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 12 added
+XYZ::SpriteSystem::Add: Entity with ID 12 added
+XYZ::PhysicsSystem::Add: Entity with ID 12 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 13 added
+XYZ::SpriteSystem::Add: Entity with ID 13 added
+XYZ::PhysicsSystem::Add: Entity with ID 13 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 14 added
+XYZ::SpriteSystem::Add: Entity with ID 14 added
+XYZ::PhysicsSystem::Add: Entity with ID 14 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 15 added
+XYZ::SpriteSystem::Add: Entity with ID 15 added
+XYZ::PhysicsSystem::Add: Entity with ID 15 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 16 added
+XYZ::SpriteSystem::Add: Entity with ID 16 added
+XYZ::PhysicsSystem::Add: Entity with ID 16 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 17 added
+XYZ::SpriteSystem::Add: Entity with ID 17 added
+XYZ::PhysicsSystem::Add: Entity with ID 17 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 18 added
+XYZ::SpriteSystem::Add: Entity with ID 18 added
+XYZ::PhysicsSystem::Add: Entity with ID 18 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 19 added
+XYZ::SpriteSystem::Add: Entity with ID 19 added
+XYZ::PhysicsSystem::Add: Entity with ID 19 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 20 added
+XYZ::SpriteSystem::Add: Entity with ID 20 added
+XYZ::PhysicsSystem::Add: Entity with ID 20 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 21 added
+XYZ::SpriteSystem::Add: Entity with ID 21 added
+XYZ::PhysicsSystem::Add: Entity with ID 21 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 22 added
+XYZ::SpriteSystem::Add: Entity with ID 22 added
+XYZ::PhysicsSystem::Add: Entity with ID 22 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 23 added
+XYZ::SpriteSystem::Add: Entity with ID 23 added
+XYZ::PhysicsSystem::Add: Entity with ID 23 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 24 added
+XYZ::SpriteSystem::Add: Entity with ID 24 added
+XYZ::PhysicsSystem::Add: Entity with ID 24 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 25 added
+XYZ::SpriteSystem::Add: Entity with ID 25 added
+XYZ::PhysicsSystem::Add: Entity with ID 25 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 26 added
+XYZ::SpriteSystem::Add: Entity with ID 26 added
+XYZ::PhysicsSystem::Add: Entity with ID 26 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 27 added
+XYZ::SpriteSystem::Add: Entity with ID 27 added
+XYZ::PhysicsSystem::Add: Entity with ID 27 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 28 added
+XYZ::SpriteSystem::Add: Entity with ID 28 added
+XYZ::PhysicsSystem::Add: Entity with ID 28 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 29 added
+XYZ::SpriteSystem::Add: Entity with ID 29 added
+XYZ::PhysicsSystem::Add: Entity with ID 29 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 30 added
+XYZ::SpriteSystem::Add: Entity with ID 30 added
+XYZ::PhysicsSystem::Add: Entity with ID 30 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 31 added
+XYZ::SpriteSystem::Add: Entity with ID 31 added
+XYZ::PhysicsSystem::Add: Entity with ID 31 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 32 added
+XYZ::SpriteSystem::Add: Entity with ID 32 added
+XYZ::PhysicsSystem::Add: Entity with ID 32 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 33 added
+XYZ::SpriteSystem::Add: Entity with ID 33 added
+XYZ::PhysicsSystem::Add: Entity with ID 33 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 34 added
+XYZ::SpriteSystem::Add: Entity with ID 34 added
+XYZ::PhysicsSystem::Add: Entity with ID 34 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 35 added
+XYZ::SpriteSystem::Add: Entity with ID 35 added
+XYZ::PhysicsSystem::Add: Entity with ID 35 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 36 added
+XYZ::SpriteSystem::Add: Entity with ID 36 added
+XYZ::PhysicsSystem::Add: Entity with ID 36 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 37 added
+XYZ::SpriteSystem::Add: Entity with ID 37 added
+XYZ::PhysicsSystem::Add: Entity with ID 37 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 38 added
+XYZ::SpriteSystem::Add: Entity with ID 38 added
+XYZ::PhysicsSystem::Add: Entity with ID 38 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 39 added
+XYZ::SpriteSystem::Add: Entity with ID 39 added
+XYZ::PhysicsSystem::Add: Entity with ID 39 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 40 added
+XYZ::SpriteSystem::Add: Entity with ID 40 added
+XYZ::PhysicsSystem::Add: Entity with ID 40 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 41 added
+XYZ::SpriteSystem::Add: Entity with ID 41 added
+XYZ::PhysicsSystem::Add: Entity with ID 41 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 42 added
+XYZ::SpriteSystem::Add: Entity with ID 42 added
+XYZ::PhysicsSystem::Add: Entity with ID 42 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 43 added
+XYZ::SpriteSystem::Add: Entity with ID 43 added
+XYZ::PhysicsSystem::Add: Failed to insert entity with ID 43 to grid
+XYZ::RendererBatchSystem2D::Add: Entity with id 44 added
+XYZ::SpriteSystem::Add: Entity with ID 44 added
+XYZ::PhysicsSystem::Add: Entity with ID 44 added
+XYZ::RendererBatchSystem2D::Add: Entity with id 45 added
+XYZ::SpriteSystem::Add: Entity with ID 45 added
+XYZ::PhysicsSystem::Add: Entity with ID 45 added
+XYZ::PhysicsSystem::Remove: Entity with id 44 removed
+XYZ::SpriteSystem::Remove: Entity with id 44 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 44 removed
+XYZ::SpriteSystem::Remove: Entity with id 43 removed
+XYZ::RendererBatchSystem2D::Remove: Entity with id 43 removed
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1920 height: 1017
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::ParticleEffect2D::PushParticle: Reached maximum number of particles
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1024 height: 840
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::ComponentStorage<struct XYZ::ParticleEmitter>::operator []: Assertion Failed: Index out of range
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::ComponentStorage<struct XYZ::ParticleEmitter>::operator []: Assertion Failed: Index out of range
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1920 height: 1017
+XYZ::WindowResizeEvent::WindowResizeEvent: Window: Resized window width: 1024 height: 840
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed
+XYZ::OpenGLAPIContext::Init: OpenGL Info:
+XYZ::OpenGLAPIContext::Init: Vendor: NVIDIA Corporation
+XYZ::OpenGLAPIContext::Init: Renderer: GeForce 940M/PCIe/SSE2
+XYZ::OpenGLAPIContext::Init: Version: 4.6.0 NVIDIA 442.59
+XYZ::ParticleSystem2D::Add: Entity with id 0 added
+XYZ::WindowCloseEvent::WindowCloseEvent: Window: Window closed

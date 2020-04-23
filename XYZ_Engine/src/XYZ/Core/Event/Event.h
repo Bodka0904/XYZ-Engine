@@ -1,5 +1,5 @@
 #pragma once 
-#include "../Log.h"
+#include "XYZ/Core/Logger.h"
 
 /*
 	Very simple event system, requires update in the future.

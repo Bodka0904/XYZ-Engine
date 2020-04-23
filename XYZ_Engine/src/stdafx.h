@@ -13,4 +13,4 @@
 #include <functional>
 #include <sstream>
 #include <random>
-#include "XYZ/Core/Log.h"
+#include "XYZ/Core/Logger.h"

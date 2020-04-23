@@ -1,5 +1,5 @@
 #pragma once
-#include "Log.h"
+#include "Logger.h"
 #include "XYZ/ECS/ECSManager.h"
 #include "Application.h"
 

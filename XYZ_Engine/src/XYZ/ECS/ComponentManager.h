@@ -15,6 +15,7 @@ namespace XYZ {
 		void RegisterComponent()
 		{
 			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(id < MAX_COMPONENTS, "Registering more than max components");
 			XYZ_ASSERT(m_Components.find(id) == m_Components.end(), "Registering component type more than once.");
 
 			std::shared_ptr<IComponentStorage> componentStorage = std::make_shared<ComponentStorage<T> >();
@@ -26,6 +27,16 @@ namespace XYZ {
 			uint16_t id = IComponent::GetID<T>();
 			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
 			GetComponentStorage<T>()->AddComponent(entity, component);
+		}
+
+		void AddRelation(Entity entity, const ParentComponent& component)
+		{
+			uint16_t id = IComponent::GetID<ParentComponent>();
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
+			id = IComponent::GetID<ChildrenComponent>();
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
+			GetComponentStorage<ChildrenComponent>()->AddChild(component.parentEntity, entity);
+			GetComponentStorage<ParentComponent>()->AddComponent(entity, component);
 		}
 
 		template<typename T>

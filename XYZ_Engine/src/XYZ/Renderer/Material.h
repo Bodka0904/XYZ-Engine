@@ -108,7 +108,7 @@ namespace XYZ {
 		/**
 		* @return sort key
 		*/
-		int64_t GetSortKey() { return m_Key; }
+		const int64_t GetSortKey() const { return m_Key; }
 
 		/**
 		* @return shared_ptr to the Shader
@@ -199,7 +199,7 @@ namespace XYZ {
 		/**
 		* @return shared_ptr to the Material used in constructor
 		*/
-
+		int64_t GetSortKey() { return m_Material->m_Key; }
 		const std::shared_ptr<Material> GetParentMaterial() { return m_Material; }
 
 		/**

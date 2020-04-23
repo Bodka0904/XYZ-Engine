@@ -71,10 +71,10 @@ namespace XYZ {
 		std::vector<Component> m_Components;
 		std::shared_ptr<ComponentStorage<Renderable2D>> m_Storage;
 
-		/** Transparent group z ascend ordering*/
-		SortingGroup<ZAscend> m_TransparentGroup;
+		/** Transparent group z ascend ordering*/ 
+		SortingGroup<int,ZAscend> m_TransparentGroup;
 
 		/** Opaque group z descend ordering*/
-		SortingGroup<ZDescend> m_OpaqueGroup;
+		SortingGroup<int, ZDescend> m_OpaqueGroup;
 	};
 }

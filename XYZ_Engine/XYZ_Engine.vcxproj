@@ -104,12 +104,13 @@
     <ClInclude Include="src\API\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\API\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Platform\Linux\LinuxLogger.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsLogger.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\XYZ.h" />
     <ClInclude Include="src\XYZ\AssetManager\AssetManager.h" />
     <ClInclude Include="src\XYZ\Core\Application.h" />
-    <ClInclude Include="src\XYZ\Core\ColorCodes.h" />
     <ClInclude Include="src\XYZ\Core\Core.h" />
     <ClInclude Include="src\XYZ\Core\EntryPoint.h" />
     <ClInclude Include="src\XYZ\Core\Event\Event.h" />
@@ -119,7 +120,7 @@
     <ClInclude Include="src\XYZ\Core\KeyCodes.h" />
     <ClInclude Include="src\XYZ\Core\Layer.h" />
     <ClInclude Include="src\XYZ\Core\LayerStack.h" />
-    <ClInclude Include="src\XYZ\Core\Log.h" />
+    <ClInclude Include="src\XYZ\Core\Logger.h" />
     <ClInclude Include="src\XYZ\Core\MouseCodes.h" />
     <ClInclude Include="src\XYZ\Core\Window.h" />
     <ClInclude Include="src\XYZ\ECS\Component.h" />
@@ -550,7 +551,9 @@
     <ClCompile Include="src\API\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\API\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Platform\Linux\LinuxLogger.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsLogger.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\XYZ\AssetManager\AssetManager.cpp" />
     <ClCompile Include="src\XYZ\Core\Application.cpp" />
@@ -558,7 +561,7 @@
     <ClCompile Include="src\XYZ\Core\GuiLayer.cpp" />
     <ClCompile Include="src\XYZ\Core\Layer.cpp" />
     <ClCompile Include="src\XYZ\Core\LayerStack.cpp" />
-    <ClCompile Include="src\XYZ\Core\Log.cpp" />
+    <ClCompile Include="src\XYZ\Core\Logger.cpp" />
     <ClCompile Include="src\XYZ\ECS\Component.cpp" />
     <ClCompile Include="src\XYZ\ECS\ComponentManager.cpp" />
     <ClCompile Include="src\XYZ\ECS\ComponentStorage.cpp" />

@@ -41,6 +41,15 @@ namespace XYZ {
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
 		}
+
+		void AddRelation(Entity entity, const ParentComponent& component)
+		{
+			m_ComponentManager->AddRelation(entity, component);
+			auto signature = m_EntityManager->GetSignature(entity);
+			signature.set(m_ComponentManager->GetComponentType<ParentComponent>(), 1);
+			m_EntityManager->SetSignature(entity, signature);
+			m_SystemManager->EntitySignatureChanged(entity, signature);
+		}
 		template<typename T>
 		void RemoveComponent(Entity entity)
 		{

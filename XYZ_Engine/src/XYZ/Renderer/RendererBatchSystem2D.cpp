@@ -31,37 +31,25 @@ namespace XYZ {
 		Vertex2D* BufferPtr = nullptr;
 
 	};
+	static Renderer2DData s_Data;
 
-	static void Render(std::shared_ptr<Material> material, std::shared_ptr<VertexArray> vao, uint32_t count)
-	{
-		material->Bind();
-		vao->Bind();
-		RenderCommand::DrawIndexed(vao, count);
-	}
 
-	static void SubmitCommand(Renderer2DData& data)
+	static void SubmitCommand()
 	{
-		uint32_t dataSize = (uint8_t*)data.BufferPtr - (uint8_t*)data.BufferBase;
+		uint32_t dataSize = (uint8_t*)s_Data.BufferPtr - (uint8_t*)s_Data.BufferBase;
 		if (dataSize != 0)
 		{
-			data.QuadVertexBuffer->Update(data.BufferBase, dataSize);
-			
-			//Command<std::shared_ptr<Material>, std::shared_ptr<VertexArray>, uint32_t> cmd(Render, data.Material, data.QuadVertexArray, data.IndexCount);
-			//Renderer2D::Submit(cmd, sizeof(cmd));
-			
-			data.Material->Bind();
-			data.QuadVertexArray->Bind();
-			RenderCommand::DrawIndexed(data.QuadVertexArray, data.IndexCount);
-			data.Reset();
+			s_Data.QuadVertexBuffer->Update(s_Data.BufferBase, dataSize);
+			s_Data.Material->Bind();
+			s_Data.QuadVertexArray->Bind();
+			RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.IndexCount);
+			s_Data.Reset();
 		}
 	}
-
-	static Renderer2DData s_Data;
 
 	RendererBatchSystem2D::RendererBatchSystem2D()
 	{
 		m_Signature.set(ECSManager::Get()->GetComponentType<Renderable2D>());
-
 		m_Storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
 		s_Data.Reset();
 	}
@@ -73,7 +61,7 @@ namespace XYZ {
 		auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
 		auto key = renderable->material->GetSortKey();
 
-		if (renderable->visible)
+		if (renderable->visible & !(key & RenderFlags::InstancedFlag))
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " added");
 			Component component;
@@ -82,9 +70,9 @@ namespace XYZ {
 			m_Components.push_back(component);
 
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.AddRenderable(index);
+				m_TransparentGroup.Add(renderable->material, index);
 			else
-				m_OpaqueGroup.AddRenderable(index);
+				m_OpaqueGroup.Add(renderable->material, index);
 		}
 	}
 
@@ -96,9 +84,9 @@ namespace XYZ {
 			auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
 			auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.RemoveRenderable(index);
+				m_TransparentGroup.Remove(renderable->material,index);
 			else
-				m_OpaqueGroup.RemoveRenderable(index);
+				m_OpaqueGroup.Remove(renderable->material, index);
 
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
 			*it = std::move(m_Components.back());
@@ -125,9 +113,9 @@ namespace XYZ {
 			if ((*it).key != renderable->material->GetSortKey())
 			{
 				if ((*it).key & RenderFlags::TransparentFlag)
-					m_TransparentGroup.RemoveRenderable(index);
+					m_TransparentGroup.Remove(renderable->material,index);
 				else
-					m_OpaqueGroup.RemoveRenderable(index);
+					m_OpaqueGroup.Remove(renderable->material,index);
 
 				(*it).key = renderable->material->GetSortKey();
 				Add(entity);
@@ -137,7 +125,7 @@ namespace XYZ {
 
 	void RendererBatchSystem2D::SubmitToRenderer()
 	{
-		for (auto it : m_OpaqueGroup.GetRenderables())
+		for (auto it : m_OpaqueGroup.GetGroup())
 		{
 			s_Data.Material = it.first;
 			for (auto index : it.second)
@@ -145,12 +133,12 @@ namespace XYZ {
 				if (s_Data.IndexCount < s_Data.MaxIndices)
 					s_Data.Submit((*m_Storage)[index]);
 				else
-					SubmitCommand(s_Data);
+					SubmitCommand();
 			}
-			SubmitCommand(s_Data);
+			SubmitCommand();
 		}
 
-		for (auto it : m_TransparentGroup.GetRenderables())
+		for (auto it : m_TransparentGroup.GetGroup())
 		{
 			s_Data.Material = it.first;
 			for (auto index : it.second)
@@ -158,9 +146,9 @@ namespace XYZ {
 				if (s_Data.IndexCount < s_Data.MaxIndices)
 					s_Data.Submit((*m_Storage)[index]);
 				else
-					SubmitCommand(s_Data);
+					SubmitCommand();
 			}
-			SubmitCommand(s_Data);
+			SubmitCommand();
 		}
 	}
 
@@ -170,28 +158,28 @@ namespace XYZ {
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.x;
 		BufferPtr->texCoord.y = renderable.texCoord.y;
-		BufferPtr->textureID = renderable.textureID;
+		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
 		BufferPtr->position = { renderable.position.x + renderable.size.x / 2.0f,renderable.position.y - renderable.size.y / 2.0f,renderable.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.z;
 		BufferPtr->texCoord.y = renderable.texCoord.y;
-		BufferPtr->textureID = renderable.textureID;
+		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
 		BufferPtr->position = { renderable.position.x + renderable.size.x / 2.0f,renderable.position.y + renderable.size.y / 2.0f,renderable.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.z;
 		BufferPtr->texCoord.y = renderable.texCoord.w;
-		BufferPtr->textureID = renderable.textureID;
+		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
 		BufferPtr->position = { renderable.position.x - renderable.size.x / 2.0f,renderable.position.y + renderable.size.y / 2.0f,renderable.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.x;
 		BufferPtr->texCoord.y = renderable.texCoord.w;
-		BufferPtr->textureID = renderable.textureID;
+		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
 		IndexCount += 6;

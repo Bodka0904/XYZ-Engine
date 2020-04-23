@@ -13,9 +13,12 @@ namespace XYZ {
 
 	struct RigidBody2D : public Type<RigidBody2D>
 	{
-		glm::vec2 velocity = glm::vec2(0);
+		RigidBody2D(int X = 0,int Y = 0)
+			: velocityX(X),velocityY(Y)
+		{}
+		int velocityX;
+		int velocityY;
 	};
-
 	
 	struct GridPosition : public Type<GridPosition>
 	{
@@ -39,14 +42,14 @@ namespace XYZ {
 		GridPosition operator+(const RigidBody2D& other)
 		{
 			GridPosition pos = *this;
-			pos.col += other.velocity.x;
-			pos.row += other.velocity.y;
+			pos.col += other.velocityX;
+			pos.row += other.velocityY;
 			return pos;
 		}
 		GridPosition& operator += (const RigidBody2D& other)
 		{
-			col += other.velocity.x;
-			row += other.velocity.y;
+			col += other.velocityX;
+			row += other.velocityY;
 			return *this;
 		}
 	};
@@ -57,7 +60,8 @@ namespace XYZ {
 		float length = 0.5f;
 		bool inProgress = false;
 
-		glm::vec2 velocity;
+		int velocityX = 0;
+		int velocityY = 0;
 	};
 
 	struct Collision : public Type<Collision>

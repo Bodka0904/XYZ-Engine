@@ -69,14 +69,11 @@ private:
 
 	XYZ::Entity m_ParticleEntity;
 
-	XYZ::ParticleSubEffect2D* m_SubEffect = nullptr;
-	XYZ::ParticleSubEffect2D* m_SubEffect2 = nullptr;
-
 	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
 
 
-	float m_Speed = 1.0f;
+	int m_Speed = 1.0f;
 	float m_Color = 0.0f;
 
 

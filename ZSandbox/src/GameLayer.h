@@ -34,8 +34,12 @@ private:
 	// Testing environment
 	std::vector<Player> m_Players;
 	std::vector<Bomb> m_Bombs;
+
 	XYZ::Entity m_ParticleEntity;
-	XYZ::ParticleSubEffect2D *m_SubEffect;
+	XYZ::Entity m_EmitterEntity1;
+	XYZ::Entity m_EmitterEntity2;
+
+	int m_NumParticles = 0;
 
 	Map m_Map;
 	Menu m_Menu;

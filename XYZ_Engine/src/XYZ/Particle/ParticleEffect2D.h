@@ -2,7 +2,7 @@
 #include "XYZ/Renderer/VertexArray.h"
 #include "XYZ/Renderer/Renderable2D.h"
 #include "XYZ/Renderer/Material.h"
-#include "XYZ/ECS/Component.h"
+#include "XYZ/Utils/DataStructures/FreeList.h"
 
 #include <glm/glm.hpp>
 #include <set>
@@ -52,6 +52,16 @@ namespace XYZ {
 		float rotation;
 	};
 
+
+	struct ParticleEmitter : public Type<ParticleEmitter>
+	{
+		glm::vec2 position;
+		glm::vec2 size;
+		int offset;
+		int numParticles;
+		std::shared_ptr<MaterialInstance> material;
+	};
+
 	/**
 	* 
 	*/
@@ -61,11 +71,14 @@ namespace XYZ {
 	public:
 		ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
 		~ParticleEffect2D();
-		void Bind();
+
+		void Render();
+		void Bind(const ParticleEmitter& emitter);
+		void PushParticle(const ParticleProps2D& particle);
 
 		std::shared_ptr<Material> GetMaterial() { return m_Material; }
 		size_t GetNumExistingParticles() { return m_ParticlesInExistence; }
-
+		
 	private:
 		struct ParticleVertex
 		{
@@ -74,9 +87,10 @@ namespace XYZ {
 			glm::vec2 texCoordOffset;
 			glm::vec2 size;
 			float	  angle;
-			float	  alignment;
-			float	  alignment2;
-			float	  alignment3;
+
+			float	  alignment = 0.0f;
+			float	  alignment2 = 0.0f;
+			float	  alignment3 = 0.0f;
 		};
 		struct ParticleData
 		{
@@ -91,53 +105,24 @@ namespace XYZ {
 			float lifeTime;
 			float timeAlive = 0.0f;
 
-			float alignment;
+			float alignment = 0.0f;
 		};
-
+		
 	private:
-		std::shared_ptr<VertexArray> m_VAO;
+		std::shared_ptr<VertexArray> m_VertexArray;
 		std::shared_ptr<Material> m_Material;
 		std::shared_ptr<Material> m_RenderMaterial;
 
-		std::set<ParticleSubEffect2D*> m_SubEffects;
-		size_t m_ParticlesInExistence = 0;
-		size_t m_MaxParticles = 0;
-
+		uint32_t m_ParticlesInExistence = 0;
+		uint32_t m_MaxParticles = 0;
 
 		std::shared_ptr<ShaderStorageBuffer> m_VertexStorage;
 		std::shared_ptr<ShaderStorageBuffer> m_PropsStorage;
 
+		std::vector<ParticleVertex> m_Vertices;
+		std::vector<ParticleData> m_Data;
+
 		static constexpr size_t sc_MaxParticlesPerEffect = 10000;
 	};
 
-
-	class ParticleSubEffect2D
-	{
-		friend class ParticleEffect2D;
-	public:
-		ParticleSubEffect2D(ParticleEffect2D* effect, const std::vector<ParticleProps2D>& particles);
-		~ParticleSubEffect2D();
-
-	public:
-		glm::vec2 emitter;
-		int textureColumns;
-		int textureRows;
-
-	private:
-		ParticleEffect2D* m_Effect;
-		std::shared_ptr<MaterialInstance> m_MaterialI;
-
-		std::vector<ParticleEffect2D::ParticleVertex> m_Vertices;
-		std::vector<ParticleEffect2D::ParticleData> m_Data;
-
-		size_t m_Index;
-
-	};
-
-
-	struct ParticleComponent
-	{
-		std::shared_ptr<ParticleEffect2D> effect;
-		std::shared_ptr<Material> material;
-	};
 }

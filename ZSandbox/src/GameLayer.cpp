@@ -23,6 +23,9 @@ void GameLayer::OnAttach()
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::SpriteAnimation>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::InterpolatedMovement>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::LayerMask>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParentComponent>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ChildrenComponent>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParticleEmitter>();
 
 	m_PhysicsSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::PhysicsSystem>();
 	m_PhysicsSystem->CreateGrid(21, 21, 1);
@@ -34,24 +37,15 @@ void GameLayer::OnAttach()
 
 	m_Camera = std::make_shared<XYZ::OrthoCamera>(0, 20, 0, 20);
 
-	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "../XYZ_Engine/Assets/Shaders/DefaultShader.glsl"));
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/bomb.png"), 0);
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/wall.png"), 1);
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Repeat, "../XYZ_Engine/Assets/Textures/background.png"), 2);
+	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "Assets/Shaders/DefaultShader.glsl"));
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bomb.png"), 0);
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/wall.png"), 1);
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Repeat, "Assets/Textures/background.png"), 2);
 
 
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/player_sprite.png"), 3);
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/player_sprite.png"), 3);
 	m_Material->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
-
-	
-
-	////m_Players.resize(2);
-	//m_Players[0].Init(m_Camera, m_Material, glm::vec3(5, 5, 0), m_Bombs);
-	//m_Players[1].Init(m_Camera, m_Material, glm::vec3(2, 2, 0.5f), m_Bombs);
-	//
-	//m_Players[0].UseControlsMode(0);
-	//m_Players[1].UseControlsMode(1);
 
 	
 	InitBackgroundParticles();
@@ -60,7 +54,6 @@ void GameLayer::OnAttach()
 void GameLayer::OnDetach()
 {
 	XYZ::Renderer2D::Shutdown();
-	delete m_SubEffect;
 }
 
 void GameLayer::OnUpdate(float dt)
@@ -75,6 +68,30 @@ void GameLayer::OnUpdate(float dt)
 
 	if (m_Menu.GameStart())
 		RestartGame();
+
+
+	if (XYZ::Input::IsMouseButtonPressed(XYZ::MouseCode::XYZ_MOUSE_BUTTON_LEFT))
+	{
+		std::random_device rd;
+		std::mt19937 rng(rd());
+		std::uniform_real_distribution<> dist(-1, 1);
+
+		XYZ::ParticleProps2D particle;
+
+		auto effect = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
+
+		
+		particle.position = glm::vec2(0.02 * m_NumParticles,20);
+		particle.sizeBegin = 2.0f;
+		particle.sizeEnd = 0.0f;
+		particle.colorEnd = glm::vec4(1, 0, 1, 0);
+		particle.colorBegin = glm::vec4(0, 1, 1, 1);
+		particle.velocity = glm::vec2(dist(rng), -0.2f);
+		particle.lifeTime = fabs(dist(rng)) * 10;
+		particle.rotation = dist(rng) * 50;
+		effect->PushParticle(particle);
+		m_NumParticles++;
+	}
 
 
 	if (m_Menu.GameRunning())
@@ -142,36 +159,65 @@ void GameLayer::RestartGame()
 void GameLayer::InitBackgroundParticles()
 {
 	m_ParticleEntity = XYZ::ECSManager::Get()->CreateEntity();
-	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "../XYZ_Engine/Assets/Shaders/Particle/ParticleShader.glsl"));
-	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/bubbles.png"));
+	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "Assets/Shaders/Particle/ParticleShader.glsl"));
+	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubbles.png"));
 	m_ParticleMaterial->SetFlags(XYZ::RenderFlags::InstancedFlag);
 
 
-	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(1000, XYZ::Material::Create(XYZ::Shader::Create("../XYZ_Engine/Assets/Shaders/Particle/ParticleComputeShader.glsl")), m_ParticleMaterial));
+	auto material = XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/Particle/ParticleComputeShader.glsl"));
+	
+
+	m_EmitterEntity1 = XYZ::ECSManager::Get()->CreateEntity();
+	m_EmitterEntity2 = XYZ::ECSManager::Get()->CreateEntity();
+
+
+	XYZ::ECSManager::Get()->AddRelation(m_EmitterEntity1, XYZ::ParentComponent(m_ParticleEntity));
+	XYZ::ECSManager::Get()->AddRelation(m_EmitterEntity2, XYZ::ParentComponent(m_ParticleEntity));
+
+	XYZ::ECSManager::Get()->AddComponent(m_EmitterEntity1, XYZ::ParticleEmitter());
+	XYZ::ECSManager::Get()->AddComponent(m_EmitterEntity2, XYZ::ParticleEmitter());
+
+
+	auto emitter1 = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEmitter>(m_EmitterEntity1);
+	auto emitter2 = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEmitter>(m_EmitterEntity2);
+
+	emitter1->material = XYZ::MaterialInstance::Create(material);
+	emitter2->material = XYZ::MaterialInstance::Create(material);
+
+	emitter1->material->Set("u_Emitter", glm::vec2(10, 0));
+
+	emitter1->position = glm::vec2(5, 5);
+	emitter2->position = glm::vec2(17, 5);
+
+	emitter1->offset = 0;
+	emitter1->numParticles = 50;
+
+	emitter2->offset = 51;
+	emitter2->numParticles = 100;
+	
+	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(1000, material, m_ParticleMaterial));
 	auto effect = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
 
 
-	std::random_device rd;
-	std::mt19937 rng(rd());
-	std::uniform_real_distribution<> dist(-1, 1);
-
-	std::vector<XYZ::ParticleProps2D> particles;
-	particles.resize(1000);
-
-
-	float distance = 20.0f / particles.size();
-	for (size_t i = 0; i < particles.size(); ++i)
-	{
-		particles[i].position = glm::vec2(distance * i, 20);
-		particles[i].sizeBegin = 2.0f;
-		particles[i].sizeEnd = 0.0f;
-		particles[i].colorEnd = glm::vec4(1, 0, 1, 0);
-		particles[i].colorBegin = glm::vec4(0, 1, 1, 1);
-		particles[i].velocity = glm::vec2(dist(rng), -0.2f);
-		particles[i].lifeTime = fabs(dist(rng)) * 10;
-		particles[i].rotation = dist(rng) * 50;
-	}
-
-	m_SubEffect = new XYZ::ParticleSubEffect2D(effect, particles);
-	m_SubEffect->emitter = glm::vec2(0, 0);
+	//std::random_device rd;
+	//std::mt19937 rng(rd());
+	//std::uniform_real_distribution<> dist(-1, 1);
+	//
+	//std::vector<XYZ::ParticleProps2D> particles;
+	//particles.resize(1000);
+	//
+	//
+	//float distance = 20.0f / particles.size();
+	//for (size_t i = 0; i < particles.size(); ++i)
+	//{
+	//	particles[i].position = glm::vec2(distance * i, 20);
+	//	particles[i].sizeBegin = 2.0f;
+	//	particles[i].sizeEnd = 0.0f;
+	//	particles[i].colorEnd = glm::vec4(1, 0, 1, 0);
+	//	particles[i].colorBegin = glm::vec4(0, 1, 1, 1);
+	//	particles[i].velocity = glm::vec2(dist(rng), -0.2f);
+	//	particles[i].lifeTime = fabs(dist(rng)) * 10;
+	//	particles[i].rotation = dist(rng) * 50;
+	//	effect->PushParticle(particles[i]);
+	//}
 }

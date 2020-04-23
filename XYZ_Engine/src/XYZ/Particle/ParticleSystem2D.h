@@ -5,8 +5,6 @@
 #include "XYZ/Renderer/Shader.h"
 #include "XYZ/Renderer/Material.h"
 
-#include <set>
-#include <unordered_set>
 
 namespace XYZ {
 	class ParticleSystem2D : public System
@@ -21,11 +19,15 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int index;
+			int particleIndex;
+			int numberOfChildren = 0;
+			int childrenIndex[10];
 		};
 
 		std::vector<Component> m_Components;
 		std::shared_ptr<ComponentStorage<ParticleEffect2D>> m_ParticleStorage;
+		std::shared_ptr<ComponentStorage<ParticleEmitter>> m_EmitterStorage;
 	};
+
 
 }

@@ -38,7 +38,7 @@ namespace XYZ {
 		: m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(path);
-		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
 		parseUniforms();
@@ -48,7 +48,7 @@ namespace XYZ {
 		: m_Name(name), m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(m_Path);
-		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
 		parseUniforms();
@@ -239,7 +239,7 @@ namespace XYZ {
 		m_NumTakenTexSlots = 0;
 
 		std::string source = readFile(m_Path);
-		parsePredefVariables("../XYZ_Engine/Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
 		parseUniforms();

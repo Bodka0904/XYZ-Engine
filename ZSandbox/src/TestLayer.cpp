@@ -36,22 +36,22 @@ void TestLayer::OnAttach()
 	XYZ::Renderer::Init();
 	m_CameraController = std::make_shared<XYZ::OrthoCameraController>(XYZ::Input::GetWindowSize().first / XYZ::Input::GetWindowSize().second);
 
-	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "../XYZ_Engine/Assets/Shaders/DefaultShader.glsl"));
+	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "Assets/Shaders/DefaultShader.glsl"));
 
 	m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/player_sprite.png"));
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/animation.png"), 1);
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/player_sprite.png"));
+	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/animation.png"), 1);
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
 	//////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	m_ParticleEntity = XYZ::ECSManager::Get()->CreateEntity();
 
-	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "../XYZ_Engine/Assets/Shaders/Particle/ParticleShader.glsl"));
-	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "../XYZ_Engine/Assets/Textures/bubbles.png"));
+	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "Assets/Shaders/Particle/ParticleShader.glsl"));
+	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubbles.png"));
 	m_ParticleMaterial->SetFlags(XYZ::RenderFlags::InstancedFlag);
 	
-	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity,XYZ::ParticleEffect2D(10000, XYZ::Material::Create(XYZ::Shader::Create("../XYZ_Engine/Assets/Shaders/Particle/ParticleComputeShader.glsl")), m_ParticleMaterial));
+	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity,XYZ::ParticleEffect2D(10000, XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/Particle/ParticleComputeShader.glsl")), m_ParticleMaterial));
 	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity,XYZ::RigidBody2D{});
 	
 	auto effect = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
@@ -73,7 +73,7 @@ void TestLayer::OnAttach()
 		particles[i].lifeTime = fabs(dist(rng));
 		particles[i].rotation = dist(rng) * 50;
 	}
-	m_SubEffect = new XYZ::ParticleSubEffect2D(effect, particles);
+	
 	
 	std::vector<XYZ::ParticleProps2D> particles2;
 	particles2.resize(5000);
@@ -88,7 +88,7 @@ void TestLayer::OnAttach()
 		particles2[i].lifeTime = fabs(dist(rng));
 		particles2[i].rotation = dist(rng) * 50;
 	}
-	m_SubEffect2 = new XYZ::ParticleSubEffect2D(effect, particles2);
+	
 	
 	m_SpriteEntity = XYZ::ECSManager::Get()->CreateEntity();
 	XYZ::ECSManager::Get()->AddComponent(m_SpriteEntity, XYZ::Renderable2D(
@@ -139,8 +139,6 @@ void TestLayer::OnAttach()
 
 void TestLayer::OnDetach()
 {
-	delete m_SubEffect;
-	delete m_SubEffect2;
 	
 	XYZ::EventManager::Get().RemoveHandler(XYZ::EventType::MouseButtonPressed, m_MouseButtonPress);
 	XYZ::MaterialManager::Get().RemoveMaterial((int16_t)m_Material->GetSortKey());
@@ -171,36 +169,36 @@ void TestLayer::OnUpdate(float dt)
 
 	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_LEFT))
 	{
-		spriteBody->velocity.x = -m_Speed;
-		spriteBody->velocity.y = 0;
+		spriteBody->velocityX = -m_Speed;
+		spriteBody->velocityY = 0;
 		m_AnimController.StartAnimation("walkleft");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 	}
 	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_RIGHT))
 	{
-		spriteBody->velocity.x = m_Speed;
-		spriteBody->velocity.y = 0;
+		spriteBody->velocityX = m_Speed;
+		spriteBody->velocityY = 0;
 		m_AnimController.StartAnimation("walkright");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 	}
 	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_DOWN))
 	{
-		spriteBody->velocity.y = -m_Speed;
-		spriteBody->velocity.x = 0;
+		spriteBody->velocityY = -m_Speed;
+		spriteBody->velocityX = 0;
 		m_AnimController.StartAnimation("walkdown");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 	}
 	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_UP))
 	{
-		spriteBody->velocity.y = m_Speed;
-		spriteBody->velocity.x = 0;
+		spriteBody->velocityY = m_Speed;
+		spriteBody->velocityX = 0;
 		m_AnimController.StartAnimation("walkup");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 	}
 	else if (!spriteInter->inProgress)
 	{
-		spriteBody->velocity.x = 0;
-		spriteBody->velocity.y = 0;
+		spriteBody->velocityX = 0;
+		spriteBody->velocityY = 0;
 		m_AnimController.StartAnimation("idle");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 	}
@@ -220,10 +218,6 @@ void TestLayer::OnUpdate(float dt)
 	y = bounds.GetHeight() * 0.5f - (y / height) * bounds.GetHeight();
 	x *= m_CameraController->GetZoomLevel();
 	y *= m_CameraController->GetZoomLevel();
-	
-	m_SubEffect->emitter = glm::vec2(x + pos.x, y + pos.y);
-
-
 
 }
 

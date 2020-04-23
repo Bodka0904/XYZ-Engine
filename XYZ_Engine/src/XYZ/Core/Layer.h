@@ -4,11 +4,6 @@
 
 namespace XYZ {
 
-	//struct LayerMask : public Type<LayerMask>
-	//{
-	//	int32_t mask;
-	//};
-
 
 	class LayerStack;
 	class Layer

@@ -4,53 +4,57 @@
 
 namespace XYZ {
 
-	typedef std::map<std::shared_ptr<Material>, std::vector<int>> RenderablesGroup;
+	template <typename T,typename _Comparator>
+	using MaterialGroup = std::map<std::shared_ptr<Material>, std::vector<T>,_Comparator>;
 
 	/**
 	* @class SortingGroup
-	* @brief Sort renderables dependent on specfied Comparator 
+	* @brief Sort elements dependent on specfied Comparator 
 	* @tparam T		Comparator
 	*/
-	template <typename T>
+	template <typename _Type ,typename _Comparator>
 	class SortingGroup
 	{
+	private:
+		struct MaterialComparator
+		{
+			bool operator()(const std::shared_ptr<Material>& a, const std::shared_ptr<Material>& b) const
+			{
+				return a->GetSortKey() < b->GetSortKey();
+			}
+		};
 	public:
 		/**
-		* Insert renderable to the vector , keeps it sorted
-		* @param[in] renderable		Pointer to the renderable
+		* Insert index to the vector , keeps it sorted
+		* @param[in] index		index of the element
 		*/
-		void AddRenderable(int index)
+		void Add(std::shared_ptr<Material> material,_Type index)
 		{
-			auto storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-			auto material = (*storage)[index].material;
-			auto it = std::lower_bound(m_Renderables[material].begin(), m_Renderables[material].end(), index, T());
-			m_Renderables[material].insert(it, index);	
+			auto it = std::lower_bound(m_Group[material].begin(), m_Group[material].end(), index, _Comparator());
+			m_Group[material].insert(it, index);	
 		}
 		/**
-		* Remove renderable from the vector, in linear time
-		* @param[in] renderable
+		* Remove index from the vector, in linear time
+		* @param[in] index
 		*/
-		void RemoveRenderable(int index)
+		void Remove(std::shared_ptr<Material> material,_Type index)
 		{
-			auto storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-			auto material = (*storage)[index].material;
+			auto it = std::find(m_Group[material].begin(), m_Group[material].end(), index);
+			if (it == m_Group[material].end())
+				XYZ_ASSERT(false, "Attempting to remove not existing element");
 
-
-			auto it = std::find(m_Renderables[material].begin(), m_Renderables[material].end(), index);
-			if (it == m_Renderables[material].end() || (*it) != index)
-				XYZ_ASSERT(false, "Attempting to remove not existing renderable");
-
-			m_Renderables[material].erase(it);
+			m_Group[material].erase(it);
 		}
 
 		/**
-		* @return renderables group
+		* @return material group
 		*/
-		const RenderablesGroup& GetRenderables() { return m_Renderables; }
+		const MaterialGroup<_Type,MaterialComparator>& GetGroup() { return m_Group; }
 
 
+	
 	private:
-		RenderablesGroup m_Renderables;
+		MaterialGroup<_Type, MaterialComparator> m_Group;
 	};
 
 }

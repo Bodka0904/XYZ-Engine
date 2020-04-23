@@ -1,12 +1,16 @@
 #include "stdafx.h"
 #include "ParticleSystem2D.h"
 #include "XYZ/Renderer/Renderable2D.h"
+#include "XYZ/Renderer/RenderCommand.h"
+#include "XYZ/Renderer/Renderer2D.h"
+#include "XYZ/Renderer/RenderCommandQueue.h"
 
 namespace XYZ {
 	ParticleSystem2D::ParticleSystem2D()
 	{
 		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<XYZ::ParticleEffect2D>());
 		m_ParticleStorage = ECSManager::Get()->GetComponentStorage<ParticleEffect2D>();
+		m_EmitterStorage = ECSManager::Get()->GetComponentStorage<ParticleEmitter>();
 	}
 
 	void ParticleSystem2D::Update(float dt)
@@ -14,14 +18,20 @@ namespace XYZ {
 		int16_t currentKey = 0;
 		for (auto it : m_Components)
 		{
-			int16_t newKey = (*m_ParticleStorage)[it.index].GetMaterial()->GetSortKey();
+			int16_t newKey = (*m_ParticleStorage)[it.particleIndex].GetMaterial()->GetSortKey();
 			if (currentKey != newKey)
 			{
 				currentKey = newKey;
-				(*m_ParticleStorage)[it.index].GetMaterial()->Bind();
-				(*m_ParticleStorage)[it.index].GetMaterial()->Set("u_Time", dt);
+				(*m_ParticleStorage)[it.particleIndex].GetMaterial()->Set("u_Time", dt);
+				(*m_ParticleStorage)[it.particleIndex].GetMaterial()->Bind();
 			}
-			(*m_ParticleStorage)[it.index].Bind();
+			(*m_ParticleStorage)[it.particleIndex].Render();
+			
+			for (int i = 0; i < it.numberOfChildren; ++i)
+			{
+				(*m_EmitterStorage)[it.childrenIndex[i]].material->Bind();
+				(*m_ParticleStorage)[it.particleIndex].Bind((*m_EmitterStorage)[it.childrenIndex[i]]);
+			}
 		}
 	}
 
@@ -30,13 +40,23 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with id ", entity, " added");
 
 		Component component;
-		component.index = ECSManager::Get()->GetComponentIndex<ParticleEffect2D>(entity);
-		component.entity = entity;
+		component.particleIndex = ECSManager::Get()->GetComponentIndex<ParticleEffect2D>(entity);
+		if (ECSManager::Get()->Contains<ChildrenComponent>(entity))
+		{
+			auto children = ECSManager::Get()->GetComponent<ChildrenComponent>(entity);
+			for (auto child : children->children)
+			{
+				component.childrenIndex[component.numberOfChildren] = ECSManager::Get()->GetComponentIndex<ParticleEmitter>(child);
+				component.numberOfChildren++;
+			}
 
+		}
+
+		component.entity = entity;
 		auto it = std::lower_bound(m_Components.begin(), m_Components.end(), component, [](const Component& a, const Component& b) {
-			
+
 			auto storage = ECSManager::Get()->GetComponentStorage<ParticleEffect2D>();
-			return (*storage)[a.index].GetMaterial()->GetSortKey() > (*storage)[b.index].GetMaterial()->GetSortKey();
+			return (*storage)[a.particleIndex].GetMaterial()->GetSortKey() > (*storage)[b.particleIndex].GetMaterial()->GetSortKey();
 		});
 
 		m_Components.insert(it, component);
@@ -60,4 +80,6 @@ namespace XYZ {
 			return true;
 		return false;
 	}
+
+
 }

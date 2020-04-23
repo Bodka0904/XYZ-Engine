@@ -164,8 +164,8 @@ void Player::MoveLeft()
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 	auto spriteInter = XYZ::ECSManager::Get()->GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 
-	spriteBody->velocity.x = -m_Speed;
-	spriteBody->velocity.y = 0;
+	spriteBody->velocityX = -m_Speed;
+	spriteBody->velocityY = 0;
 	m_AnimController.StartAnimation("walkleft");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
 }
@@ -175,8 +175,8 @@ void Player::MoveRight()
 	auto spriteBody = XYZ::ECSManager::Get()->GetComponent<XYZ::RigidBody2D>(m_Entity);
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 
-	spriteBody->velocity.x = m_Speed;
-	spriteBody->velocity.y = 0;
+	spriteBody->velocityX = m_Speed;
+	spriteBody->velocityY = 0;
 	m_AnimController.StartAnimation("walkright");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
 }
@@ -186,8 +186,8 @@ void Player::MoveUp()
 	auto spriteBody = XYZ::ECSManager::Get()->GetComponent<XYZ::RigidBody2D>(m_Entity);
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 
-	spriteBody->velocity.x = 0;
-	spriteBody->velocity.y = m_Speed;
+	spriteBody->velocityX = 0;
+	spriteBody->velocityY = m_Speed;
 	m_AnimController.StartAnimation("walkup");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
 }
@@ -197,8 +197,8 @@ void Player::MoveDown()
 	auto spriteBody = XYZ::ECSManager::Get()->GetComponent<XYZ::RigidBody2D>(m_Entity);
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 
-	spriteBody->velocity.x = 0;
-	spriteBody->velocity.y = -m_Speed;
+	spriteBody->velocityX = 0;
+	spriteBody->velocityY = -m_Speed;
 	m_AnimController.StartAnimation("walkdown");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
 }
@@ -208,8 +208,8 @@ void Player::StayStill()
 	auto spriteBody = XYZ::ECSManager::Get()->GetComponent<XYZ::RigidBody2D>(m_Entity);
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 
-	spriteBody->velocity.x = 0;
-	spriteBody->velocity.y = 0;
+	spriteBody->velocityX = 0;
+	spriteBody->velocityY = 0;
 	m_AnimController.StartAnimation("idle");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
 }

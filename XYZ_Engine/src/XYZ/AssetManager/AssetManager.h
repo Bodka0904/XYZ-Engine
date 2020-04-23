@@ -14,7 +14,7 @@ namespace XYZ
 	class AssetManager
 	{
 		/** Path to the folder with assets */
-		const std::string ASSETS_FOLDER = "../XYZ_Engine/Assets/";
+		const std::string ASSETS_FOLDER = "Assets/";
 
 		/** Shaders collection */
 		std::unordered_map<std::string, std::pair<uint16_t, std::shared_ptr<XYZ::Shader>>> m_Shaders;

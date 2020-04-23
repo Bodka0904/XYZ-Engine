@@ -108,9 +108,6 @@
     <ClInclude Include="src\XYZ\Core\Application.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Core\ColorCodes.h">
-      <Filter>src\XYZ\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Core.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
@@ -136,9 +133,6 @@
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\LayerStack.h">
-      <Filter>src\XYZ\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XYZ\Core\Log.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\MouseCodes.h">
@@ -1404,6 +1398,11 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsLogger.h" />
+    <ClInclude Include="src\XYZ\Core\Logger.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Linux\LinuxLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1449,9 +1448,6 @@
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Core\LayerStack.cpp">
-      <Filter>src\XYZ\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XYZ\Core\Log.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\ECS\Component.cpp">
@@ -1562,5 +1558,10 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsLogger.cpp" />
+    <ClCompile Include="src\XYZ\Core\Logger.cpp">
+      <Filter>src\XYZ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Linux\LinuxLogger.cpp" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@ namespace XYZ {
 		EntityManager();
 
 		Entity CreateEntity();
+
 		Signature GetSignature(Entity entity);
 		void DestroyEntity(Entity entity);
 		void SetSignature(Entity entity, Signature signature);
