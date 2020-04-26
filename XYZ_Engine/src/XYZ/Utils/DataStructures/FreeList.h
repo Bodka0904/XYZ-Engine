@@ -27,6 +27,7 @@ namespace XYZ {
 			m_Data = other.m_Data;
 			return *this;
 		}
+		
 		int Insert(const T& elem)
 		{
 			if (m_FirstFree != -1)

@@ -25,6 +25,9 @@ private:
 	std::shared_ptr<XYZ::PhysicsSystem> m_PhysicsSystem;
 	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
 	std::shared_ptr<XYZ::SpriteSystem> m_SpriteSystem;
+	std::shared_ptr<XYZ::InterpolatedMovementSystem> m_InterSystem;
+	std::shared_ptr<XYZ::GridCollisionSystem> m_GridCollisionSystem;
+	std::shared_ptr<XYZ::RealGridCollisionSystem> m_RealGridCollisionSystem;
 
 	std::shared_ptr<XYZ::Material> m_Material;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
@@ -40,7 +43,7 @@ private:
 	XYZ::Entity m_EmitterEntity2;
 
 	int m_NumParticles = 0;
-
+	int m_PlayableArea = 20;
 	Map m_Map;
 	Menu m_Menu;
 	XYZ::HandlerID m_PutBomb;

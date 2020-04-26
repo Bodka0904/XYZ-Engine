@@ -21,8 +21,9 @@ namespace XYZ {
 		{
 			int particleIndex;
 			int numberOfChildren = 0;
-			int childrenIndex[10];
+			int childrenIndex[ChildrenComponent::sc_MaxChildren];
 		};
+		Signature m_ChildrenSignature;
 
 		std::vector<Component> m_Components;
 		std::shared_ptr<ComponentStorage<ParticleEffect2D>> m_ParticleStorage;

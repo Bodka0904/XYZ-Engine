@@ -41,11 +41,10 @@ namespace XYZ {
 			float time = (float)glfwGetTime();
 			float timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
-
-			for (Layer* layer : m_LayerStack)
 			{
-				{
-					//Stopwatch watch;
+				//Stopwatch watch;
+				for (Layer* layer : m_LayerStack)
+				{		
 					layer->OnUpdate(timestep);
 				}
 			}

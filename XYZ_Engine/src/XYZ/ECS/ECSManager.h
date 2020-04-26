@@ -32,11 +32,12 @@ namespace XYZ {
 		template<typename T>
 		void AddComponent(Entity entity,const T& component)
 		{
-			// checks validity of T data type, if T* is not derived type of IComponent shows error
 			m_ComponentManager->AddComponent<T>(entity, component);
 
+			auto active = m_ComponentManager->GetComponent<ActiveComponent>(entity);
 			auto signature = m_EntityManager->GetSignature(entity);
 			signature.set(m_ComponentManager->GetComponentType<T>(), 1);
+			active->activeComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
 
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
@@ -55,8 +56,10 @@ namespace XYZ {
 		{
 			m_ComponentManager->RemoveComponent<T>(entity);
 
+			auto active = m_ComponentManager->GetComponent<ActiveComponent>(entity);
 			auto signature = m_EntityManager->GetSignature(entity);
 			signature.set(m_ComponentManager->GetComponentType<T>(), 0);
+			active->activeComponents.set(m_ComponentManager->GetComponentType<T>(), 0);
 
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
@@ -117,7 +120,9 @@ namespace XYZ {
 		}
 		Entity CreateEntity()
 		{
-			return m_EntityManager->CreateEntity();
+			Entity entity = m_EntityManager->CreateEntity();
+			AddComponent(entity, ActiveComponent{});
+			return entity;
 		}
 
 		static std::unique_ptr<ECSManager>& Get() { return s_Instance; }

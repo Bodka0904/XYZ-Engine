@@ -20,7 +20,7 @@ namespace XYZ {
 			auto system = std::make_shared<T>();
 			auto castedSystem = std::static_pointer_cast<System>(system);
 			m_Systems.insert({ id,castedSystem });
-
+			system->m_ActiveStorage = ECSManager::Get()->GetComponentStorage<ActiveComponent>();
 			return system;
 		}
 
@@ -67,6 +67,7 @@ namespace XYZ {
 				{
 					if (!system->Contains(entity))
 						system->Add(entity);
+					
 				}
 				else 
 					system->Remove(entity);

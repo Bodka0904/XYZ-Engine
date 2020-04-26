@@ -69,7 +69,7 @@ namespace XYZ {
 	{
 		friend class ParticleSubEffect2D;
 	public:
-		ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
+		ParticleEffect2D(uint32_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
 		~ParticleEffect2D();
 
 		void Render();

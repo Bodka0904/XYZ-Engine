@@ -17,25 +17,32 @@ GameLayer::~GameLayer()
 void GameLayer::OnAttach()
 {
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::RigidBody2D>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::GridPosition>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::GridBody>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParticleEffect2D>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::Renderable2D>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::SpriteAnimation>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::InterpolatedMovement>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::LayerMask>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParentComponent>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ChildrenComponent>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ActiveComponent>();
 	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParticleEmitter>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::CollisionComponent>();
+	XYZ::ECSManager::Get()->RegisterComponent<XYZ::RealGridBody>();
 
 	m_PhysicsSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::PhysicsSystem>();
-	m_PhysicsSystem->CreateGrid(21, 21, 1);
+	m_InterSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::InterpolatedMovementSystem>();
+	m_GridCollisionSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::GridCollisionSystem>();
+	m_GridCollisionSystem->ResizeGrid(21, 21, 1, 0, 0);
+	m_RealGridCollisionSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::RealGridCollisionSystem>();
+	m_RealGridCollisionSystem->CreateGrid(21, 21, 1);
+
 	m_ParticleSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::ParticleSystem2D>();
 	m_SpriteSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::SpriteSystem>();
 
 	XYZ::Renderer::Init();
 
 
-	m_Camera = std::make_shared<XYZ::OrthoCamera>(0, 20, 0, 20);
+	m_Camera = std::make_shared<XYZ::OrthoCamera>(0, m_PlayableArea, 0, m_PlayableArea);
 
 	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "Assets/Shaders/DefaultShader.glsl"));
 	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bomb.png"), 0);
@@ -97,8 +104,13 @@ void GameLayer::OnUpdate(float dt)
 	if (m_Menu.GameRunning())
 	{
 		// Start game loop
-		
+		m_RealGridCollisionSystem->Update(dt);
+		m_GridCollisionSystem->Update(dt);
 		m_PhysicsSystem->Update(dt);
+		m_InterSystem->Update(dt);
+		
+		
+
 		m_SpriteSystem->Update(dt);
 
 		m_Material->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
@@ -145,11 +157,11 @@ void GameLayer::RestartGame()
 		m_Bombs[i].Destroy();
 	m_Bombs.clear();
 
-	m_Map.Init(20, m_Material);
-	m_Map.Generate(40);
+	//m_Map.Init(m_PlayableArea, m_Material);
+	//m_Map.Generate(20);
 
 	m_Players.resize(2);
-	m_Players[0].Init(m_Camera, m_Material, glm::vec3(5, 5, 0), m_Bombs);
+	m_Players[0].Init(m_Camera, m_Material, glm::vec3(10, 10, 0), m_Bombs);
 	m_Players[1].Init(m_Camera, m_Material, glm::vec3(2, 2, 0.5f), m_Bombs);
 
 	m_Players[0].UseControlsMode(0);

@@ -174,9 +174,6 @@
     <ClInclude Include="src\XYZ\Physics\Components.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Physics\Grid2D.h">
-      <Filter>src\XYZ\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Physics\PhysicsSystem.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
@@ -1403,6 +1400,9 @@
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Linux\LinuxLogger.h" />
+    <ClInclude Include="src\XYZ\Physics\InterpolatedMovementSystem.h" />
+    <ClInclude Include="src\XYZ\Physics\GridCollisionSystem.h" />
+    <ClInclude Include="src\XYZ\Physics\RealGridCollisionSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1476,9 +1476,6 @@
     </ClCompile>
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp">
       <Filter>src\XYZ\Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="src\XYZ\Physics\Grid2D.cpp">
-      <Filter>src\XYZ\Physics</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Physics\PhysicsSystem.cpp">
       <Filter>src\XYZ\Physics</Filter>
@@ -1563,5 +1560,8 @@
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Linux\LinuxLogger.cpp" />
+    <ClCompile Include="src\XYZ\Physics\InterpolatedMovementSystem.cpp" />
+    <ClCompile Include="src\XYZ\Physics\GridCollisionSystem.cpp" />
+    <ClCompile Include="src\XYZ\Physics\RealGridCollisionSystem.cpp" />
   </ItemGroup>
 </Project>

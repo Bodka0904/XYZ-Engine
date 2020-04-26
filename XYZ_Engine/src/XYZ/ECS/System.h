@@ -1,5 +1,7 @@
 #pragma once
 #include "Types.h"
+#include "Component.h"
+#include "ComponentStorage.h"
 
 namespace XYZ {
 	class SystemManager;
@@ -14,10 +16,12 @@ namespace XYZ {
 
 	protected:
 		Signature m_Signature;
+		std::shared_ptr<ComponentStorage<ActiveComponent>> m_ActiveStorage;
 
 		struct Component
 		{
 			Entity entity;
+			int activeIndex;
 
 			bool operator()(const Component& a, const Component& b)
 			{

@@ -24,13 +24,16 @@ namespace XYZ {
 			}
 		};
 	public:
+		SortingGroup()
+			: m_Comparator(_Comparator())
+		{}
 		/**
 		* Insert index to the vector , keeps it sorted
 		* @param[in] index		index of the element
 		*/
 		void Add(std::shared_ptr<Material> material,_Type index)
 		{
-			auto it = std::lower_bound(m_Group[material].begin(), m_Group[material].end(), index, _Comparator());
+			auto it = std::lower_bound(m_Group[material].begin(), m_Group[material].end(), index, m_Comparator);
 			m_Group[material].insert(it, index);	
 		}
 		/**
@@ -55,6 +58,7 @@ namespace XYZ {
 	
 	private:
 		MaterialGroup<_Type, MaterialComparator> m_Group;
+		_Comparator m_Comparator;
 	};
 
 }

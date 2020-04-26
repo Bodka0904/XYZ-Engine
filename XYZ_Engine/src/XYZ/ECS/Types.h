@@ -2,7 +2,7 @@
 #include <bitset>
 
 namespace XYZ {
-#define MAX_ENTITIES 8192
+#define MAX_ENTITIES 2^16
 #define MAX_COMPONENTS 64
 
 	using Entity = unsigned int;

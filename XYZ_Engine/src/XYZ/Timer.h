@@ -141,7 +141,7 @@ namespace XYZ {
 			Instrumentor::Get().WriteProfile({ m_Name, start, end, threadID, processID });
 
 			std::cout << "Performance: " << m_Name << std::endl;
-			std::cout << "Time: " << ms << "ms" << std::endl;
+			std::cout << "Time: " << ms << "ms" <<" FPS: " << 1000.0f/ms << std::endl;
 		}
 	};
 

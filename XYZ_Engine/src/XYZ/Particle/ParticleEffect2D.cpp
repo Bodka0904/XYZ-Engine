@@ -14,7 +14,7 @@ namespace XYZ {
 	}
 
 
-	ParticleEffect2D::ParticleEffect2D(size_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial)
+	ParticleEffect2D::ParticleEffect2D(uint32_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial)
 		: m_Material(material), m_RenderMaterial(renderMaterial)
 	{
 		m_Material->Set("u_Speed", 1.0f);

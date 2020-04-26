@@ -9,6 +9,8 @@ namespace XYZ {
 	ParticleSystem2D::ParticleSystem2D()
 	{
 		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<XYZ::ParticleEffect2D>());
+		m_ChildrenSignature.set(XYZ::ECSManager::Get()->GetComponentType<XYZ::ParticleEmitter>());
+
 		m_ParticleStorage = ECSManager::Get()->GetComponentStorage<ParticleEffect2D>();
 		m_EmitterStorage = ECSManager::Get()->GetComponentStorage<ParticleEmitter>();
 	}
@@ -46,6 +48,7 @@ namespace XYZ {
 			auto children = ECSManager::Get()->GetComponent<ChildrenComponent>(entity);
 			for (auto child : children->children)
 			{
+			
 				component.childrenIndex[component.numberOfChildren] = ECSManager::Get()->GetComponentIndex<ParticleEmitter>(child);
 				component.numberOfChildren++;
 			}
@@ -68,8 +71,8 @@ namespace XYZ {
 		if (it != m_Components.end())
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			it = m_Components.end() - 1;
-			m_Components.erase(m_Components.end() - 1);
+			*it = std::move(m_Components.back());
+			m_Components.pop_back();
 		}
 	}
 

@@ -34,6 +34,10 @@ namespace XYZ {
 		}
 	};
 
+	struct ActiveComponent : public Type<ActiveComponent>
+	{
+		Signature activeComponents;
+	};
 
 	struct ParentComponent : public Type<ParentComponent>
 	{

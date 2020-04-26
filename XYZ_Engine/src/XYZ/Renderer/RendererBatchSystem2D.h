@@ -49,18 +49,26 @@ namespace XYZ {
 	private:
 		struct ZAscend
 		{
+			ZAscend()
+			{
+				m_Storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
+			}
+			std::shared_ptr<ComponentStorage<Renderable2D>>m_Storage;
 			bool operator()(int a, int b) const
 			{
-				auto storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-				return (*storage)[a].position.z <= (*storage)[b].position.z;
+				return (*m_Storage)[a].position.z <= (*m_Storage)[b].position.z;
 			}
 		};
 		struct ZDescend
 		{
+			ZDescend()
+			{
+				m_Storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
+			}
+			std::shared_ptr<ComponentStorage<Renderable2D>>m_Storage;
 			bool operator()(int a, int b) const
 			{
-				auto storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-				return (*storage)[a].position.z >= (*storage)[b].position.z;
+				return (*m_Storage)[a].position.z >= (*m_Storage)[b].position.z;
 			}
 		};
 	private:

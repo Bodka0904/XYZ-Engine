@@ -1,7 +1,6 @@
 #include <XYZ.h>
 #include <XYZ/Core/EntryPoint.h>
 
-//#include "TestLayer.h"
 #include "GameLayer.h"
 
 class Sandbox : public XYZ::Application

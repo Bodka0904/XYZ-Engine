@@ -29,7 +29,7 @@ void Bomb::Init(int row,int col, std::shared_ptr<XYZ::Material> material)
 		m_Material,
 		glm::vec4(1),
 		glm::vec4(0.0f, 0.0f, 1.0f, 1.0f),
-		glm::vec3(0, 0, 1),
+		glm::vec3(col, row, 1),
 		glm::vec2(1),
 		0.0f,
 		true,
@@ -37,10 +37,9 @@ void Bomb::Init(int row,int col, std::shared_ptr<XYZ::Material> material)
 	));
 
 	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::SpriteAnimation(1, 12, 720, 60));
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::RigidBody2D{});
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::GridPosition(row, col));
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::InterpolatedMovement{});
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::LayerMask(2));
+	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::RigidBody2D(glm::vec2(0)));
+	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::GridBody(row, col,1,1));
+	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::CollisionComponent(2, 2));
 
 	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
 	spriteAnim->SetFrameInterval(0, 5, 0.5f);
@@ -86,19 +85,19 @@ bool Bomb::Explode(float dt)
 	}
 	else
 	{
-		auto gridPos = XYZ::ECSManager::Get()->GetComponent<XYZ::GridPosition>(m_Entity);
+		auto gridBody = XYZ::ECSManager::Get()->GetComponent<XYZ::GridBody>(m_Entity);
 		m_AnimController.StartAnimation("destroyed");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 
-		m_CellsToDamage.emplace_back(gridPos->row - 1, gridPos->col);
-		m_CellsToDamage.emplace_back(gridPos->row - 1, gridPos->col - 1);
-		m_CellsToDamage.emplace_back(gridPos->row, gridPos->col - 1);
-		m_CellsToDamage.emplace_back(gridPos->row + 1, gridPos->col - 1);
-		m_CellsToDamage.emplace_back(gridPos->row + 1, gridPos->col);
-		m_CellsToDamage.emplace_back(gridPos->row + 1, gridPos->col + 1);
-		m_CellsToDamage.emplace_back(gridPos->row, gridPos->col + 1);
-		m_CellsToDamage.emplace_back(gridPos->row - 1, gridPos->col + 1);
-		m_CellsToDamage.emplace_back(gridPos->row, gridPos->col);
+		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col);
+		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col - 1);
+		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col - 1);
+		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col - 1);
+		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col);
+		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col + 1);
+		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col + 1);
+		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col + 1);
+		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col);
 		// Life time of bomb is at the end, return true and remove bomb from stack
 		return true;
 	}

@@ -96,7 +96,6 @@
     <ClInclude Include="src\Map.h" />
     <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Player.h" />
-    <ClInclude Include="src\TestLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Bomb.cpp" />
@@ -104,7 +103,6 @@
     <ClCompile Include="src\Map.cpp" />
     <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\TestLayer.cpp" />
     <ClCompile Include="src\ZSandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>

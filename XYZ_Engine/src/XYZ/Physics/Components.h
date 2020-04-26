@@ -3,6 +3,8 @@
 #include "XYZ/ECS/Component.h"
 
 namespace XYZ {
+	template<typename T>
+	using vector2D = std::vector<std::vector<T>>;
 
 	struct Transform2D : public Type<Transform2D>
 	{
@@ -13,72 +15,94 @@ namespace XYZ {
 
 	struct RigidBody2D : public Type<RigidBody2D>
 	{
-		RigidBody2D(int X = 0,int Y = 0)
-			: velocityX(X),velocityY(Y)
+		RigidBody2D(const glm::vec2& Velocity)
+			: velocity(Velocity)
 		{}
-		int velocityX;
-		int velocityY;
+		glm::vec2 velocity;
+		int bounceValue;
 	};
 	
-	struct GridPosition : public Type<GridPosition>
+	struct GridBody : public Type<GridBody>
 	{
-		GridPosition(int Row = 0,int Col = 0)
-			: row(Row),col(Col)
+		GridBody(int Row,int Col,int Width, int Height)
+			: row(Row),col(Col),width(Width),height(Height),nextRow(0),nextCol(0)
 		{}
-		int row = 0;
-		int col = 0;
+		int row;
+		int col;
+		int width;
+		int height;
+		int nextRow;
+		int nextCol;
 
-
-		bool operator ==(const GridPosition& other) const
+		bool operator ==(const GridBody& other) const
 		{
 			return (col == other.col && row == other.row);
 		}
 
-		bool operator !=(const GridPosition& other)
+		bool operator !=(const GridBody& other)
 		{
 			return (col != other.col || row != other.row);
 		}
-
-		GridPosition operator+(const RigidBody2D& other)
-		{
-			GridPosition pos = *this;
-			pos.col += other.velocityX;
-			pos.row += other.velocityY;
-			return pos;
-		}
-		GridPosition& operator += (const RigidBody2D& other)
-		{
-			col += other.velocityX;
-			row += other.velocityY;
-			return *this;
-		}
 	};
 
-	struct InterpolatedMovement : public Type<GridPosition>
+	struct InterpolatedMovement : public Type<InterpolatedMovement>
 	{
-		float currentTime = 0.0f;
-		float length = 0.5f;
-		bool inProgress = false;
-
-		int velocityX = 0;
-		int velocityY = 0;
+		InterpolatedMovement(const glm::vec2& Velocity)
+			: distance(glm::vec2(0)), velocity(Velocity), inProgress(false)
+		{}
+		glm::vec2 distance;
+		glm::vec2 velocity;
+		bool inProgress;
 	};
 
-	struct Collision : public Type<Collision>
+	struct CollisionComponent : public Type<CollisionComponent>
 	{
+		CollisionComponent(int32_t Layer, int32_t CollisionLayers)
+			: layer(Layer), collisionLayers(CollisionLayers), currentCollisions(0)
+		{}
+		int32_t layer;
 
+		// layers that might collide with layer
+		int32_t collisionLayers;
+
+		// current collisions
+		int32_t currentCollisions;
 	};
 
-	struct LayerMask : public Type<LayerMask>
+
+	struct RealGridBody : public Type<RealGridBody>
 	{
-		LayerMask(int layerBit = 0)
+		RealGridBody(float Left, float Right, float Bottom, float Top)
+			: left(Left),right(Right),bottom(Bottom),top(Top)
+		{}
+
+		bool Collide(const RealGridBody& other)
 		{
-			XYZ_ASSERT(layerBit < 32, "Max number of layers is 32");
-			mask = 0;
-			mask |= 1 << layerBit;
+			if (left >= other.right || other.left >= right)
+			{
+				return false;
+			}
+			if (top <= other.bottom || other.top <= bottom)
+			{
+				return false;
+			}
+			return true;
 		}
-		int32_t mask;
+
+		void Move(const glm::vec2& pos)
+		{
+			left += pos.x;
+			right += pos.x;
+			top += pos.y;
+			bottom += pos.y;
+		}
+
+		float left;
+		float right;
+		float bottom;
+		float top;
 	};
+
 }
 
 
