@@ -1,5 +1,7 @@
 #pragma once
 #include "Event.h"
+#include "XYZ/Core/Singleton.h"
+
 #include <map>
 #include <functional>
 
@@ -8,12 +10,10 @@ namespace XYZ {
 	typedef std::function<void(event_ptr)> handlerPtr;
 	typedef std::map<EventType, std::vector<std::pair<unsigned int, handlerPtr>>> handler_map;
 
-	class EventManager
+	class EventManager : public Singleton<EventManager>
 	{
 	public:
-		EventManager(EventManager& other) = delete;
-
-		~EventManager()
+		EventManager(token) : m_Handlers(handler_map()), m_NextId(0)
 		{}
 
 		bool FireEvent(event_ptr event);
@@ -21,17 +21,11 @@ namespace XYZ {
 		bool RemoveHandler(EventType type, HandlerID handlerId);
 		void RemoveAllHandlers(EventType type);
 
-		static EventManager& Get() { return s_Instance; };
-	private:
-		EventManager() : m_Handlers(handler_map()), m_NextId(0)
-		{}
-
 	private:
 
 		handler_map m_Handlers;
 		unsigned int m_NextId;
 
-		static EventManager s_Instance;
 
 	};
 

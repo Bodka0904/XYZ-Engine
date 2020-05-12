@@ -5,13 +5,14 @@
 #include "XYZ/Renderer/Shader.h"
 #include "XYZ/Renderer/Texture.h"
 
+#include "XYZ/Core/Singleton.h"
 
 namespace XYZ
 {
 	/*! @class AssetManager
 	*	@brief The class to manage game assets
 	*/
-	class AssetManager
+	class AssetManager : public Singleton<AssetManager>
 	{
 		/** Path to the folder with assets */
 		const std::string ASSETS_FOLDER = "Assets/";
@@ -20,21 +21,14 @@ namespace XYZ
 		std::unordered_map<std::string, std::pair<uint16_t, std::shared_ptr<XYZ::Shader>>> m_Shaders;
 		/** Textures collection */
 		std::unordered_map<std::string, std::pair<uint16_t, std::shared_ptr<XYZ::Texture2D>>> m_Textures;
-		/** Instance of the class */
-		static std::unique_ptr<AssetManager> m_Instance;
+
 		/** Counter to track next free id to assign to an asset */
 		uint16_t m_AssetIdCounter;
 		/** Queue with ids of uloaded assets */
 		std::queue<uint16_t> m_FreedIds;
 
-	public:
-		AssetManager() : m_AssetIdCounter(0) {}
-		/**
-		*	The method to access the instance of the class
-		*	@return unique_ptr to the instance of AssetManager class
-		*/
-		static std::unique_ptr<AssetManager>& Get() { return m_Instance; }
-
+	public:	
+		AssetManager(token) :m_AssetIdCounter(0) {};
 		/**
 		*	Creates a shader by given path and adds it into collection of shaders
 		*	@param name Shader name to be stored in the collection

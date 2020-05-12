@@ -49,6 +49,14 @@ namespace XYZ {
 			m_FirstFree = index;
 		}
 		
+		void Shrink(int size)
+		{
+			if (size <= m_FirstFree)
+				m_FirstFree = -1;
+			
+			m_Data.resize(static_cast<size_t>(size));
+		}
+
 		void Clear()
 		{
 			m_Data.clear();

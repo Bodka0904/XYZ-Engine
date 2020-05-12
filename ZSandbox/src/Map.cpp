@@ -16,14 +16,11 @@ void Map::Init(int width, std::shared_ptr<XYZ::Material> material)
 	m_Material = material;
 	m_Walls.resize(width * width);
 
-	m_BackGround = XYZ::ECSManager::Get()->CreateEntity();
-	XYZ::ECSManager::Get()->AddComponent(m_BackGround, XYZ::Renderable2D(
+	m_BackGround = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent(m_BackGround, XYZ::Renderable2D(
 		m_Material,
 		glm::vec4(1),
 		glm::vec4(0.0f, 0.0f, 1.0f, 1.0f),
-		glm::vec3(width/2, width/2, -0.5),
-		glm::vec2(width),
-		0.0f,
 		true,
 		2
 	));
@@ -36,31 +33,28 @@ void Map::Destroy()
 	{
 		for (size_t i = 0; i < m_Walls.size(); ++i)
 		{
-			XYZ::ECSManager::Get()->DestroyEntity(m_Walls[i]);
+			XYZ::ECSManager::Get().DestroyEntity(m_Walls[i]);
 		}
-		XYZ::ECSManager::Get()->DestroyEntity(m_BackGround);
+		XYZ::ECSManager::Get().DestroyEntity(m_BackGround);
 		m_Init = false;
 	}
 }
 
 void Map::SetTile(int row, int col)
 {
-	m_Walls[((m_Width-1) * row) + col] = XYZ::ECSManager::Get()->CreateEntity();
-	XYZ::ECSManager::Get()->AddComponent(m_Walls[((m_Width - 1) * row) + col], XYZ::Renderable2D(
+	m_Walls[((m_Width-1) * row) + col] = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent(m_Walls[((m_Width - 1) * row) + col], XYZ::Renderable2D(
 		m_Material,
 		glm::vec4(1),
 		glm::vec4(0.0f, 0.0f, 1.0f, 1.0f),
-		glm::vec3(col, row, 0),
-		glm::vec2(1),
-		0.0f,
 		true,
 		1
 	));
 
-	XYZ::ECSManager::Get()->AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::SpriteAnimation(1, 12, 720, 60));
-	XYZ::ECSManager::Get()->AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::RigidBody2D(glm::vec2(0)));
-	XYZ::ECSManager::Get()->AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::GridBody(row, col,1,1));
-	XYZ::ECSManager::Get()->AddComponent(m_Walls[((m_Width - 1) * row) + col], XYZ::CollisionComponent(1, 1));
+	XYZ::ECSManager::Get().AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::SpriteAnimation(1, 12, 720, 60));
+	XYZ::ECSManager::Get().AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::RigidBody2D(glm::vec2(0)));
+	XYZ::ECSManager::Get().AddComponent(m_Walls[((m_Width-1) * row) + col], XYZ::GridBody(row, col,1,1));
+	XYZ::ECSManager::Get().AddComponent(m_Walls[((m_Width - 1) * row) + col], XYZ::CollisionComponent(1, 1));
 }
 
 

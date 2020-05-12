@@ -10,7 +10,7 @@ namespace XYZ {
 		if (!s_Instance)
 		{
 			s_Instance = new Renderer2D;
-			s_Instance->m_BatchSystem = ECSManager::Get()->RegisterSystem<RendererBatchSystem2D>();
+			s_Instance->m_BatchSystem = ECSManager::Get().RegisterSystem<RendererBatchSystem2D>();
 		}
 	}
 

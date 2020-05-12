@@ -19,6 +19,7 @@
 #include "XYZ/Renderer/SpriteAnimationController.h"
 #include "XYZ/Renderer/SpriteSystem.h"
 #include "XYZ/Renderer/MaterialManager.h"
+#include "XYZ/Renderer/SceneGraph.h"
 
 //------ECS-----//
 #include "XYZ/ECS/ECSManager.h"
@@ -29,5 +30,6 @@
 #include "XYZ/Physics/RealGridCollisionSystem.h"
 #include "XYZ/Physics/InterpolatedMovementSystem.h"
 #include "XYZ/Particle/ParticleSystem2D.h"
+
 
 

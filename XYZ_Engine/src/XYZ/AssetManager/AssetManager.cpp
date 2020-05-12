@@ -3,9 +3,6 @@
 
 namespace XYZ
 {
-	std::unique_ptr<AssetManager> AssetManager::m_Instance = std::make_unique<AssetManager>();
-
-
 	void AssetManager::LoadShader(const std::string& name, const std::string& path)
 	{
 		XYZ_ASSERT(m_Shaders.find(name) == m_Shaders.end(), "Shader's already loaded.");

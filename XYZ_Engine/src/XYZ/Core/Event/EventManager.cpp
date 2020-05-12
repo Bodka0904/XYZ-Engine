@@ -2,8 +2,6 @@
 #include "EventManager.h"
 
 namespace XYZ {
-	EventManager EventManager::s_Instance;
-
 	//Add an event to manager
 	bool EventManager::FireEvent(event_ptr event)
 	{

@@ -1,6 +1,8 @@
 #pragma once
-#include "Material.h"
 #include "XYZ/ECS/Component.h"
+
+#include "SortingLayer.h"
+#include "Material.h"
 
 #include <glm/glm.hpp>
 
@@ -26,9 +28,6 @@ namespace XYZ {
 			std::shared_ptr<Material> Material,
 			const glm::vec4& Color,
 			const glm::vec4& TexCoord,
-			const glm::vec3& Position,
-			const glm::vec2& Size,
-			float Rotation,
 			bool Visible,
 			int TextureID
 			)
@@ -36,11 +35,9 @@ namespace XYZ {
 			material(Material),
 			color(Color),
 			texCoord(TexCoord),
-			position(Position),
-			size(Size),
-			rotation(Rotation),
 			visible(Visible),
-			textureID(TextureID)
+			textureID(TextureID),
+			sortLayerID(SortingLayer::Get().GetOrderValueByName("default"))
 		{}
 
 		~Renderable2D()
@@ -48,12 +45,10 @@ namespace XYZ {
 		}
 
 		std::shared_ptr<Material> material;
-		glm::vec4 color = glm::vec4(0);
-		glm::vec4 texCoord = glm::vec4(0); // (x = left, y = bottom, z = right, w = top)
-		glm::vec3 position = glm::vec3(0);
-		glm::vec2 size = glm::vec2(0);
-		float rotation = 0.0f;
-		bool visible = true;
-		int textureID = 0;
+		glm::vec4 color;
+		glm::vec4 texCoord; // (x = left, y = bottom, z = right, w = top)
+		bool visible;
+		int textureID;
+		SortingLayerID sortLayerID;
 	};
 }

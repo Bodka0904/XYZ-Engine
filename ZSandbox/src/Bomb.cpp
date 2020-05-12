@@ -20,28 +20,25 @@ void Bomb::Init(int row,int col, std::shared_ptr<XYZ::Material> material)
 	m_Timer = dist(rng);
 	
 	m_AnimLength = sc_AnimLength;
-	m_Entity = XYZ::ECSManager::Get()->CreateEntity();
+	m_Entity = XYZ::ECSManager::Get().CreateEntity();
 
 	m_Material = material;
 
 
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::Renderable2D(
+	XYZ::ECSManager::Get().AddComponent(m_Entity, XYZ::Renderable2D(
 		m_Material,
 		glm::vec4(1),
 		glm::vec4(0.0f, 0.0f, 1.0f, 1.0f),
-		glm::vec3(col, row, 1),
-		glm::vec2(1),
-		0.0f,
 		true,
 		0
 	));
 
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::SpriteAnimation(1, 12, 720, 60));
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::RigidBody2D(glm::vec2(0)));
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::GridBody(row, col,1,1));
-	XYZ::ECSManager::Get()->AddComponent(m_Entity, XYZ::CollisionComponent(2, 2));
+	XYZ::ECSManager::Get().AddComponent(m_Entity, XYZ::SpriteAnimation(1, 12, 720, 60));
+	XYZ::ECSManager::Get().AddComponent(m_Entity, XYZ::RigidBody2D(glm::vec2(0)));
+	XYZ::ECSManager::Get().AddComponent(m_Entity, XYZ::GridBody(row, col,1,1));
+	XYZ::ECSManager::Get().AddComponent(m_Entity, XYZ::CollisionComponent(2, 2));
 
-	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
+	auto spriteAnim = XYZ::ECSManager::Get().GetComponent<XYZ::SpriteAnimation>(m_Entity);
 	spriteAnim->SetFrameInterval(0, 5, 0.5f);
 
 
@@ -75,7 +72,7 @@ bool Bomb::Update(float dt, XYZ::OrthoCamera& camera, std::vector<std::pair<int,
 
 bool Bomb::Explode(float dt)
 {
-	auto spriteAnim = XYZ::ECSManager::Get()->GetComponent<XYZ::SpriteAnimation>(m_Entity);
+	auto spriteAnim = XYZ::ECSManager::Get().GetComponent<XYZ::SpriteAnimation>(m_Entity);
 	if (m_AnimLength > 0.0f)
 	{
 		m_AnimLength -= dt;
@@ -85,7 +82,7 @@ bool Bomb::Explode(float dt)
 	}
 	else
 	{
-		auto gridBody = XYZ::ECSManager::Get()->GetComponent<XYZ::GridBody>(m_Entity);
+		auto gridBody = XYZ::ECSManager::Get().GetComponent<XYZ::GridBody>(m_Entity);
 		m_AnimController.StartAnimation("destroyed");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 
@@ -104,7 +101,7 @@ bool Bomb::Explode(float dt)
 }
 void Bomb::Destroy()
 {
-	XYZ::ECSManager::Get()->DestroyEntity(m_Entity);
+	XYZ::ECSManager::Get().DestroyEntity(m_Entity);
 }
 
 std::vector<std::pair<int, int>> Bomb::InflictDamage() const

@@ -29,16 +29,6 @@ namespace XYZ {
 			GetComponentStorage<T>()->AddComponent(entity, component);
 		}
 
-		void AddRelation(Entity entity, const ParentComponent& component)
-		{
-			uint16_t id = IComponent::GetID<ParentComponent>();
-			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
-			id = IComponent::GetID<ChildrenComponent>();
-			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
-			GetComponentStorage<ChildrenComponent>()->AddChild(component.parentEntity, entity);
-			GetComponentStorage<ParentComponent>()->AddComponent(entity, component);
-		}
-
 		template<typename T>
 		ComponentType GetComponentType()
 		{

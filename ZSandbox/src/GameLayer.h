@@ -39,8 +39,7 @@ private:
 	std::vector<Bomb> m_Bombs;
 
 	XYZ::Entity m_ParticleEntity;
-	XYZ::Entity m_EmitterEntity1;
-	XYZ::Entity m_EmitterEntity2;
+
 
 	int m_NumParticles = 0;
 	int m_PlayableArea = 20;
@@ -48,4 +47,10 @@ private:
 	Menu m_Menu;
 	XYZ::HandlerID m_PutBomb;
 	std::vector<std::pair<int, int>> m_DamagedCells;
+
+
+
+
+	std::shared_ptr<XYZ::SceneGraph> m_Graph;
+	std::vector<XYZ::Entity> m_Test;
 };

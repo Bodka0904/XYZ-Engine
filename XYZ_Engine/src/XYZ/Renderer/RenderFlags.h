@@ -8,9 +8,8 @@ namespace XYZ {
 	enum class RenderFlags : int64_t
 	{
 		MaterialFlag	= 1LL << 0,
-		TransparentFlag = 1LL << 16,
-		InstancedFlag	= 1LL << 17,
-		LayerFlag		= 1LL << 34  
+		TransparentFlag	= 1LL << 16,
+		InstancedFlag	= 1LL << 17
 	};
 
 	inline RenderFlags operator | (RenderFlags lhs, RenderFlags rhs)

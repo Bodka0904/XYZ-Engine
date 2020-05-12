@@ -122,6 +122,7 @@
     <ClInclude Include="src\XYZ\Core\LayerStack.h" />
     <ClInclude Include="src\XYZ\Core\Logger.h" />
     <ClInclude Include="src\XYZ\Core\MouseCodes.h" />
+    <ClInclude Include="src\XYZ\Core\Singleton.h" />
     <ClInclude Include="src\XYZ\Core\Window.h" />
     <ClInclude Include="src\XYZ\ECS\Component.h" />
     <ClInclude Include="src\XYZ\ECS\ComponentManager.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="src\XYZ\Renderer\APIContext.h" />
     <ClInclude Include="src\XYZ\Renderer\Buffer.h" />
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h" />
+    <ClInclude Include="src\XYZ\Renderer\FrustumCullingSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\Material.h" />
     <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
     <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
@@ -153,8 +155,9 @@
     <ClInclude Include="src\XYZ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\SceneGraph.h" />
     <ClInclude Include="src\XYZ\Renderer\Shader.h" />
-    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
+    <ClInclude Include="src\XYZ\Renderer\SortingLayer.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="src\XYZ\Timer.h" />
     <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h" />
     <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\XYZ\Utils\DataStructures\HashGrid2D.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -580,6 +584,7 @@
     <ClCompile Include="src\XYZ\Renderer\APIContext.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Buffer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\FrustumCullingSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Material.cpp" />
     <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
     <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
@@ -592,8 +597,9 @@
     <ClCompile Include="src\XYZ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SortingLayer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
@@ -603,6 +609,7 @@
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Utils\DataStructures\HashGrid2D.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>

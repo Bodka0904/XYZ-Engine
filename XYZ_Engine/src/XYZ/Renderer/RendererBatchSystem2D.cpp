@@ -4,6 +4,9 @@
 #include "Renderer2D.h"
 #include "RenderCommand.h"
 
+
+#include "XYZ/Timer.h"
+
 namespace XYZ {
 	struct Vertex2D
 	{
@@ -13,9 +16,18 @@ namespace XYZ {
 		float	  textureID;
 	};
 
+	struct MaterialComparator
+	{
+		bool operator()(const std::shared_ptr<Material>& a, const std::shared_ptr<Material>& b) const
+		{
+			return (int16_t)a->GetSortKey() < (int16_t)b->GetSortKey();
+		}
+	};
+
 	struct Renderer2DData
 	{
-		void Submit(const Renderable2D& renderable);
+		Renderer2DData() { Reset(); }
+		void Submit(const Renderable2D& renderable,const Transform2D& transform);
 		void Reset();
 
 		const uint32_t MaxQuads = 10000;
@@ -31,151 +43,196 @@ namespace XYZ {
 		Vertex2D* BufferPtr = nullptr;
 
 	};
-	static Renderer2DData s_Data;
+	static std::map<std::shared_ptr<Material>, Renderer2DData, MaterialComparator> s_OpaqueBuckets;
+	static std::map<std::shared_ptr<Material>, Renderer2DData, MaterialComparator> s_TransparentBuckets;
 
-
-	static void SubmitCommand()
+	static void SubmitCommand(const Renderer2DData& data)
 	{
-		uint32_t dataSize = (uint8_t*)s_Data.BufferPtr - (uint8_t*)s_Data.BufferBase;
+		uint32_t dataSize = (uint8_t*)data.BufferPtr - (uint8_t*)data.BufferBase;
 		if (dataSize != 0)
 		{
-			s_Data.QuadVertexBuffer->Update(s_Data.BufferBase, dataSize);
-			s_Data.Material->Bind();
-			s_Data.QuadVertexArray->Bind();
-			RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.IndexCount);
-			s_Data.Reset();
+			data.QuadVertexBuffer->Update(data.BufferBase, dataSize);
+			data.Material->Bind();
+			data.QuadVertexArray->Bind();
+			RenderCommand::DrawIndexed(data.QuadVertexArray, data.IndexCount);
 		}
 	}
-
+	static void SubmitMaterial(std::shared_ptr<Material> material)
+	{
+		material->Bind();
+	}
 	RendererBatchSystem2D::RendererBatchSystem2D()
 	{
-		m_Signature.set(ECSManager::Get()->GetComponentType<Renderable2D>());
-		m_Storage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-		s_Data.Reset();
+		m_Signature.set(ECSManager::Get().GetComponentType<Renderable2D>());
+		m_Signature.set(ECSManager::Get().GetComponentType<Transform2D>());
+		m_RenderableStorage = ECSManager::Get().GetComponentStorage<Renderable2D>();
+		m_TransformStorage = ECSManager::Get().GetComponentStorage<Transform2D>();
+
 	}
 
 
 	void RendererBatchSystem2D::Add(Entity entity)
-	{
-		auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
-		auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
+	{		
+		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
 		auto key = renderable->material->GetSortKey();
 
-		if (renderable->visible & !(key & RenderFlags::InstancedFlag))
+		if (!(key & RenderFlags::InstancedFlag))
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " added");
 			Component component;
 			component.entity = entity;
-			component.key = renderable->material->GetSortKey();
-			m_Components.push_back(component);
+			component.renderableIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
+			component.transformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
+			component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
 			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.Add(renderable->material, index);
+			{
+				m_TransparentComponents.push_back(component);
+				std::push_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(),TransparentComparator());
+			}
 			else
-				m_OpaqueGroup.Add(renderable->material, index);
+			{
+				m_OpaqueComponents.push_back(component);
+				std::push_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(),OpaqueComparator());
+			}
 		}
 	}
 
 	void RendererBatchSystem2D::Remove(Entity entity)
 	{
-		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
-		if (it != m_Components.end())
+		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
-			auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
-			auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
-			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
-				m_TransparentGroup.Remove(renderable->material,index);
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+			auto key = renderable->material->GetSortKey();
+			if (key & RenderFlags::TransparentFlag)
+			{
+				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
+				if (it != m_TransparentComponents.end())
+				{
+					XYZ_LOG_INFO("Entity with id ", entity, " removed");
+					*it = std::move(m_TransparentComponents.back());
+					m_TransparentComponents.pop_back();
+				}
+			}
 			else
-				m_OpaqueGroup.Remove(renderable->material, index);
-
-			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			*it = std::move(m_Components.back());
-			m_Components.pop_back();
+			{
+				auto it = std::find(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), entity);
+				if (it != m_OpaqueComponents.end())
+				{
+					XYZ_LOG_INFO("Entity with id ", entity, " removed");
+					*it = std::move(m_OpaqueComponents.back());
+					m_OpaqueComponents.pop_back();
+				}
+			}
 		}
 	}
 	bool RendererBatchSystem2D::Contains(Entity entity)
 	{
-		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
-		if (it != m_Components.end())
-			return true;
-
+		if (ECSManager::Get().Contains<Renderable2D>(entity))
+		{
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+			auto key = renderable->material->GetSortKey();
+			if (key & RenderFlags::TransparentFlag)
+			{
+				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
+				if (it != m_TransparentComponents.end())
+					return true;
+			}
+			else
+			{
+				auto it = std::find(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), entity);
+				if (it != m_OpaqueComponents.end())
+					return true;
+			}
+		}
 		return false;
 	}
 
 	// If renderable is updated and keys do not match, reinsert it and update key
 	void RendererBatchSystem2D::EntityUpdated(Entity entity)
 	{
-		auto it = std::find(m_Components.begin(), m_Components.end(), entity);
-		if (it != m_Components.end())
-		{
-			auto renderable = ECSManager::Get()->GetComponent<Renderable2D>(entity);
-			auto index = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
-			if ((*it).key != renderable->material->GetSortKey())
-			{
-				if ((*it).key & RenderFlags::TransparentFlag)
-					m_TransparentGroup.Remove(renderable->material,index);
-				else
-					m_OpaqueGroup.Remove(renderable->material,index);
-
-				(*it).key = renderable->material->GetSortKey();
-				Add(entity);
-			}
-		}
+		// TODO
 	}
 
 	void RendererBatchSystem2D::SubmitToRenderer()
-	{
-		for (auto it : m_OpaqueGroup.GetGroup())
+	{	
+		if (!std::is_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(),  OpaqueComparator()))
+			std::make_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), OpaqueComparator());
+		for (auto it : m_OpaqueComponents)
 		{
-			s_Data.Material = it.first;
-			for (auto index : it.second)
-			{	
-				if (s_Data.IndexCount < s_Data.MaxIndices)
-					s_Data.Submit((*m_Storage)[index]);
-				else
-					SubmitCommand();
-			}
-			SubmitCommand();
-		}
-
-		for (auto it : m_TransparentGroup.GetGroup())
-		{
-			s_Data.Material = it.first;
-			for (auto index : it.second)
+			auto material = (*m_RenderableStorage)[it.renderableIndex].material;
+			auto& bucket = s_OpaqueBuckets[material];
+			if (bucket.IndexCount < bucket.IndexCount)
 			{
-				if (s_Data.IndexCount < s_Data.MaxIndices)
-					s_Data.Submit((*m_Storage)[index]);
-				else
-					SubmitCommand();
+				bucket.Submit((*m_RenderableStorage)[it.renderableIndex],(*m_TransformStorage)[it.transformIndex]);
 			}
-			SubmitCommand();
+			else
+			{
+				bucket.Material = material;
+				SubmitCommand(bucket);
+				bucket.Reset();
+			}
+		}
+		for (auto& it : s_OpaqueBuckets)
+		{
+			it.second.Material = it.first;
+			SubmitCommand(it.second);
+			it.second.Reset();
+		}
+		
+		if (!std::is_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator()))
+			std::make_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator());
+		for (auto it : m_TransparentComponents)
+		{
+			
+			auto material = (*m_RenderableStorage)[it.renderableIndex].material;
+			auto& bucket = s_TransparentBuckets[material];
+			
+			if (bucket.IndexCount < bucket.MaxIndices)
+			{
+				bucket.Submit((*m_RenderableStorage)[it.renderableIndex],(*m_TransformStorage)[it.transformIndex]);
+			}
+			else
+			{
+				bucket.Material = material;
+				SubmitCommand(bucket);
+				bucket.Reset();
+			}
+		}
+		//std::cout << "Draw" << std::endl;
+		for (auto& it : s_TransparentBuckets)
+		{
+			it.second.Material = it.first;
+			SubmitCommand(it.second);
+			it.second.Reset();
 		}
 	}
 
-	void Renderer2DData::Submit(const Renderable2D& renderable)
+
+	void Renderer2DData::Submit(const Renderable2D& renderable,const Transform2D& transform)
 	{
-		BufferPtr->position = { renderable.position.x - renderable.size.x / 2.0f,renderable.position.y - renderable.size.y / 2.0f,renderable.position.z };
+		BufferPtr->position = { transform.position.x - transform.size.x / 2.0f,transform.position.y - transform.size.y / 2.0f,transform.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.x;
 		BufferPtr->texCoord.y = renderable.texCoord.y;
 		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
-		BufferPtr->position = { renderable.position.x + renderable.size.x / 2.0f,renderable.position.y - renderable.size.y / 2.0f,renderable.position.z };
+		BufferPtr->position = { transform.position.x + transform.size.x / 2.0f,transform.position.y - transform.size.y / 2.0f,transform.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.z;
 		BufferPtr->texCoord.y = renderable.texCoord.y;
 		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
-		BufferPtr->position = { renderable.position.x + renderable.size.x / 2.0f,renderable.position.y + renderable.size.y / 2.0f,renderable.position.z };
+		BufferPtr->position = { transform.position.x + transform.size.x / 2.0f,transform.position.y + transform.size.y / 2.0f,transform.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.z;
 		BufferPtr->texCoord.y = renderable.texCoord.w;
 		BufferPtr->textureID = (float)renderable.textureID;
 		BufferPtr++;
 
-		BufferPtr->position = { renderable.position.x - renderable.size.x / 2.0f,renderable.position.y + renderable.size.y / 2.0f,renderable.position.z };
+		BufferPtr->position = { transform.position.x - transform.size.x / 2.0f,transform.position.y + transform.size.y / 2.0f,transform.position.z };
 		BufferPtr->color = renderable.color;
 		BufferPtr->texCoord.x = renderable.texCoord.x;
 		BufferPtr->texCoord.y = renderable.texCoord.w;

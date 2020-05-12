@@ -493,6 +493,7 @@ namespace XYZ {
 			if (size > 1)
 				sizeUni *= size;
 
+			
 			addUniform(uniType, sizeUni, offset, name, size);
 			offset += sizeUni;
 			m_UniformsSize += sizeUni;

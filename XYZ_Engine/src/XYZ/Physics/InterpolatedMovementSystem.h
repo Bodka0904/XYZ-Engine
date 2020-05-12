@@ -1,7 +1,6 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
 #include "Components.h"
-#include "XYZ/Renderer/Renderable2D.h"
 
 
 namespace XYZ {
@@ -23,12 +22,12 @@ namespace XYZ {
 		{
 			int interpolIndex;
 			int gridBodyIndex;
-			int renderIndex;
+			int transformIndex;
 		};
 
 		std::shared_ptr<ComponentStorage<InterpolatedMovement>> m_InterpolStorage;
 		std::shared_ptr<ComponentStorage<GridBody>> m_GridBodyStorage;
-		std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
+		std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
 		std::vector<Component> m_Components;
 	};
 

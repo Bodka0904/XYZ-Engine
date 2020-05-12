@@ -6,11 +6,11 @@ namespace XYZ {
 	GridCollisionSystem::GridCollisionSystem()
 		: m_NumRows(1), m_NumCols(1), m_CellSize(1), m_PositionX(0), m_PositionY(0)
 	{
-		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<GridBody>());
-		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<CollisionComponent>());
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<GridBody>());
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<CollisionComponent>());
 
-		m_GridBodyStorage = ECSManager::Get()->GetComponentStorage<GridBody>();
-		m_CollisionStorage = ECSManager::Get()->GetComponentStorage<CollisionComponent>();
+		m_GridBodyStorage = ECSManager::Get().GetComponentStorage<GridBody>();
+		m_CollisionStorage = ECSManager::Get().GetComponentStorage<CollisionComponent>();
 	}
 	void GridCollisionSystem::ClearGrid()
 	{
@@ -69,9 +69,9 @@ namespace XYZ {
 	{
 		Component component;
 		component.entity = entity;
-		component.collisionIndex = ECSManager::Get()->GetComponentIndex<CollisionComponent>(entity);
-		component.gridBodyIndex = ECSManager::Get()->GetComponentIndex<GridBody>(entity);
-		component.activeIndex = ECSManager::Get()->GetComponentIndex<ActiveComponent>(entity);
+		component.collisionIndex = ECSManager::Get().GetComponentIndex<CollisionComponent>(entity);
+		component.gridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
+		component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
 		auto layer = (*m_CollisionStorage)[component.collisionIndex].layer;
 		auto collisionLayer = (*m_CollisionStorage)[component.collisionIndex].collisionLayers;

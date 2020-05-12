@@ -4,15 +4,13 @@
 
 
 namespace XYZ {
-	MaterialManager MaterialManager::s_Instance;
-
 
 	std::shared_ptr<Material> MaterialManager::GetMaterial(int16_t id)
 	{
 		return m_Materials[id];
 	}
 
-	MaterialManager::MaterialManager()
+	MaterialManager::MaterialManager(token)
 	{
 		for (int16_t id = 0; id < sc_MaxNumberOfMaterials; ++id)
 		{

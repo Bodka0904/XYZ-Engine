@@ -126,4 +126,9 @@ namespace XYZ {
 		case BufferUsage::Dynamic:   glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW); break;
 		}
 	}
+	void OpenGLShaderStorageBuffer::GetSubData(void* buffer, uint32_t size, uint32_t offset)
+	{
+		XYZ_ASSERT(size + offset < m_Size, "Accesing data out of range");
+		glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, offset, size, buffer);
+	}
 }

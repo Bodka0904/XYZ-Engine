@@ -110,10 +110,14 @@ namespace XYZ {
 		*/
 		const int64_t GetSortKey() const { return m_Key; }
 
+
+		//TODO TEMPORAR
 		/**
 		* @return shared_ptr to the Shader
 		*/
-		const std::shared_ptr<Shader>& GetShader() { return m_Shader; }
+		std::shared_ptr<Shader> GetShader() { return m_Shader; }
+		//////////////////////
+
 
 		/**
 		* @param[in] shader
@@ -199,7 +203,7 @@ namespace XYZ {
 		/**
 		* @return shared_ptr to the Material used in constructor
 		*/
-		int64_t GetSortKey() { return m_Material->m_Key; }
+		int64_t GetSortKey() const { return m_Material->m_Key; }
 		const std::shared_ptr<Material> GetParentMaterial() { return m_Material; }
 
 		/**

@@ -16,28 +16,28 @@ GameLayer::~GameLayer()
 
 void GameLayer::OnAttach()
 {
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::RigidBody2D>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::GridBody>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParticleEffect2D>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::Renderable2D>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::SpriteAnimation>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::InterpolatedMovement>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParentComponent>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ChildrenComponent>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ActiveComponent>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::ParticleEmitter>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::CollisionComponent>();
-	XYZ::ECSManager::Get()->RegisterComponent<XYZ::RealGridBody>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::Relationship>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::Transform2D>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::RigidBody2D>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::GridBody>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::ParticleEffect2D>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::Renderable2D>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::SpriteAnimation>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::InterpolatedMovement>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::ActiveComponent>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::ParticleEmitter>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::CollisionComponent>();
+	XYZ::ECSManager::Get().RegisterComponent<XYZ::RealGridBody>();
 
-	m_PhysicsSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::PhysicsSystem>();
-	m_InterSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::InterpolatedMovementSystem>();
-	m_GridCollisionSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::GridCollisionSystem>();
+	m_PhysicsSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::PhysicsSystem>();
+	m_InterSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::InterpolatedMovementSystem>();
+	m_GridCollisionSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::GridCollisionSystem>();
 	m_GridCollisionSystem->ResizeGrid(21, 21, 1, 0, 0);
-	m_RealGridCollisionSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::RealGridCollisionSystem>();
+	m_RealGridCollisionSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::RealGridCollisionSystem>();
 	m_RealGridCollisionSystem->CreateGrid(21, 21, 1);
 
-	m_ParticleSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::ParticleSystem2D>();
-	m_SpriteSystem = XYZ::ECSManager::Get()->RegisterSystem<XYZ::SpriteSystem>();
+	m_ParticleSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::ParticleSystem2D>();
+	m_SpriteSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::SpriteSystem>();
 
 	XYZ::Renderer::Init();
 
@@ -54,7 +54,32 @@ void GameLayer::OnAttach()
 	m_Material->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
 
+
 	
+
+
+	m_Graph = std::make_shared<XYZ::SceneGraph>();
+	m_Test.resize(10);
+
+	for (int i = 0; i < 10; ++i)
+	{
+		m_Test[i] = XYZ::ECSManager::Get().CreateEntity();
+		XYZ::ECSManager::Get().AddComponent(m_Test[i], XYZ::Relationship());
+		XYZ::ECSManager::Get().AddComponent(m_Test[i], XYZ::Transform2D(glm::vec3(1)));
+	}
+
+	m_Graph->Insert(m_Test[0]);
+	m_Graph->Insert(m_Test[1]);
+	m_Graph->AttachChild(m_Test[0], m_Test[3]);
+	m_Graph->AttachChild(m_Test[0], m_Test[5]);
+	m_Graph->AttachChild(m_Test[5], m_Test[6]);
+	m_Graph->Insert(m_Test[4]);
+	m_Graph->AttachChild(m_Test[0], m_Test[8]);
+
+	m_Graph->Print();
+
+
+
 	InitBackgroundParticles();
 }
 
@@ -85,10 +110,10 @@ void GameLayer::OnUpdate(float dt)
 
 		XYZ::ParticleProps2D particle;
 
-		auto effect = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
+		auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
 
-		
-		particle.position = glm::vec2(0.02 * m_NumParticles,20);
+
+		particle.position = glm::vec2(0.02 * m_NumParticles, 20);
 		particle.sizeBegin = 2.0f;
 		particle.sizeEnd = 0.0f;
 		particle.colorEnd = glm::vec4(1, 0, 1, 0);
@@ -108,8 +133,8 @@ void GameLayer::OnUpdate(float dt)
 		m_GridCollisionSystem->Update(dt);
 		m_PhysicsSystem->Update(dt);
 		m_InterSystem->Update(dt);
-		
-		
+
+
 
 		m_SpriteSystem->Update(dt);
 
@@ -127,12 +152,13 @@ void GameLayer::OnUpdate(float dt)
 			}
 		}
 
-		for (int i = 0; i < m_Players.size(); i++)
+		
+		for (int i = 0; i < 2; i++)
 		{
 			m_Players[i].Update(m_Bombs, m_DamagedCells);
 			if (m_Players[i].IsDead())
 				m_Players.erase(m_Players.begin() + i);
-
+		
 		}
 		if (m_Players.size() == 1)
 			m_Menu.SetEndGame();
@@ -148,7 +174,7 @@ void GameLayer::OnUpdate(float dt)
 }
 
 void GameLayer::RestartGame()
-{	
+{
 	for (size_t i = 0; i < m_Players.size(); ++i)
 		m_Players[i].Destroy();
 	m_Players.clear();
@@ -161,8 +187,11 @@ void GameLayer::RestartGame()
 	//m_Map.Generate(20);
 
 	m_Players.resize(2);
-	m_Players[0].Init(m_Camera, m_Material, glm::vec3(10, 10, 0), m_Bombs);
-	m_Players[1].Init(m_Camera, m_Material, glm::vec3(2, 2, 0.5f), m_Bombs);
+	m_Players[0].Init(m_Camera, m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
+	m_Players[1].Init(m_Camera, m_Material, glm::vec3(2, 2, 0.0f), m_Bombs);
+
+	for (int i = 2; i < m_Players.size(); ++i)
+		m_Players[i].Init(m_Camera, m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
 
 	m_Players[0].UseControlsMode(0);
 	m_Players[1].UseControlsMode(1);
@@ -170,45 +199,30 @@ void GameLayer::RestartGame()
 
 void GameLayer::InitBackgroundParticles()
 {
-	m_ParticleEntity = XYZ::ECSManager::Get()->CreateEntity();
+	m_ParticleEntity = XYZ::ECSManager::Get().CreateEntity();
 	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "Assets/Shaders/Particle/ParticleShader.glsl"));
 	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubbles.png"));
 	m_ParticleMaterial->SetFlags(XYZ::RenderFlags::InstancedFlag);
 
 
+	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity,XYZ::ParticleEmitter());
 	auto material = XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/Particle/ParticleComputeShader.glsl"));
-	
-
-	m_EmitterEntity1 = XYZ::ECSManager::Get()->CreateEntity();
-	m_EmitterEntity2 = XYZ::ECSManager::Get()->CreateEntity();
-
-
-	XYZ::ECSManager::Get()->AddRelation(m_EmitterEntity1, XYZ::ParentComponent(m_ParticleEntity));
-	XYZ::ECSManager::Get()->AddRelation(m_EmitterEntity2, XYZ::ParentComponent(m_ParticleEntity));
-
-	XYZ::ECSManager::Get()->AddComponent(m_EmitterEntity1, XYZ::ParticleEmitter());
-	XYZ::ECSManager::Get()->AddComponent(m_EmitterEntity2, XYZ::ParticleEmitter());
-
-
-	auto emitter1 = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEmitter>(m_EmitterEntity1);
-	auto emitter2 = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEmitter>(m_EmitterEntity2);
+	auto emitter1 = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEmitter>(m_ParticleEntity);
 
 	emitter1->material = XYZ::MaterialInstance::Create(material);
-	emitter2->material = XYZ::MaterialInstance::Create(material);
+
 
 	emitter1->material->Set("u_Emitter", glm::vec2(10, 0));
 
 	emitter1->position = glm::vec2(5, 5);
-	emitter2->position = glm::vec2(17, 5);
+
 
 	emitter1->offset = 0;
 	emitter1->numParticles = 50;
 
-	emitter2->offset = 51;
-	emitter2->numParticles = 100;
-	
-	XYZ::ECSManager::Get()->AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(1000, material, m_ParticleMaterial));
-	auto effect = XYZ::ECSManager::Get()->GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
+
+	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(1000, material, m_ParticleMaterial));
+	auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
 
 
 	//std::random_device rd;

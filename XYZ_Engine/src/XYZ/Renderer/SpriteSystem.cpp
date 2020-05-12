@@ -5,11 +5,11 @@
 namespace XYZ {
 	SpriteSystem::SpriteSystem()
 	{
-		m_Signature.set(ECSManager::Get()->GetComponentType<SpriteAnimation>());
-		m_Signature.set(ECSManager::Get()->GetComponentType<Renderable2D>());
+		m_Signature.set(ECSManager::Get().GetComponentType<SpriteAnimation>());
+		m_Signature.set(ECSManager::Get().GetComponentType<Renderable2D>());
 
-		m_SpriteStorage = ECSManager::Get()->GetComponentStorage<SpriteAnimation>();
-		m_RenderableStorage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
+		m_SpriteStorage = ECSManager::Get().GetComponentStorage<SpriteAnimation>();
+		m_RenderableStorage = ECSManager::Get().GetComponentStorage<Renderable2D>();
 	}
 	void SpriteSystem::Update(float dt)
 	{
@@ -23,8 +23,8 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");
 	
 		Component component;
-		component.animIndex = ECSManager::Get()->GetComponentIndex<SpriteAnimation>(entity);
-		component.rendIndex = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
+		component.animIndex = ECSManager::Get().GetComponentIndex<SpriteAnimation>(entity);
+		component.rendIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
 
 		component.entity = entity;
 

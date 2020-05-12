@@ -52,7 +52,7 @@ namespace XYZ {
 		m_VertexStorage = ShaderStorageBuffer::Create((uint32_t)m_MaxParticles * (uint32_t)sizeof(ParticleVertex));
 		m_VertexStorage->SetLayout(buflayout);
 
-		m_PropsStorage = ShaderStorageBuffer::Create((uint32_t)m_MaxParticles * (uint32_t)sizeof(ParticleData));
+		m_PropsStorage = ShaderStorageBuffer::Create((uint32_t)m_MaxParticles * (uint32_t)sizeof(ParticleInformation));
 
 
 
@@ -85,18 +85,15 @@ namespace XYZ {
 	{
 		Command< std::shared_ptr<Material>, std::shared_ptr<VertexArray>, uint32_t>cmd(RenderInstanced, m_RenderMaterial, m_VertexArray, m_ParticlesInExistence);
 		Renderer2D::Submit(cmd, sizeof(cmd));
-
 	}
 
 	void ParticleEffect2D::Bind(const ParticleEmitter& emitter)
 	{
 		emitter.material->Bind();
 
-		m_PropsStorage->BindRange(emitter.offset * sizeof(ParticleData), emitter.numParticles * (uint32_t)sizeof(ParticleData), 1);
-		m_VertexStorage->BindRange(emitter.offset * sizeof(ParticleData), emitter.numParticles * (uint32_t)sizeof(ParticleVertex), 0);
+		m_PropsStorage->BindRange(emitter.offset * sizeof(ParticleInformation), emitter.numParticles * (uint32_t)sizeof(ParticleInformation), 1);
+		m_VertexStorage->BindRange(emitter.offset * sizeof(ParticleInformation), emitter.numParticles * (uint32_t)sizeof(ParticleVertex), 0);
 
-		//m_PropsStorage->BindRange(0, m_ParticlesInExistence * (uint32_t)sizeof(ParticleData), 1);
-		//m_VertexStorage->BindRange(0, m_ParticlesInExistence * (uint32_t)sizeof(ParticleVertex), 0);
 		m_Material->GetShader()->Compute(32, 32, 1);
 	}
 
@@ -126,12 +123,42 @@ namespace XYZ {
 			m_Data[i].endVelocity = particle.velocity;
 
 			m_VertexStorage->Update(&m_Vertices[i], sizeof(ParticleVertex), m_ParticlesInExistence * sizeof(ParticleVertex));
-			m_PropsStorage->Update(&m_Data[i], sizeof(ParticleData), m_ParticlesInExistence * sizeof(ParticleData));
+			m_PropsStorage->Update(&m_Data[i], sizeof(ParticleInformation), m_ParticlesInExistence * sizeof(ParticleInformation));
 
 			m_ParticlesInExistence++;
 		}
 		else
 			XYZ_LOG_WARN("Reached maximum number of particles");
+	}
+
+	void ParticleEffect2D::SetParticles(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo)
+	{
+		m_VertexStorage->Update(vertexBuffer, m_ParticlesInExistence * sizeof(ParticleVertex), 0);
+		m_PropsStorage->Update(particleInfo, m_ParticlesInExistence * sizeof(ParticleInformation), 0);
+	}
+
+	void ParticleEffect2D::SetParticlesRange(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo, uint32_t offset, uint32_t count)
+	{
+		XYZ_ASSERT(offset + count < m_ParticlesInExistence, "Attempting to set particles out of range");
+		m_VertexStorage->Update(vertexBuffer, count * sizeof(ParticleVertex), offset * sizeof(ParticleVertex));
+		m_PropsStorage->Update(particleInfo, count * sizeof(ParticleInformation), offset * sizeof(ParticleVertex));
+	}
+
+	uint32_t ParticleEffect2D::GetParticles(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo)
+	{
+		m_VertexStorage->GetSubData(vertexBuffer, m_ParticlesInExistence * sizeof(ParticleVertex), 0);
+		m_PropsStorage->GetSubData(particleInfo, m_ParticlesInExistence * sizeof(ParticleInformation), 0);
+		
+		return m_ParticlesInExistence;
+	}
+
+	uint32_t ParticleEffect2D::GetParticlesRange(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo, uint32_t offset, uint32_t count)
+	{
+		XYZ_ASSERT(offset + count < m_ParticlesInExistence, "Attempting to get particles out of range");
+		m_VertexStorage->GetSubData(vertexBuffer, count * sizeof(ParticleVertex), offset * sizeof(ParticleVertex));
+		m_PropsStorage->GetSubData(particleInfo, count * sizeof(ParticleInformation), offset * sizeof(ParticleVertex));
+
+		return count + offset;
 	}
 
 }

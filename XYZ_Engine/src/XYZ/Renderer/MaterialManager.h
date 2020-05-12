@@ -1,25 +1,19 @@
 #pragma once
 #include "Material.h"
-
+#include "XYZ/Core/Singleton.h"
 
 #include <queue>
 
 namespace XYZ {
 
 	/**
-	* @class MaterialManager
+	* @class MaterialManager temporary class
 	*/
-	class MaterialManager
+	class MaterialManager : public Singleton<MaterialManager>
 	{
 		friend class Material;
 	public:
-		/**
-		* Copy Constructor deleted
-		*/
-		MaterialManager();
-		MaterialManager(const MaterialManager&) = delete;
-		
-
+		MaterialManager(token);
 		/**
 		* Store material in unordered_map ,give it unique id
 		* @param[in] material
@@ -36,17 +30,12 @@ namespace XYZ {
 
 
 
-		// temporary
+
 		/**
 		* @param[in] id		Id of the material
 		* @return shared_ptr to the Material
 		*/
 		std::shared_ptr<Material> GetMaterial(int16_t id);
-
-		/**
-		* @return reference to *this;
-		*/
-		static MaterialManager& Get() { return s_Instance; }
 
 	private:
 		int16_t m_MaterialsInExistence = 0;
@@ -55,7 +44,6 @@ namespace XYZ {
 		// Temporary untill we have asset manager
 		std::unordered_map<int16_t, std::shared_ptr<Material>> m_Materials;
 
-		static MaterialManager s_Instance;
 		static constexpr int16_t sc_MaxNumberOfMaterials = 2 ^ (sizeof(int16_t) * 8);
 	};
 }

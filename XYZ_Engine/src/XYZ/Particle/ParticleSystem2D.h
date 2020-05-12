@@ -20,10 +20,8 @@ namespace XYZ {
 		struct Component : public System::Component
 		{
 			int particleIndex;
-			int numberOfChildren = 0;
-			int childrenIndex[ChildrenComponent::sc_MaxChildren];
+			int emitterIndex;
 		};
-		Signature m_ChildrenSignature;
 
 		std::vector<Component> m_Components;
 		std::shared_ptr<ComponentStorage<ParticleEffect2D>> m_ParticleStorage;

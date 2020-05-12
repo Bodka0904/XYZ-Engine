@@ -8,15 +8,19 @@ namespace XYZ {
 
 	struct Transform2D : public Type<Transform2D>
 	{
-		glm::vec2 pos = glm::vec2(0);
-		glm::vec2 rot = glm::vec2(0);
-		glm::vec2 scale = glm::vec2(1);
+		Transform2D(const glm::vec3& Pos, const glm::vec2& Size = glm::vec2(1), float Rot = 0.0f)
+			:
+			position(Pos),size(Size),rotation(Rot)
+		{}
+		glm::vec3 position = glm::vec3(0);
+		glm::vec2 size = glm::vec2(1);
+		float rotation = 0.0f;
 	};
 
 	struct RigidBody2D : public Type<RigidBody2D>
 	{
 		RigidBody2D(const glm::vec2& Velocity)
-			: velocity(Velocity)
+			: velocity(Velocity),bounceValue(0)
 		{}
 		glm::vec2 velocity;
 		int bounceValue;

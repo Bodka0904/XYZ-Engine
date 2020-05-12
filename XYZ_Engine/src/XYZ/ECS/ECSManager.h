@@ -2,23 +2,16 @@
 #include "ComponentManager.h"
 #include "EntityManager.h"
 #include "SystemManager.h"
+#include "XYZ/Core/Singleton.h"
 
 #include <memory>
 
 namespace XYZ {
-	class ECSManager
+	class ECSManager : public Singleton<ECSManager>
 	{
 	public:
-		static void Init()
-		{
-			if (!s_Instance.get())
-			{
-				s_Instance = std::make_unique<ECSManager>();
-				s_Instance->m_ComponentManager = std::make_unique<ComponentManager>();
-				s_Instance->m_EntityManager = std::make_unique<EntityManager>();
-				s_Instance->m_SystemManager = std::make_unique<SystemManager>();
-			}
-		}
+		ECSManager(token);
+		
 		template<typename T>
 		std::shared_ptr<T> RegisterSystem()
 		{	
@@ -39,15 +32,6 @@ namespace XYZ {
 			signature.set(m_ComponentManager->GetComponentType<T>(), 1);
 			active->activeComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
 
-			m_EntityManager->SetSignature(entity, signature);
-			m_SystemManager->EntitySignatureChanged(entity, signature);
-		}
-
-		void AddRelation(Entity entity, const ParentComponent& component)
-		{
-			m_ComponentManager->AddRelation(entity, component);
-			auto signature = m_EntityManager->GetSignature(entity);
-			signature.set(m_ComponentManager->GetComponentType<ParentComponent>(), 1);
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
 		}
@@ -125,13 +109,11 @@ namespace XYZ {
 			return entity;
 		}
 
-		static std::unique_ptr<ECSManager>& Get() { return s_Instance; }
 	private:
 		std::unique_ptr<ComponentManager> m_ComponentManager;
 		std::unique_ptr<EntityManager>	  m_EntityManager;
 		std::unique_ptr<SystemManager>	  m_SystemManager;
-		//bool							  m_EntityEditing;
-		static std::unique_ptr<ECSManager> s_Instance;
+		
 	};
 
 }

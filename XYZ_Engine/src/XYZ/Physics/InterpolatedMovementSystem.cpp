@@ -7,13 +7,13 @@
 namespace XYZ {
 	InterpolatedMovementSystem::InterpolatedMovementSystem()
 	{
-		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<InterpolatedMovement>());
-		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<Renderable2D>());
-		m_Signature.set(XYZ::ECSManager::Get()->GetComponentType<GridBody>());
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<InterpolatedMovement>());
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<Transform2D>());
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<GridBody>());
 
-		m_InterpolStorage = ECSManager::Get()->GetComponentStorage<InterpolatedMovement>();
-		m_RenderableStorage = ECSManager::Get()->GetComponentStorage<Renderable2D>();
-		m_GridBodyStorage = ECSManager::Get()->GetComponentStorage<GridBody>();
+		m_InterpolStorage = ECSManager::Get().GetComponentStorage<InterpolatedMovement>();
+		m_TransformStorage = ECSManager::Get().GetComponentStorage<Transform2D>();
+		m_GridBodyStorage = ECSManager::Get().GetComponentStorage<GridBody>();
 	}
 	void InterpolatedMovementSystem::Update(float dt)
 	{
@@ -29,12 +29,12 @@ namespace XYZ {
 					if ((*m_InterpolStorage)[it.interpolIndex].distance.x > 0.0f)
 					{
 						(*m_InterpolStorage)[it.interpolIndex].distance.x -= fabs(x);
-						(*m_RenderableStorage)[it.renderIndex].position.x += x;
+						(*m_TransformStorage)[it.transformIndex].position.x += x;
 					}
 					if ((*m_InterpolStorage)[it.interpolIndex].distance.y > 0.0f)
 					{
 						(*m_InterpolStorage)[it.interpolIndex].distance.y -= fabs(y);
-						(*m_RenderableStorage)[it.renderIndex].position.y += y;
+						(*m_TransformStorage)[it.transformIndex].position.y += y;
 					}
 
 					if ((*m_InterpolStorage)[it.interpolIndex].distance.x <= 0.0f
@@ -62,10 +62,10 @@ namespace XYZ {
 	{
 		Component component;
 		component.entity = entity;
-		component.interpolIndex = ECSManager::Get()->GetComponentIndex<InterpolatedMovement>(entity);
-		component.gridBodyIndex = ECSManager::Get()->GetComponentIndex<GridBody>(entity);
-		component.renderIndex = ECSManager::Get()->GetComponentIndex<Renderable2D>(entity);
-		component.activeIndex = ECSManager::Get()->GetComponentIndex<ActiveComponent>(entity);
+		component.interpolIndex = ECSManager::Get().GetComponentIndex<InterpolatedMovement>(entity);
+		component.gridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
+		component.transformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
+		component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
 		m_Components.push_back(component);
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");

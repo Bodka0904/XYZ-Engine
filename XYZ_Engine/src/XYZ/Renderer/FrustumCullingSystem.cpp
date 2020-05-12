@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "SortingGroup.h"
+#include "FrustumCullingSystem.h"
+
 
 namespace XYZ {
 

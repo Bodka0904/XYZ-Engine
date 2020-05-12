@@ -39,17 +39,12 @@ namespace XYZ {
 		Signature activeComponents;
 	};
 
-	struct ParentComponent : public Type<ParentComponent>
+	struct Relationship : public Type<Relationship>
 	{
-		ParentComponent(Entity Parent)
-			: parentEntity(Parent)
-		{}
-		Entity parentEntity;
-	};
-
-	struct ChildrenComponent : public Type<ChildrenComponent>
-	{
-		static constexpr int sc_MaxChildren = 10;
-		std::vector<Entity> children;
+		size_t numChildren = 0;
+		Entity parent = NULL_ENTITY;
+		Entity previous = NULL_ENTITY;
+		Entity next = NULL_ENTITY;
+		Entity first = NULL_ENTITY;
 	};
 }

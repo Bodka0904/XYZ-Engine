@@ -2,7 +2,6 @@
 #version 430
 
 
-
 const int c_MaxParticles = 10000;
 
 struct ParticleVertex
@@ -45,12 +44,15 @@ buffer_InData
 	ParticleData InData[];
 };
 
+
+uniform vec2 u_Emitter;
+uniform vec4 u_Collider;
 uniform float u_Time;
 uniform float u_Gravity;
 uniform float u_Speed;
 uniform float u_NumberRows;
 uniform float u_NumberColumns;
-uniform vec2 u_Emitter;
+
 
 float c_NumberOfStages = u_NumberRows * u_NumberColumns;
 
@@ -59,6 +61,16 @@ float rand(vec2 co)
 	return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453) * 1000.0;
 }
 
+bool DetectCollision(vec4 pos)
+{	
+	if ((pos.x >= u_Collider.x && pos.x <= u_Collider.z)
+		&& (pos.y >= u_Collider.y && pos.y <= u_Collider.w))
+	{
+		return true;
+	}
+	
+	return false;
+}
 
 subroutine vec4 colorRedBlue();
 subroutine(colorRedBlue) vec4 redColor()
@@ -116,6 +128,15 @@ void main(void)
 	int row = int(index / u_NumberRows);
 
 	pVertex.texCoordOffset = vec2(float(column) / u_NumberColumns, float(row) / u_NumberRows);
+
+	if (DetectCollision(pVertex.position))
+	{
+		//pData.startVelocity = pData.endVelocity;
+		//pData.timeAlive = 0;
+
+		//pVertex.position.x = u_Emitter.x + pData.defaultPosition.x;
+		//pVertex.position.y = u_Emitter.y + pData.defaultPosition.y;
+	}
 
 	if (pData.timeAlive > pData.lifeTime)
 	{

@@ -36,6 +36,8 @@ namespace XYZ {
 	};
 
 
+
+	// TODO delete
 	/**
 	* @struct ParticleProps2D
 	* @brief properties of single particle
@@ -51,17 +53,48 @@ namespace XYZ {
 		float lifeTime;
 		float rotation;
 	};
-
+	///////////////////////////////
 
 	struct ParticleEmitter : public Type<ParticleEmitter>
 	{
+		std::shared_ptr<MaterialInstance> material;
+		std::shared_ptr<Material> renderMaterial;
 		glm::vec2 position;
 		glm::vec2 size;
-		int offset;
-		int numParticles;
-		std::shared_ptr<MaterialInstance> material;
+		int  offset;
+		int	 numParticles;
+		bool play;
+		bool loop;
 	};
 
+	struct ParticleVertex
+	{
+		glm::vec4 color;
+		glm::vec4 position;
+		glm::vec2 texCoordOffset;
+		glm::vec2 size;
+		float	  angle;
+
+	private:
+		float	  alignment = 0.0f;
+		float	  alignment2 = 0.0f;
+		float	  alignment3 = 0.0f;
+	};
+	struct ParticleInformation
+	{
+		glm::vec4 colorBegin;
+		glm::vec4 colorEnd;
+		glm::vec2 startVelocity;
+		glm::vec2 endVelocity;
+		glm::vec2 defaultPosition;
+		float sizeBegin;
+		float sizeEnd;
+		float rotation;
+		float lifeTime;
+		float timeAlive = 0.0f;
+	private:
+		float alignment = 0.0f;
+	};
 	/**
 	* 
 	*/
@@ -79,34 +112,12 @@ namespace XYZ {
 		std::shared_ptr<Material> GetMaterial() { return m_Material; }
 		size_t GetNumExistingParticles() { return m_ParticlesInExistence; }
 		
-	private:
-		struct ParticleVertex
-		{
-			glm::vec4 color;
-			glm::vec4 position;
-			glm::vec2 texCoordOffset;
-			glm::vec2 size;
-			float	  angle;
 
-			float	  alignment = 0.0f;
-			float	  alignment2 = 0.0f;
-			float	  alignment3 = 0.0f;
-		};
-		struct ParticleData
-		{
-			glm::vec4 colorBegin;
-			glm::vec4 colorEnd;
-			glm::vec2 startVelocity;
-			glm::vec2 endVelocity;
-			glm::vec2 defaultPosition;
-			float sizeBegin;
-			float sizeEnd;
-			float rotation;
-			float lifeTime;
-			float timeAlive = 0.0f;
-
-			float alignment = 0.0f;
-		};
+		void SetParticles(ParticleVertex* vertexBuffer,ParticleInformation* particleInfo);
+		void SetParticlesRange(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo, uint32_t offset, uint32_t count);
+		
+		uint32_t GetParticles(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo);
+		uint32_t GetParticlesRange(ParticleVertex* vertexBuffer, ParticleInformation* particleInfo, uint32_t offset, uint32_t count);
 		
 	private:
 		std::shared_ptr<VertexArray> m_VertexArray;
@@ -114,13 +125,13 @@ namespace XYZ {
 		std::shared_ptr<Material> m_RenderMaterial;
 
 		uint32_t m_ParticlesInExistence = 0;
-		uint32_t m_MaxParticles = 0;
+		uint32_t m_MaxParticles;
 
 		std::shared_ptr<ShaderStorageBuffer> m_VertexStorage;
 		std::shared_ptr<ShaderStorageBuffer> m_PropsStorage;
 
 		std::vector<ParticleVertex> m_Vertices;
-		std::vector<ParticleData> m_Data;
+		std::vector<ParticleInformation> m_Data;
 
 		static constexpr size_t sc_MaxParticlesPerEffect = 10000;
 	};
