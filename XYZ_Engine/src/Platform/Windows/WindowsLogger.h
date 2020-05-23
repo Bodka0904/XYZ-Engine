@@ -4,7 +4,10 @@
 
 namespace XYZ {
 
-
+/**	@class WindowsLogger
+ *	Enables logging to console on Windows
+ *
+ */
 	class WindowsLogger : public Logger
 	{
 	public:

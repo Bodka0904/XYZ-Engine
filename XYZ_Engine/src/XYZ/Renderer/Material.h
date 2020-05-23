@@ -111,7 +111,7 @@ namespace XYZ {
 		const int64_t GetSortKey() const { return m_Key; }
 
 
-		//TODO TEMPORAR
+		//TODO TEMPORARY
 		/**
 		* @return shared_ptr to the Shader
 		*/

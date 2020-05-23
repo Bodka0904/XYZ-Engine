@@ -1,9 +1,0 @@
-[submodule "XZ_Engine/vendor/imgui"]
-	path = XZ_Engine/vendor/imgui
-	url = https://github.com/Bodka0904/imgui
-[submodule "XYZ_Engine/vendor/imgui"]
-	path = XYZ_Engine/vendor/imgui
-	url = https://github.com/Bodka0904/imgui
-[submodule "XYZ_Engine/vendor/GLFW"]
-	path = XYZ_Engine/vendor/GLFW
-	url = https://github.com/Bodka0904/glfw

@@ -22,7 +22,7 @@ namespace XYZ {
 	void SceneGraph::Remove(Entity entity)
 	{
 		auto activeComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
-		activeComponent->activeComponents = 0;
+		activeComponent->ActiveComponents = 0;
 	}
 
 	void SceneGraph::AttachChild(Entity parent, Entity children)
@@ -36,17 +36,17 @@ namespace XYZ {
 		auto parentRelation = ECSManager::Get().GetComponent<Relationship>(parent);
 		auto childrenRelation = ECSManager::Get().GetComponent<Relationship>(children);
 
-		Entity next = parentRelation->next;
+		Entity next = parentRelation->Next;
 		Entity previous = parent;
 		while (next != NULL_ENTITY)
 		{
 			previous = next;
-			next = ECSManager::Get().GetComponent<Relationship>(next)->next;
+			next = ECSManager::Get().GetComponent<Relationship>(next)->Next;
 		}
 
-		parentRelation->numChildren++;
-		ECSManager::Get().GetComponent<Relationship>(previous)->next = children;
-		ECSManager::Get().GetComponent<Relationship>(previous)->previous = previous;
+		parentRelation->NumChildren++;
+		ECSManager::Get().GetComponent<Relationship>(previous)->Next = children;
+		ECSManager::Get().GetComponent<Relationship>(previous)->Previous = previous;
 		
 
 		Component component;
@@ -74,17 +74,17 @@ namespace XYZ {
 		auto parentRelation = ECSManager::Get().GetComponent<Relationship>(parent);
 		auto childrenRelation = ECSManager::Get().GetComponent<Relationship>(children);
 
-		Entity next = parentRelation->next;
+		Entity next = parentRelation->Next;
 		Entity previous = parent;
 		while (next != NULL_ENTITY || next != children)
 		{
 			previous = next;
-			next = ECSManager::Get().GetComponent<Relationship>(next)->next;
+			next = ECSManager::Get().GetComponent<Relationship>(next)->Next;
 		}
 		if (next == NULL_ENTITY)
-			ECSManager::Get().GetComponent<Relationship>(previous)->next = NULL_ENTITY;
+			ECSManager::Get().GetComponent<Relationship>(previous)->Next = NULL_ENTITY;
 		else
-			ECSManager::Get().GetComponent<Relationship>(previous)->next = ECSManager::Get().GetComponent<Relationship>(next)->next;
+			ECSManager::Get().GetComponent<Relationship>(previous)->Next = ECSManager::Get().GetComponent<Relationship>(next)->Next;
 	}
 
 	void SceneGraph::Print()

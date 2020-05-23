@@ -6,15 +6,38 @@
 #include <array>
 
 namespace XYZ {
+	/*! @class EntityManager
+	* @brief Manager for entities
+	*/
 	class EntityManager
 	{
 	public:
+		/**
+		* Constructor
+		*/
 		EntityManager();
 
+		/**
+		* Creates new entity
+		* @return new entity
+		*/
 		Entity CreateEntity();
 
+		/**
+		* @param[in] entity
+		* @return signature of the entity
+		*/
 		Signature GetSignature(Entity entity);
+		/**
+		* Destroy entity
+		* @param[in] entity
+		*/
 		void DestroyEntity(Entity entity);
+		/**
+		* Set new signature for the entity
+		* @param[in] entity
+		* @param[in] signature
+		*/
 		void SetSignature(Entity entity, Signature signature);
 
 	private:

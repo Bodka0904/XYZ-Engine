@@ -86,15 +86,15 @@ bool Bomb::Explode(float dt)
 		m_AnimController.StartAnimation("destroyed");
 		m_AnimController.UpdateSpriteAnimation(spriteAnim);
 
-		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col);
-		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col - 1);
-		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col - 1);
-		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col - 1);
-		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col);
-		m_CellsToDamage.emplace_back(gridBody->row + 1,gridBody->col + 1);
-		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col + 1);
-		m_CellsToDamage.emplace_back(gridBody->row - 1, gridBody->col + 1);
-		m_CellsToDamage.emplace_back(gridBody->row, gridBody->col);
+		m_CellsToDamage.emplace_back(gridBody->Row - 1, gridBody->Col);
+		m_CellsToDamage.emplace_back(gridBody->Row - 1, gridBody->Col - 1);
+		m_CellsToDamage.emplace_back(gridBody->Row, gridBody->Col - 1);
+		m_CellsToDamage.emplace_back(gridBody->Row + 1,gridBody->Col - 1);
+		m_CellsToDamage.emplace_back(gridBody->Row + 1,gridBody->Col);
+		m_CellsToDamage.emplace_back(gridBody->Row + 1,gridBody->Col + 1);
+		m_CellsToDamage.emplace_back(gridBody->Row, gridBody->Col + 1);
+		m_CellsToDamage.emplace_back(gridBody->Row - 1, gridBody->Col + 1);
+		m_CellsToDamage.emplace_back(gridBody->Row, gridBody->Col);
 		// Life time of bomb is at the end, return true and remove bomb from stack
 		return true;
 	}

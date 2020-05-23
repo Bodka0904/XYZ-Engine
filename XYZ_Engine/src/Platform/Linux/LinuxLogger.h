@@ -3,6 +3,10 @@
 
 
 namespace XYZ {
+/**	@class LinuxLogger
+ *	Enables logging to console on Linux
+ *
+ */
 	class LinuxLogger : public Logger
 	{
 	public:

@@ -1,8 +1,17 @@
 #type compute
-#version 430
+#version 460
 
 
 const int c_MaxParticles = 10000;
+
+struct DrawCommand 
+{
+	uint count;         
+	uint instanceCount; 
+	uint firstIndex;    
+	uint baseVertex;    
+	uint baseInstance;  
+};
 
 struct ParticleVertex
 {
@@ -10,7 +19,7 @@ struct ParticleVertex
 	vec4 position;
 	vec2 texCoordOffset;
 	vec2 size;
-	float angle;
+	float rotation;
 	float alignment;
 	float alignment2;
 	float alignment3;
@@ -20,16 +29,15 @@ struct ParticleData
 {
 	vec4 colorBegin;
 	vec4 colorEnd;
-	vec2 startVelocity;
-	vec2 endVelocity;
+	vec2 velocity;
+	vec2 defaultVelocity;
 	vec2 defaultPosition;
 	float sizeBegin;
 	float sizeEnd;
 	float rotation;
 	float lifeTime;
 	float timeAlive;
-
-	float alignment;
+	int isAlive;
 };
 
 layout(std430, binding = 0) buffer
@@ -44,9 +52,17 @@ buffer_InData
 	ParticleData InData[];
 };
 
+layout(std140, binding = 2) buffer
+DrawCommandsBlock
+{
+	DrawCommand Command;
+};
 
-uniform vec2 u_Emitter;
+layout(binding = 3, offset = 0) uniform atomic_uint deadParticles;
+
 uniform vec4 u_Collider;
+uniform int u_Loop;
+uniform int u_ParticlesInExistence;
 uniform float u_Time;
 uniform float u_Gravity;
 uniform float u_Speed;
@@ -100,22 +116,21 @@ layout(local_size_x = 32, local_size_y = 32, local_size_z = 1) in;
 void main(void)
 {
 	uint id = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * gl_NumWorkGroups.x * gl_WorkGroupSize.x;
-	if (id > c_MaxParticles)
+	if (id > c_MaxParticles || InData[id].isAlive == 0)
 		return;
 
 	ParticleVertex pVertex = InVertex[id];
 	ParticleData pData = InData[id];
 
-	pVertex.position.x += (pData.startVelocity.x * u_Speed) * u_Time;
-	pVertex.position.y += (pData.startVelocity.y * u_Speed) * u_Time;
+	pVertex.position.x += (pData.velocity.x * u_Speed) * u_Time;
+	pVertex.position.y += (pData.velocity.y * u_Speed) * u_Time;
 
-
-	pVertex.angle += u_Time * pData.rotation;
+	pVertex.rotation += u_Time * pData.rotation;
 	pVertex.size = ChangeSizeOverLife(pData);
 	pVertex.color = sub_BlueSelection();
 	pVertex.color = ChangeColorOverLife(pData);
 
-	pData.startVelocity.y += u_Gravity * u_Time;
+	pData.velocity.y += u_Gravity * u_Time;
 	pData.timeAlive += u_Time;
 
 
@@ -131,21 +146,34 @@ void main(void)
 
 	if (DetectCollision(pVertex.position))
 	{
-		//pData.startVelocity = pData.endVelocity;
-		//pData.timeAlive = 0;
-
-		//pVertex.position.x = u_Emitter.x + pData.defaultPosition.x;
-		//pVertex.position.y = u_Emitter.y + pData.defaultPosition.y;
+		pData.velocity.y = 0;
 	}
 
-	if (pData.timeAlive > pData.lifeTime)
+
+	if (pData.timeAlive >= pData.lifeTime)
 	{
-		pData.startVelocity = pData.endVelocity;
+		// If looping set default values
+		if (u_Loop != 0)
+		{
+			pData.velocity = pData.defaultVelocity;
+			pVertex.position.x = pData.defaultPosition.x;
+			pVertex.position.y = pData.defaultPosition.y;
+		}
+		// If not looping consider particle dead do not restart values
+		else
+		{		
+			atomicCounterIncrement(deadParticles);
+		}
+		pData.isAlive = u_Loop;
 		pData.timeAlive = 0;
-
-		pVertex.position.x = u_Emitter.x + pData.defaultPosition.x;
-		pVertex.position.y = u_Emitter.y + pData.defaultPosition.y;
 	}
+
+	uint deadCount = atomicCounter(deadParticles);
+	Command.count = 6; // number of indices
+	Command.instanceCount = u_ParticlesInExistence - deadCount;
+	Command.firstIndex = 0;
+	Command.baseVertex = 0;
+	Command.baseInstance = deadCount;
 
 	InVertex[id] = pVertex;
 	InData[id] = pData;

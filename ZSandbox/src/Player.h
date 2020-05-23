@@ -7,7 +7,7 @@ class Player
 public:
 	Player();
 	~Player();
-	void Init(std::shared_ptr<XYZ::OrthoCamera>, std::shared_ptr<XYZ::Material> material, glm::vec3 start_pos, std::vector<Bomb>& bombs);
+	void Init(std::shared_ptr<XYZ::Material> material, glm::vec3 start_pos, std::vector<Bomb>& bombs);
 	void UseControlsMode(int);
 	void Update(std::vector<Bomb>&, std::vector<std::pair<int, int>>&);
 	bool IsDead() const;

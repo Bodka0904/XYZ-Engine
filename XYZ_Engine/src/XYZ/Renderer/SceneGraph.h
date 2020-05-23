@@ -3,7 +3,9 @@
 #include "XYZ/Physics/Components.h"
 
 namespace XYZ {
-
+	/*! @class SceneGraph
+	*	@brief Hierarchical ordering of entities contained inside a scene
+	*/
 	class SceneGraph
 	{
 	public:
@@ -12,7 +14,10 @@ namespace XYZ {
 		void Insert(Entity entity);
 		void Remove(Entity entity);
 
+		/** Attaches a child entity to a parent entity */
 		void AttachChild(Entity parent, Entity children);
+
+		/** Detaches a child entity from a parent entity */
 		void DetachChild(Entity parent, Entity children);
 
 		// Debug

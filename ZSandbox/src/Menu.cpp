@@ -1,11 +1,5 @@
 #include "Menu.h"
-
-
 #include "imgui/imgui.h"
-#include <imgui/examples/imgui_impl_glfw.h>
-#include <imgui/examples/imgui_impl_opengl3.h>
-
-
 
 bool Menu::GameRunning()
 {
@@ -32,7 +26,6 @@ void Menu::Update()
 {
 	if (!m_GameRunning)
 	{
-		ImGuiBegin();
 		ImGui::Begin("Menu",(bool*)0, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 		if (ImGui::Button("Start Game",ImVec2(500,100)) && !m_GameStarted)
 		{
@@ -49,21 +42,6 @@ void Menu::Update()
 		{
 			ImGui::Text("GAME OVER","");
 		}
-		ImGuiEnd();
+		ImGui::End();
 	}
-}
-
-void Menu::ImGuiBegin()
-{
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-}
-
-void Menu::ImGuiEnd()
-{
-	
-	ImGui::End();
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

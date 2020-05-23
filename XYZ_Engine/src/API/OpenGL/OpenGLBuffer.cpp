@@ -101,8 +101,15 @@ namespace XYZ {
 		glDeleteBuffers(1, &m_SSBO);
 	}
 
-	void OpenGLShaderStorageBuffer::BindRange(uint32_t offset, uint32_t size, uint32_t index)
+	void OpenGLShaderStorageBuffer::BindBase(uint32_t index)
 	{
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_SSBO);
+		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_SSBO);
+	}
+
+
+	void OpenGLShaderStorageBuffer::BindRange(uint32_t offset, uint32_t size, uint32_t index)
+	{		
 		glBindBufferRange(GL_SHADER_STORAGE_BUFFER, index, m_SSBO, offset, size);
 	}
 
@@ -130,5 +137,66 @@ namespace XYZ {
 	{
 		XYZ_ASSERT(size + offset < m_Size, "Accesing data out of range");
 		glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, offset, size, buffer);
+	}
+	OpenGLAtomicCounter::OpenGLAtomicCounter(uint32_t numOfCounters)
+		: m_NumberOfCounters(numOfCounters),m_Counters(new uint32_t[numOfCounters])
+	{
+		// Make sure it is initialized as zero
+		for (size_t i = 0; i < numOfCounters; ++i)
+			m_Counters[i] = 0;
+
+		glGenBuffers(1, &m_AC);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBufferData(GL_ATOMIC_COUNTER_BUFFER, sizeof(uint32_t) * numOfCounters, m_Counters, GL_DYNAMIC_DRAW);
+	}
+	OpenGLAtomicCounter::~OpenGLAtomicCounter()
+	{
+		glDeleteBuffers(1, &m_AC);
+		delete[]m_Counters;
+	}
+	void OpenGLAtomicCounter::Reset()
+	{
+		for (size_t i = 0; i < m_NumberOfCounters; ++i)
+			m_Counters[i] = 0;
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(uint32_t) * m_NumberOfCounters, m_Counters);
+	}
+	void OpenGLAtomicCounter::BindBase(uint32_t index)
+	{
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER,index, m_AC);
+	}
+	void OpenGLAtomicCounter::Update(uint32_t* data, uint32_t count, uint32_t offset)
+	{
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, offset * sizeof(uint32_t), sizeof(uint32_t) * m_NumberOfCounters, data);
+	}
+	uint32_t* OpenGLAtomicCounter::GetCounters()
+	{
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glGetBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(uint32_t) * m_NumberOfCounters, m_Counters);		
+		
+		return m_Counters;
+	}
+	OpenGLIndirectBuffer::OpenGLIndirectBuffer(void* drawCommand, uint32_t size)
+		:
+		m_Size(size)
+	{
+		glGenBuffers(1, &m_IB);
+		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_IB);
+		glBufferData(GL_DRAW_INDIRECT_BUFFER, size, drawCommand, GL_STATIC_DRAW);
+	}
+	OpenGLIndirectBuffer::~OpenGLIndirectBuffer()
+	{
+		glDeleteBuffers(1, &m_IB);
+	}
+	void OpenGLIndirectBuffer::Bind()
+	{
+		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_IB);
+	}
+	void OpenGLIndirectBuffer::BindBase(uint32_t index)
+	{
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_IB);
+		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_IB);
 	}
 }

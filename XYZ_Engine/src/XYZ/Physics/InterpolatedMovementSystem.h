@@ -4,9 +4,8 @@
 
 
 namespace XYZ {
-	/**
-	* InterpolatedMovementystem takes care for interpolated movement of entities
-	* with interpolated movement component
+	/*! @class InterpolatedMovementSystem
+	* @brief InterpolatedMovementystem takes care for interpolated movement of entities with interpolated movement component
 	*/
 	class InterpolatedMovementSystem : public System
 	{
@@ -20,9 +19,9 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int interpolIndex;
-			int gridBodyIndex;
-			int transformIndex;
+			int InterpolIndex;
+			int GridBodyIndex;
+			int TransformIndex;
 		};
 
 		std::shared_ptr<ComponentStorage<InterpolatedMovement>> m_InterpolStorage;

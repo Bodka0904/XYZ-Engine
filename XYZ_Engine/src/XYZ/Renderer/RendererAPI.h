@@ -22,8 +22,8 @@ namespace XYZ {
 		virtual void Clear() = 0;
 
 		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
-		virtual void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count) = 0;
-
+		virtual void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count,uint32_t offset=0) = 0;
+		virtual void DrawInstancedIndirect(void* indirect) = 0;
 
 
 		inline static API GetAPI() { return s_API; }

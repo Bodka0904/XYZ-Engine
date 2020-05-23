@@ -5,13 +5,37 @@
 
 namespace XYZ {
 	class SystemManager;
+
+	/*! @class System
+	* @brief Interface for systems
+	*/
 	class System
 	{
 		friend class SystemManager;
 	public:
+		/**
+		* Add entity to the system
+		* @param[in] entity
+		*/
 		virtual void Add(Entity entity) {};
+
+		/**
+		* Remove entity from the system
+		* @param[in] entity
+		*/
 		virtual void Remove(Entity entity) {};
+		
+		/**
+		* Remove/Add entity from the system
+		* @param[in] entity
+		*/
 		virtual void EntityUpdated(Entity entity) {};
+		
+		/**
+		* Check if system contains entity
+		* @param[in] entity
+		* @return 
+		*/
 		virtual bool Contains(Entity entity) = 0;
 
 	protected:
@@ -20,24 +44,24 @@ namespace XYZ {
 
 		struct Component
 		{
-			Entity entity;
-			int activeIndex;
+			Entity Ent;
+			int ActiveIndex;
 
 			bool operator()(const Component& a, const Component& b)
 			{
-				return (a.entity < b.entity);
+				return (a.Ent < b.Ent);
 			}
 			bool operator ==(const Entity other) const
 			{
-				return entity == other;
+				return Ent == other;
 			}
 			bool operator <(const Entity other) const
 			{
-				return entity < other;
+				return Ent < other;
 			}
 			bool operator >(const Entity other) const
 			{
-				return entity > other;
+				return Ent > other;
 			}
 		};
 	protected:

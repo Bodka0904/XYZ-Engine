@@ -16,7 +16,7 @@ namespace XYZ {
 	{
 		for (int i = 0; i < m_NumRows; ++i)
 			for (int j = 0; j < m_NumCols; ++j)
-				m_Cells[i][j].mask = 0;
+				m_Cells[i][j].Mask = 0;
 	}
 	void GridCollisionSystem::ResizeGrid(int numRows, int numCols, int cellSize, int positionX, int positionY)
 	{
@@ -39,22 +39,22 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if (((*m_ActiveStorage)[it.activeIndex].activeComponents & m_Signature) == m_Signature)
+			if (((*m_ActiveStorage)[it.ActiveIndex].ActiveComponents & m_Signature) == m_Signature)
 			{
-				auto mask = (*m_CollisionStorage)[it.collisionIndex].layer;
+				auto mask = (*m_CollisionStorage)[it.CollisionIndex].Layer;
 				int32_t result = Move(
-					(*m_GridBodyStorage)[it.gridBodyIndex],
-					(*m_CollisionStorage)[it.collisionIndex].collisionLayers,
-					(*m_CollisionStorage)[it.collisionIndex].layer);
+					(*m_GridBodyStorage)[it.GridBodyIndex],
+					(*m_CollisionStorage)[it.CollisionIndex].CollisionLayers,
+					(*m_CollisionStorage)[it.CollisionIndex].Layer);
 
 				// Store mask of layer it collides with
-				(*m_CollisionStorage)[it.collisionIndex].currentCollisions = result;
+				(*m_CollisionStorage)[it.CollisionIndex].CurrentCollisions = result;
 				
 				// No collisions , free to move
 				if (!result && result != OUT_OF_GRID)
 				{
-					(*m_GridBodyStorage)[it.gridBodyIndex].col += (*m_GridBodyStorage)[it.gridBodyIndex].nextCol;
-					(*m_GridBodyStorage)[it.gridBodyIndex].row += (*m_GridBodyStorage)[it.gridBodyIndex].nextRow;			
+					(*m_GridBodyStorage)[it.GridBodyIndex].Col += (*m_GridBodyStorage)[it.GridBodyIndex].NextCol;
+					(*m_GridBodyStorage)[it.GridBodyIndex].Row += (*m_GridBodyStorage)[it.GridBodyIndex].NextRow;			
 				}
 				else
 				{
@@ -68,14 +68,14 @@ namespace XYZ {
 	void GridCollisionSystem::Add(Entity entity)
 	{
 		Component component;
-		component.entity = entity;
-		component.collisionIndex = ECSManager::Get().GetComponentIndex<CollisionComponent>(entity);
-		component.gridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
-		component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+		component.Ent = entity;
+		component.CollisionIndex = ECSManager::Get().GetComponentIndex<CollisionComponent>(entity);
+		component.GridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
+		component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
-		auto layer = (*m_CollisionStorage)[component.collisionIndex].layer;
-		auto collisionLayer = (*m_CollisionStorage)[component.collisionIndex].collisionLayers;
-		if (Insert((*m_GridBodyStorage)[component.gridBodyIndex],collisionLayer, layer))
+		auto layer = (*m_CollisionStorage)[component.CollisionIndex].Layer;
+		auto collisionLayer = (*m_CollisionStorage)[component.CollisionIndex].CollisionLayers;
+		if (Insert((*m_GridBodyStorage)[component.GridBodyIndex],collisionLayer, layer))
 		{
 			m_Components.push_back(component);
 			XYZ_LOG_INFO("Entity with ID ", entity, " added");
@@ -89,8 +89,8 @@ namespace XYZ {
 		if (it != m_Components.end())
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			auto mask = (*m_CollisionStorage)[it->collisionIndex].layer;
-			Remove((*m_GridBodyStorage)[it->gridBodyIndex], mask);
+			auto mask = (*m_CollisionStorage)[it->CollisionIndex].Layer;
+			Remove((*m_GridBodyStorage)[it->GridBodyIndex], mask);
 			*it = std::move(m_Components.back());
 			m_Components.pop_back();
 		}
@@ -104,17 +104,17 @@ namespace XYZ {
 	}
 	bool GridCollisionSystem::Insert(const GridBody& body, int32_t collisionMask, int32_t layerMask)
 	{
-		if (body.row + body.height < m_NumRows && body.col + body.width < m_NumCols
-			&& body.row >= m_PositionY && body.col >= m_PositionX)
+		if (body.Row + body.Height < m_NumRows && body.Col + body.Width < m_NumCols
+			&& body.Row >= m_PositionY && body.Col >= m_PositionX)
 		{
-			for (int i = body.row; i < body.row + body.height; ++i)
-				for (int j = body.col; j < body.col + body.width; ++j)
-					if (m_Cells[i][j].mask & collisionMask)
+			for (int i = body.Row; i < body.Row + body.Height; ++i)
+				for (int j = body.Col; j < body.Col + body.Width; ++j)
+					if (m_Cells[i][j].Mask & collisionMask)
 						return false;
 
-			for (int i = body.row; i < body.row + body.height; ++i)
-				for (int j = body.col; j < body.col + body.width; ++j)
-					m_Cells[i][j].mask |= layerMask;
+			for (int i = body.Row; i < body.Row + body.Height; ++i)
+				for (int j = body.Col; j < body.Col + body.Width; ++j)
+					m_Cells[i][j].Mask |= layerMask;
 
 
 			return true;
@@ -124,84 +124,84 @@ namespace XYZ {
 	int32_t GridCollisionSystem::Move(const GridBody& oldBody,int32_t collisionMask, int32_t layerMask)
 	{
 		GridBody newBody = oldBody;
-		newBody.col += newBody.nextCol;
-		newBody.row += newBody.nextRow;
+		newBody.Col += newBody.NextCol;
+		newBody.Row += newBody.NextRow;
 
-		if (newBody.row + newBody.height < m_NumRows && newBody.col + newBody.width < m_NumCols
-			&& newBody.row >= m_PositionY && newBody.col >= m_PositionX)
+		if (newBody.Row + newBody.Height < m_NumRows && newBody.Col + newBody.Width < m_NumCols
+			&& newBody.Row >= m_PositionY && newBody.Col >= m_PositionX)
 		{
 			// No changes to the body
 			if (oldBody == newBody)
 				return 0;
 
-			if (newBody.col < oldBody.col)
+			if (newBody.Col < oldBody.Col)
 			{
 				// Handle diagonal movement
-				if (newBody.row != oldBody.row)
+				if (newBody.Row != oldBody.Row)
 				{
-					if (m_Cells[oldBody.row][oldBody.col - 1].mask & collisionMask)
+					if (m_Cells[oldBody.Row][oldBody.Col - 1].Mask & collisionMask)
 					{
-						return m_Cells[oldBody.row][oldBody.col - 1].mask & collisionMask;
+						return m_Cells[oldBody.Row][oldBody.Col - 1].Mask & collisionMask;
 					}
-					else if (m_Cells[newBody.row][newBody.col + newBody.width].mask & collisionMask)
+					else if (m_Cells[newBody.Row][newBody.Col + newBody.Width].Mask & collisionMask)
 					{
-						return m_Cells[newBody.row][newBody.col + newBody.width].mask & collisionMask;
+						return m_Cells[newBody.Row][newBody.Col + newBody.Width].Mask & collisionMask;
 					}
 				}
 				else
 				{
 					// Check all cells to the top of the body
-					for (int i = newBody.row; i < newBody.row + newBody.height; ++i)
-						if (m_Cells[i][newBody.col].mask & collisionMask)
-							return m_Cells[i][newBody.col].mask & collisionMask;
+					for (int i = newBody.Row; i < newBody.Row + newBody.Height; ++i)
+						if (m_Cells[i][newBody.Col].Mask & collisionMask)
+							return m_Cells[i][newBody.Col].Mask & collisionMask;
 				}
 			}
-			else if (newBody.col > oldBody.col)
+			else if (newBody.Col > oldBody.Col)
 			{
 				// Handle diagonal movement
-				if (newBody.row != oldBody.row)
+				if (newBody.Row != oldBody.Row)
 				{
-					if (m_Cells[oldBody.row][oldBody.col + oldBody.width].mask & collisionMask)
+					if (m_Cells[oldBody.Row][oldBody.Col + oldBody.Width].Mask & collisionMask)
 					{
-						return m_Cells[oldBody.row][oldBody.col + oldBody.width].mask & collisionMask;
+						return m_Cells[oldBody.Row][oldBody.Col + oldBody.Width].Mask & collisionMask;
 					}
-					else if (m_Cells[newBody.row][newBody.col - 1].mask & collisionMask)
+					else if (m_Cells[newBody.Row][newBody.Col - 1].Mask & collisionMask)
 					{
-						return m_Cells[newBody.row][newBody.col - 1].mask & collisionMask;
+						return m_Cells[newBody.Row][newBody.Col - 1].Mask & collisionMask;
 					}
 				}
 				else
 				{
 					// Check all cells to the top of the body and one cell in the width of the new body
-					for (int i = newBody.row; i < newBody.row + newBody.height; ++i)
-						if (m_Cells[i][newBody.col + newBody.width - 1].mask & collisionMask)
-							return m_Cells[i][newBody.col + newBody.width - 1].mask & collisionMask;
+					for (int i = newBody.Row; i < newBody.Row + newBody.Height; ++i)
+						if (m_Cells[i][newBody.Col + newBody.Width - 1].Mask & collisionMask)
+							return m_Cells[i][newBody.Col + newBody.Width - 1].Mask & collisionMask;
 				}
 			}
-			else if (newBody.row < oldBody.row)
+			else if (newBody.Row < oldBody.Row)
 			{
 				// Check all cells to the width of the body
-				for (int i = newBody.col; i < newBody.col + newBody.width; ++i)
-					if (m_Cells[newBody.row][i].mask & collisionMask)
-						return m_Cells[newBody.row][i].mask & collisionMask;
+				for (int i = newBody.Col; i < newBody.Col + newBody.Width; ++i)
+					if (m_Cells[newBody.Row][i].Mask & collisionMask)
+						return m_Cells[newBody.Row][i].Mask & collisionMask;
 			}
 			else
 			{
 				// Check all cells to the width of the body and one to the top
-				for (int i = newBody.col; i < newBody.col + newBody.width; ++i)
-					if (m_Cells[newBody.row + newBody.height - 1][i].mask & collisionMask)
-						return m_Cells[newBody.row + newBody.height - 1][i].mask & collisionMask;
+				for (int i = newBody.Col; i < newBody.Col + newBody.Width; ++i)
+					if (m_Cells[newBody.Row + newBody.Height - 1][i].Mask & collisionMask)
+						return m_Cells[newBody.Row + newBody.Height - 1][i].Mask & collisionMask;
 			}
 
 			// Clear all the cells occupied by the oldBody
-			for (int i = oldBody.row; i < oldBody.row + oldBody.height; ++i)
-				for (int j = oldBody.col; j < oldBody.col + oldBody.width; ++j)
-					m_Cells[i][j].mask &= (~layerMask);
+			for (int i = oldBody.Row; i < oldBody.Row + oldBody.Height; ++i)
+				for (int j = oldBody.Col; j < oldBody.Col + oldBody.Width; ++j)
+					m_Cells[i][j].Mask &= (~layerMask);
 
 			// Set all the cells occupied by the newBody
-			for (int i = newBody.row; i < newBody.row + newBody.height; ++i)
-				for (int j = newBody.col; j < newBody.col + newBody.width; ++j)
-					m_Cells[i][j].mask |= layerMask;
+			for (int i = newBody.Row; i < newBody.Row + newBody.Height; ++i)
+				for (int j = newBody.Col; j < newBody.Col + newBody.Width; ++j)
+					m_Cells[i][j].Mask |= layerMask;
 
 
 			// Movement was successful return empty collision mask
@@ -211,13 +211,13 @@ namespace XYZ {
 	}
 	void GridCollisionSystem::Remove(const GridBody& body, int32_t layerMask)
 	{
-		if (body.row + body.height < m_NumRows && body.col + body.width < m_NumCols
-			&& body.row >= m_PositionY && body.col >= m_PositionX)
+		if (body.Row + body.Height < m_NumRows && body.Col + body.Width < m_NumCols
+			&& body.Row >= m_PositionY && body.Col >= m_PositionX)
 		{
 			// Clear all cells occupied by the body
-			for (int i = body.row; i < body.row + body.height; ++i)
-				for (int j = body.col; j < body.col + body.width; ++j)
-					m_Cells[i][j].mask &= (~layerMask);
+			for (int i = body.Row; i < body.Row + body.Height; ++i)
+				for (int j = body.Col; j < body.Col + body.Width; ++j)
+					m_Cells[i][j].Mask &= (~layerMask);
 		}
 	}
 }

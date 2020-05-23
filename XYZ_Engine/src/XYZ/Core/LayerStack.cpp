@@ -5,10 +5,10 @@
 namespace XYZ {
 	LayerStack::~LayerStack()
 	{
-		for (Layer* layer : m_Layers)
+		for (int i = 0; i < m_Layers.size(); ++i)
 		{
-			layer->OnDetach();
-			delete layer;
+			m_Layers[i]->OnDetach();
+			delete m_Layers[i];
 		}
 	}
 

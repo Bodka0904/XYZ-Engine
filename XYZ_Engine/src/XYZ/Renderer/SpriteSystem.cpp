@@ -15,7 +15,7 @@ namespace XYZ {
 	{
 		for (auto it : m_Components)
 		{
-			(*m_SpriteStorage)[it.animIndex].Update(dt, &(*m_RenderableStorage)[it.rendIndex]);
+			(*m_SpriteStorage)[it.AnimIndex].Update(dt, &(*m_RenderableStorage)[it.RendIndex]);
 		}
 	}
 	void SpriteSystem::Add(Entity entity)
@@ -23,10 +23,10 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");
 	
 		Component component;
-		component.animIndex = ECSManager::Get().GetComponentIndex<SpriteAnimation>(entity);
-		component.rendIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
+		component.AnimIndex = ECSManager::Get().GetComponentIndex<SpriteAnimation>(entity);
+		component.RendIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
 
-		component.entity = entity;
+		component.Ent = entity;
 
 		m_Components.push_back(component);
 	}

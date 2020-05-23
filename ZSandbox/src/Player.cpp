@@ -9,7 +9,7 @@ Player::~Player()
 
 }
 
-void Player::Init(std::shared_ptr<XYZ::OrthoCamera>, std::shared_ptr<XYZ::Material> material, glm::vec3 start_pos, std::vector<Bomb>& bombs)
+void Player::Init(std::shared_ptr<XYZ::Material> material, glm::vec3 start_pos, std::vector<Bomb>& bombs)
 {
 	m_Speed = 3.0f; 
 	m_Material = material;
@@ -120,14 +120,14 @@ void Player::Update(std::vector<Bomb>& bombs, std::vector<std::pair<int, int>>& 
 
 	auto spriteInter = XYZ::ECSManager::Get().GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 	auto gridBody = XYZ::ECSManager::Get().GetComponent<XYZ::GridBody>(m_Entity);
-	gridBody->nextCol = 0;
-	gridBody->nextRow = 0;
+	gridBody->NextCol = 0;
+	gridBody->NextRow = 0;
 	auto rigid = XYZ::ECSManager::Get().GetComponent<XYZ::RigidBody2D>(m_Entity);
 
-	rigid->velocity.x = 0;
-	rigid->velocity.y = 0;
+	rigid->Velocity.x = 0;
+	rigid->Velocity.y = 0;
 
-	if (!spriteInter->inProgress)
+	if (!spriteInter->InProgress)
 	{
 		StayStill();
 
@@ -146,7 +146,7 @@ void Player::Update(std::vector<Bomb>& bombs, std::vector<std::pair<int, int>>& 
 
 void Player::PutBombs(XYZ::event_ptr event, std::vector<Bomb>& bombs)
 {
-	std::shared_ptr<XYZ::KeyPressedEvent> e = std::dynamic_pointer_cast<XYZ::KeyPressedEvent>(event);
+	std::shared_ptr<XYZ::KeyPressedEvent> e = std::static_pointer_cast<XYZ::KeyPressedEvent>(event);
 	
 	if (m_IsAlive)
 	{
@@ -177,9 +177,9 @@ void Player::MoveLeft()
 	auto spriteInter = XYZ::ECSManager::Get().GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 	auto rigid = XYZ::ECSManager::Get().GetComponent<XYZ::RigidBody2D>(m_Entity);
 
-	rigid->velocity.x = -1;
-	gridBody->nextCol = -1;
-	spriteInter->velocity.x = -m_Speed;
+	rigid->Velocity.x = -1;
+	gridBody->NextCol = -1;
+	spriteInter->Velocity.x = -m_Speed;
 
 	m_AnimController.StartAnimation("walkleft");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
@@ -192,9 +192,9 @@ void Player::MoveRight()
 	auto spriteInter = XYZ::ECSManager::Get().GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 	auto rigid = XYZ::ECSManager::Get().GetComponent<XYZ::RigidBody2D>(m_Entity);
 
-	rigid->velocity.x = 1;
-	gridBody->nextCol = 1;
-	spriteInter->velocity.x = m_Speed;
+	rigid->Velocity.x = 1;
+	gridBody->NextCol = 1;
+	spriteInter->Velocity.x = m_Speed;
 	
 	m_AnimController.StartAnimation("walkright");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
@@ -207,9 +207,9 @@ void Player::MoveUp()
 	auto spriteInter = XYZ::ECSManager::Get().GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 	auto rigid = XYZ::ECSManager::Get().GetComponent<XYZ::RigidBody2D>(m_Entity);
 
-	rigid->velocity.y = 1;
-	gridBody->nextRow = 1;
-	spriteInter->velocity.y = m_Speed;
+	rigid->Velocity.y = 1;
+	gridBody->NextRow = 1;
+	spriteInter->Velocity.y = m_Speed;
 
 	m_AnimController.StartAnimation("walkup");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
@@ -222,9 +222,9 @@ void Player::MoveDown()
 	auto spriteInter = XYZ::ECSManager::Get().GetComponent<XYZ::InterpolatedMovement>(m_Entity);
 	auto rigid = XYZ::ECSManager::Get().GetComponent<XYZ::RigidBody2D>(m_Entity);
 
-	rigid->velocity.y = -1;
-	gridBody->nextRow = -1;
-	spriteInter->velocity.y = -m_Speed;
+	rigid->Velocity.y = -1;
+	gridBody->NextRow = -1;
+	spriteInter->Velocity.y = -m_Speed;
 
 	m_AnimController.StartAnimation("walkdown");
 	m_AnimController.UpdateSpriteAnimation(spriteAnim);
@@ -243,7 +243,7 @@ Bomb Player::PutBomb()
 {
 	Bomb bomb;
 	auto gridPos = XYZ::ECSManager::Get().GetComponent<XYZ::GridBody>(m_Entity);
-	bomb.Init(gridPos->row, gridPos->col, m_Material);
+	bomb.Init(gridPos->Row, gridPos->Col, m_Material);
 	return bomb;
 }
 
@@ -257,7 +257,7 @@ bool Player::IsUnderExplotion(std::vector<std::pair<int, int>>& damagedCells) co
 {
 	auto gridPos = XYZ::ECSManager::Get().GetComponent<XYZ::GridBody>(m_Entity);
 	for (const auto& cell : damagedCells)
-		if (cell.first == gridPos->row && cell.second == gridPos->col)
+		if (cell.first == gridPos->Row && cell.second == gridPos->Col)
 			return true;
 	return false;
 }

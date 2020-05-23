@@ -31,5 +31,8 @@
 #include "XYZ/Physics/InterpolatedMovementSystem.h"
 #include "XYZ/Particle/ParticleSystem2D.h"
 
+//-----ImGui-----//
+#include "XYZ/ImGui/ImGuiLayer.h"
 
-
+//-----Audio-----//
+#include "XYZ/Audio/Audio.h"

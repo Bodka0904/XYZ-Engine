@@ -57,11 +57,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;GLEW_STATIC;XYZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLEW\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;GLEW_STATIC;AL_LIBTYPE_STATIC;XYZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLEW\include;vendor\imgui;vendor\glm;vendor\OpenAL-Soft\include;vendor\OpenAL-Soft\src;vendor\OpenAL-Soft\src\common;vendor\minimp3;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -77,14 +79,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;GLEW_STATIC;XYZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLEW\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;GLEW_STATIC;AL_LIBTYPE_STATIC;XYZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLEW\include;vendor\imgui;vendor\glm;vendor\OpenAL-Soft\include;vendor\OpenAL-Soft\src;vendor\OpenAL-Soft\src\common;vendor\minimp3;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -110,12 +113,14 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\XYZ.h" />
     <ClInclude Include="src\XYZ\AssetManager\AssetManager.h" />
+    <ClInclude Include="src\XYZ\Audio\Audio.h" />
+    <ClInclude Include="src\XYZ\Audio\AudioSystem.h" />
     <ClInclude Include="src\XYZ\Core\Application.h" />
+    <ClInclude Include="src\XYZ\Core\ColorCodes.h" />
     <ClInclude Include="src\XYZ\Core\Core.h" />
     <ClInclude Include="src\XYZ\Core\EntryPoint.h" />
     <ClInclude Include="src\XYZ\Core\Event\Event.h" />
     <ClInclude Include="src\XYZ\Core\Event\EventManager.h" />
-    <ClInclude Include="src\XYZ\Core\GuiLayer.h" />
     <ClInclude Include="src\XYZ\Core\Input.h" />
     <ClInclude Include="src\XYZ\Core\KeyCodes.h" />
     <ClInclude Include="src\XYZ\Core\Layer.h" />
@@ -132,6 +137,8 @@
     <ClInclude Include="src\XYZ\ECS\System.h" />
     <ClInclude Include="src\XYZ\ECS\SystemManager.h" />
     <ClInclude Include="src\XYZ\ECS\Types.h" />
+    <ClInclude Include="src\XYZ\ImGui\ImGuiBuild.h" />
+    <ClInclude Include="src\XYZ\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
     <ClInclude Include="src\XYZ\Physics\Components.h" />
@@ -155,8 +162,11 @@
     <ClInclude Include="src\XYZ\Renderer\Renderer2D.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererAPI.h" />
     <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\Scene.h" />
     <ClInclude Include="src\XYZ\Renderer\SceneGraph.h" />
+    <ClInclude Include="src\XYZ\Renderer\SceneManager.h" />
     <ClInclude Include="src\XYZ\Renderer\Shader.h" />
+    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
     <ClInclude Include="src\XYZ\Renderer\SortingLayer.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
@@ -165,8 +175,8 @@
     <ClInclude Include="src\XYZ\Renderer\VertexArray.h" />
     <ClInclude Include="src\XYZ\Timer.h" />
     <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h" />
-    <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\XYZ\Utils\DataStructures\HashGrid2D.h" />
+    <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -562,9 +572,10 @@
     <ClCompile Include="src\Platform\Windows\WindowsLogger.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\XYZ\AssetManager\AssetManager.cpp" />
+    <ClCompile Include="src\XYZ\Audio\Audio.cpp" />
+    <ClCompile Include="src\XYZ\Audio\AudioSystem.cpp" />
     <ClCompile Include="src\XYZ\Core\Application.cpp" />
     <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp" />
-    <ClCompile Include="src\XYZ\Core\GuiLayer.cpp" />
     <ClCompile Include="src\XYZ\Core\Layer.cpp" />
     <ClCompile Include="src\XYZ\Core\LayerStack.cpp" />
     <ClCompile Include="src\XYZ\Core\Logger.cpp" />
@@ -575,6 +586,7 @@
     <ClCompile Include="src\XYZ\ECS\EntityManager.cpp" />
     <ClCompile Include="src\XYZ\ECS\System.cpp" />
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp" />
+    <ClCompile Include="src\XYZ\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Physics\GridCollisionSystem.cpp" />
@@ -597,8 +609,11 @@
     <ClCompile Include="src\XYZ\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\Scene.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SortingLayer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
@@ -606,10 +621,10 @@
     <ClCompile Include="src\XYZ\Renderer\Texture.cpp" />
     <ClCompile Include="src\XYZ\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />
+    <ClCompile Include="src\XYZ\Utils\DataStructures\HashGrid2D.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Utils\DataStructures\HashGrid2D.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -621,6 +636,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\OpenAL-Soft\OpenAL-Soft.vcxproj">
+      <Project>{2D783691-992D-AF86-2222-A95D8ED6A58A}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

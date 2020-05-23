@@ -10,10 +10,10 @@
 namespace XYZ {
 	struct Vertex2D
 	{
-		glm::vec4 color;
-		glm::vec3 position;
-		glm::vec2 texCoord;
-		float	  textureID;
+		glm::vec4 Color;
+		glm::vec3 Position;
+		glm::vec2 TexCoord;
+		float	  TextureID;
 	};
 
 	struct MaterialComparator
@@ -74,18 +74,18 @@ namespace XYZ {
 	void RendererBatchSystem2D::Add(Entity entity)
 	{		
 		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-		auto key = renderable->material->GetSortKey();
+		auto key = renderable->Material->GetSortKey();
 
 		if (!(key & RenderFlags::InstancedFlag))
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " added");
 			Component component;
-			component.entity = entity;
-			component.renderableIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
-			component.transformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
-			component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+			component.Ent = entity;
+			component.RenderableIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
+			component.TransformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
+			component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
-			if (renderable->material->GetSortKey() & RenderFlags::TransparentFlag)
+			if (renderable->Material->GetSortKey() & RenderFlags::TransparentFlag)
 			{
 				m_TransparentComponents.push_back(component);
 				std::push_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(),TransparentComparator());
@@ -103,7 +103,7 @@ namespace XYZ {
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
 			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-			auto key = renderable->material->GetSortKey();
+			auto key = renderable->Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -131,7 +131,7 @@ namespace XYZ {
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
 			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-			auto key = renderable->material->GetSortKey();
+			auto key = renderable->Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -160,11 +160,11 @@ namespace XYZ {
 			std::make_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), OpaqueComparator());
 		for (auto it : m_OpaqueComponents)
 		{
-			auto material = (*m_RenderableStorage)[it.renderableIndex].material;
+			auto material = (*m_RenderableStorage)[it.RenderableIndex].Material;
 			auto& bucket = s_OpaqueBuckets[material];
 			if (bucket.IndexCount < bucket.IndexCount)
 			{
-				bucket.Submit((*m_RenderableStorage)[it.renderableIndex],(*m_TransformStorage)[it.transformIndex]);
+				bucket.Submit((*m_RenderableStorage)[it.RenderableIndex],(*m_TransformStorage)[it.TransformIndex]);
 			}
 			else
 			{
@@ -185,12 +185,12 @@ namespace XYZ {
 		for (auto it : m_TransparentComponents)
 		{
 			
-			auto material = (*m_RenderableStorage)[it.renderableIndex].material;
+			auto material = (*m_RenderableStorage)[it.RenderableIndex].Material;
 			auto& bucket = s_TransparentBuckets[material];
 			
 			if (bucket.IndexCount < bucket.MaxIndices)
 			{
-				bucket.Submit((*m_RenderableStorage)[it.renderableIndex],(*m_TransformStorage)[it.transformIndex]);
+				bucket.Submit((*m_RenderableStorage)[it.RenderableIndex],(*m_TransformStorage)[it.TransformIndex]);
 			}
 			else
 			{
@@ -211,32 +211,32 @@ namespace XYZ {
 
 	void Renderer2DData::Submit(const Renderable2D& renderable,const Transform2D& transform)
 	{
-		BufferPtr->position = { transform.position.x - transform.size.x / 2.0f,transform.position.y - transform.size.y / 2.0f,transform.position.z };
-		BufferPtr->color = renderable.color;
-		BufferPtr->texCoord.x = renderable.texCoord.x;
-		BufferPtr->texCoord.y = renderable.texCoord.y;
-		BufferPtr->textureID = (float)renderable.textureID;
+		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
+		BufferPtr->Color = renderable.Color;
+		BufferPtr->TexCoord.x = renderable.TexCoord.x;
+		BufferPtr->TexCoord.y = renderable.TexCoord.y;
+		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
-		BufferPtr->position = { transform.position.x + transform.size.x / 2.0f,transform.position.y - transform.size.y / 2.0f,transform.position.z };
-		BufferPtr->color = renderable.color;
-		BufferPtr->texCoord.x = renderable.texCoord.z;
-		BufferPtr->texCoord.y = renderable.texCoord.y;
-		BufferPtr->textureID = (float)renderable.textureID;
+		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
+		BufferPtr->Color = renderable.Color;
+		BufferPtr->TexCoord.x = renderable.TexCoord.z;
+		BufferPtr->TexCoord.y = renderable.TexCoord.y;
+		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
-		BufferPtr->position = { transform.position.x + transform.size.x / 2.0f,transform.position.y + transform.size.y / 2.0f,transform.position.z };
-		BufferPtr->color = renderable.color;
-		BufferPtr->texCoord.x = renderable.texCoord.z;
-		BufferPtr->texCoord.y = renderable.texCoord.w;
-		BufferPtr->textureID = (float)renderable.textureID;
+		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
+		BufferPtr->Color = renderable.Color;
+		BufferPtr->TexCoord.x = renderable.TexCoord.z;
+		BufferPtr->TexCoord.y = renderable.TexCoord.w;
+		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
-		BufferPtr->position = { transform.position.x - transform.size.x / 2.0f,transform.position.y + transform.size.y / 2.0f,transform.position.z };
-		BufferPtr->color = renderable.color;
-		BufferPtr->texCoord.x = renderable.texCoord.x;
-		BufferPtr->texCoord.y = renderable.texCoord.w;
-		BufferPtr->textureID = (float)renderable.textureID;
+		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
+		BufferPtr->Color = renderable.Color;
+		BufferPtr->TexCoord.x = renderable.TexCoord.x;
+		BufferPtr->TexCoord.y = renderable.TexCoord.w;
+		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
 		IndexCount += 6;

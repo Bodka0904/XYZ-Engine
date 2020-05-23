@@ -27,8 +27,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int bodyIndex;
-			int interpolIndex;
+			int BodyIndex;
+			int InterpolIndex;
 		};
 
 

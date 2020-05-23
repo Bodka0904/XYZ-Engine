@@ -3,6 +3,9 @@
 
 
 namespace XYZ {
+	/*! @class FrameBufferFormat
+	*	@brief Describes the color format of the FrameBuffer
+	*/
 	enum class FrameBufferFormat
 	{
 		None = 0,
@@ -11,6 +14,9 @@ namespace XYZ {
 		RGBA16F = 3
 	};
 
+	/*! @class FrameBuffer
+	*	@brief Framebuffer for texture operations
+	*/
 	class FrameBuffer
 	{
 	public:

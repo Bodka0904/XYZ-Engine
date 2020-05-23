@@ -67,15 +67,15 @@ namespace XYZ {
 
 	void OrthoCameraController::OnMouseScrolled(event_ptr event)
 	{
-		std::shared_ptr<MouseScrollEvent> e = std::dynamic_pointer_cast<MouseScrollEvent>(event);
-		m_ZoomLevel -= e->GetOffsetY() * 0.25f;
+		std::shared_ptr<MouseScrollEvent> e = std::static_pointer_cast<MouseScrollEvent>(event);
+		m_ZoomLevel -= (float)e->GetOffsetY() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 	}
 
 	void OrthoCameraController::OnWindowResized(event_ptr event)
 	{
-		std::shared_ptr<WindowResizeEvent> e = std::dynamic_pointer_cast<WindowResizeEvent>(event);
+		std::shared_ptr<WindowResizeEvent> e = std::static_pointer_cast<WindowResizeEvent>(event);
 		m_AspectRatio = (float)e->GetWidth() / (float)e->GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 	}

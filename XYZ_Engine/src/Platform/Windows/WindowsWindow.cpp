@@ -23,13 +23,13 @@ namespace XYZ {
 			GLFWInitialized = true;
 		}
 
-
 		const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		int width = mode->width;
 		int height = mode->height;
 
-		m_Data.Width = width;
-		m_Data.Height = height;
+		m_Data.Width = props.Width;
+		m_Data.Height = props.Height;
+		
 		if (props.Flags & WindowFlags::MAXIMIZED)
 		{
 			glfwWindowHint(GLFW_MAXIMIZED, true);
@@ -63,6 +63,12 @@ namespace XYZ {
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			EventManager::Get().FireEvent(std::make_shared<WindowCloseEvent>());
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int key)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			EventManager::Get().FireEvent(std::make_shared<KeyTypedEvent>(key));
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -109,10 +115,11 @@ namespace XYZ {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			EventManager::Get().FireEvent(std::make_shared<MouseScrollEvent>((float)xOffset, (float)yOffset));
 		});
+
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
+			EventManager::Get().FireEvent(std::make_shared<MouseMovedEvent>((float)xPos, (float)yPos));
 		});
 	}
 

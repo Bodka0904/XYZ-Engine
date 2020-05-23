@@ -16,6 +16,7 @@ GameLayer::~GameLayer()
 
 void GameLayer::OnAttach()
 {
+	XYZ::Audio::Init();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::Relationship>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::Transform2D>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::RigidBody2D>();
@@ -25,7 +26,6 @@ void GameLayer::OnAttach()
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::SpriteAnimation>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::InterpolatedMovement>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::ActiveComponent>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::ParticleEmitter>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::CollisionComponent>();
 	XYZ::ECSManager::Get().RegisterComponent<XYZ::RealGridBody>();
 
@@ -42,7 +42,7 @@ void GameLayer::OnAttach()
 	XYZ::Renderer::Init();
 
 
-	m_Camera = std::make_shared<XYZ::OrthoCamera>(0, m_PlayableArea, 0, m_PlayableArea);
+	m_CameraController = std::make_shared<XYZ::OrthoCameraController>(16.0f / 8.0f, false);
 
 	m_Material = XYZ::Material::Create(XYZ::Shader::Create("TextureShader", "Assets/Shaders/DefaultShader.glsl"));
 	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bomb.png"), 0);
@@ -51,7 +51,7 @@ void GameLayer::OnAttach()
 
 
 	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/player_sprite.png"), 3);
-	m_Material->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
+	m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
 
 
@@ -81,6 +81,14 @@ void GameLayer::OnAttach()
 
 
 	InitBackgroundParticles();
+
+	//m_Audio = XYZ::Audio::Create("Assets/Audio/sample.mp3");
+	//// Audio setup
+	//m_Audio->SetLoop(true);
+	//m_Audio->SetPosition(glm::vec2(0));
+	//m_Audio->SetGain(5.0f);
+	//// Play whole track on different thread i guess
+	//m_Audio->Play();
 }
 
 void GameLayer::OnDetach()
@@ -88,43 +96,23 @@ void GameLayer::OnDetach()
 	XYZ::Renderer2D::Shutdown();
 }
 
+void GameLayer::OnImGuiRender()
+{
+	m_Menu.Update();
+}
+
 void GameLayer::OnUpdate(float dt)
 {
 	XYZ::RenderCommand::Clear();
 	XYZ::RenderCommand::SetClearColor(glm::vec4(0.2, 0.2, 0.5, 1));
-	XYZ::Renderer2D::BeginScene(*m_Camera);
+	XYZ::Renderer2D::BeginScene(m_CameraController->GetCamera());
 	XYZ::Renderer2D::Flush();
 	XYZ::Renderer2D::EndScene();
-
-	m_Menu.Update();
 
 	if (m_Menu.GameStart())
 		RestartGame();
 
-
-	if (XYZ::Input::IsMouseButtonPressed(XYZ::MouseCode::XYZ_MOUSE_BUTTON_LEFT))
-	{
-		std::random_device rd;
-		std::mt19937 rng(rd());
-		std::uniform_real_distribution<> dist(-1, 1);
-
-		XYZ::ParticleProps2D particle;
-
-		auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
-
-
-		particle.position = glm::vec2(0.02 * m_NumParticles, 20);
-		particle.sizeBegin = 2.0f;
-		particle.sizeEnd = 0.0f;
-		particle.colorEnd = glm::vec4(1, 0, 1, 0);
-		particle.colorBegin = glm::vec4(0, 1, 1, 1);
-		particle.velocity = glm::vec2(dist(rng), -0.2f);
-		particle.lifeTime = fabs(dist(rng)) * 10;
-		particle.rotation = dist(rng) * 50;
-		effect->PushParticle(particle);
-		m_NumParticles++;
-	}
-
+	m_CameraController->OnUpdate(dt);
 
 	if (m_Menu.GameRunning())
 	{
@@ -138,10 +126,10 @@ void GameLayer::OnUpdate(float dt)
 
 		m_SpriteSystem->Update(dt);
 
-		m_Material->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
+		m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
 		for (size_t i = 0; i < m_Bombs.size(); ++i)
 		{
-			if (m_Bombs[i].Update(dt, *m_Camera, m_DamagedCells))
+			if (m_Bombs[i].Update(dt, m_CameraController->GetCamera(), m_DamagedCells))
 			{
 				auto cellsToDamage = m_Bombs[i].InflictDamage();
 				m_DamagedCells.insert(std::end(m_DamagedCells), std::begin(cellsToDamage), std::end(cellsToDamage));
@@ -168,8 +156,10 @@ void GameLayer::OnUpdate(float dt)
 	}
 	else
 	{
-		m_ParticleMaterial->Set("u_ViewProjection", m_Camera->GetViewProjectionMatrix());
+
+		m_ParticleMaterial->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
 		m_ParticleSystem->Update(dt);
+
 	}
 }
 
@@ -187,11 +177,11 @@ void GameLayer::RestartGame()
 	//m_Map.Generate(20);
 
 	m_Players.resize(2);
-	m_Players[0].Init(m_Camera, m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
-	m_Players[1].Init(m_Camera, m_Material, glm::vec3(2, 2, 0.0f), m_Bombs);
+	m_Players[0].Init( m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
+	m_Players[1].Init( m_Material, glm::vec3(2, 2, 0.0f), m_Bombs);
 
 	for (int i = 2; i < m_Players.size(); ++i)
-		m_Players[i].Init(m_Camera, m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
+		m_Players[i].Init(m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
 
 	m_Players[0].UseControlsMode(0);
 	m_Players[1].UseControlsMode(1);
@@ -199,51 +189,43 @@ void GameLayer::RestartGame()
 
 void GameLayer::InitBackgroundParticles()
 {
+	int count = 100;
 	m_ParticleEntity = XYZ::ECSManager::Get().CreateEntity();
 	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "Assets/Shaders/Particle/ParticleShader.glsl"));
-	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubbles.png"));
+	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubble.png"));
 	m_ParticleMaterial->SetFlags(XYZ::RenderFlags::InstancedFlag);
 
 
-	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity,XYZ::ParticleEmitter());
 	auto material = XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/Particle/ParticleComputeShader.glsl"));
-	auto emitter1 = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEmitter>(m_ParticleEntity);
 
-	emitter1->material = XYZ::MaterialInstance::Create(material);
-
-
-	emitter1->material->Set("u_Emitter", glm::vec2(10, 0));
-
-	emitter1->position = glm::vec2(5, 5);
-
-
-	emitter1->offset = 0;
-	emitter1->numParticles = 50;
-
-
-	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(1000, material, m_ParticleMaterial));
+	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(count, material, m_ParticleMaterial));
 	auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
 
 
-	//std::random_device rd;
-	//std::mt19937 rng(rd());
-	//std::uniform_real_distribution<> dist(-1, 1);
-	//
-	//std::vector<XYZ::ParticleProps2D> particles;
-	//particles.resize(1000);
-	//
-	//
-	//float distance = 20.0f / particles.size();
-	//for (size_t i = 0; i < particles.size(); ++i)
-	//{
-	//	particles[i].position = glm::vec2(distance * i, 20);
-	//	particles[i].sizeBegin = 2.0f;
-	//	particles[i].sizeEnd = 0.0f;
-	//	particles[i].colorEnd = glm::vec4(1, 0, 1, 0);
-	//	particles[i].colorBegin = glm::vec4(0, 1, 1, 1);
-	//	particles[i].velocity = glm::vec2(dist(rng), -0.2f);
-	//	particles[i].lifeTime = fabs(dist(rng)) * 10;
-	//	particles[i].rotation = dist(rng) * 50;
-	//	effect->PushParticle(particles[i]);
-	//}
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_real_distribution<> dist(-1, 1);
+
+	XYZ::ParticleVertex* m_Vertices = new XYZ::ParticleVertex[count];
+	XYZ::ParticleInformation* m_Data = new XYZ::ParticleInformation[count];
+
+	for (int i = 0; i < count; ++i)
+	{
+		m_Vertices[i].Position = glm::vec4(((float)1/(float)count)*i, 0, i * (1.0f / count), 1);
+		m_Vertices[i].Color = glm::vec4(0, 1, 1, 1);
+		m_Vertices[i].Rotation = 0.0f;
+		m_Vertices[i].TexCoordOffset = glm::vec2(0);
+
+		m_Data[i].DefaultPosition.x = m_Vertices[i].Position.x;
+		m_Data[i].DefaultPosition.y = m_Vertices[i].Position.y;
+		m_Data[i].ColorBegin = m_Vertices[i].Color;
+		m_Data[i].ColorEnd = m_Vertices[i].Color;
+		m_Data[i].SizeBegin = 0.2f;
+		m_Data[i].SizeEnd = 0.2f;
+		m_Data[i].Rotation = dist(rng) * 50;
+		m_Data[i].Velocity = glm::vec2(dist(rng), 1.0f);
+		m_Data[i].DefaultVelocity = m_Data[i].Velocity;
+		m_Data[i].LifeTime = fabs(dist(rng)) * 1 + 3;
+	}
+	effect->SetParticlesRange(m_Vertices, m_Data, 0, count);
 }

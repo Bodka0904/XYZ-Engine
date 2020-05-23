@@ -10,6 +10,9 @@ namespace XYZ {
 	typedef std::function<void(event_ptr)> handlerPtr;
 	typedef std::map<EventType, std::vector<std::pair<unsigned int, handlerPtr>>> handler_map;
 
+	/*! @class EventManager
+	*	@brief Manages adding, removing and firing events
+	*/
 	class EventManager : public Singleton<EventManager>
 	{
 	public:

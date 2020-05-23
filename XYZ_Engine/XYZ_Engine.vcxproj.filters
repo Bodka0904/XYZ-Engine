@@ -13,6 +13,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\Linux">
+      <UniqueIdentifier>{0052F1F1-EC35-B247-5596-AC9A41999CC9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -22,6 +25,9 @@
     <Filter Include="src\XYZ\AssetManager">
       <UniqueIdentifier>{913DFCBD-7DCC-8587-26EB-99821259962D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\XYZ\Audio">
+      <UniqueIdentifier>{E8B0F6E1-5471-7218-1DAC-BB95892BB7F4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\XYZ\Core">
       <UniqueIdentifier>{5F06377B-4B69-C61F-F4EE-FED5E03092A2}</UniqueIdentifier>
     </Filter>
@@ -30,6 +36,9 @@
     </Filter>
     <Filter Include="src\XYZ\ECS">
       <UniqueIdentifier>{71311159-DDE6-894E-66DB-8325D28F8052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\XYZ\ImGui">
+      <UniqueIdentifier>{119882E2-7D58-FE18-4693-4796B21243F5}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\XYZ\Particle">
       <UniqueIdentifier>{8A51F47C-764A-13CF-9F7C-F8538BD4F2DA}</UniqueIdentifier>
@@ -93,7 +102,13 @@
     <ClInclude Include="src\API\OpenGL\OpenGLVertexArray.h">
       <Filter>src\API\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Linux\LinuxLogger.h">
+      <Filter>src\Platform\Linux</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsLogger.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
@@ -105,7 +120,16 @@
     <ClInclude Include="src\XYZ\AssetManager\AssetManager.h">
       <Filter>src\XYZ\AssetManager</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Audio\Audio.h">
+      <Filter>src\XYZ\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Audio\AudioSystem.h">
+      <Filter>src\XYZ\Audio</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Application.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Core\ColorCodes.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\Core.h">
@@ -120,9 +144,6 @@
     <ClInclude Include="src\XYZ\Core\Event\EventManager.h">
       <Filter>src\XYZ\Core\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Core\GuiLayer.h">
-      <Filter>src\XYZ\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Core\Input.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
@@ -135,7 +156,13 @@
     <ClInclude Include="src\XYZ\Core\LayerStack.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Core\Logger.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Core\MouseCodes.h">
+      <Filter>src\XYZ\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Core\Singleton.h">
       <Filter>src\XYZ\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Core\Window.h">
@@ -165,6 +192,12 @@
     <ClInclude Include="src\XYZ\ECS\Types.h">
       <Filter>src\XYZ\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\ImGui\ImGuiBuild.h">
+      <Filter>src\XYZ\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\ImGui\ImGuiLayer.h">
+      <Filter>src\XYZ\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h">
       <Filter>src\XYZ\Particle</Filter>
     </ClInclude>
@@ -174,7 +207,16 @@
     <ClInclude Include="src\XYZ\Physics\Components.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Physics\GridCollisionSystem.h">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Physics\InterpolatedMovementSystem.h">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Physics\PhysicsSystem.h">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Physics\RealGridCollisionSystem.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\APIContext.h">
@@ -184,6 +226,9 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\FrustumCullingSystem.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Material.h">
@@ -222,7 +267,22 @@
     <ClInclude Include="src\XYZ\Renderer\RendererBatchSystem2D.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\Scene.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SceneGraph.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SceneManager.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Shader.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SortingGroup.h">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Renderer\SortingLayer.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h">
@@ -244,6 +304,9 @@
       <Filter>src\XYZ</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Utils\DataStructures\FreeList.h">
+      <Filter>src\XYZ\Utils\DataStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="src\XYZ\Utils\DataStructures\HashGrid2D.h">
       <Filter>src\XYZ\Utils\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="src\stdafx.h">
@@ -1392,19 +1455,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsLogger.h" />
-    <ClInclude Include="src\XYZ\Core\Logger.h">
-      <Filter>src\XYZ\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Linux\LinuxLogger.h" />
-    <ClInclude Include="src\XYZ\Physics\InterpolatedMovementSystem.h" />
-    <ClInclude Include="src\XYZ\Physics\GridCollisionSystem.h" />
-    <ClInclude Include="src\XYZ\Physics\RealGridCollisionSystem.h" />
-    <ClInclude Include="src\XYZ\Renderer\SortingLayer.h" />
-    <ClInclude Include="src\XYZ\Renderer\SceneGraph.h" />
-    <ClInclude Include="src\XYZ\Renderer\FrustumCullingSystem.h" />
-    <ClInclude Include="src\XYZ\Utils\DataStructures\HashGrid2D.h" />
-    <ClInclude Include="src\XYZ\Core\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1428,7 +1478,13 @@
     <ClCompile Include="src\API\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\API\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Linux\LinuxLogger.cpp">
+      <Filter>src\Platform\Linux</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsLogger.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -1437,19 +1493,25 @@
     <ClCompile Include="src\XYZ\AssetManager\AssetManager.cpp">
       <Filter>src\XYZ\AssetManager</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Audio\Audio.cpp">
+      <Filter>src\XYZ\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Audio\AudioSystem.cpp">
+      <Filter>src\XYZ\Audio</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Core\Application.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Core\Event\EventManager.cpp">
       <Filter>src\XYZ\Core\Event</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Core\GuiLayer.cpp">
-      <Filter>src\XYZ\Core</Filter>
-    </ClCompile>
     <ClCompile Include="src\XYZ\Core\Layer.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Core\LayerStack.cpp">
+      <Filter>src\XYZ\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Core\Logger.cpp">
       <Filter>src\XYZ\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\ECS\Component.cpp">
@@ -1473,13 +1535,25 @@
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp">
       <Filter>src\XYZ\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\ImGui\ImGuiLayer.cpp">
+      <Filter>src\XYZ\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp">
       <Filter>src\XYZ\Particle</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp">
       <Filter>src\XYZ\Particle</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Physics\GridCollisionSystem.cpp">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Physics\InterpolatedMovementSystem.cpp">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Physics\PhysicsSystem.cpp">
+      <Filter>src\XYZ\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Physics\RealGridCollisionSystem.cpp">
       <Filter>src\XYZ\Physics</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\APIContext.cpp">
@@ -1489,6 +1563,9 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\FrustumCullingSystem.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Material.cpp">
@@ -1527,7 +1604,22 @@
     <ClCompile Include="src\XYZ\Renderer\RendererBatchSystem2D.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\Scene.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp">
+      <Filter>src\XYZ\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\XYZ\Renderer\SortingLayer.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp">
@@ -1548,23 +1640,14 @@
     <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp">
       <Filter>src\XYZ\Utils\DataStructures</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Utils\DataStructures\HashGrid2D.cpp">
+      <Filter>src\XYZ\Utils\DataStructures</Filter>
+    </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsLogger.cpp" />
-    <ClCompile Include="src\XYZ\Core\Logger.cpp">
-      <Filter>src\XYZ\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Linux\LinuxLogger.cpp" />
-    <ClCompile Include="src\XYZ\Physics\InterpolatedMovementSystem.cpp" />
-    <ClCompile Include="src\XYZ\Physics\GridCollisionSystem.cpp" />
-    <ClCompile Include="src\XYZ\Physics\RealGridCollisionSystem.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SortingLayer.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\FrustumCullingSystem.cpp" />
-    <ClCompile Include="src\XYZ\Utils\DataStructures\HashGrid2D.cpp" />
   </ItemGroup>
 </Project>

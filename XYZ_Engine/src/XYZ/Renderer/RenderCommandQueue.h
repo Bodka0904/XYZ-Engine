@@ -86,7 +86,9 @@ namespace XYZ {
 	private:
 		unsigned char* m_CommandBuffer;
 		unsigned char* m_CommandBufferPtr;
-		unsigned int m_CommandCount = 0;
+		unsigned int m_CommandCount;
+		unsigned int m_CommandSize;
 
+		static constexpr unsigned int sc_MaxBufferSize = 10 * 1024 * 1024;
 	};
 }

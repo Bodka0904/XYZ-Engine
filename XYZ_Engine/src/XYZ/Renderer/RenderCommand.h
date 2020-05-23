@@ -64,11 +64,16 @@ namespace XYZ {
 		* @param[in] vertexArray
 		* @param[in] count		Count of the instances
 		*/
-		inline static void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count)
+		inline static void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count,uint32_t offset =0)
 		{
-			s_RendererAPI->DrawInstanced(vertexArray, count);
+			s_RendererAPI->DrawInstanced(vertexArray, count,offset);
 		}
 
+
+		inline static void DrawElementsIndirect(void* indirect)
+		{
+			s_RendererAPI->DrawInstancedIndirect(indirect);
+		}
 	private:
 		static std::unique_ptr<RendererAPI> s_RendererAPI;
 	};

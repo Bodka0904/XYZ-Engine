@@ -8,9 +8,15 @@
 #include <memory>
 
 namespace XYZ {
+	/*! @class ComponentManager
+	* @brief manager of component storages
+	*/
 	class ComponentManager
 	{
 	public:
+		/**
+		* Register new component storage
+		*/
 		template<typename T>
 		void RegisterComponent()
 		{
@@ -21,6 +27,12 @@ namespace XYZ {
 			std::shared_ptr<IComponentStorage> componentStorage = std::make_shared<ComponentStorage<T> >();
 			m_Components.insert({ id,componentStorage });
 		}
+
+		/**
+		* Add component to the storage
+		* @param[in] entity
+		* @tparam[in] component
+		*/
 		template<typename T>
 		void AddComponent(Entity entity,const T& component)
 		{
@@ -29,6 +41,9 @@ namespace XYZ {
 			GetComponentStorage<T>()->AddComponent(entity, component);
 		}
 
+		/**
+		* @return id representation of the component
+		*/
 		template<typename T>
 		ComponentType GetComponentType()
 		{
@@ -37,6 +52,9 @@ namespace XYZ {
 			return id;
 		}
 
+		/**
+		* @return storage of the component
+		*/
 		template<typename T>
 		std::shared_ptr<ComponentStorage<T>> GetComponentStorage()
 		{
@@ -45,29 +63,52 @@ namespace XYZ {
 			return std::static_pointer_cast<ComponentStorage<T>>(m_Components[id]);
 		}
 
+
+		/**
+		* @param[in] entity
+		* @return pointer to the component of entity
+		*/
 		template<typename T>
 		T* GetComponent(Entity entity)
 		{
 			return GetComponentStorage<T>()->GetComponent(entity);
 		}
 
+		/**
+		* @param[in] entity
+		* @return index of the component of the entity
+		*/
 		template <typename T>
 		int GetComponentIndex(Entity entity)
 		{
 			return GetComponentStorage<T>()->GetComponentIndex(entity);
 		}
+
+		/**
+		* @param[in] entity
+		* @return component of the entity
+		*/
 		template<typename T>
 		void RemoveComponent(Entity entity)
 		{
 			GetComponentStorage<T>()->RemoveComponent(entity);
 		}
 
+		/**
+		* Check if entity contains component
+		* @param[in] entity
+		* @return
+		*/
 		template <typename T>
 		bool Contains(Entity entity)
 		{
 			return GetComponentStorage<T>()->Contains(entity);
 		}
 
+		/**
+		* Delete all the components of the entity
+		* @param[in] entity
+		*/
 		void EntityDestroyed(Entity entity)
 		{
 			for (auto const& it : m_Components)

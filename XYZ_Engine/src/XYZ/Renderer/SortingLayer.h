@@ -6,6 +6,9 @@ namespace XYZ {
 
 	using SortingLayerID = int;
 
+	/*! @class SortingLayer
+	*	@brief Takes care of sorting layer IDs
+	*/
 	class SortingLayer
 	{
 	public:

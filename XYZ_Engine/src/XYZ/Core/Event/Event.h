@@ -2,11 +2,15 @@
 #include "XYZ/Core/Logger.h"
 
 /*
-	Very simple event system, requires update in the future.
+	Very simple event system, requires an update in the future.
 */
 
 
 namespace XYZ {
+
+	/*! @class EventType
+	*	@brief Types of events that can be triggered in the engine. User-defined events are classified as 'Custom'
+	*/
 	enum class EventType
 	{
 		None = 0,
@@ -16,6 +20,7 @@ namespace XYZ {
 
 		KeyPressed,
 		KeyReleased,
+		KeyTyped,
 
 		MouseButtonPressed,
 		MouseButtonReleased,
@@ -27,7 +32,9 @@ namespace XYZ {
 	};
 
 
-
+	/*! @class Event
+	*	@brief Describes an event and its handlers
+	*/
 	class Event
 	{
 	public:
@@ -43,7 +50,9 @@ namespace XYZ {
 
 	using event_ptr = std::shared_ptr<Event>;
 
-
+	/*! @class WindowResizeEvent
+	*	@brief Occurs when a window is resized
+	*/
 	class WindowResizeEvent : public Event
 	{
 	public:
@@ -64,6 +73,9 @@ namespace XYZ {
 
 	};
 
+	/*! @class WindowCloseEvent
+	*	@brief Occurs when a window is closed
+	*/
 	class WindowCloseEvent : public Event
 	{
 	public:
@@ -74,6 +86,9 @@ namespace XYZ {
 		}
 	};
 
+	/*! @class KeyPressedEvent
+	*	@brief Occurs when a key is pressed
+	*/
 	class KeyPressedEvent : public Event
 	{
 	public:
@@ -89,8 +104,9 @@ namespace XYZ {
 		int m_Mod;
 	};
 
-
-
+	/*! @class KeyReleasedEvent
+	*	@brief Occurs when a key is released
+	*/
 	class KeyReleasedEvent : public Event
 	{
 	public:
@@ -105,9 +121,44 @@ namespace XYZ {
 		int m_Key;
 	};
 
+	/*! @class KeyTypedEvent
+	*	@brief Occurs when a key is pressed and then released
+	*/
+	class KeyTypedEvent : public Event
+	{
+	public:
+		KeyTypedEvent(int key)
+			:m_Key(key)
+		{
+			m_Type = EventType::KeyTyped;
+		}
+		virtual int GetKey() const { return m_Key; }
 
+	private:
+		int m_Key;
+	};
 
+	/*! @class MouseMovedEvent
+	*	@brief Occurs when the mouse pointer moves
+	*/
+	class MouseMovedEvent : public Event
+	{
+	public:
+		MouseMovedEvent(int x, int y)
+			: m_X(x), m_Y(y)
+		{
+			m_Type = EventType::MouseMoved;
+		}
+		virtual int GetX() const { return m_X; }
+		virtual int GetY() const { return m_Y; }
 
+	private:
+		int m_X, m_Y;
+	};
+
+	/*! @class MouseButtonPressEvent
+	*	@brief Occurs when a mouse button is pressed
+	*/
 	class MouseButtonPressEvent : public Event
 	{
 	public:
@@ -123,7 +174,9 @@ namespace XYZ {
 		int m_Button;
 	};
 
-
+	/*! @class MouseButtonReleaseEvent
+	*	@brief Occurs when a mouse button is released
+	*/
 	class MouseButtonReleaseEvent : public Event
 	{
 	public:
@@ -139,6 +192,9 @@ namespace XYZ {
 		int m_Button;
 	};
 
+	/*! @class MouseScrollEvent
+	*	@brief Occurs when the mousewhell scrolls
+	*/
 	class MouseScrollEvent :public Event
 	{
 	public:

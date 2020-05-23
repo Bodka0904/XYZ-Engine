@@ -6,6 +6,10 @@
 
 
 namespace XYZ {
+/**	@class WindowsWindow
+ *	Enables window management on Windows
+ *
+ */
 	class WindowsWindow : public Window
 	{
 	public:

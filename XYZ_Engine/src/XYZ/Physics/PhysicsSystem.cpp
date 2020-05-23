@@ -21,7 +21,7 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if (((*m_ActiveStorage)[it.activeIndex].activeComponents & m_Signature) == m_Signature)
+			if (((*m_ActiveStorage)[it.ActiveIndex].ActiveComponents & m_Signature) == m_Signature)
 			{
 				
 			}
@@ -32,10 +32,10 @@ namespace XYZ {
 	{
 
 		Component component;
-		component.entity = entity;
-		component.bodyIndex = ECSManager::Get().GetComponentIndex<RigidBody2D>(entity);
-		component.interpolIndex = ECSManager::Get().GetComponentIndex<InterpolatedMovement>(entity);
-		component.activeIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+		component.Ent = entity;
+		component.BodyIndex = ECSManager::Get().GetComponentIndex<RigidBody2D>(entity);
+		component.InterpolIndex = ECSManager::Get().GetComponentIndex<InterpolatedMovement>(entity);
+		component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
 
 
 		m_Components.push_back(component);

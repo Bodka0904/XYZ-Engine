@@ -6,6 +6,10 @@ namespace XYZ {
 
 
 	class LayerStack;
+
+	/*! @class Layer
+	*	@brief Layers are used to handle events
+	*/
 	class Layer
 	{
 		friend class LayerStack;
@@ -16,6 +20,7 @@ namespace XYZ {
 		virtual void OnAttach() {} //Init
 		virtual void OnDetach() {} //Destroy
 		virtual void OnUpdate(float ts) {} //Update
+		virtual void OnImGuiRender() {}
 
 	protected:
 		int32_t m_Key;

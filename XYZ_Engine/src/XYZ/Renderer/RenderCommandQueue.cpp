@@ -3,10 +3,11 @@
 
 namespace XYZ {
 	RenderCommandQueue::RenderCommandQueue()
+		: m_CommandCount(0),m_CommandSize(0)
 	{
-		m_CommandBuffer = new unsigned char[10 * 1024 * 1024]; // 10mb buffer
+		m_CommandBuffer = new unsigned char[sc_MaxBufferSize]; // 10mb buffer
 		m_CommandBufferPtr = m_CommandBuffer;
-		memset(m_CommandBuffer, 0, 10 * 1024 * 1024);
+		memset(m_CommandBuffer, 0, sc_MaxBufferSize);
 	}
 
 	RenderCommandQueue::~RenderCommandQueue()
@@ -17,6 +18,8 @@ namespace XYZ {
 	void RenderCommandQueue::Allocate(CommandI* cmd, unsigned int size)
 	{
 		*(int*)m_CommandBufferPtr = size;
+		m_CommandSize += size;
+		XYZ_ASSERT(m_CommandSize < sc_MaxBufferSize, "Command buffer overflow");
 		m_CommandBufferPtr += sizeof(unsigned int);
 
 		//  copy command

@@ -9,9 +9,9 @@ namespace XYZ {
 	*/
 	struct Animation
 	{
-		std::pair<int, int> frameInterval;
-		float frameLen;
-		int currentFrame = 0;
+		std::pair<int, int> FrameInterval;
+		float FrameLen;
+		int CurrentFrame = 0;
 	};
 
 

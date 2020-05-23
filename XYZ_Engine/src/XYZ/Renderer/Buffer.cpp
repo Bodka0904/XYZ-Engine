@@ -63,4 +63,26 @@ namespace XYZ {
 		XYZ_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
+	std::shared_ptr<AtomicCounter> AtomicCounter::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:    XYZ_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLAtomicCounter>(size);
+		}
+
+		XYZ_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+	std::shared_ptr<IndirectBuffer> IndirectBuffer::Create(void* drawCommand, uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:    XYZ_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLIndirectBuffer>(drawCommand, size);
+		}
+
+		XYZ_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
 }

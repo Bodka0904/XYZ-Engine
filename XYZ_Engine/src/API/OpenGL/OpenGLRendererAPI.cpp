@@ -33,8 +33,13 @@ namespace XYZ {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	void OpenGLRendererAPI::DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count)
+	void OpenGLRendererAPI::DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count, uint32_t offset)
 	{
-		glDrawElementsInstanced(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0, count);
+		glDrawElementsInstancedBaseInstance(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0, count,offset);
+	}
+	void OpenGLRendererAPI::DrawInstancedIndirect(void* indirect)
+	{
+		glMemoryBarrier(GL_COMMAND_BARRIER_BIT | GL_SHADER_STORAGE_BARRIER_BIT);
+		glDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, indirect);
 	}
 }

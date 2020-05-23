@@ -8,9 +8,16 @@
 
 namespace XYZ {
 	
+	/**
+	*! @class SystemManager
+	* @brief Manager for engine systems
+	*/
 	class SystemManager
 	{
 	public:
+		/**
+		* Register system of new type T
+		*/
 		template<typename T>
 		std::shared_ptr<T> RegisterSystem()
 		{
@@ -24,6 +31,10 @@ namespace XYZ {
 			return system;
 		}
 
+		/**
+		* Set signature of the system
+		* @param[in] signature
+		*/
 		template<typename T>
 		void SetSignature(Signature signature)
 		{
@@ -32,6 +43,11 @@ namespace XYZ {
 
 			m_Systems[id]->m_Signature = signature;
 		}
+
+		/**
+		* Return the system of type
+		* @return shared_ptr o system
+		*/
 		template<typename T>
 		std::shared_ptr<T> GetSystem()
 		{
@@ -39,6 +55,12 @@ namespace XYZ {
 			XYZ_ASSERT(m_Systems.find(id) != m_Systems.end(), "System is not registered!");
 			return std::static_pointer_cast<std::shared_ptr<T>>(m_Systems[id]);
 		}
+
+		/**
+		* Removes entity from the corresponding systems
+		* @param[in] entity
+		* @param[in] entitySignature
+		*/
 		void EntityDestroyed(Entity entity, Signature entitySignature)
 		{
 			// Erase a destroyed entity from all system lists
@@ -55,6 +77,11 @@ namespace XYZ {
 			}
 		}
 
+		/**
+		* Removes/Add entity from/to the system dependent on the signature
+		* @param[in] entity
+		* @param[in] entitySignature
+		*/
 		void EntitySignatureChanged(Entity entity, Signature entitySignature)
 		{
 			for (auto const& pair : m_Systems)

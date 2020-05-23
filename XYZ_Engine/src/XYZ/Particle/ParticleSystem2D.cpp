@@ -8,29 +8,25 @@
 namespace XYZ {
 	ParticleSystem2D::ParticleSystem2D()
 	{
-		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::ParticleEffect2D>());
-		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::ParticleEmitter>());
-		
+		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::ParticleEffect2D>());	
 		m_ParticleStorage = ECSManager::Get().GetComponentStorage<ParticleEffect2D>();
-		m_EmitterStorage = ECSManager::Get().GetComponentStorage<ParticleEmitter>();
 	}
 
 	void ParticleSystem2D::Update(float dt)
 	{
-		int16_t currentKey = 0;
+		int16_t currentKey = -1;
 		for (auto it : m_Components)
 		{
-			int16_t newKey = (*m_ParticleStorage)[it.particleIndex].GetMaterial()->GetSortKey();
+			int16_t newKey = (*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->GetSortKey();
 			if (currentKey != newKey)
 			{
 				currentKey = newKey;
-				(*m_ParticleStorage)[it.particleIndex].GetMaterial()->Set("u_Time", dt);
-				(*m_ParticleStorage)[it.particleIndex].GetMaterial()->Bind();
+				(*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->Set("u_Time", dt);
+				(*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->Bind();
 			}
-			(*m_ParticleStorage)[it.particleIndex].Render();
-			
-			(*m_EmitterStorage)[it.emitterIndex].material->Bind();
-			(*m_ParticleStorage)[it.particleIndex].Bind((*m_EmitterStorage)[it.emitterIndex]);
+
+			(*m_ParticleStorage)[it.ParticleIndex].Update(dt);
+			(*m_ParticleStorage)[it.ParticleIndex].Render();		
 		}
 	}
 
@@ -39,13 +35,12 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with id ", entity, " added");
 
 		Component component;
-		component.particleIndex = ECSManager::Get().GetComponentIndex<ParticleEffect2D>(entity);
-		component.emitterIndex = ECSManager::Get().GetComponentIndex<ParticleEmitter>(entity);
-		component.entity = entity;
+		component.ParticleIndex = ECSManager::Get().GetComponentIndex<ParticleEffect2D>(entity);
+		component.Ent = entity;
 		auto it = std::lower_bound(m_Components.begin(), m_Components.end(), component, [](const Component& a, const Component& b) {
 
 			auto storage = ECSManager::Get().GetComponentStorage<ParticleEffect2D>();
-			return (*storage)[a.particleIndex].GetMaterial()->GetSortKey() > (*storage)[b.particleIndex].GetMaterial()->GetSortKey();
+			return (*storage)[a.ParticleIndex].GetMaterial()->GetSortKey() > (*storage)[b.ParticleIndex].GetMaterial()->GetSortKey();
 		});
 
 		m_Components.insert(it, component);

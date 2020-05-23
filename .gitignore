@@ -352,3 +352,5 @@ healthchecksdb
 *.sln
 *.vcxproj
 /XYZ_Engine/XYZ_Engine.vcxproj.filters
+/XYZ_Engine/vendor/imgui/bin-int/Release-windows-x86_64/ImGui
+/ZSandbox/ZSandbox.vcxproj.filters

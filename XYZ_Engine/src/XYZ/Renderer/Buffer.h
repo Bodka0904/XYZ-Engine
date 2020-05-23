@@ -252,7 +252,7 @@ namespace XYZ {
 	{
 	public:
 		virtual ~ShaderStorageBuffer() = default;
-
+		virtual void BindBase(uint32_t index) = 0;
 		virtual void BindRange(uint32_t offset, uint32_t size, uint32_t index) = 0;
 		virtual void Bind() = 0;
 		
@@ -280,4 +280,48 @@ namespace XYZ {
 		static std::shared_ptr<ShaderStorageBuffer> Create(float* vertices, uint32_t size, BufferUsage usage = BufferUsage::Dynamic);
 	};
 
+
+	class AtomicCounter
+	{
+	public:
+		virtual ~AtomicCounter() = default;
+
+		virtual void Reset() = 0;
+		virtual void BindBase(uint32_t index) = 0;
+		virtual void Update(uint32_t* data, uint32_t count, uint32_t offset) = 0;
+		virtual uint32_t* GetCounters() = 0;
+		virtual uint32_t GetNumCounters() = 0;
+
+		static std::shared_ptr<AtomicCounter> Create(uint32_t size);
+	};
+
+
+	struct DrawArraysIndirectCommand
+	{
+		uint32_t Count;
+		uint32_t InstanceCount;
+		uint32_t FirstVertex;
+		uint32_t BaseInstance;
+	};
+
+	struct DrawElementsIndirectCommand
+	{
+		uint32_t Count;         
+		uint32_t InstanceCount; 
+		uint32_t FirstIndex;    
+		uint32_t BaseVertex;    
+		uint32_t BaseInstance;  
+	};
+	
+
+	class IndirectBuffer
+	{
+	public:
+		virtual ~IndirectBuffer() = default;
+		
+		virtual void Bind() = 0;
+		virtual void BindBase(uint32_t index) = 0;
+
+		static std::shared_ptr<IndirectBuffer> Create(void * drawCommand,uint32_t size);
+	};
 }

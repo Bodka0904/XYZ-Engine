@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "LayerStack.h"
 #include "Event/EventManager.h"
-#include "GuiLayer.h"
+#include "XYZ/ImGui/ImGuiLayer.h"
 #include <vector>
 
 
@@ -86,9 +86,9 @@ namespace XYZ {
 		HandlerID m_WindowResize;
 		HandlerID m_WindowClose;
 
-		GuiLayer* m_GuiLayer;
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer * m_ImGuiLayer;
 
 		bool m_Running;
 		float m_LastFrameTime = 0.0f;

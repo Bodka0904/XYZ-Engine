@@ -10,12 +10,6 @@ public:
 	bool GameStart();
 	void SetEndGame();
 	void Update();
-
-
-private:
-
-	void ImGuiBegin();
-	void ImGuiEnd();
 private:
 	bool m_GameStarted = false;
 	bool m_GameRunning = false;

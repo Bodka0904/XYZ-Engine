@@ -5,14 +5,26 @@
 
 namespace XYZ {
 
+	/*! @class GridCollisionSystem
+	*	@brief Implements and handles grid collisions, objects must be entirely in cells
+	*/
 	class GridCollisionSystem : public System
 	{
 	public:
 		GridCollisionSystem();
 
+		/**
+		* Clear all cells in the grid
+		*/
 		void ClearGrid();
+
+		/** Resizes the grid to the set dimensions and moves the grid */
 		void ResizeGrid(int numRows, int numCols, int cellSize, int positionX, int positionY);
+
+		/** Moves the grid to the set position */
 		void MoveGrid(int positionX, int positionY);
+
+		
 		int GetCellSize() const { return m_CellSize; }
 
 		virtual void Update(float dt);
@@ -27,9 +39,10 @@ namespace XYZ {
 		
 
 	private:
+		/** Grid cell */
 		struct Cell
 		{
-			int32_t mask = 0;
+			int32_t Mask = 0;
 		};
 
 		int m_PositionX;
@@ -43,8 +56,8 @@ namespace XYZ {
 	
 		struct Component : public System::Component
 		{
-			int gridBodyIndex;
-			int collisionIndex;
+			int GridBodyIndex;
+			int CollisionIndex;
 		};
 		std::vector<Component> m_Components;
 		std::shared_ptr<ComponentStorage<GridBody>> m_GridBodyStorage;

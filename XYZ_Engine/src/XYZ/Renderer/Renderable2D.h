@@ -25,30 +25,30 @@ namespace XYZ {
 		* @param[in] TextureID  Specify the ID of the texture
 		*/
 		Renderable2D(
-			std::shared_ptr<Material> Material,
-			const glm::vec4& Color,
-			const glm::vec4& TexCoord,
-			bool Visible,
-			int TextureID
+			std::shared_ptr<Material> material,
+			const glm::vec4& color,
+			const glm::vec4& texCoord,
+			bool visible,
+			int textureID
 			)
 		:
-			material(Material),
-			color(Color),
-			texCoord(TexCoord),
-			visible(Visible),
-			textureID(TextureID),
-			sortLayerID(SortingLayer::Get().GetOrderValueByName("default"))
+			Material(material),
+			Color(color),
+			TexCoord(texCoord),
+			Visible(visible),
+			TextureID(textureID),
+			SortLayerID(SortingLayer::Get().GetOrderValueByName("default"))
 		{}
 
 		~Renderable2D()
 		{
 		}
 
-		std::shared_ptr<Material> material;
-		glm::vec4 color;
-		glm::vec4 texCoord; // (x = left, y = bottom, z = right, w = top)
-		bool visible;
-		int textureID;
-		SortingLayerID sortLayerID;
+		std::shared_ptr<Material> Material;
+		glm::vec4 Color;
+		glm::vec4 TexCoord; // (x = left, y = bottom, z = right, w = top)
+		bool Visible;
+		int TextureID;
+		SortingLayerID SortLayerID;
 	};
 }

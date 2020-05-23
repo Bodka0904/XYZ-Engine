@@ -2,6 +2,10 @@
 #include "XYZ/Core/Input.h"
 
 namespace XYZ {
+/**	@class WindowsInput
+ *	Enables player input on Windows
+ *
+ */
 	class WindowsInput : public Input
 	{
 	protected:

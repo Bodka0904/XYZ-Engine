@@ -5,6 +5,9 @@
 #include "XYZ/Utils/DataStructures/FreeList.h"
 
 namespace XYZ {
+	/*! @class RealGridCollisionSystem
+	*	@brief Real grid collisions , allows free movement of objects
+	*/
 	class RealGridCollisionSystem : public System
 	{
 	public:
@@ -21,8 +24,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int realGridBody;
-			int rigidBody;
+			int RealGridBody;
+			int RigidBody;
 		};
 	
 		struct Cell

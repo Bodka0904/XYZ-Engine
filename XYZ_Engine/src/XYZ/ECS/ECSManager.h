@@ -30,7 +30,7 @@ namespace XYZ {
 			auto active = m_ComponentManager->GetComponent<ActiveComponent>(entity);
 			auto signature = m_EntityManager->GetSignature(entity);
 			signature.set(m_ComponentManager->GetComponentType<T>(), 1);
-			active->activeComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
+			active->ActiveComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
 
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);

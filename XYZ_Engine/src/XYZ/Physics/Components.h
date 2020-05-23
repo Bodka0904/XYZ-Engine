@@ -8,85 +8,85 @@ namespace XYZ {
 
 	struct Transform2D : public Type<Transform2D>
 	{
-		Transform2D(const glm::vec3& Pos, const glm::vec2& Size = glm::vec2(1), float Rot = 0.0f)
+		Transform2D(const glm::vec3& pos, const glm::vec2& size = glm::vec2(1), float rot = 0.0f)
 			:
-			position(Pos),size(Size),rotation(Rot)
+			Position(pos),Size(size),Rotation(rot)
 		{}
-		glm::vec3 position = glm::vec3(0);
-		glm::vec2 size = glm::vec2(1);
-		float rotation = 0.0f;
+		glm::vec3 Position = glm::vec3(0);
+		glm::vec2 Size = glm::vec2(1);
+		float Rotation = 0.0f;
 	};
 
 	struct RigidBody2D : public Type<RigidBody2D>
 	{
-		RigidBody2D(const glm::vec2& Velocity)
-			: velocity(Velocity),bounceValue(0)
+		RigidBody2D(const glm::vec2& velocity)
+			: Velocity(velocity),BounceValue(0)
 		{}
-		glm::vec2 velocity;
-		int bounceValue;
+		glm::vec2 Velocity;
+		int BounceValue;
 	};
 	
 	struct GridBody : public Type<GridBody>
 	{
-		GridBody(int Row,int Col,int Width, int Height)
-			: row(Row),col(Col),width(Width),height(Height),nextRow(0),nextCol(0)
+		GridBody(int row,int col,int width, int height)
+			: Row(row),Col(col),Width(width),Height(height),NextRow(0),NextCol(0)
 		{}
-		int row;
-		int col;
-		int width;
-		int height;
-		int nextRow;
-		int nextCol;
+		int Row;
+		int Col;
+		int Width;
+		int Height;
+		int NextRow;
+		int NextCol;
 
 		bool operator ==(const GridBody& other) const
 		{
-			return (col == other.col && row == other.row);
+			return (Col == other.Col && Row == other.Row);
 		}
 
 		bool operator !=(const GridBody& other)
 		{
-			return (col != other.col || row != other.row);
+			return (Col != other.Col || Row != other.Row);
 		}
 	};
 
 	struct InterpolatedMovement : public Type<InterpolatedMovement>
 	{
-		InterpolatedMovement(const glm::vec2& Velocity)
-			: distance(glm::vec2(0)), velocity(Velocity), inProgress(false)
+		InterpolatedMovement(const glm::vec2& velocity)
+			: Distance(glm::vec2(0)), Velocity(velocity), InProgress(false)
 		{}
-		glm::vec2 distance;
-		glm::vec2 velocity;
-		bool inProgress;
+		glm::vec2 Distance;
+		glm::vec2 Velocity;
+		bool InProgress;
 	};
 
 	struct CollisionComponent : public Type<CollisionComponent>
 	{
-		CollisionComponent(int32_t Layer, int32_t CollisionLayers)
-			: layer(Layer), collisionLayers(CollisionLayers), currentCollisions(0)
+		CollisionComponent(int32_t layer, int32_t collisionLayers)
+			: Layer(layer), CollisionLayers(collisionLayers), CurrentCollisions(0)
 		{}
-		int32_t layer;
+		int32_t Layer;
 
 		// layers that might collide with layer
-		int32_t collisionLayers;
+		int32_t CollisionLayers;
 
 		// current collisions
-		int32_t currentCollisions;
+		int32_t CurrentCollisions;
 	};
 
 
 	struct RealGridBody : public Type<RealGridBody>
 	{
-		RealGridBody(float Left, float Right, float Bottom, float Top)
-			: left(Left),right(Right),bottom(Bottom),top(Top)
+		RealGridBody(float left, float right, float bottom, float top)
+			: Left(left),Right(right),Bottom(bottom),Top(top)
 		{}
 
 		bool Collide(const RealGridBody& other)
 		{
-			if (left >= other.right || other.left >= right)
+			if (Left >= other.Right || other.Left >= Right)
 			{
 				return false;
 			}
-			if (top <= other.bottom || other.top <= bottom)
+			if (Top <= other.Bottom || other.Top <= Bottom)
 			{
 				return false;
 			}
@@ -95,16 +95,16 @@ namespace XYZ {
 
 		void Move(const glm::vec2& pos)
 		{
-			left += pos.x;
-			right += pos.x;
-			top += pos.y;
-			bottom += pos.y;
+			Left += pos.x;
+			Right += pos.x;
+			Top += pos.y;
+			Bottom += pos.y;
 		}
 
-		float left;
-		float right;
-		float bottom;
-		float top;
+		float Left;
+		float Right;
+		float Bottom;
+		float Top;
 	};
 
 }

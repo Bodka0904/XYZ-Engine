@@ -15,8 +15,8 @@ public:
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
-	virtual void OnUpdate(float dt) override;
-
+	virtual void OnUpdate(float ts) override;
+	virtual void OnImGuiRender() override;
 
 private:
 	void RestartGame();
@@ -31,7 +31,7 @@ private:
 
 	std::shared_ptr<XYZ::Material> m_Material;
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
-	std::shared_ptr<XYZ::OrthoCamera> m_Camera;
+	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 
 
 	// Testing environment
@@ -41,14 +41,13 @@ private:
 	XYZ::Entity m_ParticleEntity;
 
 
-	int m_NumParticles = 0;
 	int m_PlayableArea = 20;
 	Map m_Map;
 	Menu m_Menu;
 	XYZ::HandlerID m_PutBomb;
 	std::vector<std::pair<int, int>> m_DamagedCells;
 
-
+	std::shared_ptr<XYZ::AudioSource> m_Audio;
 
 
 	std::shared_ptr<XYZ::SceneGraph> m_Graph;

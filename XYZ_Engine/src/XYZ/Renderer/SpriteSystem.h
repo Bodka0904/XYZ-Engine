@@ -39,9 +39,9 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int animIndex;
-			int rendIndex;
-			int interIndex;
+			int AnimIndex;
+			int RendIndex;
+			int InterIndex;
 		};
 
 		std::vector<Component> m_Components;

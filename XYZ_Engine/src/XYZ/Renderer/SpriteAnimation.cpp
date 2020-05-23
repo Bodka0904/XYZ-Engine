@@ -16,29 +16,29 @@ namespace XYZ {
 		XYZ_ASSERT(first < last, "First frame must be smaller than last");
 		XYZ_ASSERT(last <= m_NumFrames, "Last frame bigger than maximal number of frames");
 
-		m_Animation.frameInterval.first = first;
-		m_Animation.frameInterval.second = last;
-		m_Animation.frameLen = timeFrame;
-		m_AnimationLen = ((m_Animation.frameInterval.second - m_Animation.frameInterval.first) + 1) * m_Animation.frameLen;
+		m_Animation.FrameInterval.first = first;
+		m_Animation.FrameInterval.second = last;
+		m_Animation.FrameLen = timeFrame;
+		m_AnimationLen = ((m_Animation.FrameInterval.second - m_Animation.FrameInterval.first) + 1) * m_Animation.FrameLen;
 	}
 	void SpriteAnimation::Update(float dt, Renderable2D* sprite)
 	{
 		if (m_CurrentTime > m_AnimationLen)
 			m_CurrentTime = 0.0f;
 
-		m_Animation.currentFrame = (int)floor(m_CurrentTime / m_Animation.frameLen) + m_Animation.frameInterval.first;
-		sprite->texCoord = calcTexCoords();
+		m_Animation.CurrentFrame = (int)floor(m_CurrentTime / m_Animation.FrameLen) + m_Animation.FrameInterval.first;
+		sprite->TexCoord = calcTexCoords();
 		m_CurrentTime += dt;
 	}
 	const glm::vec4 SpriteAnimation::calcTexCoords()
 	{
 		glm::vec4 texCoords;
-		float frameWidth = m_Width / m_Columns;
-		float frameHeight = m_Height / m_Rows;
+		float frameWidth = (float)m_Width / (float)m_Columns;
+		float frameHeight = (float)m_Height / (float)m_Rows;
 
 
-		int row = m_Animation.currentFrame / m_Columns;
-		int column = m_Animation.currentFrame - (row * m_Columns);
+		int row = m_Animation.CurrentFrame / m_Columns;
+		int column = m_Animation.CurrentFrame - (row * m_Columns);
 
 
 		texCoords.x = (frameWidth * column) / m_Width;

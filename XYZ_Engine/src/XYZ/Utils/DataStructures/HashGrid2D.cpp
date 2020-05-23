@@ -3,69 +3,51 @@
 
 
 namespace XYZ {
-	HashGrid2D::HashGrid2D(int cellSize, int width, int height)
-		:
-		m_CellSize(cellSize),
-		m_Width(width),
-		m_Height(height),
-		m_TableSize(width* height)
+	HashGrid2D::HashGrid2D(int cellSize, int tableSize)
+		: m_CellSize(cellSize), m_TableSize(tableSize)
 	{
 		m_Table.resize(m_TableSize);
 	}
 	void HashGrid2D::Insert(int element, const glm::vec2& pos, const glm::vec2& size)
 	{
-		for (int i = pos.x; i < pos.x + size.x; ++i)
+		for (int i = (int)pos.x; i < int(pos.x + size.x); ++i)
 		{
-			for (int j = pos.y; j < pos.y + size.y; ++j)
+			for (int j = (int)pos.y; j < int(pos.y + size.y); ++j)
 			{
-				int x = (int)floor(i / m_CellSize) % m_Width;
-				int y = (int)floor(j / m_CellSize) % m_Height;
-
-				int index = ((y * m_Width) + x);
-				m_Table[(size_t)index].elements.push_back(element);
+				size_t index = ((size_t)floor(i / m_CellSize) + (size_t)floor(j / m_CellSize)) % m_TableSize;
+				m_Table[index].elements.push_back(element);
 			}
 		}
+
 	}
 	void HashGrid2D::Remove(int element, const glm::vec2& pos, const glm::vec2& size)
 	{
-		for (int i = pos.x; i < pos.x + size.x; ++i)
+		for (int i = (int)pos.x; i < int(pos.x + size.x); ++i)
 		{
-			for (int j = pos.y; j < pos.y + size.y; ++j)
+			for (int j = (int)pos.y; j < int(pos.y + size.y); ++j)
 			{
-				int x = (int)floor(i / m_CellSize) % m_Width;
-				int y = (int)floor(j / m_CellSize) % m_Height;
-
-				int index = ((y * m_Width) + x);
-				auto it = std::find(m_Table[(size_t)index].elements.begin(), m_Table[(size_t)index].elements.end(), element);
+				size_t index = ((size_t)floor(i / m_CellSize) + (size_t)floor(j / m_CellSize)) % m_TableSize;
+				auto it = std::find(m_Table[index].elements.begin(), m_Table[index].elements.end(), element);
 				if (it != m_Table[index].elements.end())
 					m_Table[index].elements.erase(it);
 			}
 		}
 	}
-	void HashGrid2D::Clear()
-	{
-		m_Table.clear();
-	}
-	void HashGrid2D::ClearCells()
-	{
-		for (auto& cell : m_Table)
-			cell.elements.clear();
-	}
 	size_t HashGrid2D::GetElements(int** buffer, const glm::vec2& pos, const glm::vec2& size)
 	{
 		std::vector<size_t> indices;
-		size_t elemSize = 0;
-		for (int i = pos.x; i < pos.x + size.x; ++i)
+		size_t count = 0;
+		for (int i = (int)pos.x; i < int(pos.x + size.x); ++i)
 		{
-			for (int j = pos.y; j < pos.y + size.y; ++j)
+			for (int j = (int)pos.y; j < int(pos.y + size.y); ++j)
 			{
 				size_t index = ((size_t)floor(i / m_CellSize) + (size_t)floor(j / m_CellSize)) % m_TableSize;
-				elemSize += m_Table[index].elements.size();
+				count += m_Table[index].elements.size();
 				indices.push_back(index);
 			}
 		}
 
-		*buffer = new int[elemSize * sizeof(int)];
+		*buffer = new int[count * sizeof(int)];
 		int* ptr = *buffer;
 		for (auto it : indices)
 		{
@@ -74,7 +56,6 @@ namespace XYZ {
 			ptr += elementsSize;
 		}
 
-		return elemSize;
+		return count;
 	}
-
 }

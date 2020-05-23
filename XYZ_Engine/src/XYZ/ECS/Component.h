@@ -3,6 +3,9 @@
 
 namespace XYZ {
 	class ComponentManager;
+	/* !@class IComponent
+	* @brief interface of component
+	*/
 	class IComponent
 	{
 		friend class ComponentManager;
@@ -24,6 +27,10 @@ namespace XYZ {
 		}
 	};
 
+
+	/* !@class Type
+	* @brief type of component
+	*/
 	template <typename Derived, typename DeriveFrom = IComponent>
 	class Type : public IComponent
 	{
@@ -36,15 +43,15 @@ namespace XYZ {
 
 	struct ActiveComponent : public Type<ActiveComponent>
 	{
-		Signature activeComponents;
+		Signature ActiveComponents;
 	};
 
 	struct Relationship : public Type<Relationship>
 	{
-		size_t numChildren = 0;
-		Entity parent = NULL_ENTITY;
-		Entity previous = NULL_ENTITY;
-		Entity next = NULL_ENTITY;
-		Entity first = NULL_ENTITY;
+		size_t NumChildren = 0;
+		Entity Parent = NULL_ENTITY;
+		Entity Previous = NULL_ENTITY;
+		Entity Next = NULL_ENTITY;
+		Entity First = NULL_ENTITY;
 	};
 }

@@ -13,7 +13,8 @@ namespace XYZ {
 		virtual void Clear() override;
 
 		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) override;
-		virtual void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count) override;
+		virtual void DrawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t count,uint32_t offset = 0) override;
+		virtual void DrawInstancedIndirect(void* indirect) override;
 	};
 
 }
