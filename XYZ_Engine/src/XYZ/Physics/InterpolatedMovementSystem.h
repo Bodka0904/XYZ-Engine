@@ -19,14 +19,11 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int InterpolIndex;
-			int GridBodyIndex;
-			int TransformIndex;
+			ComponentWrapper<InterpolatedMovement> Interpolated;
+			ComponentWrapper<GridBody> GridBody;
+			ComponentWrapper<Transform2D> Transform;
 		};
 
-		std::shared_ptr<ComponentStorage<InterpolatedMovement>> m_InterpolStorage;
-		std::shared_ptr<ComponentStorage<GridBody>> m_GridBodyStorage;
-		std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
 		std::vector<Component> m_Components;
 	};
 

@@ -65,27 +65,24 @@ namespace XYZ {
 	{
 		m_Signature.set(ECSManager::Get().GetComponentType<Renderable2D>());
 		m_Signature.set(ECSManager::Get().GetComponentType<Transform2D>());
-		m_RenderableStorage = ECSManager::Get().GetComponentStorage<Renderable2D>();
-		m_TransformStorage = ECSManager::Get().GetComponentStorage<Transform2D>();
-
 	}
 
 
 	void RendererBatchSystem2D::Add(Entity entity)
 	{		
-		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-		auto key = renderable->Material->GetSortKey();
+		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
+		auto key = renderable.Material->GetSortKey();
 
 		if (!(key & RenderFlags::InstancedFlag))
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " added");
 			Component component;
-			component.Ent = entity;
-			component.RenderableIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
-			component.TransformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
-			component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+	
+			component.Renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+			component.Transform = ECSManager::Get().GetComponent<Transform2D>(entity);
+			component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 
-			if (renderable->Material->GetSortKey() & RenderFlags::TransparentFlag)
+			if (renderable.Material->GetSortKey() & RenderFlags::TransparentFlag)
 			{
 				m_TransparentComponents.push_back(component);
 				std::push_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(),TransparentComparator());
@@ -102,8 +99,8 @@ namespace XYZ {
 	{
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
-			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-			auto key = renderable->Material->GetSortKey();
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
+			auto key = renderable.Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -130,8 +127,8 @@ namespace XYZ {
 	{
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
-			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-			auto key = renderable->Material->GetSortKey();
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
+			auto key = renderable.Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -160,11 +157,11 @@ namespace XYZ {
 			std::make_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), OpaqueComparator());
 		for (auto it : m_OpaqueComponents)
 		{
-			auto material = (*m_RenderableStorage)[it.RenderableIndex].Material;
+			auto material = it.Renderable.Get().Material;
 			auto& bucket = s_OpaqueBuckets[material];
 			if (bucket.IndexCount < bucket.IndexCount)
 			{
-				bucket.Submit((*m_RenderableStorage)[it.RenderableIndex],(*m_TransformStorage)[it.TransformIndex]);
+				bucket.Submit(it.Renderable.Get(),it.Transform.Get());
 			}
 			else
 			{
@@ -183,14 +180,13 @@ namespace XYZ {
 		if (!std::is_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator()))
 			std::make_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator());
 		for (auto it : m_TransparentComponents)
-		{
-			
-			auto material = (*m_RenderableStorage)[it.RenderableIndex].Material;
+		{		
+			auto material = it.Renderable.Get().Material;
 			auto& bucket = s_TransparentBuckets[material];
 			
 			if (bucket.IndexCount < bucket.MaxIndices)
 			{
-				bucket.Submit((*m_RenderableStorage)[it.RenderableIndex],(*m_TransformStorage)[it.TransformIndex]);
+				bucket.Submit(it.Renderable.Get(),it.Transform.Get());
 			}
 			else
 			{
@@ -199,7 +195,6 @@ namespace XYZ {
 				bucket.Reset();
 			}
 		}
-		//std::cout << "Draw" << std::endl;
 		for (auto& it : s_TransparentBuckets)
 		{
 			it.second.Material = it.first;
@@ -211,31 +206,32 @@ namespace XYZ {
 
 	void Renderer2DData::Submit(const Renderable2D& renderable,const Transform2D& transform)
 	{
+		glm::vec4 texCoords = renderable.SubTexture->GetTexCoords();
 		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
 		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = renderable.TexCoord.x;
-		BufferPtr->TexCoord.y = renderable.TexCoord.y;
+		BufferPtr->TexCoord.x = texCoords.x;
+		BufferPtr->TexCoord.y = texCoords.y;
 		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
 		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
 		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = renderable.TexCoord.z;
-		BufferPtr->TexCoord.y = renderable.TexCoord.y;
+		BufferPtr->TexCoord.x = texCoords.z;
+		BufferPtr->TexCoord.y = texCoords.y;
 		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
 		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
 		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = renderable.TexCoord.z;
-		BufferPtr->TexCoord.y = renderable.TexCoord.w;
+		BufferPtr->TexCoord.x = texCoords.z;
+		BufferPtr->TexCoord.y = texCoords.w;
 		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 
 		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
 		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = renderable.TexCoord.x;
-		BufferPtr->TexCoord.y = renderable.TexCoord.w;
+		BufferPtr->TexCoord.x = texCoords.x;
+		BufferPtr->TexCoord.y = texCoords.w;
 		BufferPtr->TextureID = (float)renderable.TextureID;
 		BufferPtr++;
 

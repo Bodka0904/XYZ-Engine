@@ -1,5 +1,4 @@
 #pragma once
-#include "Types.h"
 #include "Component.h"
 #include "ComponentStorage.h"
 
@@ -40,28 +39,26 @@ namespace XYZ {
 
 	protected:
 		Signature m_Signature;
-		std::shared_ptr<ComponentStorage<ActiveComponent>> m_ActiveStorage;
 
 		struct Component
 		{
-			Entity Ent;
-			int ActiveIndex;
+			ComponentWrapper<ActiveComponent> ActiveComponent;
 
 			bool operator()(const Component& a, const Component& b)
 			{
-				return (a.Ent < b.Ent);
+				return (ActiveComponent.GetEntity() < ActiveComponent.GetEntity());
 			}
 			bool operator ==(const Entity other) const
 			{
-				return Ent == other;
+				return ActiveComponent.GetEntity() == other;
 			}
 			bool operator <(const Entity other) const
 			{
-				return Ent < other;
+				return ActiveComponent.GetEntity() < other;
 			}
 			bool operator >(const Entity other) const
 			{
-				return Ent > other;
+				return ActiveComponent.GetEntity() > other;
 			}
 		};
 	protected:

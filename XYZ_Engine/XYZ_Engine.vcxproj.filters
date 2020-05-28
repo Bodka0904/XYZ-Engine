@@ -228,9 +228,6 @@
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\FrustumCullingSystem.h">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Material.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
@@ -1455,6 +1452,10 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\XYZ\Particle\ParticleModule.h" />
+    <ClInclude Include="src\XYZ\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\XYZ\Renderer\SpriteAnimator.h" />
+    <ClInclude Include="src\XYZ\Renderer\ShaderGraph.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1565,9 +1566,6 @@
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\FrustumCullingSystem.cpp">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\Material.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
@@ -1649,5 +1647,9 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\XYZ\Particle\ParticleModule.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SpriteAnimator.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\ShaderGraph.cpp" />
   </ItemGroup>
 </Project>

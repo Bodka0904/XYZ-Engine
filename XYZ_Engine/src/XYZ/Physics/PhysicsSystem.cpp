@@ -9,9 +9,6 @@ namespace XYZ {
 	{
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::RigidBody2D>());
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::InterpolatedMovement>());
-
-		m_BodyStorage = ECSManager::Get().GetComponentStorage<RigidBody2D>();
-		m_InterpolStorage = ECSManager::Get().GetComponentStorage<InterpolatedMovement>();
 	}
 	PhysicsSystem::~PhysicsSystem()
 	{
@@ -21,7 +18,7 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if (((*m_ActiveStorage)[it.ActiveIndex].ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
 			{
 				
 			}
@@ -30,12 +27,10 @@ namespace XYZ {
 
 	void PhysicsSystem::Add(Entity entity)
 	{
-
 		Component component;
-		component.Ent = entity;
-		component.BodyIndex = ECSManager::Get().GetComponentIndex<RigidBody2D>(entity);
-		component.InterpolIndex = ECSManager::Get().GetComponentIndex<InterpolatedMovement>(entity);
-		component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+		component.RigidBody = ECSManager::Get().GetComponent<RigidBody2D>(entity);
+		component.Interpolated = ECSManager::Get().GetComponent<InterpolatedMovement>(entity);
+		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 
 
 		m_Components.push_back(component);

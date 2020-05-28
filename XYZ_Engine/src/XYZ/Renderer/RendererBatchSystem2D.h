@@ -59,77 +59,46 @@ namespace XYZ {
 
 		struct Component : public System::Component
 		{
-			int RenderableIndex;
-			int TransformIndex;
+			ComponentWrapper<Renderable2D> Renderable;
+			ComponentWrapper<Transform2D> Transform;
 		};
 
 		std::vector<Component> m_OpaqueComponents;
 		std::vector<Component> m_TransparentComponents;
 
-
-		std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
-		std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
-
 		struct OpaqueComparator
 		{
-			OpaqueComparator()
-				:
-				m_TransformStorage(ECSManager::Get().GetComponentStorage<Transform2D>()),
-				m_RenderableStorage(ECSManager::Get().GetComponentStorage<Renderable2D>())
+			bool operator()(Component& a, Component& b) const
 			{
-			}
-			std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
-			std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
+				int sortLayerA = a.Renderable.Get().SortLayerID;
+				int sortLayerB = b.Renderable.Get().SortLayerID;
 
-			bool operator()(const Component& a, const Component& b) const
-			{
-				auto& transformA = (*m_TransformStorage)[a.TransformIndex];
-				auto& transformB = (*m_TransformStorage)[b.TransformIndex];
-				auto& renderableA = (*m_RenderableStorage)[a.RenderableIndex];
-				auto& renderableB = (*m_RenderableStorage)[b.RenderableIndex];
-
-				int sortLayerA = renderableA.SortLayerID;
-				int sortLayerB = renderableB.SortLayerID;
-
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + transformA.Position.z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + transformB.Position.z;
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().Position.z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().Position.z;
 
 
-				if (renderableA.Material->GetSortKey() == renderableB.Material->GetSortKey())
+				if (a.Renderable.Get().Material->GetSortKey() == b.Renderable.Get().Material->GetSortKey())
 				{
 					return valueA < valueB;
 				}
-				return renderableA.Material->GetSortKey() < renderableB.Material->GetSortKey();		
+				a.Renderable.Get().Material->GetSortKey() < b.Renderable.Get().Material->GetSortKey();
 			}
 		};
 
 		struct TransparentComparator
 		{
-			TransparentComparator()
-				:
-				m_TransformStorage(ECSManager::Get().GetComponentStorage<Transform2D>()),
-				m_RenderableStorage(ECSManager::Get().GetComponentStorage<Renderable2D>())
+			bool operator()(Component& a, Component& b) const
 			{
-			}
-			std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
-			std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
+				int sortLayerA = a.Renderable.Get().SortLayerID;
+				int sortLayerB = b.Renderable.Get().SortLayerID;
 
-			bool operator()(const Component& a, const Component& b) const
-			{
-				auto& transformA = (*m_TransformStorage)[a.TransformIndex];
-				auto& transformB = (*m_TransformStorage)[b.TransformIndex];
-				auto& renderableA = (*m_RenderableStorage)[a.RenderableIndex];
-				auto& renderableB = (*m_RenderableStorage)[b.RenderableIndex];
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().Position.z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().Position.z;
 
-				int sortLayerA = renderableA.SortLayerID;
-				int sortLayerB = renderableB.SortLayerID;
-
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + transformA.Position.z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + transformB.Position.z;
 
 				if (fabs(valueA - valueB) <= std::numeric_limits<float>::epsilon())
 				{
-					return renderableA.Material->GetSortKey() < renderableB.Material->GetSortKey();
+					a.Renderable.Get().Material->GetSortKey() < b.Renderable.Get().Material->GetSortKey();
 				}
 				return valueA > valueB;
 			}

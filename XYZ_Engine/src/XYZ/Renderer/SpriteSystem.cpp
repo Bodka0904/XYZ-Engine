@@ -7,15 +7,13 @@ namespace XYZ {
 	{
 		m_Signature.set(ECSManager::Get().GetComponentType<SpriteAnimation>());
 		m_Signature.set(ECSManager::Get().GetComponentType<Renderable2D>());
-
-		m_SpriteStorage = ECSManager::Get().GetComponentStorage<SpriteAnimation>();
-		m_RenderableStorage = ECSManager::Get().GetComponentStorage<Renderable2D>();
 	}
 	void SpriteSystem::Update(float dt)
 	{
 		for (auto it : m_Components)
 		{
-			(*m_SpriteStorage)[it.AnimIndex].Update(dt, &(*m_RenderableStorage)[it.RendIndex]);
+			it.Animation.Get().Update(dt);
+			it.Renderable.Get().SubTexture = it.Animation.Get().GetCurrentKeyFrame();
 		}
 	}
 	void SpriteSystem::Add(Entity entity)
@@ -23,10 +21,9 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");
 	
 		Component component;
-		component.AnimIndex = ECSManager::Get().GetComponentIndex<SpriteAnimation>(entity);
-		component.RendIndex = ECSManager::Get().GetComponentIndex<Renderable2D>(entity);
+		component.Animation = ECSManager::Get().GetComponent<SpriteAnimation>(entity);
+		component.Renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
 
-		component.Ent = entity;
 
 		m_Components.push_back(component);
 	}

@@ -1,6 +1,6 @@
 #pragma once
 #include "XYZ/ECS/Component.h"
-
+#include "SubTexture2D.h"
 #include "SortingLayer.h"
 #include "Material.h"
 
@@ -15,40 +15,42 @@ namespace XYZ {
 	{
 		/**
 		* Construct a 2D renderable, from given parameters
-		* @param[in] Material	Material of the renderable
-		* @param[in] Color		Color of the renderable
-		* @param[in] TexCoord	Bottom left and top right texture coordinates of renderable
-		* @param[in] Position   Position of the renderable
-		* @param[in] Size		Size of the renderable
-		* @param[in] Rotation   Rotation of the renderable
-		* @param[in] Visible	Specify if the renderable is visible and should be rendered
-		* @param[in] TextureID  Specify the ID of the texture
+		* @param[in] material	Material of the renderable
+		* @param[in] color		Color of the renderable
+		* @param[in] subTexture	Sub texture
+		* @param[in] position   Position of the renderable
+		* @param[in] size		Size of the renderable
+		* @param[in] rotation   Rotation of the renderable
+		* @param[in] visible	Specify if the renderable is visible and should be rendered
+		* @param[in] textureID  Specify the ID of the texture
 		*/
 		Renderable2D(
 			std::shared_ptr<Material> material,
+			std::shared_ptr<SubTexture2D> subTexture,
 			const glm::vec4& color,
-			const glm::vec4& texCoord,
 			bool visible,
 			int textureID
 			)
 		:
 			Material(material),
+			SubTexture(subTexture),
 			Color(color),
-			TexCoord(texCoord),
 			Visible(visible),
 			TextureID(textureID),
 			SortLayerID(SortingLayer::Get().GetOrderValueByName("default"))
 		{}
+
+		Renderable2D() = default;
 
 		~Renderable2D()
 		{
 		}
 
 		std::shared_ptr<Material> Material;
-		glm::vec4 Color;
-		glm::vec4 TexCoord; // (x = left, y = bottom, z = right, w = top)
-		bool Visible;
-		int TextureID;
-		SortingLayerID SortLayerID;
+		std::shared_ptr<SubTexture2D> SubTexture;
+		glm::vec4 Color = glm::vec4(0);
+		bool Visible = false;
+		int TextureID = 0;
+		SortingLayerID SortLayerID = SortingLayer::Get().GetOrderValueByName("default");
 	};
 }

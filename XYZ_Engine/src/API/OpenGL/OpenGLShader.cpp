@@ -38,7 +38,7 @@ namespace XYZ {
 		: m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(path);
-		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		//parseVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
 		parseUniforms();
@@ -48,7 +48,7 @@ namespace XYZ {
 		: m_Name(name), m_NumTakenTexSlots(0), m_UniformsSize(0), m_Textures(0), m_Path(path)
 	{
 		std::string source = readFile(m_Path);
-		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		//parseVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
 		parseUniforms();
@@ -133,10 +133,36 @@ namespace XYZ {
 				uniform.location = id;
 				uniform.name = name;
 				uniform.count = count;
-				if (uniform.count > 0)
+
+				if (uniform.count > 1)
 					uniform.isArray = true;
+				else
+					uniform.isArray = false;
 				m_Uniforms.push_back(uniform);
 			}
+		}
+	}
+
+	void OpenGLShader::parseSource(unsigned int type,const std::string& source)
+	{		
+		const char* versionToken = "#version";
+		size_t versionTokenLength = strlen(versionToken);
+		size_t verPos = m_ShaderSources[type].find(versionToken, 0);
+		size_t sourcePos = verPos + versionTokenLength + 1;
+		size_t sourceEol = source.find_first_of("\r\n", sourcePos);
+
+		const char* typeToken = "#type";
+		size_t typeTokenLength = strlen(typeToken);
+		size_t pos = source.find(typeToken, 0);
+		while (pos != std::string::npos)
+		{
+			size_t eol = source.find_first_of("\r\n", pos);
+			XYZ_ASSERT(eol != std::string::npos, "Syntax error");
+			size_t begin = pos + typeTokenLength + 1;
+
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
+			pos = source.find(typeToken, nextLinePos);
+			m_ShaderSources[type].insert(sourceEol + 2 ,source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos)));
 		}
 	}
 
@@ -192,16 +218,16 @@ namespace XYZ {
 
 	void OpenGLShader::SetUniforms(unsigned char* data)
 	{
-		for (auto uniform : m_Uniforms)
+		for (auto &uniform : m_Uniforms)
 		{
 			if (uniform.isArray)
-				setUniformArr(&uniform, data);
+				setUniformArr(&uniform, (unsigned char*)data);
 			else
-				setUniform(&uniform, data);
+				setUniform(&uniform, (unsigned char*)data);
 		}
 	}
 
-	
+
 	void OpenGLShader::SetSubRoutine(const std::string& name)
 	{
 		for (auto& routine : m_Routines)
@@ -240,9 +266,10 @@ namespace XYZ {
 		m_NumTakenTexSlots = 0;
 
 		std::string source = readFile(m_Path);
-		parsePredefVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
-		auto shaderSources = preProcess(source);
-		compile(shaderSources);
+		//parseVariables("Assets/Shaders/Variables/PredefinedVariables.glsl", source);
+		m_ShaderSources.clear();
+		m_ShaderSources = preProcess(source);
+		compile(m_ShaderSources);
 		parseUniforms();
 		parseSubRoutines();
 
@@ -250,9 +277,61 @@ namespace XYZ {
 			m_ShaderReloadCallbacks[i]();
 	}
 
+	void OpenGLShader::Recompile()
+	{
+		XYZ_LOG_WARN("Recompiling shader ", m_Name.c_str());
+		m_Uniforms.clear();
+		m_Textures.clear();
+		m_Routines.clear();
+		m_UniformsSize = 0;
+		m_NumTakenTexSlots = 0;
+
+		compile(m_ShaderSources);
+		parseUniforms();
+		parseSubRoutines();
+		for (size_t i = 0; i < m_ShaderReloadCallbacks.size(); ++i)
+			m_ShaderReloadCallbacks[i]();
+	}
+
 	void OpenGLShader::AddReloadCallback(std::function<void()> callback)
 	{
 		m_ShaderReloadCallbacks.push_back(callback);
+	}
+
+	void OpenGLShader::AddSource(const std::string& filepath)
+	{
+		std::string source = readFile(filepath);
+		const char* typeToken = "#type";
+		size_t typeTokenLength = strlen(typeToken);
+		size_t pos = source.find(typeToken, 0);
+		
+		size_t eol = source.find_first_of("\r\n", pos);
+		XYZ_ASSERT(eol != std::string::npos, "Syntax error");
+		size_t begin = pos + typeTokenLength + 1;
+		std::string type = source.substr(begin, eol - begin);
+
+		parseSource(ShaderTypeFromString(type),source);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& name, float value)
+	{
+		auto location = glGetUniformLocation(m_RendererID, name.c_str());
+		XYZ_ASSERT(location != -1, "Uniform ",name," does not exist");
+		uploadFloat(location, value);
+	}
+
+	void OpenGLShader::SetInt(const std::string& name, int value)
+	{
+		auto location = glGetUniformLocation(m_RendererID, name.c_str());
+		XYZ_ASSERT(location != -1, "Uniform ", name, " does not exist");
+		uploadInt(location, value);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+	{
+		auto location = glGetUniformLocation(m_RendererID, name.c_str());
+		XYZ_ASSERT(location != -1, "Uniform ", name, " does not exist");
+		uploadMat4(location, value);
 	}
 
 	void OpenGLShader::uploadInt(uint32_t loc, int value)
@@ -332,8 +411,6 @@ namespace XYZ {
 	}
 	std::unordered_map<unsigned int, std::string> OpenGLShader::preProcess(const std::string& source)
 	{
-		std::unordered_map<GLenum, std::string> shaderSources;
-
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
 		size_t pos = source.find(typeToken, 0);
@@ -347,13 +424,13 @@ namespace XYZ {
 
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
 			pos = source.find(typeToken, nextLinePos);
-			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+			m_ShaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
 			if (type == "compute")
 				m_Type = ShaderProgramType::COMPUTE;
 			else
 				m_Type = ShaderProgramType::RENDER;
 		}
-		return shaderSources;
+		return m_ShaderSources;
 	}
 	void OpenGLShader::compile(const std::unordered_map<unsigned int, std::string>& shaderSources)
 	{
@@ -525,101 +602,6 @@ namespace XYZ {
 				}
 				m_Routines.push_back(routine);
 			}
-		}
-	}
-
-	void OpenGLShader::parsePredefVariables(const std::string& filepath, std::string& source)
-	{
-		std::string preDefSource = readFile(filepath);
-
-		std::vector<std::string> vertexVariables;
-		std::vector<std::string> fragmentVariables;
-		std::vector<std::string> computeVariables;
-		std::vector<std::string> geometryVariables;
-
-
-		const char* typeToken = "#type";
-		size_t typeTokenLength = strlen(typeToken);
-		size_t pos = preDefSource.find(typeToken, 0);
-
-		while (pos != std::string::npos)
-		{
-			size_t eol = preDefSource.find_first_of("\r\n", pos);
-			XYZ_ASSERT(eol != std::string::npos, "Syntax error");
-			size_t begin = pos + typeTokenLength + 1;
-			std::string type = preDefSource.substr(begin, eol - begin);
-			XYZ_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
-
-			size_t nextLinePos = preDefSource.find_first_not_of("\r\n", eol);
-			pos = preDefSource.find(typeToken, nextLinePos);
-			std::string var = preDefSource.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? preDefSource.size() - 1 : nextLinePos));
-
-			if (type == "vertex")
-				vertexVariables.push_back(var);
-			if (type == "fragment" || type == "pixel")
-				fragmentVariables.push_back(var);
-			if (type == "geometry")
-				geometryVariables.push_back(var);
-			if (type == "compute")
-				computeVariables.push_back(var);
-		}
-
-
-		const char* versionToken = "#version";
-		size_t versionTokenLength = strlen(versionToken);
-
-		size_t verPos = source.find(versionToken, 0);
-		pos = source.find(typeToken, 0);
-		while (pos != std::string::npos && verPos != std::string::npos)
-		{
-			size_t eol = source.find_first_of("\r\n", pos);
-			XYZ_ASSERT(eol != std::string::npos, "Syntax error");
-			size_t begin = pos + typeTokenLength + 1;
-			std::string type = source.substr(begin, eol - begin);
-			XYZ_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
-
-			size_t eolVer = source.find_first_of("\r\n", verPos);
-			XYZ_ASSERT(eolVer != std::string::npos, "Syntax error");
-			size_t beginVer = verPos + versionTokenLength + 1;
-			std::string version = source.substr(beginVer, eolVer - beginVer);
-
-			if (type == "vertex")
-			{
-				for (auto var : vertexVariables)
-				{
-					source.insert(eolVer, "\n" + var + "\n");
-					eolVer += var.size() + 2;
-				}
-			}
-			else if (type == "fragment")
-			{
-				for (auto var : fragmentVariables)
-				{
-					source.insert(eolVer, "\n" + var + "\n");
-					eolVer += var.size() + 2;
-				}
-			}
-			else if (type == "geometry")
-			{
-				for (auto var : geometryVariables)
-				{
-					source.insert(eolVer, "\n" + var + "\n");
-					eolVer += var.size() + 2;
-				}
-			}
-			else if (type == "compute")
-			{
-				for (auto var : computeVariables)
-				{
-					source.insert(eolVer, "\n" + var + "\n");
-					eolVer += var.size() + 2;
-				}
-			}
-			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
-			pos = source.find(typeToken, nextLinePos);
-
-			size_t nextLineVer = source.find_first_not_of("\r\n", eolVer);
-			verPos = source.find(versionToken, nextLineVer);
 		}
 	}
 

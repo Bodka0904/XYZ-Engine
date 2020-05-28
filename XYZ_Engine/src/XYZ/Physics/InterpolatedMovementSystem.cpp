@@ -10,49 +10,45 @@ namespace XYZ {
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<InterpolatedMovement>());
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<Transform2D>());
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<GridBody>());
-
-		m_InterpolStorage = ECSManager::Get().GetComponentStorage<InterpolatedMovement>();
-		m_TransformStorage = ECSManager::Get().GetComponentStorage<Transform2D>();
-		m_GridBodyStorage = ECSManager::Get().GetComponentStorage<GridBody>();
 	}
 	void InterpolatedMovementSystem::Update(float dt)
 	{
 		for (auto& it : m_Components)
 		{
-			if (((*m_ActiveStorage)[it.ActiveIndex].ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
 			{
-				if ((*m_InterpolStorage)[it.InterpolIndex].InProgress)
+				if (it.Interpolated.Get().InProgress)
 				{
-					float x = (*m_InterpolStorage)[it.InterpolIndex].Velocity.x * dt;
-					float y = (*m_InterpolStorage)[it.InterpolIndex].Velocity.y * dt;
+					float x = it.Interpolated.Get().Velocity.x * dt;
+					float y = it.Interpolated.Get().Velocity.y * dt;
 
-					if ((*m_InterpolStorage)[it.InterpolIndex].Distance.x > 0.0f)
+					if (it.Interpolated.Get().Distance.x > 0.0f)
 					{
-						(*m_InterpolStorage)[it.InterpolIndex].Distance.x -= fabs(x);
-						(*m_TransformStorage)[it.TransformIndex].Position.x += x;
+						it.Interpolated.Get().Distance.x -= fabs(x);
+						it.Transform.Get().Position.x += x;
 					}
-					if ((*m_InterpolStorage)[it.InterpolIndex].Distance.y > 0.0f)
+					if (it.Interpolated.Get().Distance.y > 0.0f)
 					{
-						(*m_InterpolStorage)[it.InterpolIndex].Distance.y -= fabs(y);
-						(*m_TransformStorage)[it.TransformIndex].Position.y += y;
+						it.Interpolated.Get().Distance.y -= fabs(y);
+						it.Transform.Get().Position.y += y;
 					}
 
-					if ((*m_InterpolStorage)[it.InterpolIndex].Distance.x <= 0.0f
-						&& (*m_InterpolStorage)[it.InterpolIndex].Distance.y <= 0.0f)
+					if (it.Interpolated.Get().Distance.x <= 0.0f
+						&& it.Interpolated.Get().Distance.y <= 0.0f)
 					{
-						(*m_InterpolStorage)[it.InterpolIndex].InProgress = false;
-						(*m_InterpolStorage)[it.InterpolIndex].Velocity = glm::vec2(0);
+						it.Interpolated.Get().InProgress = false;
+						it.Interpolated.Get().Velocity = glm::vec2(0);
 
-						(*m_InterpolStorage)[it.InterpolIndex].Distance.x = 0;
-						(*m_InterpolStorage)[it.InterpolIndex].Distance.y = 0;						
+						it.Interpolated.Get().Distance.x = 0;
+						it.Interpolated.Get().Distance.y = 0;						
 					}
 				}
-				else if ((*m_GridBodyStorage)[it.GridBodyIndex].NextCol != 0
-					  || (*m_GridBodyStorage)[it.GridBodyIndex].NextRow != 0)
+				else if (it.GridBody.Get().NextCol != 0
+					  || it.GridBody.Get().NextRow != 0)
 				{
-					(*m_InterpolStorage)[it.InterpolIndex].Distance.x = (float)fabs((*m_GridBodyStorage)[it.GridBodyIndex].NextCol);
-					(*m_InterpolStorage)[it.InterpolIndex].Distance.y = (float)fabs((*m_GridBodyStorage)[it.GridBodyIndex].NextRow);
-					(*m_InterpolStorage)[it.InterpolIndex].InProgress = true;
+					it.Interpolated.Get().Distance.x = (float)fabs(it.GridBody.Get().NextCol);
+					it.Interpolated.Get().Distance.y = (float)fabs(it.GridBody.Get().NextRow);
+					it.Interpolated.Get().InProgress = true;
 				}
 				
 			}
@@ -61,11 +57,10 @@ namespace XYZ {
 	void InterpolatedMovementSystem::Add(Entity entity)
 	{
 		Component component;
-		component.Ent = entity;
-		component.InterpolIndex = ECSManager::Get().GetComponentIndex<InterpolatedMovement>(entity);
-		component.GridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
-		component.TransformIndex = ECSManager::Get().GetComponentIndex<Transform2D>(entity);
-		component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
+		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
+		component.GridBody = ECSManager::Get().GetComponent<GridBody>(entity);
+		component.Transform = ECSManager::Get().GetComponent<Transform2D>(entity);
+		component.Interpolated = ECSManager::Get().GetComponent<InterpolatedMovement>(entity);
 
 		m_Components.push_back(component);
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");

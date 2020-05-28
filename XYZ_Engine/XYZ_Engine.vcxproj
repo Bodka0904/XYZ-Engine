@@ -140,6 +140,7 @@
     <ClInclude Include="src\XYZ\ImGui\ImGuiBuild.h" />
     <ClInclude Include="src\XYZ\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleEffect2D.h" />
+    <ClInclude Include="src\XYZ\Particle\ParticleModule.h" />
     <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h" />
     <ClInclude Include="src\XYZ\Physics\Components.h" />
     <ClInclude Include="src\XYZ\Physics\GridCollisionSystem.h" />
@@ -149,7 +150,6 @@
     <ClInclude Include="src\XYZ\Renderer\APIContext.h" />
     <ClInclude Include="src\XYZ\Renderer\Buffer.h" />
     <ClInclude Include="src\XYZ\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\XYZ\Renderer\FrustumCullingSystem.h" />
     <ClInclude Include="src\XYZ\Renderer\Material.h" />
     <ClInclude Include="src\XYZ\Renderer\MaterialManager.h" />
     <ClInclude Include="src\XYZ\Renderer\OrthoCamera.h" />
@@ -166,11 +166,14 @@
     <ClInclude Include="src\XYZ\Renderer\SceneGraph.h" />
     <ClInclude Include="src\XYZ\Renderer\SceneManager.h" />
     <ClInclude Include="src\XYZ\Renderer\Shader.h" />
+    <ClInclude Include="src\XYZ\Renderer\ShaderGraph.h" />
     <ClInclude Include="src\XYZ\Renderer\SortingGroup.h" />
     <ClInclude Include="src\XYZ\Renderer\SortingLayer.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimation.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimationController.h" />
+    <ClInclude Include="src\XYZ\Renderer\SpriteAnimator.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteSystem.h" />
+    <ClInclude Include="src\XYZ\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\XYZ\Renderer\Texture.h" />
     <ClInclude Include="src\XYZ\Renderer\VertexArray.h" />
     <ClInclude Include="src\XYZ\Timer.h" />
@@ -588,6 +591,7 @@
     <ClCompile Include="src\XYZ\ECS\SystemManager.cpp" />
     <ClCompile Include="src\XYZ\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleEffect2D.cpp" />
+    <ClCompile Include="src\XYZ\Particle\ParticleModule.cpp" />
     <ClCompile Include="src\XYZ\Particle\ParticleSystem2D.cpp" />
     <ClCompile Include="src\XYZ\Physics\GridCollisionSystem.cpp" />
     <ClCompile Include="src\XYZ\Physics\InterpolatedMovementSystem.cpp" />
@@ -596,7 +600,6 @@
     <ClCompile Include="src\XYZ\Renderer\APIContext.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Buffer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\FrustumCullingSystem.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Material.cpp" />
     <ClCompile Include="src\XYZ\Renderer\MaterialManager.cpp" />
     <ClCompile Include="src\XYZ\Renderer\OrthoCamera.cpp" />
@@ -613,11 +616,14 @@
     <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Shader.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\ShaderGraph.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SortingGroup.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SortingLayer.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimation.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimationController.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SpriteAnimator.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteSystem.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\Texture.cpp" />
     <ClCompile Include="src\XYZ\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\XYZ\Utils\DataStructures\FreeList.cpp" />

@@ -1,7 +1,11 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
 #include "XYZ/Physics/Components.h"
+#include "XYZ/Renderer/Renderable2D.h"
 
+
+
+// TODO update
 namespace XYZ {
 	/*! @class SceneGraph
 	*	@brief Hierarchical ordering of entities contained inside a scene
@@ -31,6 +35,7 @@ namespace XYZ {
 			// data
 			int transformIndex;
 			
+			int renderableIndex;
 			// linkage
 			int relationIndex = -1;
 		};
@@ -38,6 +43,7 @@ namespace XYZ {
 
 		std::vector<Component> m_Components;
 
+		std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
 		std::shared_ptr<ComponentStorage<Transform2D>> m_TransformStorage;
 		std::shared_ptr<ComponentStorage<Relationship>> m_RelationStorage;
 

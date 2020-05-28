@@ -2,10 +2,6 @@
 
 #include <XYZ.h>
 
-#include "Bomb.h"
-#include "Map.h"
-#include "Player.h"
-#include "Menu.h"
 
 class GameLayer : public XYZ::Layer
 {
@@ -19,8 +15,8 @@ public:
 	virtual void OnImGuiRender() override;
 
 private:
-	void RestartGame();
-	void InitBackgroundParticles();
+
+	void InitBackgroundParticles(XYZ::Entity entity);
 private:
 	std::shared_ptr<XYZ::PhysicsSystem> m_PhysicsSystem;
 	std::shared_ptr<XYZ::ParticleSystem2D> m_ParticleSystem;
@@ -34,18 +30,12 @@ private:
 	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 
 
-	// Testing environment
-	std::vector<Player> m_Players;
-	std::vector<Bomb> m_Bombs;
 
 	XYZ::Entity m_ParticleEntity;
 
 
 	int m_PlayableArea = 20;
-	Map m_Map;
-	Menu m_Menu;
-	XYZ::HandlerID m_PutBomb;
-	std::vector<std::pair<int, int>> m_DamagedCells;
+
 
 	std::shared_ptr<XYZ::AudioSource> m_Audio;
 

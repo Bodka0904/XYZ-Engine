@@ -54,6 +54,8 @@ namespace XYZ {
 		* @param[in] renderMaterial
 		*/
 		ParticleEffect2D(uint32_t maxParticles, std::shared_ptr<Material> material, std::shared_ptr<Material> renderMaterial);
+		ParticleEffect2D() = default;
+		
 		~ParticleEffect2D();
 
 		/**
@@ -133,8 +135,9 @@ namespace XYZ {
 
 	private:
 		std::shared_ptr<Material> m_Material;
-	
-		uint32_t m_MaxParticles;
+		std::shared_ptr<Shader> m_Shader;
+
+		uint32_t m_MaxParticles = 0;
 
 		std::vector<ParticleVertex> m_Vertices;
 		std::vector<ParticleInformation> m_Data;

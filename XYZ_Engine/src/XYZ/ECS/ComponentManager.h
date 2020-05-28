@@ -14,20 +14,14 @@ namespace XYZ {
 	class ComponentManager
 	{
 	public:
-		/**
-		* Register new component storage
-		*/
+		
 		template<typename T>
-		void RegisterComponent()
+		void UnRegisterComponent()
 		{
 			uint16_t id = IComponent::GetID<T>();
-			XYZ_ASSERT(id < MAX_COMPONENTS, "Registering more than max components");
-			XYZ_ASSERT(m_Components.find(id) == m_Components.end(), "Registering component type more than once.");
-
-			std::shared_ptr<IComponentStorage> componentStorage = std::make_shared<ComponentStorage<T> >();
-			m_Components.insert({ id,componentStorage });
+			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Unregistering not existing componet type.");
+			m_Components.erase(id);
 		}
-
 		/**
 		* Add component to the storage
 		* @param[in] entity
@@ -37,7 +31,8 @@ namespace XYZ {
 		void AddComponent(Entity entity,const T& component)
 		{
 			uint16_t id = IComponent::GetID<T>();
-			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Accessing not registered component.");
+			if(m_Components.find(id) == m_Components.end())
+				RegisterComponent<T>();
 			GetComponentStorage<T>()->AddComponent(entity, component);
 		}
 
@@ -48,7 +43,8 @@ namespace XYZ {
 		ComponentType GetComponentType()
 		{
 			uint16_t id = IComponent::GetID<T>();
-			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Component not registered before use.");
+			if (m_Components.find(id) == m_Components.end())
+				RegisterComponent<T>();
 			return id;
 		}
 
@@ -59,17 +55,18 @@ namespace XYZ {
 		std::shared_ptr<ComponentStorage<T>> GetComponentStorage()
 		{
 			uint16_t id = IComponent::GetID<T>();
-			XYZ_ASSERT(m_Components.find(id) != m_Components.end(), "Component not registered before use.");
+			if (m_Components.find(id) == m_Components.end())
+				RegisterComponent<T>();
 			return std::static_pointer_cast<ComponentStorage<T>>(m_Components[id]);
 		}
 
 
 		/**
 		* @param[in] entity
-		* @return pointer to the component of entity
+		* @return reference to the component of entity
 		*/
 		template<typename T>
-		T* GetComponent(Entity entity)
+		T& GetComponent(Entity entity)
 		{
 			return GetComponentStorage<T>()->GetComponent(entity);
 		}
@@ -91,6 +88,7 @@ namespace XYZ {
 		template<typename T>
 		void RemoveComponent(Entity entity)
 		{
+			auto c = GetComponent(entity);
 			GetComponentStorage<T>()->RemoveComponent(entity);
 		}
 
@@ -116,6 +114,21 @@ namespace XYZ {
 				it.second->EntityDestroyed(entity);
 			}
 		}
+
+	private:
+		/**
+		* Register new component storage
+		*/
+		template<typename T>
+		void RegisterComponent()
+		{
+			uint16_t id = IComponent::GetID<T>();
+			XYZ_ASSERT(id < MAX_COMPONENTS, "Registering more than max components");
+
+			std::shared_ptr<IComponentStorage> componentStorage = std::make_shared<ComponentStorage<T> >();
+			m_Components.insert({ id,componentStorage });
+		}
+
 
 	private:
 		std::unordered_map<uint16_t, std::shared_ptr<IComponentStorage> > m_Components;

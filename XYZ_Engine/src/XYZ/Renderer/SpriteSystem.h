@@ -39,13 +39,10 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int AnimIndex;
-			int RendIndex;
-			int InterIndex;
+			ComponentWrapper<SpriteAnimation> Animation;
+			ComponentWrapper<Renderable2D> Renderable;
 		};
 
 		std::vector<Component> m_Components;
-		std::shared_ptr<ComponentStorage<SpriteAnimation>> m_SpriteStorage;
-		std::shared_ptr<ComponentStorage<Renderable2D>> m_RenderableStorage;
 	};
 }

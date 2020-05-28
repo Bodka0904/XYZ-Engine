@@ -22,11 +22,10 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int ParticleIndex;
+			ComponentWrapper<ParticleEffect2D> Effect;
 		};
 
 		std::vector<Component> m_Components;
-		std::shared_ptr<ComponentStorage<ParticleEffect2D>> m_ParticleStorage;
 	};
 
 

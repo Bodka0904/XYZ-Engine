@@ -8,6 +8,7 @@ namespace XYZ {
 		OpenGLShader(const std::string& path);
 		OpenGLShader(const std::string& name, const std::string& path);
 		virtual ~OpenGLShader();
+
 		virtual void Bind() const override;
 		virtual void Compute(unsigned int groupX, unsigned int groupY = 1, unsigned int groupZ = 1) const override;
 		virtual void Unbind() const override;
@@ -16,8 +17,13 @@ namespace XYZ {
 		virtual void UploadRoutines() override;
 
 		virtual void Reload() override;
+		virtual void Recompile() override;
 		virtual void AddReloadCallback(std::function<void()> callback) override;
+		virtual void AddSource(const std::string& filepath) override;
 
+		virtual void SetFloat(const std::string& name, float value) override;
+		virtual void SetInt(const std::string& name, int value) override;
+		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
 
 		virtual const Uniform* FindUniform(const std::string& name) override;
 		virtual const TextureUniform* FindTexture(const std::string& name) override;
@@ -32,8 +38,9 @@ namespace XYZ {
 		void compile(const std::unordered_map<unsigned int, std::string>& shaderSources);
 		void parseUniforms();
 		void parseSubRoutines();
-		void parsePredefVariables(const std::string& filepath, std::string& source);
 		void addUniform(UniformDataType type, unsigned int size, unsigned int offset, const std::string& name, unsigned int count = 0);
+
+		void parseSource(unsigned int type,const std::string& source);
 
 		void setUniform(Uniform* uniform, unsigned char* data);
 		void setUniformArr(Uniform* uniform, unsigned char* data);
@@ -68,6 +75,7 @@ namespace XYZ {
 		std::vector<Routine> m_Routines;
 
 		std::vector<std::function<void()>> m_ShaderReloadCallbacks;
+		std::unordered_map<unsigned int, std::string> m_ShaderSources;
 
 		// Temporary, in future we will get that information from the GPU
 		static constexpr int sc_MaxTextureSlots = 32;

@@ -9,24 +9,23 @@ namespace XYZ {
 	ParticleSystem2D::ParticleSystem2D()
 	{
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<XYZ::ParticleEffect2D>());	
-		m_ParticleStorage = ECSManager::Get().GetComponentStorage<ParticleEffect2D>();
 	}
 
 	void ParticleSystem2D::Update(float dt)
 	{
 		int16_t currentKey = -1;
-		for (auto it : m_Components)
+		for (auto &it : m_Components)
 		{
-			int16_t newKey = (*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->GetSortKey();
+			int16_t newKey = it.Effect.Get().GetMaterial()->GetSortKey();
 			if (currentKey != newKey)
 			{
 				currentKey = newKey;
-				(*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->Set("u_Time", dt);
-				(*m_ParticleStorage)[it.ParticleIndex].GetMaterial()->Bind();
+				it.Effect.Get().GetMaterial()->Set("u_Time", dt);
+				it.Effect.Get().GetMaterial()->Bind();
 			}
 
-			(*m_ParticleStorage)[it.ParticleIndex].Update(dt);
-			(*m_ParticleStorage)[it.ParticleIndex].Render();		
+			it.Effect.Get().Update(dt);
+			it.Effect.Get().Render();		
 		}
 	}
 
@@ -35,15 +34,10 @@ namespace XYZ {
 		XYZ_LOG_INFO("Entity with id ", entity, " added");
 
 		Component component;
-		component.ParticleIndex = ECSManager::Get().GetComponentIndex<ParticleEffect2D>(entity);
-		component.Ent = entity;
-		auto it = std::lower_bound(m_Components.begin(), m_Components.end(), component, [](const Component& a, const Component& b) {
-
-			auto storage = ECSManager::Get().GetComponentStorage<ParticleEffect2D>();
-			return (*storage)[a.ParticleIndex].GetMaterial()->GetSortKey() > (*storage)[b.ParticleIndex].GetMaterial()->GetSortKey();
-		});
-
-		m_Components.insert(it, component);
+		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
+		component.Effect = ECSManager::Get().GetComponent<ParticleEffect2D>(entity);
+		
+		m_Components.push_back(component);
 	}
 
 	void ParticleSystem2D::Remove(Entity entity)

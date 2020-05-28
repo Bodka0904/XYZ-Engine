@@ -24,6 +24,8 @@ namespace XYZ {
 		},
 		m_Counter(AtomicCounter::Create(1))
 	{
+		m_Shader = m_Material->GetShader();
+	
 		m_Material->Set("u_Speed", 1.0f);
 		m_Material->Set("u_Gravity", -2.8f);
 		m_Material->Set("u_Collider", glm::vec4(5, 0, 10, 5));
@@ -106,11 +108,12 @@ namespace XYZ {
 		if (m_Emitter.EmittedParticles + raise <= m_MaxParticles)
 		{
 			m_Emitter.EmittedParticles += raise;
-			emittedParticles = (int)floor(m_Emitter.EmittedParticles);			
-			m_Material->Set("u_ParticlesInExistence", emittedParticles);	
+			emittedParticles = (int)floor(m_Emitter.EmittedParticles);	
+			m_Material->Set("u_ParticlesInExistence", emittedParticles);
 		}
 
 		m_Material->Bind();
+
 		m_PropsStorage->BindRange(0,  emittedParticles * sizeof(ParticleInformation), PROPS_BINDING);
 		m_VertexStorage->BindRange(0, emittedParticles * sizeof(ParticleVertex), VERTEX_BINDING);
 		m_Material->GetShader()->Compute(32, 32, 1);

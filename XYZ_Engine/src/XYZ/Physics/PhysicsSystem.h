@@ -27,15 +27,13 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int BodyIndex;
-			int InterpolIndex;
+			ComponentWrapper<RigidBody2D> RigidBody;
+			ComponentWrapper<InterpolatedMovement> Interpolated;
 		};
 
 
 	private:
 		std::vector<Component> m_Components;
-		std::shared_ptr<ComponentStorage<RigidBody2D>> m_BodyStorage;
-		std::shared_ptr<ComponentStorage<InterpolatedMovement>> m_InterpolStorage;
 
 	};
 

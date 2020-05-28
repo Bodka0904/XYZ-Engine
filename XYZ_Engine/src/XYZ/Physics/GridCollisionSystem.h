@@ -56,12 +56,11 @@ namespace XYZ {
 	
 		struct Component : public System::Component
 		{
-			int GridBodyIndex;
-			int CollisionIndex;
+			ComponentWrapper<GridBody> GridBody;
+			ComponentWrapper<CollisionComponent> Collision;
 		};
+
 		std::vector<Component> m_Components;
-		std::shared_ptr<ComponentStorage<GridBody>> m_GridBodyStorage;
-		std::shared_ptr<ComponentStorage<CollisionComponent>> m_CollisionStorage;
 	};
 
 }

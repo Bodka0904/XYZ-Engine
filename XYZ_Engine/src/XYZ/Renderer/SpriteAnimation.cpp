@@ -3,49 +3,36 @@
 
 
 namespace XYZ {
-	SpriteAnimation::SpriteAnimation(int numRows, int numCols, uint32_t width, uint32_t height)
-		:m_Rows(numRows), m_Columns(numCols),
-		m_Width(width), m_Height(height), m_AnimationLen(0.0f), m_CurrentTime(0.0f)
+	SpriteAnimation::SpriteAnimation(unsigned int framesPerSecond, const std::initializer_list<std::shared_ptr<SubTexture2D>>& keyFrames)
+		:
+		m_CurrentTime(0.0f),
+		m_FrameLength(0.0f),
+		m_CurrentKey(0),
+		m_FPS(framesPerSecond),
+		m_KeyFrames(keyFrames)
 	{
-		m_NumFrames = numRows * numCols;
 	}
-
-	void SpriteAnimation::SetFrameInterval(int first, int last, float timeFrame)
+	void SpriteAnimation::Update(float dt)
 	{
-		XYZ_ASSERT(timeFrame > 0.0f, "Frame length can not be zero");
-		XYZ_ASSERT(first < last, "First frame must be smaller than last");
-		XYZ_ASSERT(last <= m_NumFrames, "Last frame bigger than maximal number of frames");
-
-		m_Animation.FrameInterval.first = first;
-		m_Animation.FrameInterval.second = last;
-		m_Animation.FrameLen = timeFrame;
-		m_AnimationLen = ((m_Animation.FrameInterval.second - m_Animation.FrameInterval.first) + 1) * m_Animation.FrameLen;
-	}
-	void SpriteAnimation::Update(float dt, Renderable2D* sprite)
-	{
-		if (m_CurrentTime > m_AnimationLen)
+		m_CurrentTime += dt;
+		if (m_CurrentTime > m_KeyFrames.size() * m_FrameLength)
 			m_CurrentTime = 0.0f;
 
-		m_Animation.CurrentFrame = (int)floor(m_CurrentTime / m_Animation.FrameLen) + m_Animation.FrameInterval.first;
-		sprite->TexCoord = calcTexCoords();
-		m_CurrentTime += dt;
+		m_CurrentKey = (size_t)std::floor(m_CurrentTime/m_FrameLength);
 	}
-	const glm::vec4 SpriteAnimation::calcTexCoords()
+	void SpriteAnimation::SetFPS(unsigned int fps)
 	{
-		glm::vec4 texCoords;
-		float frameWidth = (float)m_Width / (float)m_Columns;
-		float frameHeight = (float)m_Height / (float)m_Rows;
-
-
-		int row = m_Animation.CurrentFrame / m_Columns;
-		int column = m_Animation.CurrentFrame - (row * m_Columns);
-
-
-		texCoords.x = (frameWidth * column) / m_Width;
-		texCoords.y = (frameHeight * row) / m_Height;
-		texCoords.z = (frameWidth * (column + 1)) / m_Width;
-		texCoords.w = (frameWidth * (row + 1)) / m_Height;
-
-		return texCoords;
+		m_FPS = fps;
+		m_FrameLength = 1.0f / m_FPS;
+	}
+	void SpriteAnimation::DeleteKeyFrame(size_t index)
+	{
+		XYZ_ASSERT(index < m_KeyFrames.size(), "Deleting frame out of range");
+		m_KeyFrames.erase(m_KeyFrames.begin() + index);
+	}
+	std::shared_ptr<SubTexture2D> SpriteAnimation::GetKeyFrame(size_t index) const
+	{
+		XYZ_ASSERT(index < m_KeyFrames.size(), "Frame index out of range");
+		return m_KeyFrames[index];
 	}
 }

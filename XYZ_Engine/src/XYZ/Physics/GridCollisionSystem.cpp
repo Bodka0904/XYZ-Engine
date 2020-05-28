@@ -8,9 +8,6 @@ namespace XYZ {
 	{
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<GridBody>());
 		m_Signature.set(XYZ::ECSManager::Get().GetComponentType<CollisionComponent>());
-
-		m_GridBodyStorage = ECSManager::Get().GetComponentStorage<GridBody>();
-		m_CollisionStorage = ECSManager::Get().GetComponentStorage<CollisionComponent>();
 	}
 	void GridCollisionSystem::ClearGrid()
 	{
@@ -39,28 +36,28 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if (((*m_ActiveStorage)[it.ActiveIndex].ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
 			{
-				auto mask = (*m_CollisionStorage)[it.CollisionIndex].Layer;
+				auto mask = it.Collision.Get().Layer;
 				int32_t result = Move(
-					(*m_GridBodyStorage)[it.GridBodyIndex],
-					(*m_CollisionStorage)[it.CollisionIndex].CollisionLayers,
-					(*m_CollisionStorage)[it.CollisionIndex].Layer);
+					it.GridBody.Get(),
+					it.Collision.Get().CollisionLayers,
+					it.Collision.Get().Layer);
 
 				// Store mask of layer it collides with
-				(*m_CollisionStorage)[it.CollisionIndex].CurrentCollisions = result;
-				
+				it.Collision.Get().CurrentCollisions = result;
+
 				// No collisions , free to move
 				if (!result && result != OUT_OF_GRID)
 				{
-					(*m_GridBodyStorage)[it.GridBodyIndex].Col += (*m_GridBodyStorage)[it.GridBodyIndex].NextCol;
-					(*m_GridBodyStorage)[it.GridBodyIndex].Row += (*m_GridBodyStorage)[it.GridBodyIndex].NextRow;			
+					it.GridBody.Get().Col += it.GridBody.Get().NextCol;
+					it.GridBody.Get().Row += it.GridBody.Get().NextRow;
 				}
 				else
 				{
-					//(*m_GridBodyStorage)[it.gridBodyIndex].nextCol = 0;
-					//(*m_GridBodyStorage)[it.gridBodyIndex].nextRow = 0;
-				}		
+					//it.GridBody.Get().NextCol = 0;
+					//it.GridBody.Get().NextRow = 0;
+				}
 			}
 		}
 
@@ -68,14 +65,13 @@ namespace XYZ {
 	void GridCollisionSystem::Add(Entity entity)
 	{
 		Component component;
-		component.Ent = entity;
-		component.CollisionIndex = ECSManager::Get().GetComponentIndex<CollisionComponent>(entity);
-		component.GridBodyIndex = ECSManager::Get().GetComponentIndex<GridBody>(entity);
-		component.ActiveIndex = ECSManager::Get().GetComponentIndex<ActiveComponent>(entity);
-
-		auto layer = (*m_CollisionStorage)[component.CollisionIndex].Layer;
-		auto collisionLayer = (*m_CollisionStorage)[component.CollisionIndex].CollisionLayers;
-		if (Insert((*m_GridBodyStorage)[component.GridBodyIndex],collisionLayer, layer))
+		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
+		component.GridBody = ECSManager::Get().GetComponent<GridBody>(entity);
+		component.Collision = ECSManager::Get().GetComponent<CollisionComponent>(entity);
+		
+		auto layer = component.Collision.Get().Layer;
+		auto collisionLayer = component.Collision.Get().CollisionLayers;
+		if (Insert(component.GridBody.Get(),collisionLayer, layer))
 		{
 			m_Components.push_back(component);
 			XYZ_LOG_INFO("Entity with ID ", entity, " added");
@@ -89,8 +85,8 @@ namespace XYZ {
 		if (it != m_Components.end())
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			auto mask = (*m_CollisionStorage)[it->CollisionIndex].Layer;
-			Remove((*m_GridBodyStorage)[it->GridBodyIndex], mask);
+			auto mask = (*it).Collision.Get().Layer;
+			Remove((*it).GridBody.Get(), mask);
 			*it = std::move(m_Components.back());
 			m_Components.pop_back();
 		}

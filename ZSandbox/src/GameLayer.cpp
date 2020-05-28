@@ -17,18 +17,6 @@ GameLayer::~GameLayer()
 void GameLayer::OnAttach()
 {
 	XYZ::Audio::Init();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::Relationship>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::Transform2D>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::RigidBody2D>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::GridBody>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::ParticleEffect2D>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::Renderable2D>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::SpriteAnimation>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::InterpolatedMovement>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::ActiveComponent>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::CollisionComponent>();
-	XYZ::ECSManager::Get().RegisterComponent<XYZ::RealGridBody>();
-
 	m_PhysicsSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::PhysicsSystem>();
 	m_InterSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::InterpolatedMovementSystem>();
 	m_GridCollisionSystem = XYZ::ECSManager::Get().RegisterSystem<XYZ::GridCollisionSystem>();
@@ -79,8 +67,8 @@ void GameLayer::OnAttach()
 	m_Graph->Print();
 
 
-
-	InitBackgroundParticles();
+	m_ParticleEntity = XYZ::ECSManager::Get().CreateEntity();
+	InitBackgroundParticles(m_ParticleEntity);
 
 	//m_Audio = XYZ::Audio::Create("Assets/Audio/sample.mp3");
 	//// Audio setup
@@ -89,6 +77,8 @@ void GameLayer::OnAttach()
 	//m_Audio->SetGain(5.0f);
 	//// Play whole track on different thread i guess
 	//m_Audio->Play();
+
+
 }
 
 void GameLayer::OnDetach()
@@ -98,7 +88,7 @@ void GameLayer::OnDetach()
 
 void GameLayer::OnImGuiRender()
 {
-	m_Menu.Update();
+	
 }
 
 void GameLayer::OnUpdate(float dt)
@@ -109,97 +99,35 @@ void GameLayer::OnUpdate(float dt)
 	XYZ::Renderer2D::Flush();
 	XYZ::Renderer2D::EndScene();
 
-	if (m_Menu.GameStart())
-		RestartGame();
-
+	
 	m_CameraController->OnUpdate(dt);
 
-	if (m_Menu.GameRunning())
-	{
-		// Start game loop
-		m_RealGridCollisionSystem->Update(dt);
-		m_GridCollisionSystem->Update(dt);
-		m_PhysicsSystem->Update(dt);
-		m_InterSystem->Update(dt);
+	m_RealGridCollisionSystem->Update(dt);
+	m_GridCollisionSystem->Update(dt);
+	m_PhysicsSystem->Update(dt);
+	m_InterSystem->Update(dt);
 
+	m_ParticleSystem->Update(dt);
+	m_SpriteSystem->Update(dt);
 
-
-		m_SpriteSystem->Update(dt);
-
-		m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
-		for (size_t i = 0; i < m_Bombs.size(); ++i)
-		{
-			if (m_Bombs[i].Update(dt, m_CameraController->GetCamera(), m_DamagedCells))
-			{
-				auto cellsToDamage = m_Bombs[i].InflictDamage();
-				m_DamagedCells.insert(std::end(m_DamagedCells), std::begin(cellsToDamage), std::end(cellsToDamage));
-
-				m_Bombs[i].Destroy();
-				m_Bombs[i] = m_Bombs[m_Bombs.size() - 1];
-				m_Bombs.pop_back();
-			}
-		}
-
+	m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
+	m_ParticleMaterial->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
 		
-		for (int i = 0; i < 2; i++)
-		{
-			m_Players[i].Update(m_Bombs, m_DamagedCells);
-			if (m_Players[i].IsDead())
-				m_Players.erase(m_Players.begin() + i);
-		
-		}
-		if (m_Players.size() == 1)
-			m_Menu.SetEndGame();
 
-		m_DamagedCells.clear();
-
-	}
-	else
-	{
-
-		m_ParticleMaterial->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
-		m_ParticleSystem->Update(dt);
-
-	}
 }
 
-void GameLayer::RestartGame()
-{
-	for (size_t i = 0; i < m_Players.size(); ++i)
-		m_Players[i].Destroy();
-	m_Players.clear();
-
-	for (size_t i = 0; i < m_Bombs.size(); ++i)
-		m_Bombs[i].Destroy();
-	m_Bombs.clear();
-
-	//m_Map.Init(m_PlayableArea, m_Material);
-	//m_Map.Generate(20);
-
-	m_Players.resize(2);
-	m_Players[0].Init( m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
-	m_Players[1].Init( m_Material, glm::vec3(2, 2, 0.0f), m_Bombs);
-
-	for (int i = 2; i < m_Players.size(); ++i)
-		m_Players[i].Init(m_Material, glm::vec3(10, 10, -0.8f), m_Bombs);
-
-	m_Players[0].UseControlsMode(0);
-	m_Players[1].UseControlsMode(1);
-}
-
-void GameLayer::InitBackgroundParticles()
+void GameLayer::InitBackgroundParticles(XYZ::Entity entity)
 {
 	int count = 100;
-	m_ParticleEntity = XYZ::ECSManager::Get().CreateEntity();
 	m_ParticleMaterial = XYZ::Material::Create(XYZ::Shader::Create("ParticleShader", "Assets/Shaders/Particle/ParticleShader.glsl"));
 	m_ParticleMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/bubble.png"));
 	m_ParticleMaterial->SetFlags(XYZ::RenderFlags::InstancedFlag);
 
-
+	m_ParticleMaterial->GetShader()->AddSource("Assets/Shaders/Variables/PredefinedVariables.glsl");
 	auto material = XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/Particle/ParticleComputeShader.glsl"));
 
-	XYZ::ECSManager::Get().AddComponent(m_ParticleEntity, XYZ::ParticleEffect2D(count, material, m_ParticleMaterial));
-	auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(m_ParticleEntity);
+	XYZ::ECSManager::Get().AddComponent(entity, XYZ::ParticleEffect2D(count, material, m_ParticleMaterial));
+	auto effect = XYZ::ECSManager::Get().GetComponent<XYZ::ParticleEffect2D>(entity);
 
 
 	std::random_device rd;
@@ -227,5 +155,5 @@ void GameLayer::InitBackgroundParticles()
 		m_Data[i].DefaultVelocity = m_Data[i].Velocity;
 		m_Data[i].LifeTime = fabs(dist(rng)) * 1 + 3;
 	}
-	effect->SetParticlesRange(m_Vertices, m_Data, 0, count);
+	effect.Get().SetParticlesRange(m_Vertices, m_Data, 0, count);
 }

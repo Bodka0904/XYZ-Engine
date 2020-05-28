@@ -24,8 +24,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			int RealGridBody;
-			int RigidBody;
+			ComponentWrapper<RealGridBody> RealGridBody;
+			ComponentWrapper<RigidBody2D> RigidBody;
 		};
 	
 		struct Cell
@@ -40,9 +40,5 @@ namespace XYZ {
 
 		vector2D<Cell> m_Cells;
 		FreeList<Component> m_Components;
-		
-		std::shared_ptr<ComponentStorage<RealGridBody>> m_RealGridStorage;
-		std::shared_ptr<ComponentStorage<RigidBody2D>> m_RigidStorage;
-
 	};
 }

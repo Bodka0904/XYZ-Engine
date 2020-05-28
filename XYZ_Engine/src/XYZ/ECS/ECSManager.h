@@ -18,9 +18,9 @@ namespace XYZ {
 			return m_SystemManager->RegisterSystem<T>();
 		}
 		template<typename T>
-		void RegisterComponent()
+		void UnRegisterComponent()
 		{
-			m_ComponentManager->RegisterComponent<T>();
+			m_ComponentManager->UnRegisterComponent<T>();
 		}
 		template<typename T>
 		void AddComponent(Entity entity,const T& component)
@@ -30,7 +30,7 @@ namespace XYZ {
 			auto active = m_ComponentManager->GetComponent<ActiveComponent>(entity);
 			auto signature = m_EntityManager->GetSignature(entity);
 			signature.set(m_ComponentManager->GetComponentType<T>(), 1);
-			active->ActiveComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
+			active.ActiveComponents.set(m_ComponentManager->GetComponentType<T>(), 1);
 
 			m_EntityManager->SetSignature(entity, signature);
 			m_SystemManager->EntitySignatureChanged(entity, signature);
@@ -67,9 +67,10 @@ namespace XYZ {
 		}
 
 		template<typename T>
-		T* GetComponent(Entity entity)
+		ComponentWrapper<T> GetComponent(Entity entity)
 		{
-			return m_ComponentManager->GetComponent<T>(entity);
+			ComponentWrapper<T> wrapper(&m_ComponentManager->GetComponent<T>(entity),entity);
+			return wrapper;
 		}
 
 		template <typename T>

@@ -94,20 +94,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Bomb.h" />
     <ClInclude Include="src\Editor\Editor.h" />
     <ClInclude Include="src\GameLayer.h" />
-    <ClInclude Include="src\Map.h" />
-    <ClInclude Include="src\Menu.h" />
-    <ClInclude Include="src\Player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Bomb.cpp" />
     <ClCompile Include="src\Editor\Editor.cpp" />
     <ClCompile Include="src\GameLayer.cpp" />
-    <ClCompile Include="src\Map.cpp" />
-    <ClCompile Include="src\Menu.cpp" />
-    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\ZSandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>

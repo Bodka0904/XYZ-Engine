@@ -96,7 +96,14 @@ namespace XYZ {
 		virtual void SetSubRoutine(const std::string& name) = 0;
 		virtual void UploadRoutines() = 0;
 		virtual void Reload() = 0;
+		virtual void Recompile() = 0;
 		virtual void AddReloadCallback(std::function<void()> callback) = 0;
+		virtual void AddSource(const std::string& filePath) = 0;
+
+
+		virtual void SetFloat(const std::string& name, float value) = 0;
+		virtual void SetInt(const std::string& name, int value) = 0;
+		virtual void SetMat4(const std::string& name, const glm::mat4& value) = 0;
 
 		virtual std::string GetPath() const = 0;
 		virtual std::string GetName() const = 0;
