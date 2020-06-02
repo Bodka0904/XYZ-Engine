@@ -26,6 +26,7 @@ namespace XYZ {
 		};
 
 		std::vector<Component> m_Components;
+		bool m_Sorted = true;
 	};
 
 

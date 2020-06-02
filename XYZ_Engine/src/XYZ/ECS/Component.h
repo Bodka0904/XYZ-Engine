@@ -17,6 +17,14 @@ namespace XYZ {
 		{}
 		ComponentWrapper() = default;
 
+
+		const T& Get() const
+		{
+			XYZ_ASSERT(m_Component, "Wrapper contains null pointer to component");
+			XYZ_ASSERT(m_Component->m_IsValid, "Component is not valid");		
+			return *m_Component;
+		}
+
 		T& Get()
 		{
 			XYZ_ASSERT(m_Component, "Wrapper contains null pointer to component");
@@ -27,7 +35,6 @@ namespace XYZ {
 				m_Component = &storage->GetComponent(m_Entity);
 				m_Component->m_IsValid = true;
 			}
-
 			return *m_Component;
 		}
 

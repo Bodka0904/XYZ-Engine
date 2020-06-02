@@ -19,7 +19,7 @@
 #include "XYZ/Renderer/SpriteAnimationController.h"
 #include "XYZ/Renderer/SpriteSystem.h"
 #include "XYZ/Renderer/MaterialManager.h"
-#include "XYZ/Renderer/SceneGraph.h"
+
 
 //------ECS-----//
 #include "XYZ/ECS/ECSManager.h"
@@ -36,3 +36,5 @@
 
 //-----Audio-----//
 #include "XYZ/Audio/Audio.h"
+
+#include "XYZ/Utils/DataStructures/Tree.h"

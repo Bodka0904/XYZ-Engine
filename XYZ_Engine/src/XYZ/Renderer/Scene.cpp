@@ -4,20 +4,19 @@
 #include "Renderer2D.h"
 #include "RenderCommand.h"
 
-XYZ::Scene::Scene(std::string& name, std::vector<std::string>& filesTextures, std::vector<std::string>& filesShaders, std::vector<std::string>& filesAudio)
-	: m_Name(name), m_Camera(OrthoCamera(1.0f, 1.0f, 1.0f, 1.0f)), m_AssetMgr(AssetManager::Get()), m_ECSMgr(ECSManager::Get())
+XYZ::Scene::Scene(std::string& name)
+	: 
+	m_Name(name),
+	m_Camera(OrthoCamera(1.0f, 1.0f, 1.0f, 1.0f))
 {
-	for (size_t i = 0; i < filesShaders.size(); ++i)
-		m_AssetMgr.LoadShader(std::to_string(i), filesShaders[i]);
-	for (size_t i = 0; i < filesTextures.size(); ++i)
-		m_AssetMgr.LoadTexture(TextureWrap::Clamp, std::to_string(i), filesTextures[i]);
+	
 }
 
 XYZ::Scene::~Scene() {}
 
-void XYZ::Scene::AddEntity(const Entity& ent)
-{
-	m_Entities.insert(ent);
+void XYZ::Scene::AddEntity(Entity entity)
+{	
+	
 }
 
 void XYZ::Scene::OnRender()
@@ -39,5 +38,5 @@ void XYZ::Scene::OnAttach()
 void XYZ::Scene::OnDetach()
 {
 	Renderer2D::Shutdown();
-	for (const auto& x : m_Entities) m_ECSMgr.DestroyEntity(x);
+
 }

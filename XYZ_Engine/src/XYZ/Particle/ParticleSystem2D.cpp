@@ -13,6 +13,10 @@ namespace XYZ {
 
 	void ParticleSystem2D::Update(float dt)
 	{
+		if (!m_Sorted)
+			std::sort(m_Components.begin(), m_Components.end(), [](Component& a, Component& b) {
+			return a.Effect.Get().GetMaterial()->GetSortKey() < b.Effect.Get().GetMaterial()->GetSortKey();
+		});
 		int16_t currentKey = -1;
 		for (auto &it : m_Components)
 		{
@@ -38,6 +42,7 @@ namespace XYZ {
 		component.Effect = ECSManager::Get().GetComponent<ParticleEffect2D>(entity);
 		
 		m_Components.push_back(component);
+		m_Sorted = false;
 	}
 
 	void ParticleSystem2D::Remove(Entity entity)
@@ -48,6 +53,7 @@ namespace XYZ {
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
 			*it = std::move(m_Components.back());
 			m_Components.pop_back();
+			m_Sorted = false;
 		}
 	}
 

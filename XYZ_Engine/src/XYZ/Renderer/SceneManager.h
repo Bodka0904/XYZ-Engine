@@ -37,8 +37,6 @@ namespace XYZ
 
 		inline std::shared_ptr<Scene> GetActive() const { return m_ActiceScene; }
 
-		/** Gets all entities from the active scene */
-		inline auto& GetActiveEntities() const { return m_ActiceScene->GetEntities(); }
 
 	private:
 		std::shared_ptr<Scene> m_ActiceScene;

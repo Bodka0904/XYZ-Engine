@@ -51,20 +51,20 @@ namespace XYZ {
 						m_Cells[y][x].indices.erase(it);
 				}
 			}
-			//for (int y = newGridBottom; y < newGridTop; ++y)
-			//{
-			//	for (int x = newGridLeft; x < newGridRight; ++x)
-			//	{		
-			//		for (auto index : m_Cells[y][x].indices)
-			//		{	
-			//			if (m_Components[i].RealGridBody.Get().Collide((*m_RealGridStorage)[index]))
-			//			{
-			//				std::cout << "LOL" << std::endl;
-			//			}				
-			//		}
-			//		m_Cells[y][x].indices.push_back(i);
-			//	}
-			//}
+			for (int y = newGridBottom; y < newGridTop; ++y)
+			{
+				for (int x = newGridLeft; x < newGridRight; ++x)
+				{		
+					for (auto index : m_Cells[y][x].indices)
+					{	
+						if (m_Components[i].RealGridBody.Get().Collide(m_Components[index].RealGridBody.Get()))
+						{
+							std::cout << "LOL" << std::endl;
+						}				
+					}
+					m_Cells[y][x].indices.push_back(i);
+				}
+			}
 		}
 	}
 	void RealGridCollisionSystem::Add(Entity entity)

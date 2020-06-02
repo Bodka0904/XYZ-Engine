@@ -33,5 +33,5 @@ bool XYZ::SceneManager::SetActive(const std::string& name)
 
 void XYZ::SceneManager::AddEntityToActive(const Entity& item)
 {
-	m_ActiceScene->GetEntities().insert(item);
+	
 }

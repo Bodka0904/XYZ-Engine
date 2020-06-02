@@ -1,6 +1,6 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
-#include "Components.h"
+#include "PhysicsComponent.h"
 
 #include "XYZ/Renderer/Renderable2D.h"
 

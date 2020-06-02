@@ -25,12 +25,12 @@ namespace XYZ {
 					if (it.Interpolated.Get().Distance.x > 0.0f)
 					{
 						it.Interpolated.Get().Distance.x -= fabs(x);
-						it.Transform.Get().Position.x += x;
+						it.Transform.Get().GetPosition().x += x;
 					}
 					if (it.Interpolated.Get().Distance.y > 0.0f)
 					{
 						it.Interpolated.Get().Distance.y -= fabs(y);
-						it.Transform.Get().Position.y += y;
+						it.Transform.Get().GetPosition().y += y;
 					}
 
 					if (it.Interpolated.Get().Distance.x <= 0.0f

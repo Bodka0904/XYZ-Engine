@@ -27,8 +27,9 @@ namespace XYZ {
 	struct Renderer2DData
 	{
 		Renderer2DData() { Reset(); }
-		void Submit(const Renderable2D& renderable,const Transform2D& transform);
+		void Submit(const Renderable2D& renderable,const glm::mat4& transform);
 		void Reset();
+
 
 		const uint32_t MaxQuads = 10000;
 		const uint32_t MaxVertices = MaxQuads * 4;
@@ -41,6 +42,14 @@ namespace XYZ {
 		uint32_t IndexCount = 0;
 		Vertex2D* BufferBase = nullptr;
 		Vertex2D* BufferPtr = nullptr;
+
+
+		glm::vec4 QuadVertexPositions[4] = {
+			{ -0.5f, -0.5f, 0.0f, 1.0f },
+			{  0.5f, -0.5f, 0.0f, 1.0f },
+			{  0.5f,  0.5f, 0.0f, 1.0f },
+			{ -0.5f,  0.5f, 0.0f, 1.0f }
+		};
 
 	};
 	static std::map<std::shared_ptr<Material>, Renderer2DData, MaterialComparator> s_OpaqueBuckets;
@@ -161,7 +170,7 @@ namespace XYZ {
 			auto& bucket = s_OpaqueBuckets[material];
 			if (bucket.IndexCount < bucket.IndexCount)
 			{
-				bucket.Submit(it.Renderable.Get(),it.Transform.Get());
+				bucket.Submit(it.Renderable.Get(),it.Transform.Get().GetTransformation());
 			}
 			else
 			{
@@ -186,7 +195,7 @@ namespace XYZ {
 			
 			if (bucket.IndexCount < bucket.MaxIndices)
 			{
-				bucket.Submit(it.Renderable.Get(),it.Transform.Get());
+				bucket.Submit(it.Renderable.Get(),it.Transform.Get().GetTransformation());
 			}
 			else
 			{
@@ -204,37 +213,25 @@ namespace XYZ {
 	}
 
 
-	void Renderer2DData::Submit(const Renderable2D& renderable,const Transform2D& transform)
+	void Renderer2DData::Submit(const Renderable2D& renderable,const glm::mat4& transform)
 	{
-		glm::vec4 texCoords = renderable.SubTexture->GetTexCoords();
-		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
-		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = texCoords.x;
-		BufferPtr->TexCoord.y = texCoords.y;
-		BufferPtr->TextureID = (float)renderable.TextureID;
-		BufferPtr++;
-
-		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y - transform.Size.y / 2.0f,transform.Position.z };
-		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = texCoords.z;
-		BufferPtr->TexCoord.y = texCoords.y;
-		BufferPtr->TextureID = (float)renderable.TextureID;
-		BufferPtr++;
-
-		BufferPtr->Position = { transform.Position.x + transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
-		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = texCoords.z;
-		BufferPtr->TexCoord.y = texCoords.w;
-		BufferPtr->TextureID = (float)renderable.TextureID;
-		BufferPtr++;
-
-		BufferPtr->Position = { transform.Position.x - transform.Size.x / 2.0f,transform.Position.y + transform.Size.y / 2.0f,transform.Position.z };
-		BufferPtr->Color = renderable.Color;
-		BufferPtr->TexCoord.x = texCoords.x;
-		BufferPtr->TexCoord.y = texCoords.w;
-		BufferPtr->TextureID = (float)renderable.TextureID;
-		BufferPtr++;
-
+		constexpr size_t quadVertexCount = 4;
+		auto& texCoordPack = renderable.SubTexture->GetTexCoords();
+		
+		glm::vec2 texCoords[quadVertexCount] = {
+			{texCoordPack.x,texCoordPack.y},
+			{texCoordPack.z,texCoordPack.y},
+			{texCoordPack.z,texCoordPack.w},
+			{texCoordPack.x,texCoordPack.w}
+		};
+		for (size_t i = 0; i < quadVertexCount; ++i)
+		{
+			BufferPtr->Position = transform * QuadVertexPositions[i];
+			BufferPtr->Color = renderable.Color;
+			BufferPtr->TexCoord = texCoords[i];
+			BufferPtr->TextureID = (float)renderable.TextureID;
+			BufferPtr++;
+		}
 		IndexCount += 6;
 	}
 

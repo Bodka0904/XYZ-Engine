@@ -147,7 +147,7 @@ namespace XYZ {
 
 		std::shared_ptr<AtomicCounter> m_Counter;
 
-		bool m_Loop = false;
+		bool m_Loop = true;
 		float m_LifeTime = 3.0f;
 		double m_PlayTime = 0.0f;
 		static constexpr size_t sc_MaxParticlesPerEffect = 10000;

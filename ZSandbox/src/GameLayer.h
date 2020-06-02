@@ -39,7 +39,5 @@ private:
 
 	std::shared_ptr<XYZ::AudioSource> m_Audio;
 
-
-	std::shared_ptr<XYZ::SceneGraph> m_Graph;
-	std::vector<XYZ::Entity> m_Test;
+	std::shared_ptr<XYZ::Material> m_FluidMaterial;
 };

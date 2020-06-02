@@ -1,6 +1,6 @@
 #pragma once
 #include "XYZ/ECS/ECSManager.h"
-#include "XYZ/Physics/Components.h"
+#include "XYZ/Physics/PhysicsComponent.h"
 #include "Renderable2D.h"
 #include "SortingLayer.h"
 
@@ -68,13 +68,13 @@ namespace XYZ {
 
 		struct OpaqueComparator
 		{
-			bool operator()(Component& a, Component& b) const
+			bool operator()(const Component& a, const Component& b) const
 			{
 				int sortLayerA = a.Renderable.Get().SortLayerID;
 				int sortLayerB = b.Renderable.Get().SortLayerID;
 
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().Position.z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().Position.z;
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().GetPosition().z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().GetPosition().z;
 
 
 				if (a.Renderable.Get().Material->GetSortKey() == b.Renderable.Get().Material->GetSortKey())
@@ -87,13 +87,13 @@ namespace XYZ {
 
 		struct TransparentComparator
 		{
-			bool operator()(Component& a, Component& b) const
+			bool operator()(const Component& a, const Component& b) const
 			{
 				int sortLayerA = a.Renderable.Get().SortLayerID;
 				int sortLayerB = b.Renderable.Get().SortLayerID;
 
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().Position.z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().Position.z;
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().GetPosition().z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().GetPosition().z;
 
 
 				if (fabs(valueA - valueB) <= std::numeric_limits<float>::epsilon())

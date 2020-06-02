@@ -43,28 +43,6 @@ void GameLayer::OnAttach()
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
 
 
-	
-
-
-	m_Graph = std::make_shared<XYZ::SceneGraph>();
-	m_Test.resize(10);
-
-	for (int i = 0; i < 10; ++i)
-	{
-		m_Test[i] = XYZ::ECSManager::Get().CreateEntity();
-		XYZ::ECSManager::Get().AddComponent(m_Test[i], XYZ::Relationship());
-		XYZ::ECSManager::Get().AddComponent(m_Test[i], XYZ::Transform2D(glm::vec3(1)));
-	}
-
-	m_Graph->Insert(m_Test[0]);
-	m_Graph->Insert(m_Test[1]);
-	m_Graph->AttachChild(m_Test[0], m_Test[3]);
-	m_Graph->AttachChild(m_Test[0], m_Test[5]);
-	m_Graph->AttachChild(m_Test[5], m_Test[6]);
-	m_Graph->Insert(m_Test[4]);
-	m_Graph->AttachChild(m_Test[0], m_Test[8]);
-
-	m_Graph->Print();
 
 
 	m_ParticleEntity = XYZ::ECSManager::Get().CreateEntity();
@@ -79,6 +57,38 @@ void GameLayer::OnAttach()
 	//m_Audio->Play();
 
 
+
+	//m_FluidMaterial = XYZ::Material::Create(XYZ::Shader::Create("Assets/Shaders/FluidShader.glsl"));
+	//m_FluidMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/background.png"));
+
+
+	struct Propagate
+	{
+		void operator ()(std::vector<XYZ::Node<int,Propagate>>& data, uint16_t index)
+		{
+			data[index].GetData() += 1;
+			std::cout << data[index].GetData() << std::endl;
+		}
+	};
+
+	XYZ::Tree<int, Propagate> m_Tree;
+
+	m_Tree.InsertNode(XYZ::Node<int, Propagate>(2));
+	m_Tree.Reserve(10);
+	for (int i = 1; i < 10; ++i)
+	{
+		m_Tree.InsertNode(XYZ::Node<int, Propagate>(1));		
+	}
+	for (int i = 1; i < 9; ++i)
+	{
+		m_Tree.SetParent(0, i);
+	}
+	m_Tree.SetParent(4, 9);
+	m_Tree.DeleteNode(5);
+	
+	m_Tree.SetRoot(0);
+	m_Tree.Propagate();
+	
 }
 
 void GameLayer::OnDetach()

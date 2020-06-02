@@ -204,9 +204,6 @@
     <ClInclude Include="src\XYZ\Particle\ParticleSystem2D.h">
       <Filter>src\XYZ\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="src\XYZ\Physics\Components.h">
-      <Filter>src\XYZ\Physics</Filter>
-    </ClInclude>
     <ClInclude Include="src\XYZ\Physics\GridCollisionSystem.h">
       <Filter>src\XYZ\Physics</Filter>
     </ClInclude>
@@ -265,9 +262,6 @@
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\Scene.h">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\XYZ\Renderer\SceneGraph.h">
       <Filter>src\XYZ\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\XYZ\Renderer\SceneManager.h">
@@ -1456,6 +1450,10 @@
     <ClInclude Include="src\XYZ\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimator.h" />
     <ClInclude Include="src\XYZ\Renderer\ShaderGraph.h" />
+    <ClInclude Include="src\XYZ\Physics\PhysicsComponent.h" />
+    <ClInclude Include="src\XYZ\Renderer\Node.h" />
+    <ClInclude Include="src\XYZ\Renderer\SceneNode.h" />
+    <ClInclude Include="src\XYZ\Utils\DataStructures\Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\API\OpenGL\OpenGLAPIContext.cpp">
@@ -1605,9 +1603,6 @@
     <ClCompile Include="src\XYZ\Renderer\Scene.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\XYZ\Renderer\SceneGraph.cpp">
-      <Filter>src\XYZ\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\XYZ\Renderer\SceneManager.cpp">
       <Filter>src\XYZ\Renderer</Filter>
     </ClCompile>
@@ -1651,5 +1646,9 @@
     <ClCompile Include="src\XYZ\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimator.cpp" />
     <ClCompile Include="src\XYZ\Renderer\ShaderGraph.cpp" />
+    <ClCompile Include="src\XYZ\Physics\PhysicsComponent.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\Node.cpp" />
+    <ClCompile Include="src\XYZ\Renderer\SceneNode.cpp" />
+    <ClCompile Include="src\XYZ\Utils\DataStructures\Tree.cpp" />
   </ItemGroup>
 </Project>
