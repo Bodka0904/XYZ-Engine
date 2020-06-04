@@ -40,8 +40,6 @@ namespace XYZ {
 			SortLayerID(SortingLayer::Get().GetOrderValueByName("default"))
 		{}
 
-		Renderable2D() = default;
-
 		~Renderable2D()
 		{
 		}

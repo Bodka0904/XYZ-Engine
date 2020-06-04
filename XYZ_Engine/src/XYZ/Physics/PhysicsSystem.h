@@ -27,8 +27,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			ComponentWrapper<RigidBody2D> RigidBody;
-			ComponentWrapper<InterpolatedMovement> Interpolated;
+			RigidBody2D* RigidBody;
+			InterpolatedMovement* Interpolated;
 		};
 
 

@@ -67,10 +67,9 @@ namespace XYZ {
 		}
 
 		template<typename T>
-		ComponentWrapper<T> GetComponent(Entity entity)
+		T *GetComponent(Entity entity)
 		{
-			ComponentWrapper<T> wrapper(&m_ComponentManager->GetComponent<T>(entity),entity);
-			return wrapper;
+			return &m_ComponentManager->GetComponent<T>(entity);
 		}
 
 		template <typename T>

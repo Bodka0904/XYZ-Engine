@@ -39,8 +39,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			ComponentWrapper<SpriteAnimation> Animation;
-			ComponentWrapper<Renderable2D> Renderable;
+			SpriteAnimation* Animation;
+			Renderable2D* Renderable;
 		};
 
 		std::vector<Component> m_Components;

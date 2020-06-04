@@ -12,8 +12,8 @@ namespace XYZ {
 	{
 		for (auto it : m_Components)
 		{
-			it.Animation.Get().Update(dt);
-			it.Renderable.Get().SubTexture = it.Animation.Get().GetCurrentKeyFrame();
+			it.Animation->Update(dt);
+			it.Renderable->SubTexture = it.Animation->GetCurrentKeyFrame();
 		}
 	}
 	void SpriteSystem::Add(Entity entity)
@@ -23,7 +23,7 @@ namespace XYZ {
 		Component component;
 		component.Animation = ECSManager::Get().GetComponent<SpriteAnimation>(entity);
 		component.Renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
-
+		component.Ent = entity;
 
 		m_Components.push_back(component);
 	}

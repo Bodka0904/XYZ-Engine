@@ -59,8 +59,8 @@ namespace XYZ {
 
 		struct Component : public System::Component
 		{
-			ComponentWrapper<Renderable2D> Renderable;
-			ComponentWrapper<Transform2D> Transform;
+			Renderable2D* Renderable;
+			Transform2D* Transform;
 		};
 
 		std::vector<Component> m_OpaqueComponents;
@@ -70,18 +70,18 @@ namespace XYZ {
 		{
 			bool operator()(const Component& a, const Component& b) const
 			{
-				int sortLayerA = a.Renderable.Get().SortLayerID;
-				int sortLayerB = b.Renderable.Get().SortLayerID;
+				int sortLayerA = a.Renderable->SortLayerID;
+				int sortLayerB = b.Renderable->SortLayerID;
 
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().GetPosition().z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().GetPosition().z;
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform->GetPosition().z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform->GetPosition().z;
 
 
-				if (a.Renderable.Get().Material->GetSortKey() == b.Renderable.Get().Material->GetSortKey())
+				if (a.Renderable->Material->GetSortKey() == b.Renderable->Material->GetSortKey())
 				{
 					return valueA < valueB;
 				}
-				a.Renderable.Get().Material->GetSortKey() < b.Renderable.Get().Material->GetSortKey();
+				a.Renderable->Material->GetSortKey() < b.Renderable->Material->GetSortKey();
 			}
 		};
 
@@ -89,16 +89,16 @@ namespace XYZ {
 		{
 			bool operator()(const Component& a, const Component& b) const
 			{
-				int sortLayerA = a.Renderable.Get().SortLayerID;
-				int sortLayerB = b.Renderable.Get().SortLayerID;
+				int sortLayerA = a.Renderable->SortLayerID;
+				int sortLayerB = b.Renderable->SortLayerID;
 
-				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform.Get().GetPosition().z;
-				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform.Get().GetPosition().z;
+				float valueA = (float)SortingLayer::Get().GetOrderValueByID(sortLayerA) + a.Transform->GetPosition().z;
+				float valueB = (float)SortingLayer::Get().GetOrderValueByID(sortLayerB) + b.Transform->GetPosition().z;
 
 
 				if (fabs(valueA - valueB) <= std::numeric_limits<float>::epsilon())
 				{
-					a.Renderable.Get().Material->GetSortKey() < b.Renderable.Get().Material->GetSortKey();
+					a.Renderable->Material->GetSortKey() < b.Renderable->Material->GetSortKey();
 				}
 				return valueA > valueB;
 			}

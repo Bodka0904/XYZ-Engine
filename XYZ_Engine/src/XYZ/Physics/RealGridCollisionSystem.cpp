@@ -28,13 +28,13 @@ namespace XYZ {
 	{	
 		for (int i = 0; i < m_Components.Range(); ++i)
 		{		
-			auto body = &m_Components[i].RealGridBody.Get();
+			auto body = m_Components[i].RealGridBody;
 			int gridLeft = (int)floor(body->Left / m_CellSize);
 			int gridRight = (int)floor(body->Right / m_CellSize);
 			int gridTop = (int)floor(body->Top / m_CellSize);
 			int gridBottom = (int)floor(body->Bottom / m_CellSize);
 		
-			body->Move(m_Components[i].RigidBody.Get().Velocity);
+			body->Move(m_Components[i].RigidBody->Velocity);
 
 			int newGridLeft = (int)floor(body->Left / m_CellSize);
 			int newGridRight = (int)floor(body->Right / m_CellSize);
@@ -57,7 +57,7 @@ namespace XYZ {
 				{		
 					for (auto index : m_Cells[y][x].indices)
 					{	
-						if (m_Components[i].RealGridBody.Get().Collide(m_Components[index].RealGridBody.Get()))
+						if (m_Components[i].RealGridBody->Collide(*m_Components[index].RealGridBody))
 						{
 							std::cout << "LOL" << std::endl;
 						}				
@@ -73,13 +73,15 @@ namespace XYZ {
 		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 		component.RealGridBody = ECSManager::Get().GetComponent<RealGridBody>(entity);
 		component.RigidBody = ECSManager::Get().GetComponent<RigidBody2D>(entity);
+		component.Ent = entity;
+
 		int index = m_Components.Insert(component);
 
-		auto body = ECSManager::Get().GetComponent<RealGridBody>(entity).Get();
-		auto gridLeft = (int)floor(body.Left / m_CellSize);
-		auto gridRight = (int)floor(body.Right / m_CellSize);
-		auto gridTop = (int)floor(body.Top / m_CellSize);
-		auto gridBottom = (int)floor(body.Bottom / m_CellSize);
+		auto body = ECSManager::Get().GetComponent<RealGridBody>(entity);
+		auto gridLeft = (int)floor(body->Left / m_CellSize);
+		auto gridRight = (int)floor(body->Right / m_CellSize);
+		auto gridTop = (int)floor(body->Top / m_CellSize);
+		auto gridBottom = (int)floor(body->Bottom / m_CellSize);
 
 		for (int y = gridBottom; y < gridTop; ++y)
 		{
@@ -94,12 +96,12 @@ namespace XYZ {
 	{
 		if (ECSManager::Get().Contains<RealGridBody>(entity))
 		{
-			auto body = ECSManager::Get().GetComponent<RealGridBody>(entity).Get();
+			auto body = ECSManager::Get().GetComponent<RealGridBody>(entity);
 
-			auto gridLeft = (int)floor(body.Left / m_CellSize);
-			auto gridRight = (int)floor(body.Right / m_CellSize);
-			auto gridTop = (int)floor(body.Top / m_CellSize);
-			auto gridBottom = (int)floor(body.Bottom / m_CellSize);
+			auto gridLeft = (int)floor(body->Left / m_CellSize);
+			auto gridRight = (int)floor(body->Right / m_CellSize);
+			auto gridTop = (int)floor(body->Top / m_CellSize);
+			auto gridBottom = (int)floor(body->Bottom / m_CellSize);
 
 
 			for (int y = gridBottom; y <= gridTop; ++y)
@@ -108,7 +110,7 @@ namespace XYZ {
 				{
 					for (auto index : m_Cells[y][x].indices)
 					{
-						if (m_Components[index].ActiveComponent.GetEntity() == entity)
+						if (m_Components[index].Ent == entity)
 						{
 							m_Components.Erase(index);
 							m_Cells[y][x].indices.erase(m_Cells[y][x].indices.begin()+index);

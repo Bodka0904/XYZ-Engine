@@ -10,7 +10,6 @@ namespace XYZ {
 	{
 	public:
 		SpriteAnimation(unsigned int framesPerSecond,const std::initializer_list<std::shared_ptr<SubTexture2D>>& keyFrames);
-		SpriteAnimation() = default;
 
 		void Update(float dt);
 		void SetFPS(unsigned int fps);

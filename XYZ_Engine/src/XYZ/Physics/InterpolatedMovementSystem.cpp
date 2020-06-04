@@ -15,40 +15,40 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent->ActiveComponents & m_Signature) == m_Signature)
 			{
-				if (it.Interpolated.Get().InProgress)
+				if (it.Interpolated->InProgress)
 				{
-					float x = it.Interpolated.Get().Velocity.x * dt;
-					float y = it.Interpolated.Get().Velocity.y * dt;
+					float x = it.Interpolated->Velocity.x * dt;
+					float y = it.Interpolated->Velocity.y * dt;
 
-					if (it.Interpolated.Get().Distance.x > 0.0f)
+					if (it.Interpolated->Distance.x > 0.0f)
 					{
-						it.Interpolated.Get().Distance.x -= fabs(x);
-						it.Transform.Get().GetPosition().x += x;
+						it.Interpolated->Distance.x -= fabs(x);
+						it.Transform->Translate(glm::vec3(x, 0, 0));
 					}
-					if (it.Interpolated.Get().Distance.y > 0.0f)
+					if (it.Interpolated->Distance.y > 0.0f)
 					{
-						it.Interpolated.Get().Distance.y -= fabs(y);
-						it.Transform.Get().GetPosition().y += y;
+						it.Interpolated->Distance.y -= fabs(y);
+						it.Transform->Translate(glm::vec3(0, y, 0));
 					}
 
-					if (it.Interpolated.Get().Distance.x <= 0.0f
-						&& it.Interpolated.Get().Distance.y <= 0.0f)
+					if (it.Interpolated->Distance.x <= 0.0f
+						&& it.Interpolated->Distance.y <= 0.0f)
 					{
-						it.Interpolated.Get().InProgress = false;
-						it.Interpolated.Get().Velocity = glm::vec2(0);
+						it.Interpolated->InProgress = false;
+						it.Interpolated->Velocity = glm::vec2(0);
 
-						it.Interpolated.Get().Distance.x = 0;
-						it.Interpolated.Get().Distance.y = 0;						
+						it.Interpolated->Distance.x = 0;
+						it.Interpolated->Distance.y = 0;						
 					}
 				}
-				else if (it.GridBody.Get().NextCol != 0
-					  || it.GridBody.Get().NextRow != 0)
+				else if (it.GridBody->NextCol != 0
+					  || it.GridBody->NextRow != 0)
 				{
-					it.Interpolated.Get().Distance.x = (float)fabs(it.GridBody.Get().NextCol);
-					it.Interpolated.Get().Distance.y = (float)fabs(it.GridBody.Get().NextRow);
-					it.Interpolated.Get().InProgress = true;
+					it.Interpolated->Distance.x = (float)fabs(it.GridBody->NextCol);
+					it.Interpolated->Distance.y = (float)fabs(it.GridBody->NextRow);
+					it.Interpolated->InProgress = true;
 				}
 				
 			}
@@ -61,6 +61,7 @@ namespace XYZ {
 		component.GridBody = ECSManager::Get().GetComponent<GridBody>(entity);
 		component.Transform = ECSManager::Get().GetComponent<Transform2D>(entity);
 		component.Interpolated = ECSManager::Get().GetComponent<InterpolatedMovement>(entity);
+		component.Ent = entity;
 
 		m_Components.push_back(component);
 		XYZ_LOG_INFO("Entity with ID ", entity, " added");

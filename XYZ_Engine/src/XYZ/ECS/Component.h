@@ -4,51 +4,6 @@
 
 namespace XYZ {
 
-	// Controls if component was invalidated in memory
-	// Always use for storing components
-	template <typename T>
-	class ComponentWrapper
-	{
-	public:
-		ComponentWrapper(T* component, Entity entity)
-			:
-			m_Component(component),
-			m_Entity(entity)
-		{}
-		ComponentWrapper() = default;
-
-
-		const T& Get() const
-		{
-			XYZ_ASSERT(m_Component, "Wrapper contains null pointer to component");
-			XYZ_ASSERT(m_Component->m_IsValid, "Component is not valid");		
-			return *m_Component;
-		}
-
-		T& Get()
-		{
-			XYZ_ASSERT(m_Component, "Wrapper contains null pointer to component");
-			// If not valid get new pointer from storage
-			if (!m_Component->m_IsValid)
-			{
-				auto storage = ECSManager::Get().GetComponentStorage<T>();
-				m_Component = &storage->GetComponent(m_Entity);
-				m_Component->m_IsValid = true;
-			}
-			return *m_Component;
-		}
-
-		Entity GetEntity() const
-		{
-			return m_Entity;
-		}
-
-	private:
-		T* m_Component;
-		Entity m_Entity;
-	};
-
-
 	class ComponentManager;
 	/* !@class IComponent
 	* @brief interface of component
@@ -83,20 +38,12 @@ namespace XYZ {
 	template <typename Derived, typename DeriveFrom = IComponent>
 	class Type : public IComponent
 	{
-		// Wrapper need access to m_Valid variable when it validates pointer to component
-		friend class ComponentWrapper<Derived>;
-		// Storage need access to m_Valid variable when it invalidates pointer to component
-		friend class ComponentStorage<Derived>;
 	public:
 		// return unique static id
 		virtual uint16_t GetComponentID() const override
 		{
 			return IComponent::GetID<Derived>();
 		}
-
-	private:
-		// True if invalidated in container
-		bool m_IsValid = true;
 	};
 
 

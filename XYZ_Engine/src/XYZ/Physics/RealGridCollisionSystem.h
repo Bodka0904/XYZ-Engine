@@ -24,8 +24,8 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			ComponentWrapper<RealGridBody> RealGridBody;
-			ComponentWrapper<RigidBody2D> RigidBody;
+			RealGridBody* RealGridBody;
+			RigidBody2D* RigidBody;
 		};
 	
 		struct Cell

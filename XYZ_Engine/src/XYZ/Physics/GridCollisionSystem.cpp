@@ -36,22 +36,22 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent->ActiveComponents & m_Signature) == m_Signature)
 			{
-				auto mask = it.Collision.Get().Layer;
+				auto mask = it.Collision->Layer;
 				int32_t result = Move(
-					it.GridBody.Get(),
-					it.Collision.Get().CollisionLayers,
-					it.Collision.Get().Layer);
+					*it.GridBody,
+					it.Collision->CollisionLayers,
+					it.Collision->Layer);
 
 				// Store mask of layer it collides with
-				it.Collision.Get().CurrentCollisions = result;
+				it.Collision->CurrentCollisions = result;
 
 				// No collisions , free to move
 				if (!result && result != OUT_OF_GRID)
 				{
-					it.GridBody.Get().Col += it.GridBody.Get().NextCol;
-					it.GridBody.Get().Row += it.GridBody.Get().NextRow;
+					it.GridBody->Col += it.GridBody->NextCol;
+					it.GridBody->Row += it.GridBody->NextRow;
 				}
 				else
 				{
@@ -68,10 +68,11 @@ namespace XYZ {
 		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 		component.GridBody = ECSManager::Get().GetComponent<GridBody>(entity);
 		component.Collision = ECSManager::Get().GetComponent<CollisionComponent>(entity);
-		
-		auto layer = component.Collision.Get().Layer;
-		auto collisionLayer = component.Collision.Get().CollisionLayers;
-		if (Insert(component.GridBody.Get(),collisionLayer, layer))
+		component.Ent = entity;
+
+		auto layer = component.Collision->Layer;
+		auto collisionLayer = component.Collision->CollisionLayers;
+		if (Insert(*component.GridBody,collisionLayer, layer))
 		{
 			m_Components.push_back(component);
 			XYZ_LOG_INFO("Entity with ID ", entity, " added");
@@ -85,8 +86,8 @@ namespace XYZ {
 		if (it != m_Components.end())
 		{
 			XYZ_LOG_INFO("Entity with id ", entity, " removed");
-			auto mask = (*it).Collision.Get().Layer;
-			Remove((*it).GridBody.Get(), mask);
+			auto mask = (*it).Collision->Layer;
+			Remove(*(*it).GridBody, mask);
 			*it = std::move(m_Components.back());
 			m_Components.pop_back();
 		}

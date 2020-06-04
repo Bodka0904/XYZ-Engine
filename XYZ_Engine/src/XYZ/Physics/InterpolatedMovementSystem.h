@@ -19,9 +19,9 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			ComponentWrapper<InterpolatedMovement> Interpolated;
-			ComponentWrapper<GridBody> GridBody;
-			ComponentWrapper<Transform2D> Transform;
+			InterpolatedMovement* Interpolated;
+			GridBody* GridBody;
+			Transform2D* Transform;
 		};
 
 		std::vector<Component> m_Components;

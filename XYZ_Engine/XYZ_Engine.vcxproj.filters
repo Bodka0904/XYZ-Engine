@@ -1451,8 +1451,6 @@
     <ClInclude Include="src\XYZ\Renderer\SpriteAnimator.h" />
     <ClInclude Include="src\XYZ\Renderer\ShaderGraph.h" />
     <ClInclude Include="src\XYZ\Physics\PhysicsComponent.h" />
-    <ClInclude Include="src\XYZ\Renderer\Node.h" />
-    <ClInclude Include="src\XYZ\Renderer\SceneNode.h" />
     <ClInclude Include="src\XYZ\Utils\DataStructures\Tree.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1647,8 +1645,6 @@
     <ClCompile Include="src\XYZ\Renderer\SpriteAnimator.cpp" />
     <ClCompile Include="src\XYZ\Renderer\ShaderGraph.cpp" />
     <ClCompile Include="src\XYZ\Physics\PhysicsComponent.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\Node.cpp" />
-    <ClCompile Include="src\XYZ\Renderer\SceneNode.cpp" />
     <ClCompile Include="src\XYZ\Utils\DataStructures\Tree.cpp" />
   </ItemGroup>
 </Project>

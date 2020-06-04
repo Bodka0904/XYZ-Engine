@@ -42,23 +42,24 @@ namespace XYZ {
 
 		struct Component
 		{
-			ComponentWrapper<ActiveComponent> ActiveComponent;
+			ActiveComponent* ActiveComponent;
+			Entity Ent;
 
 			bool operator()(const Component& a, const Component& b)
 			{
-				return (ActiveComponent.GetEntity() < ActiveComponent.GetEntity());
+				return (a.Ent < b.Ent);
 			}
 			bool operator ==(const Entity other) const
 			{
-				return ActiveComponent.GetEntity() == other;
+				return Ent == other;
 			}
 			bool operator <(const Entity other) const
 			{
-				return ActiveComponent.GetEntity() < other;
+				return Ent < other;
 			}
 			bool operator >(const Entity other) const
 			{
-				return ActiveComponent.GetEntity() > other;
+				return Ent > other;
 			}
 		};
 	protected:

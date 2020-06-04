@@ -18,7 +18,7 @@ namespace XYZ {
 	{
 		for (auto& it : m_Components)
 		{
-			if ((it.ActiveComponent.Get().ActiveComponents & m_Signature) == m_Signature)
+			if ((it.ActiveComponent->ActiveComponents & m_Signature) == m_Signature)
 			{
 				
 			}

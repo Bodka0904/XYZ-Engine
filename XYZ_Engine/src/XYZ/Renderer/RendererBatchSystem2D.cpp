@@ -79,8 +79,8 @@ namespace XYZ {
 
 	void RendererBatchSystem2D::Add(Entity entity)
 	{		
-		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
-		auto key = renderable.Material->GetSortKey();
+		auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+		auto key = renderable->Material->GetSortKey();
 
 		if (!(key & RenderFlags::InstancedFlag))
 		{
@@ -91,7 +91,7 @@ namespace XYZ {
 			component.Transform = ECSManager::Get().GetComponent<Transform2D>(entity);
 			component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 
-			if (renderable.Material->GetSortKey() & RenderFlags::TransparentFlag)
+			if (renderable->Material->GetSortKey() & RenderFlags::TransparentFlag)
 			{
 				m_TransparentComponents.push_back(component);
 				std::push_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(),TransparentComparator());
@@ -108,8 +108,8 @@ namespace XYZ {
 	{
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
-			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
-			auto key = renderable.Material->GetSortKey();
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+			auto key = renderable->Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -136,8 +136,8 @@ namespace XYZ {
 	{
 		if (ECSManager::Get().Contains<Renderable2D>(entity))
 		{
-			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity).Get();
-			auto key = renderable.Material->GetSortKey();
+			auto renderable = ECSManager::Get().GetComponent<Renderable2D>(entity);
+			auto key = renderable->Material->GetSortKey();
 			if (key & RenderFlags::TransparentFlag)
 			{
 				auto it = std::find(m_TransparentComponents.begin(), m_TransparentComponents.end(), entity);
@@ -166,11 +166,11 @@ namespace XYZ {
 			std::make_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), OpaqueComparator());
 		for (auto it : m_OpaqueComponents)
 		{
-			auto material = it.Renderable.Get().Material;
+			auto material = it.Renderable->Material;
 			auto& bucket = s_OpaqueBuckets[material];
 			if (bucket.IndexCount < bucket.IndexCount)
 			{
-				bucket.Submit(it.Renderable.Get(),it.Transform.Get().GetTransformation());
+				bucket.Submit(*it.Renderable,it.Transform->GetTransformation());
 			}
 			else
 			{
@@ -190,12 +190,12 @@ namespace XYZ {
 			std::make_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator());
 		for (auto it : m_TransparentComponents)
 		{		
-			auto material = it.Renderable.Get().Material;
+			auto material = it.Renderable->Material;
 			auto& bucket = s_TransparentBuckets[material];
 			
 			if (bucket.IndexCount < bucket.MaxIndices)
 			{
-				bucket.Submit(it.Renderable.Get(),it.Transform.Get().GetTransformation());
+				bucket.Submit(*it.Renderable,it.Transform->GetTransformation());
 			}
 			else
 			{

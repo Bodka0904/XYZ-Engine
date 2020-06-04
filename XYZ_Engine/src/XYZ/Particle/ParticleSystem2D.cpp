@@ -15,21 +15,21 @@ namespace XYZ {
 	{
 		if (!m_Sorted)
 			std::sort(m_Components.begin(), m_Components.end(), [](Component& a, Component& b) {
-			return a.Effect.Get().GetMaterial()->GetSortKey() < b.Effect.Get().GetMaterial()->GetSortKey();
+			return a.Effect->GetMaterial()->GetSortKey() < b.Effect->GetMaterial()->GetSortKey();
 		});
 		int16_t currentKey = -1;
 		for (auto &it : m_Components)
 		{
-			int16_t newKey = it.Effect.Get().GetMaterial()->GetSortKey();
+			int16_t newKey = it.Effect->GetMaterial()->GetSortKey();
 			if (currentKey != newKey)
 			{
 				currentKey = newKey;
-				it.Effect.Get().GetMaterial()->Set("u_Time", dt);
-				it.Effect.Get().GetMaterial()->Bind();
+				it.Effect->GetMaterial()->Set("u_Time", dt);
+				it.Effect->GetMaterial()->Bind();
 			}
 
-			it.Effect.Get().Update(dt);
-			it.Effect.Get().Render();		
+			it.Effect->Update(dt);
+			it.Effect->Render();		
 		}
 	}
 
@@ -40,7 +40,8 @@ namespace XYZ {
 		Component component;
 		component.ActiveComponent = ECSManager::Get().GetComponent<ActiveComponent>(entity);
 		component.Effect = ECSManager::Get().GetComponent<ParticleEffect2D>(entity);
-		
+		component.Ent = entity;
+
 		m_Components.push_back(component);
 		m_Sorted = false;
 	}

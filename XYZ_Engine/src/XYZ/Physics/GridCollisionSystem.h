@@ -56,8 +56,8 @@ namespace XYZ {
 	
 		struct Component : public System::Component
 		{
-			ComponentWrapper<GridBody> GridBody;
-			ComponentWrapper<CollisionComponent> Collision;
+			GridBody* GridBody;
+			CollisionComponent* Collision;
 		};
 
 		std::vector<Component> m_Components;

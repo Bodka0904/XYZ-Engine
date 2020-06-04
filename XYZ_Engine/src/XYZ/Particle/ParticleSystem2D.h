@@ -22,7 +22,7 @@ namespace XYZ {
 	private:
 		struct Component : public System::Component
 		{
-			ComponentWrapper<ParticleEffect2D> Effect;
+			ParticleEffect2D* Effect;
 		};
 
 		std::vector<Component> m_Components;

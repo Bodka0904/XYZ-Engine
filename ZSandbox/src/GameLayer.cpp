@@ -38,7 +38,9 @@ void GameLayer::OnAttach()
 	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Repeat, "Assets/Textures/background.png"), 2);
 
 
-	m_Material->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/player_sprite.png"), 3);
+
+	std::shared_ptr<XYZ::Texture2D> texture = XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/player_sprite.png");
+	m_Material->Set("u_Texture", texture, 3);
 	m_Material->Set("u_ViewProjection", m_CameraController->GetCamera().GetViewProjectionMatrix());
 	m_Material->SetFlags(XYZ::RenderFlags::TransparentFlag);
 
@@ -62,33 +64,71 @@ void GameLayer::OnAttach()
 	//m_FluidMaterial->Set("u_Texture", XYZ::Texture2D::Create(XYZ::TextureWrap::Clamp, "Assets/Textures/background.png"));
 
 
-	struct Propagate
-	{
-		void operator ()(std::vector<XYZ::Node<int,Propagate>>& data, uint16_t index)
-		{
-			data[index].GetData() += 1;
-			std::cout << data[index].GetData() << std::endl;
-		}
-	};
+	
+	// EXAMPLE HOW TREE WORKS //
+	XYZ::Tree<XYZ::Transform2D, Propagate> m_Tree;
 
-	XYZ::Tree<int, Propagate> m_Tree;
-
-	m_Tree.InsertNode(XYZ::Node<int, Propagate>(2));
+	m_Tree.InsertNode(XYZ::Node<XYZ::Transform2D, Propagate>("Root", XYZ::Transform2D(glm::vec3(1, 1, 1))));
 	m_Tree.Reserve(10);
-	for (int i = 1; i < 10; ++i)
+	for (int i = 1; i < 7; ++i)
 	{
-		m_Tree.InsertNode(XYZ::Node<int, Propagate>(1));		
+		m_Tree.InsertNode(XYZ::Node<XYZ::Transform2D, Propagate>("Root child", XYZ::Transform2D(glm::vec3(1, 1, 1))));
 	}
-	for (int i = 1; i < 9; ++i)
+	for (int i = 7; i < 10; ++i)
+	{
+		m_Tree.InsertNode(XYZ::Node<XYZ::Transform2D, Propagate>("Four child", XYZ::Transform2D(glm::vec3(1, 1, 1))));
+	}
+	for (int i = 1; i < 7; ++i)
 	{
 		m_Tree.SetParent(0, i);
 	}
 	m_Tree.SetParent(4, 9);
-	m_Tree.DeleteNode(5);
+	m_Tree.SetParent(9, 8);
+	m_Tree.SetParent(9, 7);
+	//m_Tree.DeleteNode(4);
 	
 	m_Tree.SetRoot(0);
 	m_Tree.Propagate();
-	
+	std::cout << "-------------------------" << std::endl;
+	auto& data = m_Tree.GetFlatData();
+	for (auto& it : data)
+		 it.GetData().GetTransformation(); // Must call to set updated to false
+	m_Tree.Propagate();
+	////////////////////////////////////////////////////////////////////////////
+
+	m_Player = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent<XYZ::Renderable2D>(m_Player, XYZ::Renderable2D{
+		m_Material,
+		std::make_shared<XYZ::SubTexture2D>(texture,glm::vec2(0,0),glm::vec2(texture->GetWidth()/8,texture->GetHeight()/3)),
+		glm::vec4(1,1,1,1),
+		true,
+		3
+		});
+
+	XYZ::ECSManager::Get().AddComponent<XYZ::Transform2D>(m_Player, XYZ::Transform2D{
+		glm::vec3(0,0,0)
+		});
+
+	m_PlayerChild = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent<XYZ::Renderable2D>(m_PlayerChild, XYZ::Renderable2D{
+		m_Material,
+		std::make_shared<XYZ::SubTexture2D>(texture,glm::vec2(0,0),glm::vec2(texture->GetWidth() / 8,texture->GetHeight() / 3)),
+		glm::vec4(1,1,1,1),
+		true,
+		3
+		});
+
+	XYZ::ECSManager::Get().AddComponent<XYZ::Transform2D>(m_PlayerChild, XYZ::Transform2D{
+		glm::vec3(3,3,0)
+		});
+
+	m_PlayerTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_Player);
+	m_PlayerChildTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_PlayerChild);
+	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player",m_PlayerTransform));
+	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player Child", m_PlayerChildTransform));
+
+	m_TransformTree.SetRoot(0);
+	m_TransformTree.SetParent(0, 1);
 }
 
 void GameLayer::OnDetach()
@@ -103,6 +143,36 @@ void GameLayer::OnImGuiRender()
 
 void GameLayer::OnUpdate(float dt)
 {
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_UP))
+	{
+		m_PlayerTransform->Translate(glm::vec3(0, 0.005, 0));
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_DOWN))
+	{
+		m_PlayerTransform->Translate(glm::vec3(0, -0.005, 0));
+	}
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_LEFT))
+	{
+		m_PlayerTransform->Translate(glm::vec3(-0.005, 0, 0));
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_RIGHT))
+	{
+		m_PlayerTransform->Translate(glm::vec3(0.005, 0, 0));
+	}
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_1))
+	{
+		m_PlayerTransform->Rotate(0.05);
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_3))
+	{
+		m_PlayerTransform->Rotate(-0.05);
+	}
+
+	m_TransformTree.Propagate();
+
 	XYZ::RenderCommand::Clear();
 	XYZ::RenderCommand::SetClearColor(glm::vec4(0.2, 0.2, 0.5, 1));
 	XYZ::Renderer2D::BeginScene(m_CameraController->GetCamera());
@@ -165,5 +235,5 @@ void GameLayer::InitBackgroundParticles(XYZ::Entity entity)
 		m_Data[i].DefaultVelocity = m_Data[i].Velocity;
 		m_Data[i].LifeTime = fabs(dist(rng)) * 1 + 3;
 	}
-	effect.Get().SetParticlesRange(m_Vertices, m_Data, 0, count);
+	effect->SetParticlesRange(m_Vertices, m_Data, 0, count);
 }

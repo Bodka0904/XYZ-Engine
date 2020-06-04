@@ -96,8 +96,12 @@ namespace XYZ {
 	void ParticleEffect2D::Render()
 	{
 		m_Renderable.Material->Bind();
-		Command<std::shared_ptr<VertexArray>,std::shared_ptr<IndirectBuffer>>cmd(RenderInstanced, m_Renderable.VertexArray, m_Renderable.IndirectBuffer);
-		Renderer2D::Submit(cmd, sizeof(cmd));		
+		m_Renderable.VertexArray->Bind();
+		m_Renderable.IndirectBuffer->Bind();
+		RenderCommand::DrawElementsIndirect(nullptr);
+		
+		//Command<std::shared_ptr<VertexArray>,std::shared_ptr<IndirectBuffer>>cmd(RenderInstanced, m_Renderable.VertexArray, m_Renderable.IndirectBuffer);
+		//Renderer2D::Submit(cmd, sizeof(cmd));		
 	}
 
 	void ParticleEffect2D::Update(float dt)

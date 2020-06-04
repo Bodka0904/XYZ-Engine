@@ -9,11 +9,12 @@ namespace XYZ {
 	{	
 		friend class Tree<T, Function>;
 	public:
-		Node(const T& data)
+		Node(const std::string& name,const T& data)
 			:
-			m_Data(data)
+			m_Data(data),
+			m_Name(name)
 		{}
-		
+	
 		bool HasChild()
 		{
 			return m_FirstChild != sc_NullIndex;
@@ -22,10 +23,9 @@ namespace XYZ {
 		uint16_t GetParentIndex() const { return m_Parent; }
 
 		const T& GetData() const { return m_Data; }
-		
-		T& GetData() { return m_Data; }
 
 	private:
+
 		void setIndex(uint16_t index)
 		{
 			m_Index = index;
@@ -46,6 +46,9 @@ namespace XYZ {
 
 			// Set as first child this
 			vector[parent].m_FirstChild = m_Index;
+
+			// Call user setup
+			Function(vector[m_Parent].m_Data, m_Data);
 		}
 
 		void detachFromTree(std::vector<Node<T, Function>>& vector)
@@ -107,6 +110,8 @@ namespace XYZ {
 		uint16_t m_FirstChild = sc_NullIndex;
 		uint16_t m_PreviousSibling = sc_NullIndex;
 		uint16_t m_NextSibling = sc_NullIndex;
+
+		std::string m_Name;
 	};
 
 
@@ -156,40 +161,58 @@ namespace XYZ {
 
 		void Propagate()
 		{
-			propagate(m_Root);
-		}
-		
-	private:
-		void propagate(uint16_t index)
-		{
+			uint16_t index = m_Root;
 			while (index != Node<T, Function>::sc_NullIndex)
 			{
-				Function()(m_Data, index);
 				if (m_Data[index].HasChild())
 				{
 					uint16_t firstChild = m_Data[index].m_FirstChild;
-					propagateRecursive(firstChild);
+					propagate(m_Data[index].m_Data,firstChild);
+				}
+				index = m_Data[index].m_NextSibling;
+			}
+		}
+		
+		std::vector<Node<T, Function>>& GetFlatData() { return m_Data; }
+
+	private:
+		void propagate(T& parentValue,uint16_t index)
+		{
+			while (index != Node<T, Function>::sc_NullIndex)
+			{
+				Function()(parentValue, m_Data[index].m_Data);
+				if (m_Data[index].HasChild())
+				{
+					uint16_t firstChild = m_Data[index].m_FirstChild;
+					propagate(m_Data[index].m_Data,firstChild);
 				}
 				index = m_Data[index].m_NextSibling;
 			}
 		}
 
 		void deleteNode(uint16_t index)
-		{
-			while (index != Node<T, Function>::sc_NullIndex)
+		{		
+			// Delete children and it's siblings
+			uint16_t next = m_Data[index].m_FirstChild;
+			while (next != != Node<T, Function>::sc_NullIndex)
 			{
-				// Detach from tree
-				m_Data[index].detachFromTree(m_Data);
-
-				uint16_t last = m_Data.size() - 1;
-				m_Data[last].reconnectToTree(m_Data, index);
-
-				auto it = m_Data.begin() + index;
-				// Move last element to the place of old one
-				*it = std::move(m_Data.back());
-				// Pops last element
-				m_Data.pop_back();
+				uint16_t child = next;
+				next = m_Data[next].m_NextSibling;
+				deleteNode(child);
 			}
+
+			// Detach from tree
+			m_Data[index].detachFromTree(m_Data);
+
+			uint16_t last = m_Data.size() - 1;
+			m_Data[last].reconnectToTree(m_Data, index);
+
+			auto it = m_Data.begin() + index;
+			// Move last element to the place of old one
+			*it = std::move(m_Data.back());
+			// Pops last element
+			m_Data.pop_back();
+		
 		}
 
 	private:

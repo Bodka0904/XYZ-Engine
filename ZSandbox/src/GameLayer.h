@@ -3,6 +3,44 @@
 #include <XYZ.h>
 
 
+
+struct Propagate
+{
+	Propagate(XYZ::Transform2D& parent, XYZ::Transform2D& child)
+	{
+		child.SetParent(&parent);
+	}
+	Propagate() = default;
+
+	void operator ()(XYZ::Transform2D& parent, XYZ::Transform2D& child)
+	{
+		if (parent.Updated())
+			child.InheritParent(parent);
+
+		std::cout << child.GetPosition().x << std::endl;
+	}
+};
+
+
+struct TransformPropagate
+{
+	// Setup
+	TransformPropagate(XYZ::Transform2D* parent, XYZ::Transform2D* child)
+	{
+		if (parent && child)
+			child->SetParent(parent);
+	}
+	TransformPropagate() = default;
+	// Update
+	void operator ()(XYZ::Transform2D* parent, XYZ::Transform2D* child)
+	{
+		if (parent->Updated())
+			child->InheritParent(*parent);
+	}
+
+};
+
+
 class GameLayer : public XYZ::Layer
 {
 public:
@@ -29,10 +67,15 @@ private:
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
 	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 
-
+	XYZ::Entity m_Player;
+	XYZ::Entity m_PlayerChild;
 
 	XYZ::Entity m_ParticleEntity;
 
+
+	XYZ::Tree<XYZ::Transform2D*, TransformPropagate> m_TransformTree;
+	XYZ::Transform2D* m_PlayerTransform;
+	XYZ::Transform2D* m_PlayerChildTransform;
 
 	int m_PlayableArea = 20;
 

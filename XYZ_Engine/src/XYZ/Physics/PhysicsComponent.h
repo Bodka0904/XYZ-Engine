@@ -11,42 +11,38 @@ namespace XYZ {
 	class Transform2D : public Type<Transform2D>
 	{
 	public:
-		Transform2D(const glm::vec3& pos, const glm::vec2& size = glm::vec2(1), float rot = 0.0f);
-		Transform2D() = default;
+		Transform2D(const glm::vec3& pos, const glm::vec2& scale = glm::vec2(1), float rot = 0.0f);
 
-		void SetParent(Transform2D* parent);
+		void Translate(const glm::vec3& translation);
+		void Scale(const glm::vec2& scale);
+		void Rotate(float rotation);
+		void InheritParent(const Transform2D& parent);
+		void SetParent(const Transform2D* parent) { m_Parent = parent; };
 
 		// Does not set m_Updated to true
-		const glm::vec3& GetPosition() const;
-		const glm::vec2& GetSize() const;
-		float GetRotation() const;
+		const glm::vec3& GetPosition() const { return m_Position; };
+		const glm::vec2& GetScale() const { return m_Scale; };
+		float GetRotation() const { return m_Rotation; };
 
-		// Sets m_Updated to true
-		glm::vec3& GetPosition();
-		glm::vec2& GetSize();
-		float& GetRotation();
-
+			
 		const glm::mat4& GetTransformation() const;
+		bool Updated() const { return m_Updated; }
 	private:
-		void recalculateTransform() const;
+		glm::mat4 calculateTransform() const;
 
 	private:
-		// It is required to be mutable , we use GetTransformation in functions 
-		// that are not allowed to modify passed references
-		mutable glm::mat4 m_Transformation = glm::mat4(1);
-
-
 		glm::vec3 m_Position = glm::vec3(0);
-		glm::vec2 m_Size = glm::vec2(1);
+		glm::vec2 m_Scale = glm::vec2(1);
 		float m_Rotation = 0.0f;
 
 		// It is required to be mutable , we use GetTransformation in functions 
 		// that are not allowed to modify passed references
-		mutable bool m_Updated = false;
+		mutable glm::mat4 m_Transformation = glm::mat4(1);
 
-		Transform2D* m_Parent = nullptr;
-		Transform2D* m_FirstChild = nullptr;
-		Transform2D* m_NextSibling = nullptr;
+		const Transform2D* m_Parent = nullptr;
+		// It is required to be mutable , we use GetTransformation in functions 
+		// that are not allowed to modify passed references
+		mutable bool m_Updated = true;
 	};
 
 
@@ -57,7 +53,6 @@ namespace XYZ {
 		RigidBody2D(const glm::vec2& velocity)
 			: Velocity(velocity), BounceValue(0)
 		{}
-		RigidBody2D() = default;
 
 		glm::vec2 Velocity = glm::vec2(0);
 		int BounceValue = 0;
@@ -94,7 +89,6 @@ namespace XYZ {
 		InterpolatedMovement(const glm::vec2& velocity)
 			: Distance(glm::vec2(0)), Velocity(velocity), InProgress(false)
 		{}
-		InterpolatedMovement() = default;
 
 		glm::vec2 Distance = glm::vec2(0);
 		glm::vec2 Velocity = glm::vec2(0);
@@ -107,7 +101,6 @@ namespace XYZ {
 			: Layer(layer), CollisionLayers(collisionLayers), CurrentCollisions(0)
 		{}
 
-		CollisionComponent() = default;
 
 		int32_t Layer = 0;
 
