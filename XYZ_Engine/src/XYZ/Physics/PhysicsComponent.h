@@ -18,6 +18,7 @@ namespace XYZ {
 		void Rotate(float rotation);
 		void InheritParent(const Transform2D& parent);
 		void SetParent(const Transform2D* parent) { m_Parent = parent; };
+		void DetachParent();
 
 		// Does not set m_Updated to true
 		const glm::vec3& GetPosition() const { return m_Position; };
@@ -26,6 +27,7 @@ namespace XYZ {
 
 			
 		const glm::mat4& GetTransformation() const;
+
 		bool Updated() const { return m_Updated; }
 	private:
 		glm::mat4 calculateTransform() const;

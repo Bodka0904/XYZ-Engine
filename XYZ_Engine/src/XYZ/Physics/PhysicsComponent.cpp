@@ -31,20 +31,32 @@ namespace XYZ {
 	}
 	void Transform2D::InheritParent(const Transform2D& parent)
 	{
-		// TODO: should submit to render from this function with correct transformation
-		// No need to pass parent as argument
+		if (m_Parent && m_Parent->m_Updated)
+			m_Transformation = m_Parent->m_Transformation * calculateTransform();
 	}
+
+	void Transform2D::DetachParent()
+	{
+		if (m_Parent)
+		{
+			m_Parent = nullptr;
+			m_Transformation = calculateTransform();
+		}
+		else
+			XYZ_LOG_WARN("Transform has no parent to detach");
+	}
+	
 	
 	const glm::mat4& Transform2D::GetTransformation() const
 	{
-		if (m_Updated)
-		{
+		if (m_Updated && !m_Parent)
 			m_Transformation = calculateTransform();
-			m_Updated = false;
-		}
+
+		m_Updated = false;
 		return m_Transformation;
 	}
 
+	
 	glm::mat4 Transform2D::calculateTransform() const
 	{
 		glm::mat4 posMatrix = glm::translate(m_Position);

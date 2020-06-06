@@ -96,6 +96,12 @@ void GameLayer::OnAttach()
 	m_Tree.Propagate();
 	////////////////////////////////////////////////////////////////////////////
 
+
+	m_World = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent<XYZ::Transform2D>(m_World, XYZ::Transform2D{
+		glm::vec3(0,0,0)
+		});
+
 	m_Player = XYZ::ECSManager::Get().CreateEntity();
 	XYZ::ECSManager::Get().AddComponent<XYZ::Renderable2D>(m_Player, XYZ::Renderable2D{
 		m_Material,
@@ -122,13 +128,16 @@ void GameLayer::OnAttach()
 		glm::vec3(3,3,0)
 		});
 
+	m_WorldTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_World);
 	m_PlayerTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_Player);
 	m_PlayerChildTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_PlayerChild);
+	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("World", m_WorldTransform));
 	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player",m_PlayerTransform));
 	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player Child", m_PlayerChildTransform));
 
 	m_TransformTree.SetRoot(0);
 	m_TransformTree.SetParent(0, 1);
+	m_TransformTree.SetParent(1, 2);
 }
 
 void GameLayer::OnDetach()
@@ -146,6 +155,7 @@ void GameLayer::OnUpdate(float dt)
 
 	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_UP))
 	{
+
 		m_PlayerTransform->Translate(glm::vec3(0, 0.005, 0));
 	}
 	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_DOWN))

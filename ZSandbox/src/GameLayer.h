@@ -67,6 +67,7 @@ private:
 	std::shared_ptr<XYZ::Material> m_ParticleMaterial;
 	std::shared_ptr<XYZ::OrthoCameraController> m_CameraController;
 
+	XYZ::Entity m_World;
 	XYZ::Entity m_Player;
 	XYZ::Entity m_PlayerChild;
 
@@ -74,6 +75,7 @@ private:
 
 
 	XYZ::Tree<XYZ::Transform2D*, TransformPropagate> m_TransformTree;
+	XYZ::Transform2D* m_WorldTransform;
 	XYZ::Transform2D* m_PlayerTransform;
 	XYZ::Transform2D* m_PlayerChildTransform;
 
