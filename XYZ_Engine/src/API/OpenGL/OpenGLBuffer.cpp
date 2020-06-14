@@ -8,8 +8,8 @@ namespace XYZ {
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size, BufferUsage usage)
 		: m_Size(size), m_Usage(usage)
 	{
-		glCreateBuffers(1, &m_VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		switch (usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW); break;
@@ -20,19 +20,19 @@ namespace XYZ {
 	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
 		: m_Size(size), m_Usage(BufferUsage::Dynamic)
 	{
-		glCreateBuffers(1, &m_VBO);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 	}
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
 	{
-		glDeleteBuffers(1, &m_VBO);
+		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::Bind() const
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::UnBind() const
@@ -43,14 +43,14 @@ namespace XYZ {
 	void OpenGLVertexBuffer::Update(void* vertices, uint32_t size, uint32_t offset)
 	{
 		XYZ_ASSERT(m_Usage == BufferUsage::Dynamic, "Buffer does not have dynamic usage");
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferSubData(GL_ARRAY_BUFFER, offset, size, vertices);
 	}
 
 	void OpenGLVertexBuffer::Resize(float* vertices, uint32_t size)
 	{
 		m_Size = size;
-		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		switch (m_Usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW); break;
@@ -61,19 +61,19 @@ namespace XYZ {
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
 		: m_Count(count)
 	{
-		glCreateBuffers(1, &m_IBO);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IBO);
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 	}
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()
 	{
-		glDeleteBuffers(1, &m_IBO);
+		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::Bind() const
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_IBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::UnBind() const
@@ -86,8 +86,8 @@ namespace XYZ {
 	OpenGLShaderStorageBuffer::OpenGLShaderStorageBuffer(float* data, uint32_t size, BufferUsage usage)
 		:m_Size(size), m_Usage(usage)
 	{
-		glGenBuffers(1, &m_SSBO);
-		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_SSBO);
+		glGenBuffers(1, &m_RendererID);
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_RendererID);
 		switch (m_Usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_SHADER_STORAGE_BUFFER, size, data, GL_STATIC_DRAW); break;
@@ -98,35 +98,35 @@ namespace XYZ {
 
 	OpenGLShaderStorageBuffer::~OpenGLShaderStorageBuffer()
 	{
-		glDeleteBuffers(1, &m_SSBO);
+		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLShaderStorageBuffer::BindBase(uint32_t index)
 	{
-		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_SSBO);
-		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_SSBO);
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_RendererID);
+		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_RendererID);
 	}
 
 
 	void OpenGLShaderStorageBuffer::BindRange(uint32_t offset, uint32_t size, uint32_t index)
 	{		
-		glBindBufferRange(GL_SHADER_STORAGE_BUFFER, index, m_SSBO, offset, size);
+		glBindBufferRange(GL_SHADER_STORAGE_BUFFER, index, m_RendererID, offset, size);
 	}
 
 	void OpenGLShaderStorageBuffer::Bind()
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLShaderStorageBuffer::Update(const void* data, uint32_t size, uint32_t offset)
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferSubData(GL_ARRAY_BUFFER, offset, size, data);
 	}
 
 	void OpenGLShaderStorageBuffer::Resize(const void* data, uint32_t size)
 	{
-		glBindBuffer(GL_ARRAY_BUFFER, m_SSBO);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		switch (m_Usage)
 		{
 		case BufferUsage::Static:    glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW); break;
@@ -145,35 +145,35 @@ namespace XYZ {
 		for (size_t i = 0; i < numOfCounters; ++i)
 			m_Counters[i] = 0;
 
-		glGenBuffers(1, &m_AC);
-		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glGenBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_RendererID);
 		glBufferData(GL_ATOMIC_COUNTER_BUFFER, sizeof(uint32_t) * numOfCounters, m_Counters, GL_DYNAMIC_DRAW);
 	}
 	OpenGLAtomicCounter::~OpenGLAtomicCounter()
 	{
-		glDeleteBuffers(1, &m_AC);
+		glDeleteBuffers(1, &m_RendererID);
 		delete[]m_Counters;
 	}
 	void OpenGLAtomicCounter::Reset()
 	{
 		for (size_t i = 0; i < m_NumberOfCounters; ++i)
 			m_Counters[i] = 0;
-		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_RendererID);
 		glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(uint32_t) * m_NumberOfCounters, m_Counters);
 	}
 	void OpenGLAtomicCounter::BindBase(uint32_t index)
 	{
-		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
-		glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER,index, m_AC);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_RendererID);
+		glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER,index, m_RendererID);
 	}
 	void OpenGLAtomicCounter::Update(uint32_t* data, uint32_t count, uint32_t offset)
 	{
-		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_RendererID);
 		glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, offset * sizeof(uint32_t), sizeof(uint32_t) * m_NumberOfCounters, data);
 	}
 	uint32_t* OpenGLAtomicCounter::GetCounters()
 	{
-		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_AC);
+		glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, m_RendererID);
 		glGetBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(uint32_t) * m_NumberOfCounters, m_Counters);		
 		
 		return m_Counters;
@@ -182,21 +182,21 @@ namespace XYZ {
 		:
 		m_Size(size)
 	{
-		glGenBuffers(1, &m_IB);
-		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_IB);
+		glGenBuffers(1, &m_RendererID);
+		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_RendererID);
 		glBufferData(GL_DRAW_INDIRECT_BUFFER, size, drawCommand, GL_STATIC_DRAW);
 	}
 	OpenGLIndirectBuffer::~OpenGLIndirectBuffer()
 	{
-		glDeleteBuffers(1, &m_IB);
+		glDeleteBuffers(1, &m_RendererID);
 	}
 	void OpenGLIndirectBuffer::Bind()
 	{
-		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_IB);
+		glBindBuffer(GL_DRAW_INDIRECT_BUFFER, m_RendererID);
 	}
 	void OpenGLIndirectBuffer::BindBase(uint32_t index)
 	{
-		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_IB);
-		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_IB);
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, m_RendererID);
+		glBindBufferBase(GL_SHADER_STORAGE_BUFFER, index, m_RendererID);
 	}
 }

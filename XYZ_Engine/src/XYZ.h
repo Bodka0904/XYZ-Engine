@@ -19,6 +19,7 @@
 #include "XYZ/Renderer/SpriteAnimationController.h"
 #include "XYZ/Renderer/SpriteSystem.h"
 #include "XYZ/Renderer/MaterialManager.h"
+#include "XYZ/Renderer/Framebuffer.h"
 
 
 //------ECS-----//

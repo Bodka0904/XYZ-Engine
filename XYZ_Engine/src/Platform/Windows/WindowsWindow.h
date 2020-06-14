@@ -21,8 +21,8 @@ namespace XYZ {
 		virtual bool IsClosed() override;
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 
-		inline unsigned int GetWidth() const override { return m_Data.Width; }
-		inline unsigned int GetHeight() const override { return m_Data.Height; }
+		inline virtual uint32_t GetWidth() const override { return m_Data.Width; }
+		inline virtual uint32_t GetHeight() const override { return m_Data.Height; }
 	private:
 		virtual void Destroy();
 
@@ -32,8 +32,8 @@ namespace XYZ {
 		struct WindowData
 		{
 			std::string Title;
-			unsigned int Width = 0;
-			unsigned int Height = 0;
+			uint32_t Width = 0;
+			uint32_t Height = 0;
 			bool VSync = false;
 		};
 

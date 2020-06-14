@@ -5,11 +5,11 @@ namespace XYZ {
 	/**
 	* enum class represents flags for the material sort key
 	*/
-	enum class RenderFlags : int64_t
+	enum class RenderFlags : uint64_t
 	{
-		MaterialFlag	= 1LL << 0,
-		TransparentFlag	= 1LL << 16,
-		InstancedFlag	= 1LL << 17
+		MaterialFlag	= 1ULL << 0,
+		TransparentFlag	= 1ULL << 16,
+		InstancedFlag	= 1ULL << 17
 	};
 
 	inline RenderFlags operator | (RenderFlags lhs, RenderFlags rhs)

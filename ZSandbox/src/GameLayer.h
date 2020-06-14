@@ -34,8 +34,8 @@ struct TransformPropagate
 	// Update
 	void operator ()(XYZ::Transform2D* parent, XYZ::Transform2D* child)
 	{
-		if (parent->Updated())
-			child->InheritParent(*parent);
+		child->CalculateWorldTransformation();
+		// Should call rendering functions
 	}
 
 };
@@ -70,6 +70,7 @@ private:
 	XYZ::Entity m_World;
 	XYZ::Entity m_Player;
 	XYZ::Entity m_PlayerChild;
+	XYZ::Entity m_PlayerChild2;
 
 	XYZ::Entity m_ParticleEntity;
 
@@ -78,6 +79,7 @@ private:
 	XYZ::Transform2D* m_WorldTransform;
 	XYZ::Transform2D* m_PlayerTransform;
 	XYZ::Transform2D* m_PlayerChildTransform;
+	XYZ::Transform2D* m_PlayerChildTransform2;
 
 	int m_PlayableArea = 20;
 
@@ -85,4 +87,5 @@ private:
 	std::shared_ptr<XYZ::AudioSource> m_Audio;
 
 	std::shared_ptr<XYZ::Material> m_FluidMaterial;
+	std::shared_ptr<XYZ::FrameBuffer> m_FrameBuffer;
 };

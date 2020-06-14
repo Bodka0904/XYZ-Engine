@@ -14,31 +14,53 @@ namespace XYZ {
 		RGBA16F = 3
 	};
 
+	struct ColorAttachment
+	{
+		uint32_t RendererID;
+		FrameBufferFormat Format;
+	};
+
+	struct DepthAttachment
+	{
+		uint32_t RendererID;
+	};
+
+	struct FrameBufferSpecs
+	{
+		uint32_t Width;
+		uint32_t Height;
+		uint32_t Samples = 1;
+		FrameBufferFormat Format = FrameBufferFormat::RGBA16F;
+		bool SwapChainTarget = false; 
+	};
+
 	/*! @class FrameBuffer
 	*	@brief Framebuffer for texture operations
 	*/
 	class FrameBuffer
 	{
 	public:
-		~FrameBuffer() = default;
+		virtual ~FrameBuffer() = default;
 
-		virtual void Resize(uint32_t width, uint32_t height) = 0;
+		virtual void Resize() = 0;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
-		virtual void BindTexture(uint32_t slot = 0) const = 0;
+		virtual void SetSpecification(const FrameBufferSpecs& specs) = 0;
 
-		virtual unsigned int GetFBO() const = 0;
-		virtual unsigned int GetColorAttachment() const = 0;
-		virtual unsigned int GetDepthAttachment() const = 0;
+		virtual void CreateColorAttachment(FrameBufferFormat format) = 0;
+		virtual void CreateDepthAttachment() = 0;
 
-		virtual uint32_t GetWidth() const = 0;
-		virtual uint32_t GetHeight() const = 0;
-		virtual FrameBufferFormat GetFormat() const = 0;
+		virtual ColorAttachment GetColorAttachment(uint32_t index) const = 0;
+		virtual DepthAttachment GetDetphAttachment(uint32_t index) const = 0;
 
+		virtual size_t GetNumberColorAttachments() const = 0;
+		virtual size_t GetNumberDepthAttachments() const = 0;
 
-		static std::shared_ptr<FrameBuffer> Create(uint32_t width, uint32_t height, FrameBufferFormat format);
+		virtual const FrameBufferSpecs& GetSpecification() const = 0;
+
+		static std::shared_ptr<FrameBuffer> Create(const FrameBufferSpecs& specs);
 	};
 
 }

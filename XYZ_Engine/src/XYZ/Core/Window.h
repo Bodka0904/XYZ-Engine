@@ -13,13 +13,13 @@ namespace XYZ {
 	struct WindowProperties
 	{
 		std::string Title;
-		unsigned int Width;
-		unsigned int Height;
+		uint32_t Width;
+		uint32_t Height;
 		int Flags;
 
 		WindowProperties(const std::string& title = "Engine",
-			unsigned int width = 1024,
-			unsigned int height = 840,
+			uint32_t width = 1024,
+			uint32_t height = 840,
 			int flags = WindowFlags::NONE)
 			: Title(title), Width(width), Height(height), Flags(flags)
 		{
@@ -32,8 +32,8 @@ namespace XYZ {
 		virtual ~Window() = default;
 		virtual void Update() = 0;
 
-		virtual unsigned int GetWidth() const = 0;
-		virtual unsigned int GetHeight() const = 0;
+		virtual uint32_t GetWidth() const = 0;
+		virtual uint32_t GetHeight() const = 0;
 
 		// Window attributes
 		virtual void SetVSync(bool enabled) = 0;

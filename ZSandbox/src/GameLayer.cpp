@@ -128,16 +128,43 @@ void GameLayer::OnAttach()
 		glm::vec3(3,3,0)
 		});
 
+	m_PlayerChild2 = XYZ::ECSManager::Get().CreateEntity();
+	XYZ::ECSManager::Get().AddComponent<XYZ::Renderable2D>(m_PlayerChild2, XYZ::Renderable2D{
+		m_Material,
+		std::make_shared<XYZ::SubTexture2D>(texture,glm::vec2(0,0),glm::vec2(texture->GetWidth() / 8,texture->GetHeight() / 3)),
+		glm::vec4(1,1,1,1),
+		true,
+		3
+		});
+
+	XYZ::ECSManager::Get().AddComponent<XYZ::Transform2D>(m_PlayerChild2, XYZ::Transform2D{
+		glm::vec3(3,3,0)
+		});
+
+
+
 	m_WorldTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_World);
 	m_PlayerTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_Player);
 	m_PlayerChildTransform = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_PlayerChild);
+	m_PlayerChildTransform2 = XYZ::ECSManager::Get().GetComponent<XYZ::Transform2D>(m_PlayerChild2);
+
 	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("World", m_WorldTransform));
 	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player",m_PlayerTransform));
 	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player Child", m_PlayerChildTransform));
+	m_TransformTree.InsertNode(XYZ::Node<XYZ::Transform2D*, TransformPropagate>("Player Child2", m_PlayerChildTransform2));
 
 	m_TransformTree.SetRoot(0);
 	m_TransformTree.SetParent(0, 1);
 	m_TransformTree.SetParent(1, 2);
+	m_TransformTree.SetParent(2, 3);
+
+
+	m_FrameBuffer = XYZ::FrameBuffer::Create(XYZ::FrameBufferSpecs{ 100,100 });
+	m_FrameBuffer->CreateColorAttachment(XYZ::FrameBufferFormat::RGBA16F);
+	m_FrameBuffer->CreateColorAttachment(XYZ::FrameBufferFormat::RGBA16F);
+	m_FrameBuffer->CreateColorAttachment(XYZ::FrameBufferFormat::RGBA16F);
+	m_FrameBuffer->CreateColorAttachment(XYZ::FrameBufferFormat::RGBA16F);
+	m_FrameBuffer->Resize();
 }
 
 void GameLayer::OnDetach()
@@ -155,7 +182,6 @@ void GameLayer::OnUpdate(float dt)
 
 	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_UP))
 	{
-
 		m_PlayerTransform->Translate(glm::vec3(0, 0.005, 0));
 	}
 	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_DOWN))
@@ -176,10 +202,41 @@ void GameLayer::OnUpdate(float dt)
 	{
 		m_PlayerTransform->Rotate(0.05);
 	}
-	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_3))
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_2))
 	{
 		m_PlayerTransform->Rotate(-0.05);
 	}
+
+
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_I))
+	{
+		m_PlayerChildTransform->Translate(glm::vec3(0, 0.005, 0));
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_K))
+	{
+		m_PlayerChildTransform->Translate(glm::vec3(0, -0.005, 0));
+	}
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_J))
+	{
+		m_PlayerChildTransform->Translate(glm::vec3(-0.005, 0, 0));
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_L))
+	{
+		m_PlayerChildTransform->Translate(glm::vec3(0.005, 0, 0));
+	}
+
+	if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_3))
+	{
+		m_PlayerChildTransform->Rotate(0.05);
+	}
+	else if (XYZ::Input::IsKeyPressed(XYZ::KeyCode::XYZ_KEY_4))
+	{
+		m_PlayerChildTransform->Rotate(-0.05);
+	}
+
+
 
 	m_TransformTree.Propagate();
 

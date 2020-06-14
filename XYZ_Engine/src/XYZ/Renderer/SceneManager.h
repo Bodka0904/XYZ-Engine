@@ -35,11 +35,11 @@ namespace XYZ
 		/** Adds an entity into the active scene */
 		void AddEntityToActive(const Entity& item);
 
-		inline std::shared_ptr<Scene> GetActive() const { return m_ActiceScene; }
+		inline std::shared_ptr<Scene> GetActive() const { return m_RendererIDticeScene; }
 
 
 	private:
-		std::shared_ptr<Scene> m_ActiceScene;
+		std::shared_ptr<Scene> m_RendererIDticeScene;
 		std::unordered_map<std::string, std::shared_ptr<Scene>> m_Scenes;
 	};
 }

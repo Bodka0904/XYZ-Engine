@@ -18,7 +18,7 @@ void XYZ::SceneManager::Add(std::shared_ptr<Scene> scene)
 
 bool XYZ::SceneManager::Remove(const std::string& name)
 {
-	if (m_ActiceScene->GetName() == name) throw RemoveActiveSceneException(name);
+	if (m_RendererIDticeScene->GetName() == name) throw RemoveActiveSceneException(name);
 	if (m_Scenes.count(name) == 0) return false;
 
 	m_Scenes.erase(name);
@@ -28,7 +28,7 @@ bool XYZ::SceneManager::Remove(const std::string& name)
 bool XYZ::SceneManager::SetActive(const std::string& name)
 {
 	if (m_Scenes.count(name) == 0) return false;
-	m_ActiceScene = m_Scenes[name];
+	m_RendererIDticeScene = m_Scenes[name];
 }
 
 void XYZ::SceneManager::AddEntityToActive(const Entity& item)
