@@ -286,7 +286,7 @@ void GameLayer::InitBackgroundParticles(XYZ::Entity entity)
 
 	for (int i = 0; i < count; ++i)
 	{
-		m_Vertices[i].Position = glm::vec4(((float)1/(float)count)*i, 0, i * (1.0f / count), 1);
+		m_Vertices[i].Position = glm::vec4(((float)1/(float)count)*i, 0.0f, 0.0f, 1.0f);
 		m_Vertices[i].Color = glm::vec4(0, 1, 1, 1);
 		m_Vertices[i].Rotation = 0.0f;
 		m_Vertices[i].TexCoordOffset = glm::vec2(0);

@@ -94,12 +94,10 @@ namespace XYZ {
 			if (renderable->Material->GetSortKey() & RenderFlags::TransparentFlag)
 			{
 				m_TransparentComponents.push_back(component);
-				std::push_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(),TransparentComparator());
 			}
 			else
 			{
 				m_OpaqueComponents.push_back(component);
-				std::push_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(),OpaqueComparator());
 			}
 		}
 	}
@@ -162,8 +160,6 @@ namespace XYZ {
 
 	void RendererBatchSystem2D::SubmitToRenderer()
 	{	
-		if (!std::is_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(),  OpaqueComparator()))
-			std::make_heap(m_OpaqueComponents.begin(), m_OpaqueComponents.end(), OpaqueComparator());
 		for (auto it : m_OpaqueComponents)
 		{
 			auto material = it.Renderable->Material;
@@ -186,8 +182,6 @@ namespace XYZ {
 			it.second.Reset();
 		}
 		
-		if (!std::is_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator()))
-			std::make_heap(m_TransparentComponents.begin(), m_TransparentComponents.end(), TransparentComparator());
 		for (auto it : m_TransparentComponents)
 		{		
 			auto material = it.Renderable->Material;

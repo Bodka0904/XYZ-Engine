@@ -38,7 +38,7 @@ void main()
 	vec2 pos = RotationZ(GetRadians(a_IAngle)) * a_Position.xy;
 	pos *= a_ISize;
 
-	gl_Position = u_ViewProjection * vec4(pos.x + a_IPosition.x,pos.y + a_IPosition.y, a_Position.z + a_IPosition.z, 1);
+	gl_Position = u_ViewProjection * vec4(pos.x + a_IPosition.x,pos.y + a_IPosition.y, 0.0, 1.0);
 	v_Color = a_IColor;
 	v_TexCoord = a_TexCoord;
 }
